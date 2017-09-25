@@ -8,7 +8,7 @@ CC = gcc
 RM = rm -rf
 
 STD_C99 = -std=c99
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)lexical.c $(SRC_FOLDER)main.c -o $(PROJECT)

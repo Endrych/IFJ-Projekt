@@ -3,42 +3,63 @@
 #include <stdlib.h>
 #include "constants.h"
 
+char* str = NULL;    
+char* storage = NULL;
+char* pointer = NULL;
+size_t size = 0;
+size_t storage_size = 0;
+size_t len = 0;
+size_t newSize = 0;
+
 Token toSend;
 void handle_file(char* arg){
 
 }
 
-char* newName = NULL;    
-int size = 0;
-
-void handle_characters(char c){
-    if(newName == NULL){
-        newName=(char*)malloc(10*sizeof(char));
+int* handle_characters(char c){
+    if(str == NULL){
         size = 10;
-
+        str=(char*)malloc(size*sizeof(char));
     }
-    long int len = strlen(newName);    
+    len = strlen(str);    
     switch (c){
-        case '/':
-            printf("Comment");
-            break;
+        // case '/':
+        //     printf("Comment");
+        //     break;
         case ' ':
-            printf("%s\n", newName);
-            free(newName);
-            newName=(char*)malloc(10*sizeof(char));
-            for(int i =0; i < len; i++){
-                newName[i] = 0;
+        case '\n':
+            // printf("%d\n", storage_size);
+            // printf("%d\n", len);
+            
+            if(storage == NULL){
+                newSize = len + 1;
+                storage=(char *)calloc(newSize,sizeof(char));
+            }else{
+                newSize = storage_size + len + 1;
+                storage = (char *)realloc(storage, newSize*sizeof(char));
             }
+            for (size_t i = storage_size, j = 0; i < newSize;i++, j++){
+                if(i == newSize - 1){
+                  storage[i] = '#';                                    
+                }else{
+                  storage[i] = str[j];  
+                  printf("%c",storage[i]);              
+                }
+            }
+            storage_size += len + 1;
+            free(str);
+            size = 10;
+            str=(char*)calloc(size,sizeof(char));
             break;
         case EOF:
-            free(newName);
+            free(str);
             break;
         default:
             if(len == size){
                 size += 10;
-                newName = (char *)realloc(newName, size*sizeof(char));
+                str = (char *)realloc(str, size*sizeof(char));
             }
-            // printf("len : %ld \n", len);
-            newName[len] = c;
+            str[len] = c;
     }
+    return storage;
 }

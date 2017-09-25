@@ -6,6 +6,7 @@
 int main(int argc, char **argv)
 {
   FILE *source_code; 
+  char* adresa;
   char c;
   char *filename= argv[1];
   printf("Filename: %s\n", filename);
@@ -15,11 +16,14 @@ int main(int argc, char **argv)
   }
   printf("The contents of %s file are :\n", filename);
 
-  while(( c = fgetc(source_code)) != EOF )
-    handle_characters(c);
-
-    
-
+  while(( c = fgetc(source_code)) != EOF ){
+    adresa = handle_characters(c);
+  }
+  printf("\nAdresa: %p\n", adresa);
+  for (int i = 0; i < 300; i++){
+    printf("%c",adresa[i]);
+  }
+  free(adresa);
   fclose(source_code);
 
   return 0;
