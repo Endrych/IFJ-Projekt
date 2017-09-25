@@ -34,12 +34,16 @@ typedef enum{
     Then,
     True,
     While
-}Keywords;
+}Keyword;
 
 typedef union{
-
+    Keywords keyword;
+    int int_value;
+    double double_value;
+    int* chain_pointer;
 }Atribute;
 
 typedef struct{
-
+    Type type;
+    Atribute atribute;
 }Token;
