@@ -8,7 +8,7 @@ int main(int argc, char **argv)
   FILE *source_code; 
   char* adresa;
   char c;
-  char *filename= argv[1];
+  int *filename= argv[1];
   printf("Filename: %s\n", filename);
   source_code = fopen(filename, "r");
   if(source_code == NULL){

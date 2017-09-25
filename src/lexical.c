@@ -38,6 +38,7 @@ int* handle_characters(char c){
                 newSize = storage_size + len + 1;
                 storage = (char *)realloc(storage, newSize*sizeof(char));
             }
+            
             for (size_t i = storage_size, j = 0; i < newSize;i++, j++){
                 if(i == newSize - 1){
                   storage[i] = '#';                                    
@@ -46,6 +47,8 @@ int* handle_characters(char c){
                   printf("%c",storage[i]);              
                 }
             }
+            pointer = &storage[storage_size];
+            printf("\nPointer: %c\n", *pointer);
             storage_size += len + 1;
             free(str);
             size = 10;
