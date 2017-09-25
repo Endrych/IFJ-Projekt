@@ -11,4 +11,4 @@ STD_C99 = -std=c99
 CFLAGS = -Wall -Wextra -pedantic
 
 all:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)main.c -o $(PROJECT)
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)lexical.c $(SRC_FOLDER)main.c -o $(PROJECT)

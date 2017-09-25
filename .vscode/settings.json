@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "lexical.c": "cpp",
+        "lexical.h": "c",
+        "constants.h": "c"
+    }
+}
