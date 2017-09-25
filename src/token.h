@@ -48,7 +48,7 @@ typedef union{
     Keywords keyword;
     int int_value;
     double double_value;
-    int* chain_pointer;
+    char* chain_pointer;
 }Atribute;
 
 typedef struct{
