@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 PROJECT = ifj17
 PROJECT_TEST = $(PROJECT)-test
 BIN_FOLDER = bin/
@@ -12,3 +13,8 @@ CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)lexical.c $(SRC_FOLDER)main.c -o $(PROJECT)
+
+token_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(TEST_FOLDER)token_test.c -o token_test
+	valgrind --leak-check=full ./token_test
+	rm token_test
