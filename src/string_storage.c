@@ -2,27 +2,27 @@
 
 #define ALLOC_SPACE 100
 
-static char* _session_storage = NULL;
+static char* _string_storage = NULL;
 
-char* add_string(char* array,int length)
+char* add_string_to_storage(char* array,int length)
 {
     static int pos;
     static int space;
-    if(_session_storage == NULL)
+    if(_string_storage == NULL)
     {
-        _session_storage = (char*)malloc(ALLOC_SPACE * sizeof(char));
+        _string_storage = (char*)malloc(ALLOC_SPACE * sizeof(char));
         pos = 0;
         space = ALLOC_SPACE;
     }
     else if(pos + length > space)
     {
-        _session_storage = realloc(_session_storage,pos + length + ALLOC_SPACE);
+        _string_storage = realloc(_string_storage,pos + length + ALLOC_SPACE);
     }
-    
+
 }
 
 void destruct_storage()
 {
-    free(_session_storage);
-    _session_storage = NULL;
+    free(_string_storage);
+    _string_storage = NULL;
 }
