@@ -1,5 +1,6 @@
 #include "token.h"
 #include <stdlib.h>
+#include <string.h>
 
 Token* create_token()
 {
@@ -14,8 +15,9 @@ void destruct_token(Token* token)
     token = NULL;
 }
 
-int is_keyword(char* text, int length)
+int is_keyword(char* text)
 {
+    int length = strlen(text);
     switch(length)
     {
         case 2:
