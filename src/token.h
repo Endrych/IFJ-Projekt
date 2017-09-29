@@ -76,4 +76,5 @@ typedef struct{
 
 
 Token* create_token();
+int is_keyword(char* text);
 void destruct_token(Token* token);
