@@ -3,7 +3,8 @@ typedef enum{
     type_keyword,
     type_string,
     type_integer,
-    type_double
+    type_double,
+    type_operator
 }Type;
 
 typedef enum{
@@ -44,11 +45,28 @@ typedef enum{
     kw_while
 }Keywords;
 
+typedef enum{
+    op_assign,
+    op_add,
+    op_sub,
+    op_mul,
+    op_division_init,
+    op_slash,
+    op_bracket,
+    op_bracket_end,
+    op_equal,
+    op_lesser,
+    op_lesser_equal,
+    op_greater,
+    op_greater_equal
+}Operators;
+
 typedef union{
-    Keywords keyword;
+    Keywords keyword_value;
     int int_value;
     double double_value;
     char* chain_pointer;
+    Operators operator_value;
 }Atribute;
 
 typedef struct{
