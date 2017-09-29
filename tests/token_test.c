@@ -34,8 +34,8 @@ int main()
     printf("3) Keyword ");
     Token* keyword_token = create_token();
     keyword_token->type = type_keyword;
-    keyword_token->atribute.keyword = kw_boolean;
-    if(keyword_token->atribute.keyword == kw_boolean && keyword_token->type == type_keyword)
+    keyword_token->atribute.keyword_value = kw_boolean;
+    if(keyword_token->atribute.keyword_value == kw_boolean && keyword_token->type == type_keyword)
         printf("Success!\n");
     else
         printf("Wrong!\n");   
@@ -82,9 +82,82 @@ int main()
         }
     }
     else
-        printf("Wrong Type!\n");   
+        printf("Wrong Type!\n");
+        
+    // Operator test
+    printf("\n6) Operators test \n");
+    Token* operator_token = create_token();
+    operator_token->type = type_operator;
+    operator_token->atribute.operator_value = op_bracket;
+    if(operator_token->atribute.operator_value == op_bracket && operator_token->type == type_operator)
+        printf("Success!\n");
+    else
+        printf("Wrong!\n"); 
+    if(operator_token->atribute.operator_value != op_bracket_end && operator_token->type == type_operator)
+        printf("Success!\n");
+    else
+        printf("Wrong!\n"); 
 
+    // Is Keyword test
+    printf("\n7) Keywords test\n");
+    char * test_keywords[] ={
+        "And",
+        "As",
+        "Asc",
+        "Boolean",
+        "Chr",
+        "Continue",
+        "Declare",
+        "Dim",
+        "Do",
+        "Double",
+        "Else",
+        "Elseif",
+        "End",
+        "Exit",
+        "False",
+        "For",
+        "Function",
+        "If",
+        "Input",
+        "Integer",
+        "Length",
+        "Loop",
+        "Next",
+        "Not",
+        "Or",
+        "Print",
+        "Return",
+        "Scope",
+        "Shared",
+        "Static",
+        "String",
+        "SubStr",
+        "Then",
+        "True",
+        "While"
+    };
+    for(int i=0;i<=kw_while;i++)
+    {
+        printf("Test keywords %d: %s ",i,test_keywords[i]);
+        if(is_keyword(test_keywords[i]) == i)
+            printf("Success\n");
+        else
+            printf("Wrong\n");
+    }
+    char * not_keywords[] = {
+        "tak","co","funguje","to","dobre"
+    };
+    for(int j=0;j<5;j++)
+    {
+        printf("Test !keywords %d: %s ",j,not_keywords[j]);
+        if(is_keyword(not_keywords[j]) == -1)
+            printf("Success\n");
+        else
+            printf("Wrong\n");
+    }
     // Destruct token
+    destruct_token(operator_token);
     destruct_token(integer_token);
     destruct_token(double_token);
     destruct_token(keyword_token);

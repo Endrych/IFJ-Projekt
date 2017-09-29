@@ -13,7 +13,7 @@ CFLAGS = -Wall -Wextra -pedantic
 all:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)main.c -o $(PROJECT)
 string_storage_test:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)string_storage.c -o string_storage_test
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)string_storage_test.c -o string_storage_test
 	valgrind --leak-check=full ./string_storage_test
 	rm string_storage_test
 token_test:
