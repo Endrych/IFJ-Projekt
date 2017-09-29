@@ -34,8 +34,8 @@ int main()
     printf("3) Keyword ");
     Token* keyword_token = create_token();
     keyword_token->type = type_keyword;
-    keyword_token->atribute.keyword = kw_boolean;
-    if(keyword_token->atribute.keyword == kw_boolean && keyword_token->type == type_keyword)
+    keyword_token->atribute.keyword_value = kw_boolean;
+    if(keyword_token->atribute.keyword_value == kw_boolean && keyword_token->type == type_keyword)
         printf("Success!\n");
     else
         printf("Wrong!\n");   
