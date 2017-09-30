@@ -50,7 +50,11 @@ typedef enum{
     op_add,
     op_sub,
     op_mul,
+<<<<<<< HEAD
     op_division_int,//byla tu chyba prepsat op_division_init
+=======
+    op_division_int,
+>>>>>>> 7d9c06a0385c1ffaa9c50b952021d47715d5de7e
     op_slash,
     op_bracket,
     op_bracket_end,
@@ -65,7 +69,6 @@ typedef union{
     Keywords keyword_value;
     int int_value;
     double double_value;
-    char* chain_pointer;
     Operators operator_value;
 }Atribute;
 
@@ -76,4 +79,5 @@ typedef struct{
 
 
 Token* create_token();
+int is_keyword(char* text);
 void destruct_token(Token* token);
