@@ -6,7 +6,7 @@
 
 static char* _string_storage = NULL;
 
-char* add_string_to_storage(char* array)
+int add_string_to_storage(char* array)
 {
     if(array != NULL)
     {
@@ -26,7 +26,7 @@ char* add_string_to_storage(char* array)
         }
         else if(pos + length > space)
         {
-            _string_storage = realloc(_string_storage,pos + strlen(array) + ALLOC_SPACE);
+            _string_storage =  (char*) realloc(_string_storage,pos + strlen(array) + ALLOC_SPACE);
             if(_string_storage == NULL)
             {
                 fprintf(stderr,"Problem with memory\n");
@@ -36,11 +36,17 @@ char* add_string_to_storage(char* array)
         char* result = NULL;
         result = strcpy(&_string_storage[pos],array);
         result[length] = '#';
+        int old_pos = pos;
         pos = length + 1;
 
-        return result;
+        return old_pos;
     }
-    return NULL;
+    return -1;
+}
+
+char * get_string(int pos)
+{
+    return &_string_storage[pos];
 }
 
 void destruct_storage()

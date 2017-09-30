@@ -4,7 +4,8 @@
 
 int main()
 {
-    char* ahoj_string = add_string_to_storage("ahoj");
+    int ahoj_pos = add_string_to_storage("ahoj");
+    char* ahoj_string = get_string(ahoj_pos);
     int pos=0;
     while(ahoj_string[pos]!='#')
     {
@@ -24,7 +25,8 @@ int main()
             c = 'a';
     }
     lengt_str[179] = '\n';
-    char* length_string = add_string_to_storage(lengt_str);
+    int length_pos =  add_string_to_storage(lengt_str);
+    char* length_string = get_string(length_pos);
     pos=0;
     while(length_string[pos]!='#')
     {
@@ -32,7 +34,6 @@ int main()
         pos++;
     }
     putchar('\n');
-
     pos=0;
     while(ahoj_string[pos]!='#')
     {
@@ -40,7 +41,6 @@ int main()
         pos++;
     }
     putchar('\n');
-
     pos=0;
     while(length_string[pos]!='#')
     {
