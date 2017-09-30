@@ -50,7 +50,7 @@ typedef enum{
     op_add,
     op_sub,
     op_mul,
-    op_division_init,
+    op_division_int,
     op_slash,
     op_bracket,
     op_bracket_end,
