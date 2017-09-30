@@ -9,7 +9,7 @@ static char* _string_storage = NULL;
 int add_string_to_storage(char* array)
 {
     if(array != NULL)
-    {
+    {   
         int length = strlen(array);
         static int pos;
         static int space;

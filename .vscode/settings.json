@@ -2,6 +2,8 @@
     "files.associations": {
         "lexical.c": "cpp",
         "lexical.h": "c",
-        "constants.h": "c"
+        "constants.h": "c",
+        "string_storage.h": "c",
+        "stdio.h": "c"
     }
 }

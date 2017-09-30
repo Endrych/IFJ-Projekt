@@ -1,206 +1,379 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "token.h"
+#include "string_storage.h"
 
-char* str = NULL;    
-char* storage = NULL;
-char* pointer = NULL;
-char temp;
-Token* token;
-bool comment = false;
-bool is_string = false;
-size_t size = 0;
-size_t storage_size = 0;
-size_t len = 0;
-size_t newSize = 0;
+//TODO: CASE ISENSITIVE ?
+//TODO: ERRORS
+//TODO: TESTS
+//TODO: NUMBER CHECK - kontrola jestli se dobre prevedlo cislo
+//TODO: co kdyz narazi na EOF?
 
-FILE* handle_file(char* arg){
-    FILE *source_code; 
-    char* adresa;
-    char c;
-    source_code = fopen(arg, "r");
-    if(source_code == NULL){
-        printf("Error");
-        fclose(source_code);
-    }
-    printf("The contents of %s file are :\n", source_code);
+typedef enum{
+	_START,
+  _LINE_COMMENT,
+  _BLOCK_COMMENT,//USED IN SLASH
+  _BLOCK_COMMENT_FINISHED, //mozna neni treba
+  _SLASH,
+  _NUMBER,
+  _NUM_DOUBLE,  // 
+  _EXCLAMATION,
+  _START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
+  _END_STRING, //
+  _IDENTIFIER, 
+  _ASSIGN,
+  _ADD,
+  _SUB,
+  _MULTIPLY,
+  _DIVISION_INT, // {\}
+  _LESSER,
+  _LESSER_EQUAL, //USED IN LESSER
+  _EQUAL, //
+  _GREATER,
+  _GREATER_EQUAL, //USED IN GREATER
+  _BRACKET,
+  _BRACKET_END,
+  _EOF
+}_State;
 
-    return source_code;
+FILE* source_file = NULL;
+
+void load_file(char *file){
+  FILE *source;
+  source = fopen(file, "r");
+  if(source == NULL){
+	  printf("FILE ERROR");
+	}
+
+  source_file = source;
 }
 
-void* handle_characters(char* arg){
-    FILE* source;
-    source = handle_file(arg);
-    if(str == NULL){
-        size = 10;
-        str=(char*)malloc(size*sizeof(char));
-    }
-    len = strlen(str);   
-    // char c;
-    // while(c != EOF){
-    //     c = getc(source);
-    //     printf("%c", c);
-    // switch(c){
-    //     case '\'':
-    //         if(temp == '/'){
-    //             comment = true;
-    //         }
-    //         break;
-    //     case '0':
-    //     case '1':
-    //     case '2':
-    //     case '3':
-    //     case '4':
-    //     case '5':
-    //     case '6':
-    //     case '7':
-    //     case '8':
-    //     case '9':
-    //         if(comment){
-    //             break;
-    //         }
-    //         if(len == size){
-    //             size += 10;
-    //             str = (char *)realloc(str, size*sizeof(char));
-    //         }
-    //         str[len] = c;
-    //         break;
-    //     case 'a' ... 'z':
-    //     case 'A' ... 'Z':
-    //         if(comment){
-    //             break;
-    //         }
-    //         if(len == size){
-    //             size += 10;
-    //             str = (char *)realloc(str, size*sizeof(char));
-    //         }
-    //         str[len] = c;
-    //         break;
-    //     case '+':
-    //     case '-':
-    //     case '*':
-    //     case '/':
-    //         if(temp == '\''){
-    //             comment = false;
-    //         }
-    //     case '<':
-    //     case '>':
-    //     case '=':
-    //         break;
-
-    //     case '(':
-    //         break;
-    //     case ')':
-    //         break;
-    //     case '!':
-    //         if(len == 0){
-    //             break;
-    //         }
-    //     case '"':
-    //         if(temp == '!'){
-    //             is_string = true;
-    //             break;
-    //         }
-    //         else if (is_string){
-    //             is_string = false;
-    //         }
-    //     case ' ':
-    //         if(is_string){
-    //             if(len == size){
-    //                 size += 10;
-    //                 str = (char *)realloc(str, size*sizeof(char));
-    //             }
-    //             str[len] = c;
-    //             break;
-    //         }
-    //     case '\n':
-    //         if(len > 0){
-    //             if(storage == NULL){
-    //                 newSize = len + 1;
-    //                 storage=(char *)calloc(newSize,sizeof(char));
-    //             }else{
-    //                 newSize = storage_size + len + 1;
-    //                 storage = (char *)realloc(storage, newSize*sizeof(char));
-    //             }
-                
-    //             for (size_t i = storage_size, j = 0; i < newSize;i++, j++){
-    //                 if(i == newSize - 1){
-    //                 storage[i] = '#';     
-    //                 printf("%c",storage[i]);            
-                    
-    //                 }else{
-    //                 storage[i] = str[j];  
-    //                 printf("%c",storage[i]);            
-    //                 }
-    //             }
-    //             pointer = &storage[storage_size];
-    //             // printf("\nPointer: %c\n", *pointer);
-    //             storage_size += len + 1;
-    //             free(str);
-    //             size = 10;
-    //             str=(char*)calloc(size,sizeof(char));
-
-    //             token = create_token();
-    //             token->type = type_string;
-    //             token->atribute.chain_pointer = &storage[storage_size];
-    //             handle_token(token);
-    //         }
-
-    //     break;
-    // }
-    // temp = c;
-    // }
-    
-    // switch (c){
-    //     // case '/':
-    //     //     printf("Comment");
-    //     //     break;
-    //     case ' ':
-    //     case '\n':
-    //         // printf("%d\n", storage_size);
-    //         // printf("%d\n", len);
-            
-    //         if(storage == NULL){
-    //             newSize = len + 1;
-    //             storage=(char *)calloc(newSize,sizeof(char));
-    //         }else{
-    //             newSize = storage_size + len + 1;
-    //             storage = (char *)realloc(storage, newSize*sizeof(char));
-    //         }
-            
-    //         for (size_t i = storage_size, j = 0; i < newSize;i++, j++){
-    //             if(i == newSize - 1){
-    //               storage[i] = '#';                                    
-    //             }else{
-    //               storage[i] = str[j];  
-    //               printf("%c",storage[i]);              
-    //             }
-    //         }
-    //         pointer = &storage[storage_size];
-    //         printf("\nPointer: %c\n", *pointer);
-    //         storage_size += len + 1;
-    //         free(str);
-    //         size = 10;
-    //         str=(char*)calloc(size,sizeof(char));
-    //         break;
-    //     case EOF:
-    //         free(str);
-    //         break;
-    //     default:
-    //         if(len == size){
-    //             size += 10;
-    //             str = (char *)realloc(str, size*sizeof(char));
-    //         }
-    //         str[len] = c;
-    // }
-    // return storage;
-    fclose(source);
-    return 0;
+void close_file(){
+	fclose(source_file);
 }
 
-void handle_token(Token* token){
-    printf("ID: %d Value: %p\n", token->type, token->atribute);
-
+Token* get_token(){
+	bool isIntToken = true;
+	Token* token = create_token();
+	static char last_char;
+	char prev_char;
+  int state = _START;
+	int length = 0;
+	int size = 10;  //udelat konstantu
+	char *str;
+  char current_char = '\0';
+	
+  while(isIntToken){
+    if(last_char != '\0'){
+      current_char = last_char;
+      last_char = '\0';
+		}
+		else{
+      current_char = fgetc(source_file);
+    }
+    switch(state){
+      case _START:
+        if(current_char == '\''){
+          state = _LINE_COMMENT;
+        }
+        else if(current_char == '/'){
+          state = _SLASH;                    
+        }
+        else if(current_char >= '0' && current_char <= '9'){
+					last_char = current_char;		
+					str=(char*)calloc(size,sizeof(char));
+					state = _NUMBER;
+        }
+        else if(current_char == '!'){
+          state = _EXCLAMATION;
+        }
+        else if((current_char >= 'a' && current_char <= 'z') ||
+				(current_char >= 'A' && current_char <= 'Z') || 
+				current_char == '_'){
+					state = _IDENTIFIER;
+					str=(char*)calloc(size,sizeof(char));					
+					last_char = current_char;
+				}
+        else if(current_char == '='){
+          state = _ASSIGN;
+        }
+        else if(current_char == '+'){
+          state = _ADD;
+        }
+        else if(current_char == '-'){
+          state = _SUB;
+        }
+        else if(current_char == '*'){
+          state = _MULTIPLY;
+        }
+        else if(current_char == '\\'){
+          state = _DIVISION_INT;
+        }
+        else if(current_char == '<'){
+          state = _LESSER;
+        }
+        else if(current_char == '>'){
+          state = _GREATER;
+        }
+    	  else if (current_char == '('){
+          state = _BRACKET; 
+        }
+        else if (current_char == ')'){
+          state = _BRACKET_END;
+        }
+        else if (current_char == EOF){
+					state = _EOF;
+					isIntToken = false;					
+          last_char = current_char;                    
+				}
+				else if(current_char == ' ' || 
+				current_char == '\n' ||
+				current_char == '\t'){
+					state = _START;
+					// if(current_char == ' ')
+					// 	printf(" ");
+					// else if(current_char == '\n')
+					// 	printf("\n");
+					// else if(current_char == '\t')
+					// 	printf("\t");
+				}
+				break;
+			case _LINE_COMMENT:
+				if(current_char == '\n'){
+					state = _START;
+				}
+				else if(current_char == EOF){
+					state = _EOF;
+					last_char = current_char;
+				}
+				break;
+			case _SLASH:
+				if(current_char == '\''){
+					state = _BLOCK_COMMENT;
+				}
+				else{
+					token->type = type_operator;
+					token->atribute.operator_value = op_slash;
+					last_char = current_char;
+					return token;
+				}
+			case _BLOCK_COMMENT:
+				if(current_char == '/' && prev_char == '\''){
+					state = _START;
+					prev_char = '\0';
+					break;
+				}
+				prev_char = current_char;				
+				break;
+			case _NUMBER:
+				if(!((current_char >= '0' && current_char <= '9')|| 
+				current_char == '.' || 
+				current_char == 'e')){
+					int convert;
+					convert = atoi(str);
+					state = _START;
+					token->type = type_integer;
+					token->atribute.int_value = convert; //add check for max
+					last_char = current_char;
+					free(str);
+					return token;
+				}
+				else if(current_char == '.' || 
+				current_char == 'e' ||
+				current_char == 'E'){
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+          }
+					str[length] = current_char;
+					length++;
+					state = _NUM_DOUBLE;
+					break;
+				}
+				else{
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+          }
+					str[length] = current_char;
+					length++;
+          break;
+				}
+				break;
+			case _NUM_DOUBLE:
+				if(!(current_char >= '0' && current_char <= '9')){
+					double convert;
+					convert = atof(str);
+					token->type = type_double;
+					token->atribute.double_value = convert; //add check for max
+					last_char = current_char;
+					free(str);
+					return token;
+				}
+				else{
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = current_char;
+					length++;
+					break;
+				}
+			case _EXCLAMATION:
+				if(current_char == '\"'){
+					str=(char*)calloc(size,sizeof(char));					
+					state = _START_STRING;
+					break;
+				}			
+				else{
+					printf("ERROR");
+				}	
+				break;
+			case _START_STRING:
+				if(current_char != '\"'){
+					// add to array
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = current_char;
+					length++;
+					break;
+				}
+				else{
+					state = _END_STRING;
+				}
+				break;
+			case _END_STRING:
+				if(length == size){
+					size += 10;
+					str = (char *)realloc(str, size*sizeof(char));
+				}
+				str[length] = '\0';
+				length++;
+				int adress = add_string_to_storage(str);
+				// printf("Adresa:%d ,",adress);
+				token->type = type_string;
+				token->atribute.int_value = adress;
+				last_char = current_char;
+				free(str);
+				return token;
+			case _IDENTIFIER:
+				if((current_char >= 'a' && current_char <= 'z') ||
+				(current_char >= 'A' && current_char <= 'Z') ||
+				(current_char >= '0' && current_char <= '9') || 
+				current_char == '_'){
+					//add to arr, length ++
+					if(length == size){
+						size += 10;
+						str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = current_char;
+					length++;
+				}
+				else{
+					if(length == size){
+						size += 10;
+						str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = '\0';
+					length++;
+					int kw;
+					kw = is_keyword(str);
+					if(kw != -1){
+						token->type=type_keyword;
+						token->atribute.keyword_value = kw;
+					}
+					else{
+						int adress = add_string_to_storage(str);
+						// printf("Adresa:%d ,",adress);
+						token->type = type_id;
+						token->atribute.int_value = adress;
+					}
+					last_char = current_char;
+					free(str);
+					return token;
+				}
+				break;
+			case _ASSIGN:
+				token->type = type_operator;
+				token->atribute.operator_value = op_assign;
+				last_char = current_char;
+				return token;
+			case _ADD:
+				token->type = type_operator;
+				token->atribute.operator_value = op_add;
+				last_char = current_char;
+				return token;
+			case _SUB:
+				token->type = type_operator;
+				token->atribute.operator_value = op_sub;
+				last_char = current_char;
+				return token;
+			case _MULTIPLY:
+				token->type = type_operator;
+				token->atribute.operator_value = op_mul;
+				last_char = current_char;
+				return token;
+			case _DIVISION_INT:
+				token->type = type_operator;
+				token->atribute.operator_value = op_division_int;
+				last_char = current_char;
+				return token;
+			case _LESSER:
+				if(current_char == '='){
+					state = _LESSER_EQUAL;
+				}
+				else if(current_char == '>'){
+					state = _EQUAL;
+				}
+				else{
+					token->type = type_operator;
+					token->atribute.operator_value = op_lesser;
+					last_char = current_char;
+					return token;
+				}
+				break;
+			case _LESSER_EQUAL:
+				token->type = type_operator;
+				token->atribute.operator_value = op_lesser_equal;
+				last_char = current_char;
+				return token;
+			case _EQUAL:
+				token->type = type_operator;
+				token->atribute.operator_value = op_equal;
+				last_char = current_char;
+				return token;
+			case _GREATER:
+				if(current_char == '='){
+					state = _GREATER_EQUAL;
+				}
+				else{
+					token->type = type_operator;
+					token->atribute.operator_value = op_greater;
+					last_char = current_char;
+					return token;
+				}
+				break;
+			case _GREATER_EQUAL:
+				token->type = type_operator;
+				token->atribute.operator_value = op_greater_equal;
+				last_char = current_char;
+				return token;
+			case _BRACKET:
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket;
+				last_char = current_char;
+				return token;
+			case _BRACKET_END:
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket_end;
+				last_char = current_char;
+				return token;				
+			case _EOF:
+				isIntToken = false;
+				break;
+		}
+	}
 }
