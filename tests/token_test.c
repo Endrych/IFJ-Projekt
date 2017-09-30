@@ -8,7 +8,6 @@ int main()
     printf("\n\nTEST START\n________________________________________________________________________________\n\n");
     char* string = NULL;
     string = calloc(20,sizeof(char));
-    int str_pos = 0;
 
     // Integer Token
     printf("1) Integer: ");
@@ -43,21 +42,10 @@ int main()
     // Id Token
     printf("4) Id ");
     Token* id_token = create_token();
-    strcpy(string,"pos#");
-    id_token->atribute.chain_pointer = &string[str_pos];
-    str_pos += 4;
     id_token->type = type_id;
     if(id_token->type == type_id)
     {
         printf("Type Success!\n");
-        int pos = 0;
-        printf("     Expected value: pos\n");
-        printf("     In token: ");
-        while(id_token->atribute.chain_pointer[pos] != '#')
-        {
-            putchar(id_token->atribute.chain_pointer[pos]);
-            pos++;
-        }
     }
     else
         printf("Wrong Type!\n");   
@@ -65,21 +53,10 @@ int main()
     // String Token
     printf("\n5) String ");
     Token* string_token = create_token();
-    strcpy(&string[str_pos],"Ahoj kamo#");
-    string_token->atribute.chain_pointer = &string[str_pos];
-    str_pos += 10;
     string_token->type = type_string;
     if(string_token->type == type_string)
     {
         printf("Type Success!\n");
-        int pos = 0;
-        printf("     Expected value: Ahoj kamo\n");
-        printf("     In token: ");
-        while(string_token->atribute.chain_pointer[pos] != '#')
-        {
-            putchar(string_token->atribute.chain_pointer[pos]);
-            pos++;
-        }
     }
     else
         printf("Wrong Type!\n");
