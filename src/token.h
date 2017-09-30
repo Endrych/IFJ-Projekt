@@ -50,7 +50,7 @@ typedef enum{
     op_add,
     op_sub,
     op_mul,
-    op_division_init,
+    op_division_int,
     op_slash,
     op_bracket,
     op_bracket_end,
@@ -65,7 +65,6 @@ typedef union{
     Keywords keyword_value;
     int int_value;
     double double_value;
-    char* chain_pointer;
     Operators operator_value;
 }Atribute;
 

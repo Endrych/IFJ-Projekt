@@ -17,6 +17,6 @@ string_storage_test:
 	valgrind --leak-check=full ./string_storage_test
 	rm string_storage_test
 token_test:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(TEST_FOLDER)token_test.c -o token_test
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)token_test.c -o token_test
 	./token_test
 	rm token_test
