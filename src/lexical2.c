@@ -38,7 +38,7 @@ void load_file(char *file){
   FILE *source;
   source = fopen(file, "r");
   if(source == NULL){
-	  printf("ERROR");
+	  printf("FILE ERROR");
 	}
 	else{
   	printf("SUCESS");
@@ -47,14 +47,21 @@ void load_file(char *file){
   source_file = source;
 }
 
+void close_file(){
+	fclose(source_file);
+}
+
 Token* get_token(){
-  bool isIntToken = true;
+	bool isIntToken = true;
+	Token* token = create_token();
 	static char last_char;
 	char prev_char;
   int state = _START;
-  int length = 0;
+	int length = 0;
+	int size = 10;  //udelat konstantu
+	char *str;
   char current_char = '\0';
-
+	
   while(isIntToken){
     if(last_char != '\0'){
       current_char = last_char;
@@ -72,7 +79,8 @@ Token* get_token(){
           state = _SLASH;                    
         }
         else if(current_char >= '0' && current_char <= '9'){
-					last_char = current_char;					
+					last_char = current_char;		
+					str=(char*)calloc(size,sizeof(char));
 					state = _NUMBER;
         }
         else if(current_char == '!'){
@@ -117,7 +125,18 @@ Token* get_token(){
 					state = _EOF;
 					isIntToken = false;					
           last_char = current_char;                    
-        }
+				}
+				else if(current_char == ' ' || 
+				current_char == '\n' ||
+				current_char == '\t'){
+					state = _START;
+					if(current_char == ' ')
+						printf(" ");
+					else if(current_char == '\n')
+						printf("\n");
+					else if(current_char == '\t')
+						printf("\t");
+				}
 				break;
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
@@ -135,10 +154,12 @@ Token* get_token(){
 				}
 				else{
 					//poslat token jedna se o deleni
-					printf("Deleni");
+					token->type = type_operator;
+					token->atribute.operator_value = op_slash;
 					last_char = current_char;
 					//konec
-					state = _START;
+					// state = _START;
+					return token;
 				}
 			case _BLOCK_COMMENT:
 				if(current_char == '/' && prev_char == '\''){
@@ -150,28 +171,65 @@ Token* get_token(){
 				prev_char = current_char;				
 				break;
 			case _NUMBER:
-				if(!(current_char >= '0' && current_char <= '9')){
-					state = _START; //posle token
+				if(!((current_char >= '0' && current_char <= '9')|| 
+				current_char == '.' || 
+				current_char == 'e')){
+					int convert;
+					convert = atoi(str);
+					state = _START;
+					token->type = type_integer;
+					token->atribute.int_value = convert; //add check for max
 					last_char = current_char;
-					break;
+					free(str);
+					return token;
 				}
-				else if(current_char == '.'){
+				else if(current_char == '.' || 
+				current_char == 'e' ||
+				current_char == 'E'){
 					//pushnout do array pridat length
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+          }
+					str[length] = current_char;
+					length++;
 					state = _NUM_DOUBLE;
 					break;
 				}
-				printf("%c", current_char);
+				else{
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+          }
+					str[length] = current_char;
+					length++;
+          break;
+				}
+				// printf("%c", current_char);
 				break;
 			case _NUM_DOUBLE:
 				if(!(current_char >= '0' && current_char <= '9')){
-					state = _START; //posle token
+					double convert;
+					convert = atof(str);
+					printf("%f",convert);
+					token->type = type_double;
+					token->atribute.double_value = convert; //add check for max
 					last_char = current_char;
+					free(str);
+					return token;
+				}
+				else{
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = current_char;
+					length++;
 					break;
 				}
-				printf("%c", current_char);
-				break;
 			case _EXCLAMATION:
 				if(current_char == '\"'){
+					str=(char*)calloc(size,sizeof(char));					
 					state = _START_STRING;
 					break;
 				}			
@@ -181,19 +239,35 @@ Token* get_token(){
 				break;
 			case _START_STRING:
 				if(current_char != '\"'){
-					//add to array
-					printf("%c",current_char);
+					// add to array
+					if(length == size){
+            size += 10;
+            str = (char *)realloc(str, size*sizeof(char));
+					}
+					str[length] = current_char;
+					length++;
+					break;
 				}
 				else{
 					state = _END_STRING;
 				}
 				break;
 			case _END_STRING:
-				printf("\n");
+				if(length == size){
+					size += 10;
+					str = (char *)realloc(str, size*sizeof(char));
+				}
+				str[length] = '\0';
+				length++;
+				//////////////////////////
+				token->type = type_string;
+				token->atribute.chain_pointer = str;
+				printf("str: %p", str);				
+				printf("str: %c", str[1]);
 				last_char = current_char;
-				//return token
-				state = _START;
-				break;
+				free(str);
+				return token;
+				// break;
 			case _IDENTIFIER:
 				if((current_char >= 'a' && current_char <= 'z') ||
 				(current_char >= 'A' && current_char <= 'Z') ||
@@ -209,34 +283,30 @@ Token* get_token(){
 				}
 				break;
 			case _ASSIGN:
+				token->type = type_operator;
+				token->atribute.operator_value = op_assign;
 				last_char = current_char;
-				//send token 
-				printf("=");
-				break;
+				return token;
 			case _ADD:
-				last_char = current_char;	
-				//send token
-				printf("+");
-				state = _START;
-				break;
+				token->type = type_operator;
+				token->atribute.operator_value = op_add;
+				last_char = current_char;
+				return token;
 			case _SUB:
+				token->type = type_operator;
+				token->atribute.operator_value = op_sub;
 				last_char = current_char;
-				//send token 
-				printf("-");
-				state = _START;
-				break;
+				return token;
 			case _MULTIPLY:
+				token->type = type_operator;
+				token->atribute.operator_value = op_mul;
 				last_char = current_char;
-				//send token 
-				printf("*");
-				state = _START;
-				break;
+				return token;
 			case _DIVISION_INT:
+				token->type = type_operator;
+				token->atribute.operator_value = op_division_int;
 				last_char = current_char;
-				//send token 
-				printf("\\");
-				state = _START;
-				break;
+				return token;
 			case _LESSER:
 				if(current_char == '='){
 					state = _LESSER_EQUAL;
@@ -245,57 +315,51 @@ Token* get_token(){
 					state = _EQUAL;
 				}
 				else{
-					last_char = current_char;					
-					//send token 
-					state = _START;
-					printf("<");
+					token->type = type_operator;
+					token->atribute.operator_value = op_lesser;
+					last_char = current_char;
+					return token;
 				}
 				break;
 			case _LESSER_EQUAL:
-				//send token 
+				token->type = type_operator;
+				token->atribute.operator_value = op_lesser_equal;
 				last_char = current_char;
-				state = _START;
-				printf("<=");
-				break;
+				return token;
 			case _EQUAL:
-				//send token 
+				token->type = type_operator;
+				token->atribute.operator_value = op_equal;
 				last_char = current_char;
-				state = _START;
-				printf("<>");
-				break;
+				return token;
 			case _GREATER:
 				if(current_char == '='){
 					state = _GREATER_EQUAL;
 				}
 				else{
+					token->type = type_operator;
+					token->atribute.operator_value = op_greater;
 					last_char = current_char;
-					//send token 
-					state = _START;
-					printf(">");
+					return token;
 				}
 				break;
 			case _GREATER_EQUAL:
-				//send token 
+				token->type = type_operator;
+				token->atribute.operator_value = op_greater_equal;
 				last_char = current_char;
-				state = _START;
-				printf(">=");
-				break;
+				return token;
 			case _BRACKET:
-				//send token
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket;
 				last_char = current_char;
-				state = _START;
-				printf("(");
-				break;
+				return token;
 			case _BRACKET_END:
-				//send token
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket_end;
 				last_char = current_char;
-				state = _START;
-				printf(")");
-				break;				
+				return token;				
 			case _EOF:
 				isIntToken = false;
-			default:
-				state = _START;
+				break;
 		}
-  }
+	}
 }
