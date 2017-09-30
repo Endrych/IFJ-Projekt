@@ -19,26 +19,26 @@ int add_string_to_storage(char* array)
             if(_string_storage == NULL)
             {
                 fprintf(stderr,"Problem with memory\n");
-                return NULL;
+                return -1;
             }
             pos = 0;
             space = ALLOC_SPACE + length;
         }
         else if(pos + length > space)
         {
-            _string_storage =  (char*) realloc(_string_storage,pos + strlen(array) + ALLOC_SPACE);
+            _string_storage =  (char*) realloc(_string_storage,(space + strlen(array) + ALLOC_SPACE) * sizeof(char));
             if(_string_storage == NULL)
             {
                 fprintf(stderr,"Problem with memory\n");
-                return NULL;
+                return -1;
             }
+            space = space + strlen(array) + ALLOC_SPACE;
         }
         char* result = NULL;
         result = strcpy(&_string_storage[pos],array);
         result[length] = '#';
         int old_pos = pos;
         pos = length + 1;
-
         return old_pos;
     }
     return -1;

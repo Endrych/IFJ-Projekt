@@ -34,6 +34,9 @@ int main()
         pos++;
     }
     putchar('\n');
+    
+
+    ahoj_string = get_string(ahoj_pos);
     pos=0;
     while(ahoj_string[pos]!='#')
     {
@@ -41,6 +44,7 @@ int main()
         pos++;
     }
     putchar('\n');
+    
     pos=0;
     while(length_string[pos]!='#')
     {
