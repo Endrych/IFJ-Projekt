@@ -264,6 +264,37 @@ int main(int argc, char *argv[])
 		printf("[SUCCESS]\n\n");
 	}
 
+	/********************** TESTY DOUBLE ***********************/
+	printf("5) Double: ");
+	is_ok = true;
+	double input_double[] = {0.0, 1344.54, 12.042, 56.};
+	input_count = 4;
+
+	for (int i = 0; i < input_count; i++)
+	{
+		test_token = get_token();
+
+		if (test_token->type != type_double)
+		{
+			is_ok = false;
+			printf("\n[TYPE_ERROR]\n");
+			printf("Expected: type_double\n");
+			printf("In file: %s\n\n", test_type[test_token->type]);
+		}
+		else if (test_token->atribute.double_value != input_double[i])
+		{
+			is_ok = false;
+			printf("\n[ATTR_ERROR]\n");
+			printf("Expected: %f\n", input_double[i]);
+			printf("In file: %f\n\n", test_token->atribute.double_value);
+		}
+		destruct_token(test_token);
+	}
+	if (is_ok)
+	{
+		printf("[SUCCESS]\n\n");
+	}
+
 	destruct_storage();
 	close_file();
 	return 0;

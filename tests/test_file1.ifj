@@ -17,7 +17,7 @@ And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False
 42 196 0
 
 /'DOUBLE TEST'/
-0.0 1344.54 -12.042 56.
+0.0 1344.54 12.042 56.
 
 /'OPERATOR TEST'/
 = + - * \ / ( ) == < <= > >=
