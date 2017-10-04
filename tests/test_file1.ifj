@@ -1,0 +1,28 @@
+/'Soubor k otestovani funkcnosti lexikalniho analyzatoru'/
+
+
+/'IDENTIFIER TEST'/
+name1 _anotherIdentifier ValidId
+
+/'Nonvalid id'/
+'1non_valid @nonvalid? >nonvalid
+
+/'KEYWORDS TEST'/
+And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False For Function If Input Integer Length Loop Next Not Or Print Return Scope Shared Static String SubStr Then True While
+
+/'STRING TEST'/
+!"Retezec v IFJ17"
+
+/'INTEGER TEST'/
+42 -196 0
+
+/'DOUBLE TEST'/
+0.0 1344.54 -12.042 56.
+
+/'OPERATOR TEST'/
+= + - * \ / ( ) == < <= > >=
+
+/'testovani atributu ???'/
+
+
+

@@ -1,3 +1,7 @@
+
+#ifndef TOKEN_H
+#define TOKEN_H
+
 typedef enum{
     type_id,
     type_keyword,
@@ -77,3 +81,4 @@ typedef struct{
 Token* create_token();
 int is_keyword(char* text);
 void destruct_token(Token* token);
+#endif // TOKEN_H
