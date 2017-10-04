@@ -93,11 +93,15 @@ int name_cmp(char* name, char* storage, char* attr_string)
 	return strcmp(attr_string, name);
 }
 
+
 int main(int argc, char *argv[])
 {
 	Token* test_token;
 	char* test_file; 
-		
+	bool is_ok = true;
+	char* storage;
+	char attr_string[42] = {0};	
+
 	// Nacteme testovaci soubor
 	if (argc != 2)
 	{
@@ -113,15 +117,13 @@ int main(int argc, char *argv[])
 	printf("\n====================== LEXICAL ANALYZER TESTS ======================\n\n");
 	
 
-	/***************************** Testy identifikatoru
+	/***************************** Testy identifikatoru ******************
 	Test input:  name1 _anotherIdentifier ValidId 1non_valid @nonvalid? >nonvalid
-	Expected:      ID           ID            ID      ERROR     ERROR     ERROR
 	*/
 	printf("1) Id: ");
 	char* test_input[] = {"name1", "_anotherIdentifier", "ValidId"};
 	int input_count = 3;
-	bool is_ok = true;
-
+	
 	for (int i = 0; i < input_count; i++)
 	{
 		test_token = get_token();
@@ -131,20 +133,22 @@ int main(int argc, char *argv[])
 			printf("\n[TYPE_ERROR]\n");
 			printf("Expected: type_id\n");
 			// test_type definovano v lexical_test.h
-			printf("Real: %s\n\n", test_type[test_token->type]);
+			printf("In file: %s\n\n", test_type[test_token->type]);
 			is_ok = false;
 		} 
 
-		char* storage = get_string(test_token->atribute.int_value);
-
-		char attr_string[42] = {0}; // omezeni delky identifikatoru :(
-		if (name_cmp(test_input[i], storage, attr_string) != 0)
+		else
 		{
-			printf("\n[ATTR_ERROR]\n");
-			printf("Expected: %s\n", test_input[i]);
-			printf("Real: %s\n", attr_string);
-			is_ok = false;
+			storage = get_string(test_token->atribute.int_value);
 
+			if (name_cmp(test_input[i], storage, attr_string) != 0)
+			{
+				printf("\n[ATTR_ERROR]\n");
+				printf("Expected: %s\n", test_input[i]);
+				printf("In file: %s\n", attr_string);
+				is_ok = false;
+			}
+		
 		}
 		destruct_token(test_token);
 	}
@@ -154,35 +158,108 @@ int main(int argc, char *argv[])
 		printf("[SUCCESS]\n\n");
 	}
 
-	/************************ TESTY KW  */
+	/************************ TESTY KW  **********************/
 	
-	is_ok = true;
 	printf("2) Keywords: ");
-  
-
-  for (unsigned int i = 0; i < kw_while; i++)
+	is_ok = true;
+	
+  for (unsigned int i = 0; i <= kw_while; i++)
   {
   	test_token = get_token();
+
    	if (test_token->type != type_keyword)
    	{
    		printf("\n[TYPE_ERROR]\n");
 			printf("Expected: type_keyword\n");
-			printf("Real: %s\n\n", test_type[test_token->type]);
+			printf("In file: %s\n\n", test_type[test_token->type]);
 			is_ok = false;
    	} 
 
-   	if (test_token->atribute.keyword_value != i)
+   	else if (test_token->atribute.keyword_value != i)
    	{
    		printf("\n[ATTR_ERROR]\n");
 			printf("Expected: %s\n", test_kw[i]);
-			printf("Real: %s\n", test_kw[test_token->atribute.keyword_value]);
+			printf("In file: %s\n", test_kw[test_token->atribute.keyword_value]);
 			is_ok = false;
    	}
    	destruct_token(test_token);
     }
 
 
-    if (is_ok)
+  if (is_ok)
+	{
+		printf("[SUCCESS]\n\n");
+	}
+
+	/***************** TESTY STRINGU ******************************/
+	
+	printf("3) String: ");
+	is_ok = true;
+
+	char* string_input[] = {"Retezec v IFJ17"};
+	input_count = 1;
+	for (int i = 0; i < input_count; i++)
+	{
+		test_token = get_token();
+
+		if (test_token->type != type_string)
+		{
+			is_ok = false;
+			printf("\n[TYPE_ERROR]\n");
+			printf("Expected: type_string\n");
+			printf("In file: %s\n\n", test_type[test_token->type]);
+		}
+
+		else
+		{
+			char* storage1 = get_string(test_token->atribute.int_value);
+			
+			if (name_cmp(string_input[i], storage1, attr_string) != 0)
+			{
+				printf("\n[ATTR_ERROR]\n");
+				printf("Expected: %s\n", string_input[i]);
+				printf("In file: %s\n\n", attr_string);
+				is_ok = false;
+
+			}
+		}
+
+		destruct_token(test_token);
+	}
+	if (is_ok)
+	{
+		printf("[SUCCESS]\n\n");
+	}
+
+	/************************ TESTY INTEGERU *********************/
+	// ZAPORNA CISLA ??
+	printf("4) Integer: ");
+	is_ok = true;
+	input_count = 3;
+	int input_int[] = {42, 196, 0};
+
+	for (int i = 0; i < input_count; i++)
+	{
+		test_token = get_token();
+
+		if (test_token->type != type_integer)
+		{
+			is_ok = false;
+			printf("\n[TYPE_ERROR]\n");
+			printf("Expected: type_integer\n");
+			printf("In file: %s\n\n", test_type[test_token->type]);
+		}
+
+		else if (test_token->atribute.int_value != input_int[i])
+		{
+			is_ok = false;
+			printf("\n[ATTR_ERROR]\n");
+			printf("Expected: %d\n", input_int[i]);
+			printf("In file: %d\n\n", test_token->atribute.int_value);
+		}
+		destruct_token(test_token);
+	}
+	if (is_ok)
 	{
 		printf("[SUCCESS]\n\n");
 	}
