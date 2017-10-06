@@ -20,9 +20,8 @@ And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False
 0.0 1344.54 12.042 56.
 
 /'OPERATOR TEST'/
-= + - * \ / ( ) == < <= > >=
+= + - * \ / ( ) <> < <= > >=
 
-/'testovani atributu ???'/
 
 
 

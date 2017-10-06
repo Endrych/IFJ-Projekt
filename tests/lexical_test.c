@@ -295,6 +295,35 @@ int main(int argc, char *argv[])
 		printf("[SUCCESS]\n\n");
 	}
 
+	/******************** TESTY OPERATORU ***************/
+	printf("5) Operators: ");
+	is_ok = true;
+
+	for (unsigned int i = 0; i <= op_greater_equal; i++)
+	{
+		test_token = get_token();
+
+		if (test_token->type != type_operator)
+		{
+			is_ok = false;
+			printf("\n[TYPE_ERROR]\n");
+			printf("Expected: type_operator\n");
+			printf("In file: %s\n\n", test_type[test_token->type]);
+		}
+		else if (test_token->atribute.operator_value != i)
+		{
+			is_ok = false;
+			printf("\n[ATTR_ERROR]\n");
+			printf("Expected: %s\n", test_operator[i]);
+			printf("In file: %s\n\n", test_operator[test_token->atribute.operator_value]);
+		}
+		destruct_token(test_token);
+	}
+	if (is_ok)
+	{
+		printf("[SUCCESS]\n\n");
+	}
+
 	destruct_storage();
 	close_file();
 	return 0;
