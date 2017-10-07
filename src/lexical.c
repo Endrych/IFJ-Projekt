@@ -4,11 +4,12 @@
 #include "token.h"
 #include "string_storage.h"
 
-//TODO: CASE ISENSITIVE ?
+//TODO: CASE INSENSITIVE ?
 //TODO: ERRORS
 //TODO: TESTS
 //TODO: NUMBER CHECK - kontrola jestli se dobre prevedlo cislo
 //TODO: co kdyz narazi na EOF?
+//TODO: co kdyz dostanu jiny znak napriklad ?
 
 typedef enum{
 	_START,

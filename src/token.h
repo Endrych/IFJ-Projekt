@@ -1,4 +1,3 @@
-
 #ifndef TOKEN_H
 #define TOKEN_H
 
@@ -8,7 +7,8 @@ typedef enum{
     type_string,
     type_integer,
     type_double,
-    type_operator
+    type_operator,
+    type_wrong
 }Type;
 
 typedef enum{
@@ -58,7 +58,7 @@ typedef enum{
     op_slash,
     op_bracket,
     op_bracket_end,
-    op_equal,
+    op_not_equal,
     op_lesser,
     op_lesser_equal,
     op_greater,
@@ -82,3 +82,4 @@ Token* create_token();
 int is_keyword(char* text);
 void destruct_token(Token* token);
 #endif // TOKEN_H
+
