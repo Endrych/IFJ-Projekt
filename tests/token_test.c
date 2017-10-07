@@ -96,8 +96,17 @@ int main()
     else
         printf("Wrong!\n"); 
 
+    // Wrong token test
+    printf("\n7) Wrong token test \n");
+    Token* wrong_token = create_token();
+    wrong_token->type = type_wrong;
+    if(wrong_token->type == type_wrong)
+        printf("Success!\n");
+    else
+        printf("Wrong!\n"); 
+
     // Is Keyword test
-    printf("\n7) Keywords test\n");
+    printf("\n8) Keywords test\n");
     char * test_keywords[] ={
         "And",
         "As",
@@ -161,6 +170,7 @@ int main()
     destruct_token(keyword_token);
     destruct_token(id_token);
     destruct_token(string_token);
+    destruct_token(wrong_token);
     destruct_storage();
     free(string);
     printf("\n\n");

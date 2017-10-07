@@ -4,7 +4,8 @@ typedef enum{
     type_string,
     type_integer,
     type_double,
-    type_operator
+    type_operator,
+    type_wrong
 }Type;
 
 typedef enum{
