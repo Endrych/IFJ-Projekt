@@ -1,12 +1,16 @@
 /' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
 'Test line comment
++
+=
+-
 Or
+fOR
+17454asdasds
 Whilee
 Function
   
 !"AHoj kaj je"
 !"dasdAHoj kaj je"
-1745654446.4564552
 1745654446.4564552
 1745654446.4564552
 Function Length(s As String) As Integer

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
 #include "token.h"
 #include "string_storage.h"
 
@@ -30,7 +31,7 @@ typedef enum{
   _DIVISION_INT, // {\}
   _LESSER,
   _LESSER_EQUAL, //USED IN LESSER
-  _EQUAL, //
+  _NOT_EQUAL, //
   _GREATER,
   _GREATER_EQUAL, //USED IN GREATER
   _BRACKET,
@@ -63,7 +64,9 @@ Token* get_token(){
 	int length = 0;
 	int size = 10;  //udelat konstantu
 	char *str;
-  char current_char = '\0';
+	char current_char = '\0';
+	char lowering;					
+	
 	
   while(isIntToken){
     if(last_char != '\0'){
@@ -97,19 +100,29 @@ Token* get_token(){
 					last_char = current_char;
 				}
         else if(current_char == '='){
-          state = _ASSIGN;
+          token->type = type_operator;
+					token->atribute.operator_value = op_assign;
+					return token;
         }
         else if(current_char == '+'){
-          state = _ADD;
+          token->type = type_operator;
+					token->atribute.operator_value = op_add;
+					return token;
         }
         else if(current_char == '-'){
-          state = _SUB;
+          token->type = type_operator;
+					token->atribute.operator_value = op_sub;
+					return token;
         }
         else if(current_char == '*'){
-          state = _MULTIPLY;
+					token->type = type_operator;
+					token->atribute.operator_value = op_mul;
+					return token;
         }
         else if(current_char == '\\'){
-          state = _DIVISION_INT;
+          token->type = type_operator;
+					token->atribute.operator_value = op_division_int;
+					return token;
         }
         else if(current_char == '<'){
           state = _LESSER;
@@ -118,10 +131,14 @@ Token* get_token(){
           state = _GREATER;
         }
     	  else if (current_char == '('){
-          state = _BRACKET; 
+					token->type = type_operator;
+					token->atribute.operator_value = op_bracket;
+					return token; 
         }
         else if (current_char == ')'){
-          state = _BRACKET_END;
+					token->type = type_operator;
+					token->atribute.operator_value = op_bracket_end;
+					return token;	
         }
         else if (current_char == EOF){
 					state = _EOF;
@@ -132,12 +149,6 @@ Token* get_token(){
 				current_char == '\n' ||
 				current_char == '\t'){
 					state = _START;
-					// if(current_char == ' ')
-					// 	printf(" ");
-					// else if(current_char == '\n')
-					// 	printf("\n");
-					// else if(current_char == '\t')
-					// 	printf("\t");
 				}
 				break;
 			case _LINE_COMMENT:
@@ -254,7 +265,7 @@ Token* get_token(){
 				str[length] = '\0';
 				length++;
 				int adress = add_string_to_storage(str);
-				// printf("Adresa:%d ,",adress);
+				// printf("Adresa:%d ,",adress);_NOT_EQUAL
 				token->type = type_string;
 				token->atribute.int_value = adress;
 				last_char = current_char;
@@ -265,12 +276,12 @@ Token* get_token(){
 				(current_char >= 'A' && current_char <= 'Z') ||
 				(current_char >= '0' && current_char <= '9') || 
 				current_char == '_'){
-					//add to arr, length ++
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
 					}
-					str[length] = current_char;
+					lowering = tolower(current_char);
+					str[length] = lowering;
 					length++;
 				}
 				else{
@@ -297,37 +308,12 @@ Token* get_token(){
 					return token;
 				}
 				break;
-			case _ASSIGN:
-				token->type = type_operator;
-				token->atribute.operator_value = op_assign;
-				last_char = current_char;
-				return token;
-			case _ADD:
-				token->type = type_operator;
-				token->atribute.operator_value = op_add;
-				last_char = current_char;
-				return token;
-			case _SUB:
-				token->type = type_operator;
-				token->atribute.operator_value = op_sub;
-				last_char = current_char;
-				return token;
-			case _MULTIPLY:
-				token->type = type_operator;
-				token->atribute.operator_value = op_mul;
-				last_char = current_char;
-				return token;
-			case _DIVISION_INT:
-				token->type = type_operator;
-				token->atribute.operator_value = op_division_int;
-				last_char = current_char;
-				return token;
 			case _LESSER:
 				if(current_char == '='){
 					state = _LESSER_EQUAL;
 				}
 				else if(current_char == '>'){
-					state = _EQUAL;
+					state = _NOT_EQUAL;
 				}
 				else{
 					token->type = type_operator;
@@ -341,9 +327,9 @@ Token* get_token(){
 				token->atribute.operator_value = op_lesser_equal;
 				last_char = current_char;
 				return token;
-			case _EQUAL:
+			case _NOT_EQUAL:
 				token->type = type_operator;
-				token->atribute.operator_value = op_equal;
+				token->atribute.operator_value = op_not_equal;
 				last_char = current_char;
 				return token;
 			case _GREATER:
@@ -362,16 +348,6 @@ Token* get_token(){
 				token->atribute.operator_value = op_greater_equal;
 				last_char = current_char;
 				return token;
-			case _BRACKET:
-				token->type = type_operator;
-				token->atribute.operator_value = op_bracket;
-				last_char = current_char;
-				return token;
-			case _BRACKET_END:
-				token->type = type_operator;
-				token->atribute.operator_value = op_bracket_end;
-				last_char = current_char;
-				return token;				
 			case _EOF:
 				isIntToken = false;
 				break;
