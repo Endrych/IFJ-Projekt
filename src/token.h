@@ -54,7 +54,7 @@ typedef enum{
     op_slash,
     op_bracket,
     op_bracket_end,
-    op_equal,
+    op_not_equal,
     op_lesser,
     op_lesser_equal,
     op_greater,

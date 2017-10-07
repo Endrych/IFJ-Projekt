@@ -161,6 +161,7 @@ int main()
     destruct_token(keyword_token);
     destruct_token(id_token);
     destruct_token(string_token);
+    destruct_storage();
     free(string);
     printf("\n\n");
     return 0;
