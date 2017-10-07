@@ -17,19 +17,10 @@ void destruct_token(Token* token)
     token = NULL;
 }
 
-int is_keyword(char* input)
+int is_keyword(char* text)
 {
     int res = -1;
-    int length = strlen(input);
-    char * text = NULL;
-    text = (char*)malloc((length+1) * sizeof(char));
-    int i = 0;
-    while(input[i])
-    {   
-        text[i] = tolower(input[i]);
-        i++;
-    }
-    text[i] = '\0';
+    int length = strlen(text);
     switch(length)
     {
         case 2:
@@ -117,6 +108,5 @@ int is_keyword(char* input)
                 res = kw_continue;
             break;
     }
-    free(text);
     return res;
 }
