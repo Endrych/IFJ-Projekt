@@ -14,10 +14,12 @@ And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False
 !"Retezec v IFJ17"
 
 /'INTEGER TEST'/
-42 196 0
+42 196 0 0005
 
 /'DOUBLE TEST'/
-0.0 1344.54 12.042 56.
+0.0 1344.54  12.042 56.  000012.12   2e4
+/' NEFUNKCNI DOUBLE'/
+'2.4e2 4e-2 3.9e-5
 
 /'OPERATOR TEST'/
 = + - * \ / ( ) <> < <= > >=
