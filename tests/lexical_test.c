@@ -235,8 +235,8 @@ int main(int argc, char *argv[])
 	// ZAPORNA CISLA ??
 	printf("4) Integer: ");
 	is_ok = true;
-	input_count = 3;
-	int input_int[] = {42, 196, 0};
+	input_count = 4;
+	int input_int[] = {42, 196, 0, 5};
 
 	for (int i = 0; i < input_count; i++)
 	{
@@ -267,8 +267,8 @@ int main(int argc, char *argv[])
 	/********************** TESTY DOUBLE ***********************/
 	printf("5) Double: ");
 	is_ok = true;
-	double input_double[] = {0.0, 1344.54, 12.042, 56.};
-	input_count = 4;
+	double input_double[] = {0.0, 1344.54, 12.042, 56., 12.12, 2e4};
+	input_count = 6;
 
 	for (int i = 0; i < input_count; i++)
 	{
