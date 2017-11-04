@@ -1,5 +1,7 @@
-/' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
+' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
 'Test line comment
+ahoj 
+;
 +
 =
 -

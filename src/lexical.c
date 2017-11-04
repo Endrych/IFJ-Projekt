@@ -146,9 +146,16 @@ Token* get_token(){
           last_char = current_char;                    
 				}
 				else if(current_char == ' ' || 
-				current_char == '\n' ||
 				current_char == '\t'){
 					state = _START;
+				}
+				else if(current_char == '\n'){
+					token->type=type_eol;
+					return token;
+				}
+				else if(current_char == ';'){
+					token->type=type_semicolon;
+					return token;
 				}
 				break;
 			case _LINE_COMMENT:

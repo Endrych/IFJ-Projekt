@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   load_file(argv[1]);
   Token* token; 
   token = get_token();
-  printf("\n%d %d", token->type, token->atribute.int_value);
+  printf("\n%d %d", token->type, token->atribute);
   destruct_token(token);
   token = get_token();
   printf("\n%d %d", token->type, token->atribute);  
