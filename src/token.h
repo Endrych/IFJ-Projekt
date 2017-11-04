@@ -8,7 +8,9 @@ typedef enum{
     type_integer,
     type_double,
     type_operator,
-    type_wrong
+    type_wrong,
+    type_eol,
+    type_semicolon
 }Type;
 
 typedef enum{

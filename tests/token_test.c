@@ -161,7 +161,28 @@ int main()
         else
             printf("Wrong\n");
     }
+
+    // EOL
+    printf("\n9) EOL ");
+    Token *eol_token = create_token();
+    eol_token->type = type_eol;
+    if (eol_token->type == type_eol)
+        printf("Success!\n");
+    else
+        printf("Wrong!\n");
+
+    printf("\n9) Semicolon ");
+    Token *sem_token = create_token();
+    sem_token->type = type_semicolon;
+    if (sem_token->type == type_semicolon)
+        printf("Success!\n");
+    else
+        printf("Wrong!\n");
+
+
     // Destruct token
+    destruct_token(sem_token);
+    destruct_token(eol_token);
     destruct_token(operator_token);
     destruct_token(integer_token);
     destruct_token(double_token);
