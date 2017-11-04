@@ -37,6 +37,15 @@ int main()
     else
         printf("Wrong \n");
 
+    printf("2) Nonterminal: ");
+    stackPop(s);
+    SData * test2 = stackTop(s);
+    if(test2->Type == type_token && test2->Atr.Token == integer_token)
+        printf("Correct\n");
+    else
+        printf("Wrong \n");
+
+
     printf("\n\n");
     stackDestruct(s);
     destruct_token(integer_token);
