@@ -3,105 +3,148 @@
 #include <stdlib.h>
 #include <string.h>
 
+Tsymtab_item *symtab_search(Tsymtab *sym_table, char *key)
+{
+	unsigned int index = hash_func(key) % sym_table->size;
+	Tsymtab_item *temp = sym_table->symtab_list[index];
+
+	while(temp)
+	{
+		temp->found = false;
+		if ((strcmp(temp->key, key)) == 0)
+		{
+			temp->found = true;
+			return temp;
+		}
+
+		if (temp->next == NULL)
+		{
+			return NULL;
+		}
+
+		temp = temp->next;
+	}
+	return NULL;
+}
+
+
 Tsymtab *symtab_init(unsigned int size) 
 {
-	// allocate memory for the table
+
 	Tsymtab *sym_table = (Tsymtab *) malloc(sizeof(*sym_table) + size * sizeof(sym_table->symtab_list[0]));
 	if (sym_table == NULL)
-	{	// if allocation failed, return 99
-		exit(99);
+	{	
+		fprintf(stderr, "Memory allocation failed!\n");
+		return NULL;
 	}
-	// save size of the table to the structure
+
 	sym_table->size = size;
 
-	// every pointer points to NULL 
+
 	for (unsigned int i = 0; i < sym_table->size; i++)
 	{
 		sym_table->symtab_list[i] = NULL;
 	}
-	// return the table
 	return sym_table;
 
 }
 
 void symtab_free(Tsymtab *sym_table)
-{	// temporary pointer 
+{	
 	Tsymtab_item *temp_item;
-	// for the whole table
+
 	for (unsigned int i = 0; i < sym_table->size; i++)
-	{	// save current list to the temporary variable
+	{	
 		temp_item = sym_table->symtab_list[i];
-		// if the list is empty, go on
+
 		if (temp_item == NULL)
 		{
 			continue;
 		}
-		// deallocate memory of all items in the current list
+
 		while(temp_item != NULL)
 		{
 			Tsymtab_item *current_item = temp_item;
 			temp_item = temp_item->next;
-			free(current_item->key);
 			free(current_item);
 		}
 	}
-	// deallocate the memory of the table itself
+
 	free(sym_table);
 }
 
-Tsymtab_item *symtab_insert(Tsymtab *sym_tab, const char *key/*, Token token*/)
-{	// calculating of the index 
-	unsigned int index = hash_func(key) % sym_tab->size;
-	// store a list on the index to temporary variable
-	Tsymtab_item *temp = sym_tab->symtab_list[index];
-	// until the end of the list
-	while(temp != NULL)
-	{	
-		if ((strcmp(temp->key, key)) == 0)
-		{	// i found an item, it's already in the table
-			return temp;
+
+Tsymtab_item *symtab_insert(Tsymtab *sym_table,  char *key, Token token)
+{	
+	unsigned int index = hash_func(key) % sym_table->size;
+	Tsymtab_item *temp = symtab_search(sym_table, key);
+
+	if (temp == NULL)
+	{
+		// allocate memory for new item
+		Tsymtab_item *new_item = (Tsymtab_item *) malloc(sizeof(*new_item));
+		if (new_item == NULL)
+		{	
+			fprintf(stderr, "Memory allocation failed\n");
+			return NULL;
 		}
-		// if I'm at the end of the list
-		if (temp->next == NULL)
-		{	// i didn't found an item and i have to create new one
-			break;
+
+		/*new_item->key = (char *) malloc(sizeof(char) * strlen(key) + 1);
+		memcpy(new_item->key, key, strlen(key));
+		new_item->key[strlen(key)] = '\0';*/
+
+		new_item->key = key;
+		new_item->token = token;
+
+		// store the item at the end of the list
+		if (temp != NULL)
+		{
+			temp->next = new_item;
+		} else {
+
+			sym_table->symtab_list[index] = new_item;
 		}
-		// move forward in the list
+
+		return new_item;
+	} else
+	{
+		return temp;
+	}
+
+
+}
+
+bool symtab_delete(Tsymtab *sym_table,  char *key)
+{
+	unsigned int index = hash_func(key) % sym_table->size;
+	Tsymtab_item *temp = sym_table->symtab_list[index];
+	Tsymtab_item *previous = NULL;
+
+	while(temp)
+	{
+		if ((strcmp(key, temp->key)) == 0)
+		{
+			if (previous != NULL)
+			{
+				previous->next = temp->next;
+			} else
+			{
+				sym_table->symtab_list[index] = temp->next;
+			}
+			
+			Tsymtab_item *current = temp;
+			free(current);
+			return true;
+		}
+
+		previous = temp;
 		temp = temp->next;
 	}
-	// allocate memory for new item
-	Tsymtab_item *new_item = (Tsymtab_item *) malloc(sizeof(*new_item));
-	if (new_item == NULL)
-	{	// if allocation failed
-		exit(99);
-	}
-	new_item->key = (char *) malloc(sizeof(char) * strlen(key));
-	// copy the name of id to the item 
-	strncpy(new_item->key, key, strlen(key));
-	// store the token 
-	/*new_item->token = token;*/
-	// store the item at the end of the list
-	if (temp != NULL)
-	{
-		temp->next = new_item;
-	} else {
-		// the list is empty so store it at the first place
-		sym_tab->symtab_list[index] = new_item;
-	}
-	// return new item
-	return new_item;
-
-
-
+	return false;
 }
-/*
-bool symtab_delete(Tsymtab *sym_tab, const char *key)
-{
 
-}
-*/
 // sdbm hash function / murmur hash function
-unsigned int hash_func(const char *key)
+unsigned int hash_func( char *key)
 {
 	unsigned int hash = 0;
 	const unsigned char *p = NULL;
@@ -120,15 +163,18 @@ unsigned int hash_func(const char *key)
 */
 int main()
 {	
+	Token token;
 	Tsymtab *tab = symtab_init(10);
-	symtab_insert(tab, "ahoj");
+
+	symtab_insert(tab, "ahoj", token);
+
 	for (unsigned int i = 0; i < tab->size; i++)
 	{
 		Tsymtab_item *temp = tab->symtab_list[i];
 		if (temp == NULL)
-			{
+		{
 				printf("NULL");
-			}
+		}
 		while(temp != NULL)
 		{
 	
