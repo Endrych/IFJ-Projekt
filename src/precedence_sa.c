@@ -16,19 +16,19 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     if(current == NULL)
         current = get_token();
     
-    while((token->type != type_keyword && token->atribute.keyword_value != kw_then)||token->type != type_eol || token->type != type_semicolon){
+    while(!correct){
         Token* token = getTerminal(s);
         if(token == NULL){
 
         }
         else if(token->type == type_operator){
-            if(token->atribute.operator_value == op_add){
+            if(token->atribute.operator_value == op_add || token->atribute.operator_value == op_sub){
                 if((current->type == type_operator && (current->atribute.operator_value == op_mul || current->atribute.operator_value == op_slash || current->atribute.operator_value == op_division_int || current->atribute.operator_value == op_bracket)) || (token->type == type_id || token->type == type_integer || token->type == type_string || token->type == type_double)){
-                    
-                }
-            }
-            else if(token->atribute.operator_value == op_sub){
 
+                }
+                else if((current->type == type_operator && (current->atribute.operator_value == op_add || current->atribute.operator_value == op_sub || current->atribute.operator_value == op_assign || current->atribute.operator_value == op_not_equal || current->atribute.operator_value == op_lesser || current->atribute.operator_value == op_greater || current->atribute.operator_value == op_greater_equal || current->atribute.operator_value == op_lesser_equal || current->atribute.operator_value == op_bracket_end)) || ((current->type != type_keyword && current->atribute.keyword_value != kw_then)||(current->type != type_eol || current->type != type_semicolon))){
+
+                }
             }
             else if(token->atribute.operator_value == op_mul){
                 
@@ -78,7 +78,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
     if(out == NULL)
         return NULL;
-    out->ReturnToken = token;
+    out->ReturnToken = current;
     out->Pntr = correct;
     return out;
 }
