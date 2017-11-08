@@ -55,6 +55,11 @@ char * get_string(int pos)
 	}
 
 	char *key = (char *) malloc(sizeof(char) * length);
+	if (key == NULL)
+	{
+		fprintf(stderr, "Memory allocation failed!\n");
+		return NULL;
+	}
 
 	int i = 0;
 	while(i < length)
