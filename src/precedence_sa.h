@@ -8,7 +8,8 @@ typedef enum{
 
 typedef struct{
     DataType Type;
-    int * pntr;
+    Token* ReturnToken;
+    int Pntr;
 }PrecendentOutput;
 
-PrecendentOutput precedence_analysis(Token* token, int * ptr);
+PrecendentOutput* precedence_analysis(Token* token, int * ptr);

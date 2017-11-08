@@ -360,4 +360,5 @@ Token* get_token(){
 				break;
 		}
 	}
+	return NULL;
 }

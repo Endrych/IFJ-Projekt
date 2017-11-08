@@ -1,5 +1,5 @@
-#include "precedence_sa.h"
+#include "../src/precedence_sa.h"
 
 int main(){
-    
+
 }
