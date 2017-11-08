@@ -38,3 +38,9 @@ lexan_test:
 	./lexan_test $(TEST_FOLDER)test_file1.ifj
 	rm lexan_test
 
+precedence_test_coverage:
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)token.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)recedence_sa_test.c -o precedence_test
+	valgrind ./stack_test
+	lcov --capture --directory . --output-file precedence_coverage.info
+	genhtml precedence_coverage.info --output-directory ./precedence/
+	rm precedence_test *.gcda *gcno *.info
