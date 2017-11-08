@@ -1,10 +1,12 @@
 #include "symtable.h"
+#include "string_storage.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-Tsymtab_item *symtab_search(Tsymtab *sym_table, char *key)
+Tsymtab_item *symtab_search(Tsymtab *sym_table, int position)
 {
+	char *key = get_string(position);
 	unsigned int index = hash_func(key) % sym_table->size;
 	Tsymtab_item *temp = sym_table->symtab_list[index];
 
@@ -14,16 +16,19 @@ Tsymtab_item *symtab_search(Tsymtab *sym_table, char *key)
 		if ((strcmp(temp->key, key)) == 0)
 		{
 			temp->found = true;
+			free(key);
 			return temp;
 		}
 
 		if (temp->next == NULL)
 		{
+			free(key);
 			return NULL;
 		}
 
 		temp = temp->next;
 	}
+	free(key);
 	return NULL;
 }
 
@@ -74,10 +79,11 @@ void symtab_free(Tsymtab *sym_table)
 }
 
 
-Tsymtab_item *symtab_insert(Tsymtab *sym_table,  char *key, Token token)
+Tsymtab_item *symtab_insert(Tsymtab *sym_table,  int position, Token token)
 {	
+	char *key = get_string(position);
 	unsigned int index = hash_func(key) % sym_table->size;
-	Tsymtab_item *temp = symtab_search(sym_table, key);
+	Tsymtab_item *temp = symtab_search(sym_table, position);
 
 	if (temp == NULL)
 	{
@@ -104,18 +110,20 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table,  char *key, Token token)
 
 			sym_table->symtab_list[index] = new_item;
 		}
-
+		free(key);
 		return new_item;
 	} else
-	{
+	{	
+		free(key);
 		return temp;
 	}
 
 
 }
 
-bool symtab_delete(Tsymtab *sym_table,  char *key)
+bool symtab_delete(Tsymtab *sym_table,  int position)
 {
+	char *key = get_string(position);
 	unsigned int index = hash_func(key) % sym_table->size;
 	Tsymtab_item *temp = sym_table->symtab_list[index];
 	Tsymtab_item *previous = NULL;
@@ -133,6 +141,7 @@ bool symtab_delete(Tsymtab *sym_table,  char *key)
 			}
 			
 			Tsymtab_item *current = temp;
+			free(key);
 			free(current);
 			return true;
 		}
@@ -140,6 +149,7 @@ bool symtab_delete(Tsymtab *sym_table,  char *key)
 		previous = temp;
 		temp = temp->next;
 	}
+	free(key);
 	return false;
 }
 
@@ -165,8 +175,8 @@ int main()
 {	
 	Token token;
 	Tsymtab *tab = symtab_init(10);
-
-	symtab_insert(tab, "ahoj", token);
+	int i = add_string_to_storage("ahoj");
+	symtab_insert(tab, i, token);
 
 	for (unsigned int i = 0; i < tab->size; i++)
 	{
@@ -183,6 +193,23 @@ int main()
 		}
 		printf("\n");
 	}
+	symtab_delete(tab, i);
+	for (unsigned int i = 0; i < tab->size; i++)
+	{
+		Tsymtab_item *temp = tab->symtab_list[i];
+		if (temp == NULL)
+		{
+				printf("NULL");
+		}
+		while(temp != NULL)
+		{
+	
+			printf("%s ", temp->key);
+			temp = temp->next;
+		}
+		printf("\n");
+	}
+	destruct_storage();
 	symtab_free(tab);
 	return 0;
 }
