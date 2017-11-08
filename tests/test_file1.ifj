@@ -1,4 +1,8 @@
 /'Soubor k otestovani funkcnosti lexikalniho analyzatoru'/
+/' TODO:
+    Test zavorek
+    exponencialni tvar
+'/
 
 
 /'IDENTIFIER TEST'/
@@ -23,7 +27,3 @@ And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False
 
 /'OPERATOR TEST'/
 = + - * \ / ( ) <> < <= > >=
-
-
-
-
