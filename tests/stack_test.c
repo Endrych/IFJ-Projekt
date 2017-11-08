@@ -45,6 +45,13 @@ int main()
     else
         printf("Wrong \n");
 
+    if(!stackEmpty(s))
+        printf("Zasobnik neni prazdny\n");
+    stackPop(s);
+    printf("Stack pop\n");
+    if(stackEmpty(s))
+    printf("Zasobnik je prazdny\n");
+    stackPush(s,test);
 
     printf("\n\n");
     stackDestruct(s);
