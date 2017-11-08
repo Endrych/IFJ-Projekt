@@ -20,3 +20,7 @@ token_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)token_test.c -o token_test
 	./token_test
 	rm token_test
+symbol_table_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)symtable.c $(SRC_FOLDER)string_storage.c -o symbol_table_test
+	valgrind ./symbol_table_test
+	rm symbol_table_test
