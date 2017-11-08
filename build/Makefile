@@ -31,3 +31,7 @@ lexan_test:
 	./lexan_test $(TEST_FOLDER)test_file1.ifj
 	rm lexan_test
 
+sym_table_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
+	valgrind ./sym_table_test
+	rm sym_table_test

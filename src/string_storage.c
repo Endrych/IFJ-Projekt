@@ -46,7 +46,27 @@ int add_string_to_storage(char* array)
 
 char * get_string(int pos)
 {
-    return &_string_storage[pos];
+	int length = 0;
+	int temp = pos;
+	while(_string_storage[temp] != '#')
+	{	
+		temp++;
+		length++;
+	}
+
+	char *key = (char *) malloc(sizeof(char) * length);
+
+	int i = 0;
+	while(i < length)
+	{
+		key[i] = _string_storage[pos];
+		i++;
+		pos++;
+	}
+
+	key[i] = 0;
+    
+    return key;
 }
 
 void destruct_storage()
