@@ -4,7 +4,7 @@
 #include "stack.h"
 #include <stdlib.h>
 
-PrecendentOutput * precedence_analysis(Token* token, int * ptr){
+PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     ptr = ptr; // stromecek
     int correct = 0;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
@@ -12,9 +12,9 @@ PrecendentOutput * precedence_analysis(Token* token, int * ptr){
         return NULL;
     }
     stackInit(s);
-    Token * current = token;
+    Token * current = last_token;
     if(current == NULL)
-        token = get_token();
+        current = get_token();
     
     while((token->type != type_keyword && token->atribute.keyword_value != kw_then)||token->type != type_eol || token->type != type_semicolon){
         Token* token = getTerminal(s);
@@ -23,7 +23,9 @@ PrecendentOutput * precedence_analysis(Token* token, int * ptr){
         }
         else if(token->type == type_operator){
             if(token->atribute.operator_value == op_add){
-
+                if((current->type == type_operator && (current->atribute.operator_value == op_mul || current->atribute.operator_value == op_slash || current->atribute.operator_value == op_division_int || current->atribute.operator_value == op_bracket)) || (token->type == type_id || token->type == type_integer || token->type == type_string || token->type == type_double)){
+                    
+                }
             }
             else if(token->atribute.operator_value == op_sub){
 
@@ -69,7 +71,7 @@ PrecendentOutput * precedence_analysis(Token* token, int * ptr){
 
         }
         else{
-            
+
         }
         token = get_token();
     }
