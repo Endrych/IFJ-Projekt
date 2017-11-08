@@ -30,15 +30,15 @@ unsigned int hash_func( char *);
 Tsymtab *symtab_init(unsigned int);
 
 // function that inserts an item to the table 
-Tsymtab_item *symtab_insert(Tsymtab *,  int position, Token token);
+Tsymtab_item *symtab_insert(Tsymtab *sym_table,  int position, Token token);
 
 // function that searches for an item in the table
-Tsymtab_item *symtab_search(Tsymtab *,  int position);
+Tsymtab_item *symtab_search(Tsymtab *sym_table,  int position);
 
 // delete and dealocate the table
-void symtab_free(Tsymtab *);
+void symtab_free(Tsymtab *sym_table);
 
 // delete and dealocate one item from the table
-bool symtab_delete(Tsymtab *,  int position);
+bool symtab_delete(Tsymtab *sym_table,  int position);
 
 #endif /* SYMTAB_H */
