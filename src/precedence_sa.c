@@ -9,5 +9,8 @@ PrecendentOutput precedence_analysis(Token* token, int * ptr){
     
     while((token->type != type_keyword && token.atribute != kw_then)||token->type != type_eol || token->type != type_semicolon){
         
+
+
+        token = get_token();
     }
 }

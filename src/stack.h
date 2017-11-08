@@ -32,5 +32,6 @@ int stackFull ( const tStack* s );
 SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
+Token* getTerminal(tStack* s);
 
 #endif

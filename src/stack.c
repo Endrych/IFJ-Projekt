@@ -36,3 +36,15 @@ void stackPush ( tStack* s, SData* data ){
     new_elem->Next = s->Top;
     s->Top = new_elem;
 }
+
+Token* getTerminal(tStack* s){
+    if(stackEmpty(s))
+        return NULL;
+    TSItem * current = s->Top;
+    while(current->Data->Type == type_nonterm){
+        current = current->Next;
+        if(current == NULL)
+            return NULL;
+    }
+    return current->Data->Atr.Token;
+}
