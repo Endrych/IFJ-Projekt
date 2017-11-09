@@ -13,3 +13,4 @@ typedef struct{
 }PrecendentOutput;
 
 PrecendentOutput* precedence_analysis(Token* token, int * ptr);
+int precedence_operation(Token* stack_token,Token* lexical_token);

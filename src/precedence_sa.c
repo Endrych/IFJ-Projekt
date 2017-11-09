@@ -18,59 +18,23 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     
     while(!correct){
         Token* token = getTerminal(s);
-        if(token == NULL){
-
+        
+        int operation = precedence_operation(token,current);
+        if(operation == -1)
+            break;
+        else if(operation == 0){
+            SData *data = malloc(sizeof(SData));
+            if(data == NULL){
+                return NULL;
+            }
+            data->Type = type_token;
+            data->Atr.Token = current;
+            stackPush(s,data);
         }
-        else if(token->type == type_operator){
-            if(token->atribute.operator_value == op_add || token->atribute.operator_value == op_sub){
-                if((current->type == type_operator && (current->atribute.operator_value == op_mul || current->atribute.operator_value == op_slash || current->atribute.operator_value == op_division_int || current->atribute.operator_value == op_bracket)) || (token->type == type_id || token->type == type_integer || token->type == type_string || token->type == type_double)){
-
-                }
-                else if((current->type == type_operator && (current->atribute.operator_value == op_add || current->atribute.operator_value == op_sub || current->atribute.operator_value == op_assign || current->atribute.operator_value == op_not_equal || current->atribute.operator_value == op_lesser || current->atribute.operator_value == op_greater || current->atribute.operator_value == op_greater_equal || current->atribute.operator_value == op_lesser_equal || current->atribute.operator_value == op_bracket_end)) || ((current->type != type_keyword && current->atribute.keyword_value != kw_then)||(current->type != type_eol || current->type != type_semicolon))){
-
-                }
-            }
-            else if(token->atribute.operator_value == op_mul){
-                
-            }
-            else if(token->atribute.operator_value == op_slash){
-                
-            }
-            else if(token->atribute.operator_value == op_assign){
-                
-            }
-            else if(token->atribute.operator_value == op_not_equal){
-                
-            }
-            else if(token->atribute.operator_value == op_not_equal){
-                
-            }
-            else if(token->atribute.operator_value == op_lesser){
-                
-            }
-            else if(token->atribute.operator_value == op_greater){
-                
-            }
-            else if(token->atribute.operator_value == op_lesser_equal){
-                
-            }
-            else if(token->atribute.operator_value == op_greater_equal){
-                
-            }
-            else if(token->atribute.operator_value == op_bracket){
-                
-            }
-            else if(token->atribute.operator_value == op_bracket_end){
-                
-            }
-            else{
-
-            }
+        else if(operation == 1){
+            
         }
-        else if(token->type == type_id || token->type == type_integer || token->type == type_string || token->type == type_double){
-
-        }
-        else{
+        else if(operation == 2){
 
         }
         token = get_token();
@@ -79,6 +43,97 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     if(out == NULL)
         return NULL;
     out->ReturnToken = current;
-    out->Pntr = correct;
+    out->Pntr = 1;
     return out;
+}
+
+int precedence_operation(Token* stack_token,Token* lexical_token){
+    int index0,index1 = 0;
+    Token * token = NULL;
+    for(int i=0;i<2;i++){
+        int curr_index = 0;
+        if(i == 0){
+            token = stack_token;
+        }
+        else{
+            token = lexical_token;
+        }
+        if(token == NULL){
+            curr_index = 14;            
+        }
+        else if(token->type == type_operator){
+            if(token->atribute.operator_value == op_add){
+                curr_index = 0;
+            }
+            else if(token->atribute.operator_value == op_sub){
+                curr_index = 1;
+            }
+            else if(token->atribute.operator_value == op_mul){
+                curr_index = 2;
+            }
+            else if(token->atribute.operator_value == op_slash){
+                curr_index = 3;
+            }
+            else if(token->atribute.operator_value == op_division_int){
+                curr_index = 4;
+            }
+            else if(token->atribute.operator_value == op_assign){
+                curr_index = 5;                    
+            }
+            else if(token->atribute.operator_value == op_not_equal){
+                curr_index = 6;
+            }
+            else if(token->atribute.operator_value == op_lesser){
+                curr_index = 7;
+            }
+            else if(token->atribute.operator_value == op_greater){
+                curr_index = 8;
+            }
+            else if(token->atribute.operator_value == op_lesser_equal){
+                curr_index = 9;
+            }
+            else if(token->atribute.operator_value == op_greater_equal){
+                curr_index = 10;
+            }
+            else if(token->atribute.operator_value == op_bracket){
+                curr_index = 11;
+            }
+            else if(token->atribute.operator_value == op_bracket_end){
+                curr_index = 12;
+            }
+            else{
+                curr_index = -1;
+            }
+        }
+        else if(token->type == type_id || token->type == type_integer || token->type == type_string || token->type == type_double){
+            curr_index = 13;        
+        }
+        else{
+            curr_index = -1;
+        }
+        if(i == 0){
+            index0 = curr_index;
+        }
+        else{
+            index1 = curr_index;
+        }
+    }
+    static int precedence_table[15][15] = {  {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
+                                            {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
+                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                            {1,1,1,1,1,1,1,1,1,1,1,1,0,1,-1},
+                                            {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
+                                            {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
+                                            {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1},
+                                        };
+    return precedence_table[index0][index1];
 }
