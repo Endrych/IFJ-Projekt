@@ -17,7 +17,8 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
         current = get_token();
     
     while(!correct){
-        Token* token = getTerminal(s)->Atr.Token;
+        SData * termData =  getTerminalData(s);
+        Token* token = termData->Atr.Token;
         
         int operation = precedence_operation(token,current);
         if(operation == -1)
@@ -32,7 +33,14 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
             stackPush(s,data);
         }
         else if(operation == 1){
-            
+            addHandler(termData);
+            SData *data = malloc(sizeof(SData));
+            if(data == NULL){
+                return NULL;
+            }
+            data->Type = type_token;
+            data->Atr.Token = current;
+            stackPush(s,data);
         }
         else if(operation == 2){
 
