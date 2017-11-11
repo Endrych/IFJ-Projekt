@@ -44,3 +44,8 @@ precedence_test_coverage:
 	lcov --capture --directory . --output-file precedence_coverage.info
 	genhtml precedence_coverage.info --output-directory ./precedence/
 	rm precedence_test *.gcda *gcno *.info
+
+sym_table_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
+	./sym_table_test
+	rm sym_table_test

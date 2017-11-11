@@ -132,7 +132,6 @@ int main(int argc, char *argv[])
 		{
 			printf("\n[TYPE_ERROR]\n");
 			printf("Expected: type_id\n");
-			// test_type definovano v lexical_test.h
 			printf("In file: %s\n\n", test_type[test_token->type]);
 			is_ok = false;
 		} 
