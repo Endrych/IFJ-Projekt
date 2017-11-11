@@ -24,5 +24,12 @@ ATLeaf *make_leaf(ATData data){
     return new_leaf;
 }
 
-void make_tree(){}
+ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data){
+    ATLeaf *new_tree = (ATLeaf *) malloc(sizeof(struct atleaf));
+    new_tree->data = data;
+    new_tree->left = leaf_1;
+    new_tree->right = leaf_2;    
+
+    return new_tree;
+}
 

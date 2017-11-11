@@ -18,3 +18,4 @@ typedef struct{
 
 Abs_tree *at_init();
 ATLeaf *make_leaf(ATData data);
+ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data);
