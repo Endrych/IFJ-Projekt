@@ -37,7 +37,7 @@ sym_table_test:
 	rm sym_table_test
 
 abstract_tree_test:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
-	valgrind ./abstract_tree_test
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
+	./abstract_tree_test
 	rm abstract_tree_test
 

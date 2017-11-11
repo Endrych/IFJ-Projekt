@@ -15,12 +15,13 @@ Abs_tree *at_init(){
     return tree;
 }
 
-void make_leaf(Abs_tree *tree, ATData data){
-    ATLeaf *leaf = (ATLeaf *) malloc(sizeof(struct atleaf));
-    leaf->data = data;
-    leaf->left = NULL;
-    leaf->right = NULL;
+ATLeaf *make_leaf(ATData data){
+    ATLeaf *new_leaf = (ATLeaf *) malloc(sizeof(struct atleaf));
+    new_leaf->data = data;
+    new_leaf->left = NULL;
+    new_leaf->right = NULL;
     
+    return new_leaf;
 }
 
 void make_tree(){}
