@@ -50,6 +50,11 @@ int main()
     if(t1 == integer_token)
         printf("Correct\n");
 
+    printf("3) Add handler: ");
+    addHandler(d1);
+    if(d1->Handler == 1)
+        printf("Correct\n");
+
     if(!stackEmpty(s))
         printf("Zasobnik neni prazdny\n");
     stackPop(s);

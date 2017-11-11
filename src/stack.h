@@ -34,5 +34,5 @@ SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
 SData* getTerminalData(tStack* s);
-void addHandler(TSItem * sItem);
+void addHandler(SData * sData);
 #endif

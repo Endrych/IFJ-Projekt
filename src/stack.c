@@ -53,3 +53,9 @@ SData* getTerminalData(tStack* s){
     }
     return current->Data;
 }
+
+void addHandler(SData * sData){
+    if(sData != NULL){
+        sData->Handler = 1;
+    }
+}
