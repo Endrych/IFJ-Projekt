@@ -21,7 +21,7 @@ int main(){
     printf("\nHOTOVO: %d\n", tree->data.int_value);
     printf("\nHOTOVO: %d\n", tree->left->data);
     printf("\nHOTOVO: %d\n", tree->right->data);
-    free_at(tree);
+    dispose_at(tree);
     
 
     return 0;

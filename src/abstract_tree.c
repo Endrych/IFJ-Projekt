@@ -22,12 +22,12 @@ ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data){
     return new_tree;
 }
 
-void free_at(ATLeaf *leaf){
+void dispose_at(ATLeaf *leaf){
     if(leaf == NULL){
     }else{
         while(leaf != NULL){
-            free_at(leaf->left);
-            free_at(leaf->right);
+            dispose_at(leaf->left);
+            dispose_at(leaf->right);
             free(leaf);	
             leaf = NULL;	
         }
