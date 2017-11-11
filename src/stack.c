@@ -6,6 +6,7 @@
 void stackInit ( tStack* s ){
     s->Top = NULL;
 }
+
 void stackDestruct ( tStack* s ){
     if(s != NULL){
         TSItem* current = s->Top;
@@ -19,17 +20,21 @@ void stackDestruct ( tStack* s ){
         s = NULL;
     }
 }
+
 int stackEmpty ( const tStack* s ){
     return (s->Top == NULL);
 }
+
 SData* stackTop ( const tStack* s){
     return s->Top->Data;
 }
+
 void stackPop ( tStack* s ){
     TSItem* rm = s->Top;
     s->Top = rm->Next;
     free(rm);
 }
+
 void stackPush ( tStack* s, SData* data ){
     TSItem* new_elem = (TSItem*) malloc(sizeof(struct SItem));
     new_elem->Data = data;
@@ -37,7 +42,7 @@ void stackPush ( tStack* s, SData* data ){
     s->Top = new_elem;
 }
 
-Token* getTerminal(tStack* s){
+SData* getTerminalData(tStack* s){
     if(stackEmpty(s))
         return NULL;
     TSItem * current = s->Top;
@@ -46,5 +51,5 @@ Token* getTerminal(tStack* s){
         if(current == NULL)
             return NULL;
     }
-    return current->Data->Atr.Token;
+    return current->Data;
 }

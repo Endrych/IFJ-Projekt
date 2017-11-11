@@ -14,6 +14,7 @@ typedef union{
 typedef struct{
     SType Type;
     SAtribute Atr;
+    unsigned short Handler;
 }SData;
 
 typedef struct SItem{
@@ -32,6 +33,6 @@ int stackFull ( const tStack* s );
 SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
-Token* getTerminal(tStack* s);
-
+SData* getTerminalData(tStack* s);
+void addHandler(TSItem * sItem);
 #endif

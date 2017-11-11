@@ -33,7 +33,8 @@ int main()
         printf("Correct\n");
 
     printf("3) Get terminal: ");
-    Token* t1 = getTerminal(s);
+    SData * d1 = getTerminalData(s);
+    Token* t1 = d1->Atr.Token;
     if(t1 == integer_token)
         printf("Correct\n");
 
@@ -44,7 +45,8 @@ int main()
         printf("Correct\n");
 
     printf("3) Get terminal which is second: ");
-    t1 = getTerminal(s);
+    d1 = getTerminalData(s);
+    t1 = d1->Atr.Token;
     if(t1 == integer_token)
         printf("Correct\n");
 
@@ -53,16 +55,24 @@ int main()
     stackPop(s);
     printf("Stack pop\n");
     if(stackEmpty(s))
-    printf("Zasobnik je prazdny\n");
+        printf("Zasobnik je prazdny\n");
     
 
     printf("5) Get terminal in empty stack: ");
-    t1 = getTerminal(s);
+    d1 = getTerminalData(s);
+    if(d1 != NULL)
+        t1 = d1->Atr.Token;
+    else 
+        t1 = NULL;
     if(t1 == NULL)
         printf("Correct\n");
     stackPush(s,test1);
     printf("5) Get terminal without term stack: ");
-    t1 = getTerminal(s);
+    d1 = getTerminalData(s);
+    if(d1 != NULL)
+        t1 = d1->Atr.Token;
+    else 
+        t1 = NULL;
     if(t1 == NULL)
         printf("Correct\n");
     stackPush(s,test);

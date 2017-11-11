@@ -17,7 +17,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
         current = get_token();
     
     while(!correct){
-        Token* token = getTerminal(s);
+        Token* token = getTerminal(s)->Atr.Token;
         
         int operation = precedence_operation(token,current);
         if(operation == -1)
@@ -118,7 +118,8 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
             index1 = curr_index;
         }
     }
-    static int precedence_table[15][15] = {  {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
+    static int precedence_table[15][15] = {  
+                                            {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
