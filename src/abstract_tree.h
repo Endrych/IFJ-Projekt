@@ -16,3 +16,5 @@ typedef struct{
     struct atleaf *first;
 }Abs_tree;
 
+Abs_tree *at_init();
+void make_leaf(Abs_tree *tree, ATData data);
