@@ -3,17 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Abs_tree *at_init(){
-    Abs_tree *tree;
-    tree = (Abs_tree *)malloc(sizeof(struct atleaf));
-    if(tree == NULL){
-        fprintf(stderr, "Problem with memory");
-        EXIT_FAILURE;
-    }
-    tree->first->left = NULL;
-    tree->first->right = NULL;
-    return tree;
-}
 
 ATLeaf *make_leaf(ATData data){
     ATLeaf *new_leaf = (ATLeaf *) malloc(sizeof(struct atleaf));
@@ -31,5 +20,17 @@ ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data){
     new_tree->right = leaf_2;    
 
     return new_tree;
+}
+
+void free_at(ATLeaf *leaf){
+    if(leaf == NULL){
+    }else{
+        while(leaf != NULL){
+            free_at(leaf->left);
+            free_at(leaf->right);
+            free(leaf);	
+            leaf = NULL;	
+        }
+    }
 }
 
