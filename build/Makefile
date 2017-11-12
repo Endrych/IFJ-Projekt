@@ -11,7 +11,7 @@ STD_C99 = -std=c99
 CFLAGS = -Wall -Wextra -pedantic
 
 all:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c  $(SRC_FOLDER)main.c -o $(PROJECT)
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c  $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)main.c -o $(PROJECT)
 string_storage_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)string_storage_test.c -o string_storage_test
 	valgrind --leak-check=full ./string_storage_test
@@ -35,4 +35,9 @@ sym_table_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
 	./sym_table_test
 	rm sym_table_test
+
+abstract_tree_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
+	valgrind ./abstract_tree_test
+	rm abstract_tree_test
 
