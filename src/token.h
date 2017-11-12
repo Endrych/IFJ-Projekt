@@ -11,7 +11,7 @@ typedef enum{
     type_wrong,
     type_eol,
     type_semicolon,
-    type_eof;
+    type_eof
 }Type;
 
 typedef enum{
