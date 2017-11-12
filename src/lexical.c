@@ -41,19 +41,24 @@ typedef enum{
 
 FILE* source_file = NULL;
 
-void load_file(char *file){
+int load_file(char *file){
 	FILE *source;
 	source = fopen(file, "r");
   if(source == NULL){
 		printf("FILE ERROR");
-		return;
+		return 1;
 	}
 
-  source_file = source;
+	source_file = source;
+	return 0;
 }
 
-void close_file(){
+int close_file(){
 	fclose(source_file);
+	if(source_file != NULL){
+		return 1;
+	}
+	return 0;
 }
 
 Token* get_token(){
