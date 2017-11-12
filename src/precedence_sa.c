@@ -151,6 +151,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
 int findRule(tStack * s){
     int rule = 0;
     int state = 0;
+    int estimate_precedence = 0;
     while(rule == 0)
     {
         SData * data = stackTop(s);
@@ -162,33 +163,86 @@ int findRule(tStack * s){
                 }
                 else if(data->Type == type_token){
                     if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket_end){
+                        estimate_precedence = 1;
                         state = 2;
                     }
                     else if(data->Atr.Token->type == type_string || 
                             data->Atr.Token->type == type_id ||
                             data->Atr.Token->type == type_double ||
                             data->Atr.Token->type == type_integer){
+                            estimate_precedence = 13;
                             state = 3;
                     }
                 }
                 break;
             case 1:
-                
+                if(data->Atr.Token->type == type_operator){
+                    if(data->Atr.Token->atribute.operator_value == op_add){
+                        estimate_precedence = 2;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_mul){
+                        estimate_precedence = 3;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_sub){
+                        estimate_precedence = 4;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_slash){
+                        estimate_precedence = 5;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_division_int){
+                        estimate_precedence = 6;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_assign){
+                        estimate_precedence = 7;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_not_equal){
+                        estimate_precedence = 8;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_lesser){
+                        estimate_precedence = 9;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_greater){
+                        estimate_precedence = 10;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_lesser_equal){
+                        estimate_precedence = 11;
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->atribute.operator_value == op_greater_equal){
+                        estimate_precedence = 12;
+                        state = 2;
+                    }
+                }
                 break;
             case 2:
-                if(data->Type = type_nonterm){
-                    state = 4;
+                if(data->Type == type_nonterm){
+                    if(estimate_precedence == 1){
+                        state = 4;
+                    }
+                    else{
+                        state = 3;
+                    }
+                        
                 }
                 break;
             case 3:
                 if(data->Type == type_handler){
                     SData * newData = malloc(sizeof(SData));
                     if(newData == NULL){
-                        return NULL;
+                        return -1;
                     }
                     newData->Type = type_nonterm;
                     stackPush(s,newData);
-                    rule = 13;
+                    rule = estimate_precedence;
                 }
                 else{
                     rule = -1;
@@ -196,21 +250,10 @@ int findRule(tStack * s){
                 break;
             case 4:
                 if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket){
-                        state = 5;
-                }
-                break;
-            case 5:
-                if(data->Type == type_handler){
-                    SData * newData = malloc(sizeof(SData));
-                    newData->Type = type_nonterm;
-                    stackPush(s,newData);
-                    rule = 1;
-                }
-                else{
-                    rule = -1;
+                       state = 3;
                 }
                 break;
         }
     }
-    return -1;
+    return rule;
 }
