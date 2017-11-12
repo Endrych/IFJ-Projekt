@@ -3,7 +3,8 @@
 
 typedef enum{
     type_token,
-    type_nonterm
+    type_nonterm,
+    type_handler
 }SType;
 
 typedef union{
@@ -14,7 +15,6 @@ typedef union{
 typedef struct{
     SType Type;
     SAtribute Atr;
-    unsigned short Handler;
 }SData;
 
 typedef struct SItem{
@@ -34,5 +34,5 @@ SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
 SData* getTerminalData(tStack* s);
-void addHandler(SData * sData);
+void addHandler(tStack* s,SData * sData);
 #endif

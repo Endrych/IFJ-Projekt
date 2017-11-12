@@ -54,8 +54,40 @@ SData* getTerminalData(tStack* s){
     return current->Data;
 }
 
-void addHandler(SData * sData){
-    if(sData != NULL){
-        sData->Handler = 1;
+void addHandler(tStack *s,SData * sData){
+    TSItem * current = s->Top;
+    TSItem * prev = NULL;
+    if(sData == NULL){
+        TSItem * newItem = malloc(sizeof(TSItem));
+        if(newItem == NULL){
+            return;
+        }
+        newItem->Data = malloc(sizeof(SData));
+        if(newItem->Data == NULL){
+            return;
+        }
+        newItem->Data->Type = type_handler;
+        s->Top = newItem; 
+    }
+    while(current != NULL){
+        if(current->Data == sData){
+            TSItem * newItem = malloc(sizeof(TSItem));
+            if(newItem == NULL){
+                return;
+            }
+            if(prev != NULL)
+                prev->Next = newItem;
+            else
+                s->Top = newItem;
+            newItem->Next = current;
+            newItem->Data = malloc(sizeof(SData));
+            if(newItem->Data == NULL){
+                return;
+            }
+            newItem->Data->Type = type_handler;
+            return;
+        }
+        prev = current;
+        current = current->Next;
     }
 }

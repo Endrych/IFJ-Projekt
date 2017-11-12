@@ -51,12 +51,19 @@ int main()
         printf("Correct\n");
 
     printf("3) Add handler: ");
-    addHandler(d1);
-    if(d1->Handler == 1)
-        printf("Correct\n");
+    addHandler(s,d1);
+    TSItem *curr = s->Top;
+    while(curr != NULL){
+        if(curr->Data->Type == type_handler){
+            printf("Correct\n");
+            break;
+        }
+        curr = curr->Next;
+    }
 
     if(!stackEmpty(s))
         printf("Zasobnik neni prazdny\n");
+    stackPop(s);
     stackPop(s);
     printf("Stack pop\n");
     if(stackEmpty(s))

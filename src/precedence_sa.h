@@ -1,4 +1,5 @@
 #include "token.h"
+#include "stack.h"
 
 typedef enum{
     dt_Integer,
@@ -14,3 +15,4 @@ typedef struct{
 
 PrecendentOutput* precedence_analysis(Token* token, int * ptr);
 int precedence_operation(Token* stack_token,Token* lexical_token);
+int findRule(tStack * s);

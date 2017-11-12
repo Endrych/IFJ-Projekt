@@ -33,7 +33,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
             stackPush(s,data);
         }
         else if(operation == 1){
-            addHandler(termData);
+            addHandler(s,termData);
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
                 return NULL;
@@ -43,7 +43,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
             stackPush(s,data);
         }
         else if(operation == 2){
-
+            int rule = findRule(s);
         }
         token = get_token();
     }
@@ -126,7 +126,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
             index1 = curr_index;
         }
     }
-    static int precedence_table[15][15] = {  
+    int precedence_table[][15] = {  
                                             {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
@@ -144,5 +144,73 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
                                             {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
                                             {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1},
                                         };
+
     return precedence_table[index0][index1];
+}
+
+int findRule(tStack * s){
+    int rule = 0;
+    int state = 0;
+    while(rule == 0)
+    {
+        SData * data = stackTop(s);
+        stackPop(s);
+        switch(state){
+            case 0:
+                if(data->Type == type_nonterm){
+                    state = 1;
+                }
+                else if(data->Type == type_token){
+                    if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket_end){
+                        state = 2;
+                    }
+                    else if(data->Atr.Token->type == type_string || 
+                            data->Atr.Token->type == type_id ||
+                            data->Atr.Token->type == type_double ||
+                            data->Atr.Token->type == type_integer){
+                            state = 3;
+                    }
+                }
+                break;
+            case 1:
+                
+                break;
+            case 2:
+                if(data->Type = type_nonterm){
+                    state = 4;
+                }
+                break;
+            case 3:
+                if(data->Type == type_handler){
+                    SData * newData = malloc(sizeof(SData));
+                    if(newData == NULL){
+                        return NULL;
+                    }
+                    newData->Type = type_nonterm;
+                    stackPush(s,newData);
+                    rule = 13;
+                }
+                else{
+                    rule = -1;
+                }
+                break;
+            case 4:
+                if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket){
+                        state = 5;
+                }
+                break;
+            case 5:
+                if(data->Type == type_handler){
+                    SData * newData = malloc(sizeof(SData));
+                    newData->Type = type_nonterm;
+                    stackPush(s,newData);
+                    rule = 1;
+                }
+                else{
+                    rule = -1;
+                }
+                break;
+        }
+    }
+    return -1;
 }
