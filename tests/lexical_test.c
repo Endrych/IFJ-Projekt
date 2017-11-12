@@ -19,7 +19,10 @@ char *test_type[] = {
 	"type_string",
 	"type_integer",
 	"type_double",
-	"type_operator"
+	"type_operator",
+    "type_wrong",
+    "type_eol",
+    "type_semicolon"
 };
 
 char* test_kw[] = {
@@ -93,7 +96,6 @@ int name_cmp(char* name, char* storage, char* attr_string)
 	return strcmp(attr_string, name);
 }
 
-
 int main(int argc, char *argv[])
 {
 	Token* test_token;
@@ -121,12 +123,17 @@ int main(int argc, char *argv[])
 	Test input:  name1 _anotherIdentifier ValidId 1non_valid @nonvalid? >nonvalid
 	*/
 	printf("1) Id: ");
-	char* test_input[] = {"name1", "_anotherIdentifier", "ValidId"};
+	char* test_input[] = {"name1", "_anotheridentifier", "validid"};
 	int input_count = 3;
-	
+    
+	test_token = get_token();
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
+    
 	for (int i = 0; i < input_count; i++)
 	{
-		test_token = get_token();
 
 		if (test_token->type != type_id)
 		{
@@ -150,6 +157,7 @@ int main(int argc, char *argv[])
 		
 		}
 		destruct_token(test_token);
+        test_token = get_token();
 	}
 
 	if (is_ok)
@@ -162,9 +170,13 @@ int main(int argc, char *argv[])
 	printf("2) Keywords: ");
 	is_ok = true;
 	
-  for (unsigned int i = 0; i <= kw_while; i++)
-  {
-  	test_token = get_token();
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
+  
+    for (unsigned int i = 0; i <= kw_while; i++)
+    {
 
    	if (test_token->type != type_keyword)
    	{
@@ -182,10 +194,11 @@ int main(int argc, char *argv[])
 			is_ok = false;
    	}
    	destruct_token(test_token);
+    test_token = get_token();
     }
 
 
-  if (is_ok)
+    if (is_ok)
 	{
 		printf("[SUCCESS]\n\n");
 	}
@@ -197,9 +210,14 @@ int main(int argc, char *argv[])
 
 	char* string_input[] = {"Retezec v IFJ17"};
 	input_count = 1;
+
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
+
 	for (int i = 0; i < input_count; i++)
 	{
-		test_token = get_token();
 
 		if (test_token->type != type_string)
 		{
@@ -224,6 +242,7 @@ int main(int argc, char *argv[])
 		}
 
 		destruct_token(test_token);
+        test_token = get_token();
 	}
 	if (is_ok)
 	{
@@ -237,9 +256,13 @@ int main(int argc, char *argv[])
 	input_count = 4;
 	int input_int[] = {42, 196, 0, 5};
 
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
+
 	for (int i = 0; i < input_count; i++)
 	{
-		test_token = get_token();
 
 		if (test_token->type != type_integer)
 		{
@@ -257,6 +280,7 @@ int main(int argc, char *argv[])
 			printf("In file: %d\n\n", test_token->atribute.int_value);
 		}
 		destruct_token(test_token);
+        test_token = get_token();
 	}
 	if (is_ok)
 	{
@@ -268,10 +292,14 @@ int main(int argc, char *argv[])
 	is_ok = true;
 	double input_double[] = {0.0, 1344.54, 12.042, 56., 12.12, 2e4};
 	input_count = 6;
+    
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
 
 	for (int i = 0; i < input_count; i++)
 	{
-		test_token = get_token();
 
 		if (test_token->type != type_double)
 		{
@@ -288,6 +316,7 @@ int main(int argc, char *argv[])
 			printf("In file: %f\n\n", test_token->atribute.double_value);
 		}
 		destruct_token(test_token);
+        test_token = get_token();
 	}
 	if (is_ok)
 	{
@@ -297,10 +326,14 @@ int main(int argc, char *argv[])
 	/******************** TESTY OPERATORU ***************/
 	printf("5) Operators: ");
 	is_ok = true;
+    
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
 
 	for (unsigned int i = 0; i <= op_greater_equal; i++)
 	{
-		test_token = get_token();
 
 		if (test_token->type != type_operator)
 		{
@@ -317,13 +350,43 @@ int main(int argc, char *argv[])
 			printf("In file: %s\n\n", test_operator[test_token->atribute.operator_value]);
 		}
 		destruct_token(test_token);
+        test_token = get_token();
 	}
 	if (is_ok)
 	{
 		printf("[SUCCESS]\n\n");
 	}
 
+    
+	/******************** TEST STREDNIKU ***************/
+	printf("6) SemiColon: ");
+	is_ok = true;
+    
+    while (test_token->type == type_eol)
+    {
+        test_token = get_token();
+    }
+    if (test_token->type != type_semicolon)
+    {
+        printf("\n[TYPE_ERROR]\n");
+		printf("Expected: type_semicolon\n");
+        printf("In file: %s\n\n", test_type[test_token->type]);
+    }
+
+
+    destruct_token(test_token);
+/*
+    while (test_token != type_eof) 
+    {
+        test_token = get_token();
+    }
+    if (test_token->type == type_eof)
+    {
+        printf("EOF: SUCCESS\n\n");
+    }
+*/
 	destruct_storage();
 	close_file();
+
 	return 0;
 }
