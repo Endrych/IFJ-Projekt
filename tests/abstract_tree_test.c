@@ -10,15 +10,15 @@ void to_print(ATLeaf *leaf, int value){
     if(leaf->left != NULL){
         to_print(leaf->left, 2);
     }
-    if(leaf->right != NULL){
-        to_print(leaf->right, 3);
-    }
     if(value == 1){
         printf("|%d|\n",leaf->data.int_value);        
     }else if(value == 2){
         printf("/%d/\n",leaf->data.int_value);                
     }else{
         printf("\\%d\\\n",leaf->data.int_value);                
+    }
+    if(leaf->right != NULL){
+        to_print(leaf->right, 3);
     }
 }
 
