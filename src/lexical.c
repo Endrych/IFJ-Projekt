@@ -363,8 +363,8 @@ Token* get_token(){
 				last_char = current_char;
 				return token;
 			case _EOF:
-				isIntToken = false;
-				return;
+				token->type = type_eof;				
+				return token;
 		}
 	}
 	return 0; //mozna neco jinyho sem dat uvidime
