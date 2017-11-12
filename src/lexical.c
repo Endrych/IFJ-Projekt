@@ -42,10 +42,11 @@ typedef enum{
 FILE* source_file = NULL;
 
 void load_file(char *file){
-  FILE *source;
-  source = fopen(file, "r");
+	FILE *source;
+	source = fopen(file, "r");
   if(source == NULL){
-	  printf("FILE ERROR");
+		printf("FILE ERROR");
+		return;
 	}
 
   source_file = source;
@@ -207,6 +208,9 @@ Token* get_token(){
           }
 					str[length] = current_char;
 					length++;
+					// bool isExponent = false;
+					// bool isPoint = false;
+
 					state = _NUM_DOUBLE;
 					break;
 				}
@@ -221,7 +225,10 @@ Token* get_token(){
 				}
 				break;
 			case _NUM_DOUBLE:
-				if(!(current_char >= '0' && current_char <= '9')){
+				if(!((current_char >= '0' && current_char <= '9')||
+				(current_char == '+' || current_char == '-' ||
+				 current_char == '.' || current_char == 'e'
+				|| current_char == 'E'))){
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
@@ -357,7 +364,8 @@ Token* get_token(){
 				return token;
 			case _EOF:
 				isIntToken = false;
-				break;
+				return;
 		}
 	}
+	return 0; //mozna neco jinyho sem dat uvidime
 }
