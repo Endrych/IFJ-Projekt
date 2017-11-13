@@ -276,7 +276,7 @@ int findRule(tStack * s){
                     else{
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
-                        newData->Atr.Leaf = make_tree(leaf1,leaf2,aData);
+                        newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
                     
                     stackPush(s,newData);

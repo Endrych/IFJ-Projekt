@@ -10,12 +10,26 @@ void print_t(ATLeaf *tree);
 int main(){
     load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
+
     PrecendentOutput * out = precedence_analysis(NULL);
-    printf("Expr: 6 + 5 + 4 * 3 ;\n");
+    printf("Expr: 6 + 5 + 4 * 3\n");
     print_t(out->Tree);
-     PrecendentOutput * out1 = precedence_analysis(NULL);
-    printf("Expr: 4 * (5 + 3 * 2);\n");
-    print_t(out1->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: (5 + 4) > 4\n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 5 <> 3 \n");
+    print_t(out->Tree);
 
     printf("\n\n____________________________________________________\n");
     close_file();
@@ -37,6 +51,20 @@ int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
             sprintf(b, "(%s)", " * ");
         else if(tree->data.Atr.op_value == op_slash)
             sprintf(b, "(%s)", " / ");
+        else if(tree->data.Atr.op_value == op_division_int)
+            sprintf(b, "(%s)", " \\ ");
+        else if(tree->data.Atr.op_value == op_lesser)
+            sprintf(b, "(%s)", " < ");    
+        else if(tree->data.Atr.op_value == op_greater)
+            sprintf(b, "(%s)", " > ");            
+        else if(tree->data.Atr.op_value == op_lesser_equal)
+            sprintf(b, "(%s)", " <=");    
+        else if(tree->data.Atr.op_value == op_greater_equal)
+            sprintf(b, "(%s)", " >=");
+        else if(tree->data.Atr.op_value == op_assign)
+            sprintf(b, "(%s)", " = ");
+        else if(tree->data.Atr.op_value == op_not_equal)
+            sprintf(b, "(%s)", " <>");
     }
     else
         sprintf(b, "(%03d)", tree->data.Atr.token->atribute.int_value);
