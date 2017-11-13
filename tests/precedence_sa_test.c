@@ -31,6 +31,22 @@ int main(){
     printf("Expr: 5 <> 3 \n");
     print_t(out->Tree);
 
+    out = precedence_analysis(NULL);
+    printf("Expr: (8/4)>(4*(3+2)-4) \n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 5 = 3  \n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 5 <= 3  \n");
+    print_t(out->Tree);
+
+    out = precedence_analysis(NULL);
+    printf("Expr: 5 => 3  \n");
+    print_t(out->Tree);
+
     printf("\n\n____________________________________________________\n");
     close_file();
 }
