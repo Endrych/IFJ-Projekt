@@ -1,7 +1,8 @@
 /'Soubor k otestovani funkcnosti lexikalniho analyzatoru'/
 /' TODO:
-    Test zavorek
     exponencialni tvar
+    chybova hlaseni
+    test EOF
 '/
 
 
@@ -15,7 +16,7 @@ name1 _anotherIdentifier ValidId
 And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False For Function If Input Integer Length Loop Next Not Or Print Return Scope Shared Static String SubStr Then True While
 
 /'STRING TEST'/
-!"Retezec v IFJ17"
+!"Retezec v IFJ17" 
 
 /'INTEGER TEST'/
 42 196 0 0005
@@ -27,3 +28,6 @@ And As Asc Boolean Chr Continue Declare Dim Do Double Else Elseif End Exit False
 
 /'OPERATOR TEST'/
 = + - * \ / ( ) <> < <= > >=
+
+/' SEMICOLON TEST '/
+   ; 
