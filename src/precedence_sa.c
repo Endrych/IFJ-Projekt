@@ -4,9 +4,9 @@
 #include "stack.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "abstract_tree.h"
 
-PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
-    ptr = ptr; // stromecek
+PrecendentOutput * precedence_analysis(Token* last_token){
     int readNextToken = 1;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
@@ -52,8 +52,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
             stackPush(s,data);
         }
         else if(operation == 2){
-            int rule = findRule(s);
-            printf("Rule: %d\n",rule);
+            findRule(s);
             continue;
         }
         if(readNextToken)
@@ -63,7 +62,8 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     if(out == NULL)
         return NULL;
     out->ReturnToken = current;
-    out->Pntr = 1;
+    if(!stackEmpty(s))
+        out->Tree = stackTop(s)->Atr.Leaf;
     return out;
 }
 
@@ -163,14 +163,21 @@ int findRule(tStack * s){
     int rule = 0;
     int state = 0;
     int estimate_precedence = 0;
+    Token * token;
+    ATLeaf * leaf1;
+    ATLeaf * leaf2;
+    Operators oper;
+
     while(rule == 0)
     {
         SData * data = stackTop(s);
+        ATData aData;
         if(data != NULL)
             stackPop(s);
         switch(state){
             case 0:
                 if(data->Type == type_nonterm){
+                    leaf1 = data->Atr.Leaf;
                     state = 1;
                 }
                 else if(data->Type == type_token){
@@ -183,6 +190,7 @@ int findRule(tStack * s){
                             data->Atr.Token->type == type_double ||
                             data->Atr.Token->type == type_integer){
                             estimate_precedence = 13;
+                            token = data->Atr.Token;
                             state = 3;
                     }
                 }
@@ -233,14 +241,17 @@ int findRule(tStack * s){
                         estimate_precedence = 12;
                         state = 2;
                     }
+                    oper = data->Atr.Token->atribute.operator_value;
                 }
                 break;
             case 2:
                 if(data->Type == type_nonterm){
                     if(estimate_precedence == 1){
+                        leaf1 = data->Atr.Leaf;
                         state = 4;
                     }
                     else{
+                        leaf2 = data->Atr.Leaf;
                         state = 3;
                     }
                         
@@ -253,6 +264,21 @@ int findRule(tStack * s){
                         return -1;
                     }
                     newData->Type = type_nonterm;
+                    
+                    if(estimate_precedence == 13){
+                        aData.type == type_token;
+                        aData.Atr.token = token;
+                        newData->Atr.Leaf = make_leaf(aData);
+                    }
+                    else if(estimate_precedence == 1){
+                        newData->Atr.Leaf = leaf1;
+                    }
+                    else{
+                        aData.type = type_operator;
+                        aData.Atr.op_value = oper;
+                        newData->Atr.Leaf = make_tree(leaf1,leaf2,aData);
+                    }
+                    
                     stackPush(s,newData);
                     rule = estimate_precedence;
                 }

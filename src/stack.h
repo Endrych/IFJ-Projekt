@@ -1,3 +1,5 @@
+#include "abstract_tree.h"
+
 #ifndef STACK_H
 #define STACK_H
 
@@ -9,7 +11,7 @@ typedef enum{
 
 typedef union{
     Token* Token;
-    unsigned short Value;
+    ATLeaf * Leaf;
 }SAtribute;
 
 typedef struct{

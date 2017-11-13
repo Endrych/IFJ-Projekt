@@ -8,7 +8,7 @@ CC = gcc
 RM = rm -rf
 
 STD_C99 = -std=c99
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c  $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)main.c -o $(PROJECT)
@@ -39,7 +39,7 @@ lexan_test:
 	rm lexan_test
 
 precedence_test_coverage:
-	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
 	./precedence_test
 	lcov --capture --directory . --output-file precedence_coverage.info
 	genhtml precedence_coverage.info --output-directory ./precedence/

@@ -2,10 +2,101 @@
 #include "../src/lexical.h"
 #include "../src/precedence_sa.h"
 #include <stdlib.h>
+#include <stdio.h>
 
+int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255]);
+void print_t(ATLeaf *tree);
 
 int main(){
     load_file("../tests/precedence-test.ifj");
-    precedence_analysis(NULL,NULL);
+    printf("\n\n____________________________________________________\n");
+    PrecendentOutput * out = precedence_analysis(NULL);
+    printf("Expr: 6 + 5 + 4 * 3 ;\n");
+    print_t(out->Tree);
+     PrecendentOutput * out1 = precedence_analysis(NULL);
+    printf("Expr: 4 * (5 + 3 * 2);\n");
+    print_t(out1->Tree);
+
+    printf("\n\n____________________________________________________\n");
     close_file();
+}
+
+int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
+{
+    char b[20];
+    int width = 5;
+
+    if (!tree) return 0;
+
+    if(tree->data.type == type_operator){
+        if(tree->data.Atr.op_value == op_add)
+            sprintf(b, "(%s)", " + ");
+        else if(tree->data.Atr.op_value == op_sub)
+            sprintf(b, "(%s)", " - ");
+        else if(tree->data.Atr.op_value == op_mul)
+            sprintf(b, "(%s)", " * ");
+        else if(tree->data.Atr.op_value == op_slash)
+            sprintf(b, "(%s)", " / ");
+    }
+    else
+        sprintf(b, "(%03d)", tree->data.Atr.token->atribute.int_value);
+
+
+    int left  = _print_t(tree->left,  1, offset,                depth + 1, s);
+    int right = _print_t(tree->right, 0, offset + left + width, depth + 1, s);
+
+#ifdef COMPACT
+    for (int i = 0; i < width; i++)
+        s[depth][offset + left + i] = b[i];
+
+    if (depth && is_left) {
+
+        for (int i = 0; i < width + right; i++)
+            s[depth - 1][offset + left + width/2 + i] = '-';
+
+        s[depth - 1][offset + left + width/2] = '.';
+
+    } else if (depth && !is_left) {
+
+        for (int i = 0; i < left + width; i++)
+            s[depth - 1][offset - width/2 + i] = '-';
+
+        s[depth - 1][offset + left + width/2] = '.';
+    }
+#else
+    for (int i = 0; i < width; i++)
+        s[2 * depth][offset + left + i] = b[i];
+
+    if (depth && is_left) {
+
+        for (int i = 0; i < width + right; i++)
+            s[2 * depth - 1][offset + left + width/2 + i] = '-';
+
+        s[2 * depth - 1][offset + left + width/2] = '+';
+        s[2 * depth - 1][offset + left + width + right + width/2] = '+';
+
+    } else if (depth && !is_left) {
+
+        for (int i = 0; i < left + width; i++)
+            s[2 * depth - 1][offset - width/2 + i] = '-';
+
+        s[2 * depth - 1][offset + left + width/2] = '+';
+        s[2 * depth - 1][offset - width/2 - 1] = '+';
+    }
+#endif
+
+    return left + width + right;
+}
+
+
+void print_t(ATLeaf *tree)
+{
+    char s[20][255];
+    for (int i = 0; i < 20; i++)
+        sprintf(s[i], "%80s", " ");
+
+    _print_t(tree, 0, 0, 0, s);
+
+    for (int i = 0; i < 20; i++)
+        printf("%s\n", s[i]);
 }
