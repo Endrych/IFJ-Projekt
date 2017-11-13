@@ -69,6 +69,7 @@ void addHandler(tStack *s,SData * sData){
             return;
         }
         newItem->Data->Type = type_handler;
+        newItem->Next = NULL;
         if(stackEmpty(s)){
             s->Top = newItem;
         }
