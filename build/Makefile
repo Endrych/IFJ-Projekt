@@ -8,7 +8,7 @@ CC = gcc
 RM = rm -rf
 
 STD_C99 = -std=c99
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c  $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)main.c -o $(PROJECT)
@@ -26,10 +26,24 @@ stack_test:
 	valgrind ./stack_test
 	rm stack_test
 
+stack_test_coverage:
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)token.c $(SRC_FOLDER)stack.c $(TEST_FOLDER)stack_test.c -o stack_test
+	./stack_test
+	lcov --capture --directory . --output-file stack_coverage.info
+	genhtml stack_coverage.info --output-directory ./stack/
+	rm stack_test *.gcda *gcno *.info
+
 lexan_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(TEST_FOLDER)lexical_test.c -o lexan_test
 	./lexan_test $(TEST_FOLDER)test_file1.ifj
 	rm lexan_test
+
+precedence_test_coverage:
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
+	./precedence_test
+	lcov --capture --directory . --output-file precedence_coverage.info
+	genhtml precedence_coverage.info --output-directory ./precedence/
+	rm *.gcda *gcno *.info
 
 sym_table_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
@@ -40,4 +54,3 @@ abstract_tree_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
 	valgrind ./abstract_tree_test
 	rm abstract_tree_test
-

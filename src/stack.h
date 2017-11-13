@@ -1,14 +1,17 @@
+#include "abstract_tree.h"
+
 #ifndef STACK_H
 #define STACK_H
 
 typedef enum{
     type_token,
-    type_nonterm
+    type_nonterm,
+    type_handler
 }SType;
 
 typedef union{
     Token* Token;
-    unsigned short Value;
+    ATLeaf * Leaf;
 }SAtribute;
 
 typedef struct{
@@ -32,5 +35,6 @@ int stackFull ( const tStack* s );
 SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
-
+SData* getTerminalData(tStack* s);
+void addHandler(tStack* s,SData * sData);
 #endif
