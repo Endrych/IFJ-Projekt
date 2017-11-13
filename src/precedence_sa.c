@@ -3,10 +3,11 @@
 #include "lexical.h"
 #include "stack.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     ptr = ptr; // stromecek
-    int correct = 0;
+    int readNextToken = 1;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
         return NULL;
@@ -16,9 +17,17 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
     if(current == NULL)
         current = get_token();
     
-    while(!correct){
+    while(readNextToken || getTerminalData(s) != NULL){
         SData * termData =  getTerminalData(s);
-        Token* token = termData->Atr.Token;
+        Token* token = NULL;
+        if(termData != NULL)
+            token = termData->Atr.Token;
+        if(current != NULL){
+            if(current->type == type_eol || current->type == type_semicolon || (current->type == type_keyword && current->atribute.keyword_value == kw_then)){
+                current = NULL;
+                readNextToken = 0;
+            }
+        }
         
         int operation = precedence_operation(token,current);
         if(operation == -1)
@@ -44,8 +53,11 @@ PrecendentOutput * precedence_analysis(Token* last_token, int * ptr){
         }
         else if(operation == 2){
             int rule = findRule(s);
+            printf("Rule: %d\n",rule);
+            continue;
         }
-        token = get_token();
+        if(readNextToken)
+            current = get_token();
     }
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
     if(out == NULL)
@@ -132,7 +144,6 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
-                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
                                             {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
                                             {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
                                             {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
@@ -142,7 +153,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
                                             {1,1,1,1,1,1,1,1,1,1,1,1,0,1,-1},
                                             {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
                                             {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
-                                            {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1},
+                                            {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1}
                                         };
 
     return precedence_table[index0][index1];
@@ -155,7 +166,8 @@ int findRule(tStack * s){
     while(rule == 0)
     {
         SData * data = stackTop(s);
-        stackPop(s);
+        if(data != NULL)
+            stackPop(s);
         switch(state){
             case 0:
                 if(data->Type == type_nonterm){

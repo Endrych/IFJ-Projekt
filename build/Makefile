@@ -40,10 +40,10 @@ lexan_test:
 
 precedence_test_coverage:
 	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
-	valgrind ./precedence_test
+	./precedence_test
 	lcov --capture --directory . --output-file precedence_coverage.info
 	genhtml precedence_coverage.info --output-directory ./precedence/
-	rm precedence_test *.gcda *gcno *.info
+	rm *.gcda *gcno *.info
 
 sym_table_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test

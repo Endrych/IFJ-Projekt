@@ -26,7 +26,10 @@ int stackEmpty ( const tStack* s ){
 }
 
 SData* stackTop ( const tStack* s){
-    return s->Top->Data;
+    if(!stackEmpty(s))
+        return s->Top->Data;
+    else
+        return NULL;
 }
 
 void stackPop ( tStack* s ){
@@ -43,15 +46,14 @@ void stackPush ( tStack* s, SData* data ){
 }
 
 SData* getTerminalData(tStack* s){
-    if(stackEmpty(s))
-        return NULL;
     TSItem * current = s->Top;
-    while(current->Data->Type == type_nonterm){
+    while(current != NULL){
+        if(current->Data->Type == type_token){
+            return current->Data;
+        }
         current = current->Next;
-        if(current == NULL)
-            return NULL;
     }
-    return current->Data;
+    return NULL;
 }
 
 void addHandler(tStack *s,SData * sData){
@@ -67,27 +69,38 @@ void addHandler(tStack *s,SData * sData){
             return;
         }
         newItem->Data->Type = type_handler;
-        s->Top = newItem; 
-    }
-    while(current != NULL){
-        if(current->Data == sData){
-            TSItem * newItem = malloc(sizeof(TSItem));
-            if(newItem == NULL){
-                return;
-            }
-            if(prev != NULL)
-                prev->Next = newItem;
-            else
-                s->Top = newItem;
-            newItem->Next = current;
-            newItem->Data = malloc(sizeof(SData));
-            if(newItem->Data == NULL){
-                return;
-            }
-            newItem->Data->Type = type_handler;
-            return;
+        if(stackEmpty(s)){
+            s->Top = newItem;
         }
-        prev = current;
-        current = current->Next;
+        else{
+            while(current->Next != NULL){
+                current = current->Next;
+            }
+            current->Next = newItem;
+        }
     }
+    else{
+        while(current != NULL){
+                if(current->Data == sData){
+                    TSItem * newItem = malloc(sizeof(TSItem));
+                    if(newItem == NULL){
+                        return;
+                    }
+                    if(prev != NULL)
+                        prev->Next = newItem;
+                    else
+                        s->Top = newItem;
+                    newItem->Next = current;
+                    newItem->Data = malloc(sizeof(SData));
+                    if(newItem->Data == NULL){
+                        return;
+                    }
+                    newItem->Data->Type = type_handler;
+                    return;
+                }
+                prev = current;
+                current = current->Next;
+        }
+    }
+    
 }
