@@ -26,10 +26,9 @@ int main()
     printf("2) Nonterminal: ");
     SData data1;
     data1.Type = type_nonterm;
-    data1.Atr.Value = 0;
     stackPush(s,&data1);
     SData * test1 = stackTop(s);
-    if(test1->Type == type_nonterm && test1->Atr.Value == 0)
+    if(test1->Type == type_nonterm)
         printf("Correct\n");
 
     printf("3) Get terminal: ");
@@ -87,9 +86,9 @@ int main()
         t1 = NULL;
     if(t1 == NULL)
         printf("Correct\n");
-    stackPush(s,test);
     printf("\n\n");
+    stackPush(s,test);
     stackDestruct(s);
-    destruct_token(integer_token);
+    destruct_token_storage();
     return 0;
 }

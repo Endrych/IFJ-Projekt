@@ -18,7 +18,7 @@ string_storage_test:
 	rm string_storage_test
 token_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)token_test.c -o token_test
-	./token_test
+	valgrind ./token_test
 	rm token_test
 
 stack_test: 
@@ -40,7 +40,7 @@ lexan_test:
 
 precedence_test_coverage:
 	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
-	./precedence_test
+	valgrind ./precedence_test
 	lcov --capture --directory . --output-file precedence_coverage.info
 	genhtml precedence_coverage.info --output-directory ./precedence/
 	rm *.gcda *gcno *.info
