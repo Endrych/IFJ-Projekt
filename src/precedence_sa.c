@@ -174,6 +174,7 @@ int findRule(tStack * s){
     {
         SData * data = stackTop(s);
         ATData aData;
+        DataType dataType;
         if(data != NULL)
             stackPop(s);
         switch(state){
@@ -268,6 +269,7 @@ int findRule(tStack * s){
                     newData->Type = type_nonterm;
                     
                     if(estimate_precedence == 13){
+                        newData->DataType = 
                         aData.type = type_token;
                         aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);

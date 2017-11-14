@@ -14,39 +14,49 @@ int main(){
     PrecendentOutput * out = precedence_analysis(NULL);
     printf("Expr: 6 + 5 + 4 * 3\n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: (5 + 4) > 4\n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 5 <> 3 \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 5 = 3  \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 5 <= 3  \n");
     print_t(out->Tree);
+    dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
     printf("Expr: 5 => 3  \n");
     print_t(out->Tree);
-
+    
+    destruct_token_storage();   
+    dispose_at(out->Tree);
     printf("\n\n____________________________________________________\n");
     close_file();
 }

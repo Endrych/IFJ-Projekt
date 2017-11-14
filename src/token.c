@@ -3,6 +3,28 @@
 #include <string.h>
 #include <stdio.h>
 
+
+
+typedef struct tsItem{
+    Token* Token;
+    struct tsItem* Next;
+}TSItem;
+
+static TSItem * _token_storage = NULL;
+
+void destruct_token_storage(){
+    TSItem *curr = _token_storage;
+    TSItem *rm;
+    while(curr != NULL){
+        rm = curr;
+        destruct_token(curr->Token);
+        curr = curr->Next;
+        free(rm);
+        rm = NULL;
+    }
+    _token_storage = NULL;
+}
+
 Token *create_token()
 {
     Token *token;
@@ -12,8 +34,26 @@ Token *create_token()
         fprintf(stderr,"Problem with memory\n");
         EXIT_FAILURE;
     }
+    TSItem *newItem = malloc(sizeof(TSItem));
+    if(newItem == NULL){
+        return NULL;
+    }
+    newItem->Next = NULL;
+    newItem->Token = token;
+    if(_token_storage == NULL){
+        _token_storage = newItem;
+    }
+    else{
+        TSItem * curr = _token_storage;
+        while(curr->Next != NULL){
+            curr = curr->Next;
+        }
+        curr->Next = newItem;
+    }
     return token;
 }
+
+
 
 void destruct_token(Token *token)
 {

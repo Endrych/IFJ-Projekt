@@ -17,7 +17,7 @@ typedef enum{
 
 typedef union{
     Token* Token;
-    ATLeaf * Leaf;
+    ATLeaf* Leaf;
 }SAtribute;
 
 typedef struct{

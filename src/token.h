@@ -84,5 +84,6 @@ typedef struct{
 Token* create_token();
 int is_keyword(char* text);
 void destruct_token(Token* token);
+void destruct_token_storage();
 #endif // TOKEN_H
 

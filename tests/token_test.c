@@ -40,6 +40,8 @@ int main()
     else
         printf("Wrong!\n");
 
+    
+
     // Id Token
     printf("4) Id ");
     Token *id_token = create_token();
@@ -50,13 +52,8 @@ int main()
         printf("Type Success!\n");
         printf("Expected: prom1\nIn Token: ");
         char *id_name = get_string(id_token->atribute.int_value);
-        int pos = 0;
-        while (id_name[pos] != '#')
-        {
-            putchar(id_name[pos]);
-            pos++;
-        }
-        putchar('\n');
+        printf("%s\n",id_name);
+        free(id_name);
     }
     else
         printf("Wrong Type!\n");
@@ -71,16 +68,12 @@ int main()
         printf("Type Success!\n");
         printf("Expected: Ahoj jak se mas\nIn Token: ");
         char *string_value = get_string(string_token->atribute.int_value);
-        int pos = 0;
-        while (string_value[pos] != '#')
-        {
-            putchar(string_value[pos]);
-            pos++;
-        }
-        putchar('\n');
+        printf("%s\n",string_value);
+        free(string_value);
     }
     else
         printf("Wrong Type!\n");
+
 
     // Operator test
     printf("\n6) Operators test \n");
@@ -181,15 +174,7 @@ int main()
 
 
     // Destruct token
-    destruct_token(sem_token);
-    destruct_token(eol_token);
-    destruct_token(operator_token);
-    destruct_token(integer_token);
-    destruct_token(double_token);
-    destruct_token(keyword_token);
-    destruct_token(id_token);
-    destruct_token(string_token);
-    destruct_token(wrong_token);
+    destruct_token_storage();
     destruct_storage();
     free(string);
     printf("\n\n");
