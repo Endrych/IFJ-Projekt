@@ -4,6 +4,12 @@
 #define STACK_H
 
 typedef enum{
+    dt_Integer,
+    dt_String,
+    dt_Double
+}DataType;
+
+typedef enum{
     type_token,
     type_nonterm,
     type_handler
@@ -15,6 +21,7 @@ typedef union{
 }SAtribute;
 
 typedef struct{
+    DataType DataType;
     SType Type;
     SAtribute Atr;
 }SData;

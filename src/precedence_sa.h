@@ -4,12 +4,6 @@
 #ifndef PRECEDENCE_H
 #define PRECEDENCE_H
 
-typedef enum{
-    dt_Integer,
-    dt_String,
-    dt_Double
-}DataType;
-
 typedef struct{
     DataType Type;
     Token* ReturnToken;

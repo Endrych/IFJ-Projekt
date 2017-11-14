@@ -141,6 +141,7 @@ void print_t(ATLeaf *tree)
 
     _print_t(tree, 0, 0, 0, s);
 
-    for (int i = 0; i < 20; i++)
+    //Vypis
+    for (int i = 0; i < 10; i++)
         printf("%s\n", s[i]);
 }

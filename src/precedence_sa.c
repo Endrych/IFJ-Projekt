@@ -62,8 +62,10 @@ PrecendentOutput * precedence_analysis(Token* last_token){
     if(out == NULL)
         return NULL;
     out->ReturnToken = current;
-    if(!stackEmpty(s))
+    if(!stackEmpty(s)){
         out->Tree = stackTop(s)->Atr.Leaf;
+        out->Type = stackTop(s)->DataType;
+    }
     return out;
 }
 
@@ -266,7 +268,7 @@ int findRule(tStack * s){
                     newData->Type = type_nonterm;
                     
                     if(estimate_precedence == 13){
-                        aData.type == type_token;
+                        aData.type = type_token;
                         aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);
                     }
