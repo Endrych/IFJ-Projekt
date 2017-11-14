@@ -34,11 +34,15 @@ int add_string_to_storage(char* array)
             }
             space = space + strlen(array) + ALLOC_SPACE;
         }
+        
         char* result = NULL;
+
         result = strcpy(&_string_storage[pos],array);
         result[length] = '#';
+
         int old_pos = pos;
-        pos = length + 1;
+        pos += length + 1;
+
         return old_pos;
     }
     return -1;
