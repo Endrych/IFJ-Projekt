@@ -1,21 +1,29 @@
 /* project - IFJ17
- * part - symbol table
+ * cast - symbol table
  * Petr Zubalik, Marek Kukucka, Jan Koci, David Endrych
- * file - symtable.h
+ * soubor - symtable.h
  */
 
 #include "token.h"
 #include <stdbool.h>
 
-// if not defined, define
 #ifndef SYMTAB_H
 #define SYMTAB_H
 
+// pro ulozeni inicializacni hodnoty
+typedef union{
+    char *string;
+    int value_int;
+    double value_double;
+} Value;
+
 typedef struct symtab_item {
-	Token token;
+	Token *token;
 	struct symtab_item *next;
 	char *key;
-	bool found;
+	bool declared;
+	bool used;
+	Value value;
 } Tsymtab_item;
 
 typedef struct symtable {
@@ -23,22 +31,23 @@ typedef struct symtable {
 	Tsymtab_item *symtab_list[];
 } Tsymtab;
 
-// hash function to gain an index of item in array of pointers
+// hashovaci funkce pro zjisteni indexu v tabulce
 unsigned int hash_func( char *);
 
-// initialize function
+// inicializacni funkce
 Tsymtab *symtab_init(unsigned int);
 
-// function that inserts an item to the table 
-Tsymtab_item *symtab_insert(Tsymtab *sym_table,  int position, Token token);
+// funkce vlozi prvek na zacatek seznamu na danem indexu
+// pokud je uz prvek v tabulce, vrati ukazatel 
+Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token);
 
-// function that searches for an item in the table
-Tsymtab_item *symtab_search(Tsymtab *sym_table,  int position);
+// funkce pro vyhledavani v tabulce
+Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token);
 
-// delete and dealocate the table
+// vymaze tabulku a dealokuje pamet tabulky
 void symtab_free(Tsymtab *sym_table);
 
-// delete and dealocate one item from the table
-bool symtab_delete(Tsymtab *sym_table,  int position);
+// vymaze a dealokuje pamet jednoho prvku
+bool symtab_delete(Tsymtab *sym_table,  Token *token);
 
 #endif /* SYMTAB_H */
