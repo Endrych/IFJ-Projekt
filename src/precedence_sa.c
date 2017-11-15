@@ -175,12 +175,14 @@ int findRule(tStack * s){
         SData * data = stackTop(s);
         ATData aData;
         DataType dataType;
+        DataType dataType1;
         if(data != NULL)
             stackPop(s);
         switch(state){
             case 0:
                 if(data->Type == type_nonterm){
                     leaf1 = data->Atr.Leaf;
+                    dataType = data->DataType;
                     state = 1;
                 }
                 else if(data->Type == type_token){
@@ -188,14 +190,31 @@ int findRule(tStack * s){
                         estimate_precedence = 1;
                         state = 2;
                     }
-                    else if(data->Atr.Token->type == type_string || 
-                            data->Atr.Token->type == type_id ||
-                            data->Atr.Token->type == type_double ||
-                            data->Atr.Token->type == type_integer){
-                            estimate_precedence = 13;
+                    else if(data->Atr.Token->type == type_string ){
+                            dataType = dt_String;
                             token = data->Atr.Token;
+                            estimate_precedence = 13;
                             state = 3;
                     }
+                    else if(data->Atr.Token->type == type_double){
+                        dataType = dt_Double;
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    else if(data->Atr.Token->type == type_integer){
+                        dataType = dt_Integer;
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    else if(data->Atr.Token->type == type_id){
+                        // Detekce typu
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    
                 }
                 break;
             case 1:
@@ -251,13 +270,14 @@ int findRule(tStack * s){
                 if(data->Type == type_nonterm){
                     if(estimate_precedence == 1){
                         leaf1 = data->Atr.Leaf;
+                        dataType = data->DataType;
                         state = 4;
                     }
                     else{
                         leaf2 = data->Atr.Leaf;
+                        dataType1 = data->DataType;
                         state = 3;
                     }
-                        
                 }
                 break;
             case 3:
@@ -269,12 +289,13 @@ int findRule(tStack * s){
                     newData->Type = type_nonterm;
                     
                     if(estimate_precedence == 13){
-                        newData->DataType = 
+                        newData->DataType = dataType;
                         aData.type = type_token;
                         aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);
                     }
                     else if(estimate_precedence == 1){
+                        newData->DataType = dataType;
                         newData->Atr.Leaf = leaf1;
                     }
                     else{
