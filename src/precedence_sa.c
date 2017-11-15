@@ -302,6 +302,25 @@ int findRule(tStack * s){
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
+                        if(oper == op_add){
+                            if(dataType == dt_Integer && dataType1 == dt_Integer){
+                                newData->DataType = dt_Integer;
+                            }
+                            else if((dataType == dt_Double && dataType1 == dt_Double) ||
+                                    (dataType == dt_Integer && dataType1 == dt_Double) ||
+                                    (dataType == dt_Double && dataType1 == dt_Integer)){
+                                newData->DataType = dt_Double;
+                            }
+                            else if(dataType == dt_String && dataType1 == dt_String){
+                                newData->DataType = dt_String;
+                            }
+                            else if(dataType == dt_String && dataType1 == dt_String){
+                                newData->DataType = dt_String;
+                            }
+                            else{
+                                exit(4);
+                            }
+                        }
                     }
                     
                     stackPush(s,newData);
