@@ -21,7 +21,7 @@
 //Tsymtab *sym_tab;
 // aktualni token
 Token* token;
-Tsymtab* sym_tab;
+Tsymtab* sym_table;
 
 void get_non_eol_token()
 {
@@ -196,6 +196,7 @@ int St_list()
 int Stat()
 {
 	int return_value;
+	Tsymtab_item *symtab_item;
 
 	switch (token->type)
 	{
@@ -224,6 +225,14 @@ int Stat()
 					}
 
 					// Uloz id do symtable <<<<<<<<<<<<<
+					/*
+					symtab_item = symtab_insert(sym_table, token, type_variable);
+					if (symtab_item->variable->declared) {
+						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
+						return SEMANTIC_ERROR;
+					}
+					*/
+
 					//__As__
 					token = get_token();
 					if (token->type != type_keyword) {
@@ -318,9 +327,9 @@ int Tyype()
 
 int parse()
 {
-	sym_tab = symtab_init(42); 
+	sym_table = symtab_init(42); 
 	return Prog();
-	symtab_free(sym_tab); 
+	symtab_free(sym_table); 
 }
 
 
