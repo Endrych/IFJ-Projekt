@@ -46,8 +46,8 @@ precedence_test_coverage:
 	rm *.gcda *gcno *.info
 
 sym_table_test:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
-	./sym_table_test
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)set_values.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
+	valgrind ./sym_table_test
 	rm sym_table_test
 
 abstract_tree_test:
