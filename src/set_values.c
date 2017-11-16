@@ -3,16 +3,17 @@
 #include <stdio.h>
 
 // nastavi hodnoty promenne ulozene v tabulce symbolu
-void set_type_variable(Tvariable_item *item, Tvalue value, Tvariable_type type)
+void set_item_variable(Tvariable_item *item, Tvalue value, Tvariable_type type)
 {
 	item->type = type;
 	item->value = value;
 }
 
 // nastavi hodnoty symbolu funkce v tabulce symbolu
-void set_type_function(Tfunction_item *item, Tvariable_type return_type)
+void set_item_function(Tfunction_item *item, Tvariable_type return_type, Tsymtab *sym_table)
 {
 	item->return_type = return_type;
+	item->sym_table = sym_table;
 }
 
 // nastavi hodnoty argumentu dane funkce a priradi je k funkci v tabulce symbolu
@@ -52,17 +53,18 @@ void free_args_function(Tfunction_item *item)
 }
 
 // inicializuje hodnoty symbolu promenne v tabulce
-void init_type_variable(Tvariable_item *item)
+void init_item_variable(Tvariable_item *item)
 {
 	item->declared = false;
 	item->used = false;
 }
 
 // inicializuje hodnoty symbolu funkce v tabulce
-void init_type_function(Tfunction_item *item)
+void init_item_function(Tfunction_item *item)
 {
 	item->declared = false;
 	item->arg_count = 0;
 	item->arguments = NULL;
+	item->sym_table = NULL;
 
 }

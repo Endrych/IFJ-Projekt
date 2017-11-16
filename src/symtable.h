@@ -10,6 +10,7 @@
 #ifndef SYMTAB_H
 #define SYMTAB_H
 
+struct symtable;
 
 
 // pro ulozeni inicializacni hodnoty
@@ -54,6 +55,7 @@ typedef struct fc_item{
 	Tvariable_type return_type;
 	int arg_count;
 	Tfunction_argument *arguments;
+	struct symtable *sym_table;
 	//char *key;
 } Tfunction_item;
 

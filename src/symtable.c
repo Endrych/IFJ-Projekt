@@ -207,6 +207,7 @@ unsigned int hash_func( char *key)
  MAIN - POUZE NA ZKOUSKU FUNKCNOSTI
 
 */
+
 /*
 int main()
 {	
@@ -277,12 +278,13 @@ int main()
 	type3 = type_int;
 	Tsymtab_item *temp = tab->symtab_list[1];
 
-	set_type_variable(temp->type_strct.variable, value, type3);
+	set_item_variable(temp->type_strct.variable, value, type3);
 	printf("%s  %d  %d\n", temp->key, temp->type_strct.variable->value.value_int, temp->type_strct.variable->type);
 
 	Tsymtab_item *temp2 = tab->symtab_list[3];
-	init_type_function(temp2->type_strct.function);
-	set_type_function(temp2->type_strct.function, type3);
+	Tsymtab *table = symtab_init(101);
+	init_item_function(temp2->type_strct.function);
+	set_item_function(temp2->type_strct.function, type3, table);
 	set_args_function(temp2->type_strct.function, "cus", type_int, value);
 	set_args_function(temp2->type_strct.function, "cau", type_int, value);
 	printf("%s->%s(%d)->%s(%d)\n", temp2->key, temp2->type_strct.function->arguments[0].key,\
@@ -307,6 +309,7 @@ int main()
 	}
 
 	destruct_storage();
+	symtab_free(table);
 	symtab_free(tab);
 	free(token_a);
 	free(token_b);
