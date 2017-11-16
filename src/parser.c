@@ -150,7 +150,9 @@ int St_list()
 						return return_value;
 					}
 					// __EOL__
-					token = get_token();
+					if (token->type != type_eol) {
+						token = get_token();
+					}
 					if (token->type != type_eol) {
 						printf("ERROR: Missing end of line after statement\n");
 						return SYNTAX_ERROR;
@@ -248,7 +250,9 @@ int Stat()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-					// Uloz typ id <<<<<<<<<<<<<<<<<<
+					// Uloz typ id <<<<<<<<<<<<<<<<<< (predelat type_doub)
+					// set_type_variable(symtab_item->variable, 0.0, type_doub);
+
 					// __<assign>__
 					token = get_token();
 					if ((return_value = Assign()) != OK) {
@@ -261,8 +265,23 @@ int Stat()
 				break;
 
 				case kw_print:
-					// __Print__
-					;
+					// __Print__ JAK GENEROVAT ???
+					// __<expr>__
+					token = get_token();
+					token = get_token();
+					if (token->type != type_semicolon) {
+						printf("ERROR: Missing semicolon in 'print' function\n");
+						return SYNTAX_ERROR;
+					}
+					// __<exprPrint>__
+					token = get_token();
+					if ((return_value = ExprPrint()) != OK) {
+						return return_value;
+					}
+
+				break;
+
+
 
 			}
 		break;
@@ -278,8 +297,9 @@ int Stat()
 	return OK;
 }
 int Else();
-int Assign()
+int Assign() // parametr ?
 {
+	PrecendentOutput* out;
 	// __EPSILON__
 	if (token->type == type_eol) {
 		return OK;
@@ -295,6 +315,13 @@ int Assign()
 	}
 	// <<<<<<<<<<<<<<<< call <expr> 
 	token = get_token();
+	// zkontrolovat typ, udelej strom ?
+	/*
+	out = precedence_analysis(token);
+	token = out->ReturnToken;
+	if (out->Type != )
+	*/
+
 	return OK;
 
 }
@@ -305,7 +332,18 @@ int Func()
 int Param_list();
 int Param();
 int Next_par();
-int ExprPrint();
+int ExprPrint()
+{
+	switch (token->type)
+	{
+		case type_eol:
+			return OK;
+		default:
+			token = get_token();// call expr
+			ExprPrint();
+	}
+	return OK;
+}
 int Tyype()
 {
 	if (token->type != type_keyword) {

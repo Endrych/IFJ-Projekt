@@ -18,4 +18,6 @@
 
 #define COMPILER_ERROR 6
 
+typedef int make_iso_compilers_happy;
+
 #endif // ERROR_H
