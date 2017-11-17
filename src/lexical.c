@@ -173,7 +173,10 @@ Token* get_token(){
 				else if(current_char == ';'){
 					token->type=type_semicolon;
 					return token;
-				}else{
+				}else if(current_char == ','){
+					
+				}
+				else{
 					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
 					token->type=type_wrong;
 					return token;
@@ -209,7 +212,10 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				current_char == '<' || current_char == '>' ||
-				current_char == '='){
+				current_char == '=' || current_char == '+' ||
+				current_char == '-' || current_char == '/' ||
+				current_char == '\\' || current_char == '*' ||
+				current_char == ';' || current_char == ','){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -269,7 +275,10 @@ Token* get_token(){
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
 				!e_last_char) || current_char == '<' || 
-				current_char == '>' || current_char == '='){
+				current_char == '>' || current_char == '=' || 
+				current_char == '/' || current_char == '\\' 
+				|| current_char == '*' || current_char == ';' ||
+				current_char == ','){
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
@@ -357,7 +366,9 @@ Token* get_token(){
 					token->type = type_wrong;
 					return token;
 				}else{
+					last_char = current_char;
 					state = _END_STRING;
+					break;
 				}
 			case _END_STRING:
 				if(length == size){
@@ -372,10 +383,8 @@ Token* get_token(){
 				str[length] = '\0';
 				length++;
 				int adress = add_string_to_storage(str);
-				// printf("Adresa:%d ,",adress);_NOT_EQUAL
 				token->type = type_string;
 				token->atribute.int_value = adress;
-				last_char = current_char;
 				free(str);
 				return token;
 			case _IDENTIFIER:
@@ -399,7 +408,11 @@ Token* get_token(){
 				}else if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' || 
 				current_char == '<' || current_char == '>' ||
-				current_char == '='){
+				current_char == '=' || current_char == '/' ||
+				current_char == '\\' || current_char == '*' ||
+				current_char == '+' || current_char == '-' ||
+				current_char == ')' || current_char == '(' ||
+				current_char == ';' || current_char == ','){
 					if(current_char == '\n'){
 						last_char = '\n';
 					}else if(current_char == EOF){

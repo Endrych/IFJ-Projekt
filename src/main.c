@@ -8,14 +8,39 @@ int main(int argc, char **argv)
 {
   load_file(argv[1]);
   Token* token; 
-  token = get_token();
+token = get_token();
   printf("\n%d", token->type);
-  // destruct_token(token);
     token = get_token();
   printf("\n%d", token->type);
-  // destruct_token(token);
+        token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);token = get_token();
+  printf("\n%d", token->type);
     token = get_token();
   printf("\n%d", token->type);
+        token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);
+        token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);
+        token = get_token();
+  printf("\n%d", token->type);
+token = get_token();
+  printf("\n%d", token->type);
+    token = get_token();
+  printf("\n%d", token->type);
+
+    
   // destruct_token(token);
   // token = get_token();
   // printf("\n%d %f", token->type, token->atribute.operator_value);

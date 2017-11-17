@@ -1,24 +1,10 @@
-' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
-' Test line comment
-ahoj=487e-4
-' ahoj 
-' ;
-' +
-' =
-' -
-' Or
-' fOR
-17454asdasds
-' Whilee
-' Function
-' !"AHoj kaj je"
-' !"dasdAHoj kaj je"
-' 1745654446.4564552
-' 1745654446.4564552
-' Function Length(s As String) As Integer
-'   Return Len(s)
+  Return Mid(1, i, n)
+(ahoj)+(ahj)\(123)*(156.45);
+145;
+Function Length(s As String) As Integer
+Return Len(s)
 ' End Function
-' !"Wow jak to jde"
+' ' !"Wow jak to jde"
 ' a+j     ahoj
 ' b-k
 ' ahoj
