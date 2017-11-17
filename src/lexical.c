@@ -354,8 +354,12 @@ Token* get_token(){
 					str[length] = current_char;
 					length++;
 					break;
-				}
-				else{
+				}else if(current_char == '\n'){
+					fprintf(stderr,"Error: String wasnt ended properly");
+					free(str);
+					token->type = type_wrong;
+					return token;
+				}else{
 					state = _END_STRING;
 				}
 			case _END_STRING:
