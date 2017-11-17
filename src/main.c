@@ -9,21 +9,18 @@ int main(int argc, char **argv)
   load_file(argv[1]);
   Token* token; 
   token = get_token();
-  printf("\n%d %f", token->type, token->atribute.double_value);
-  destruct_token(token);
-  token = get_token();
-  printf("\n%d %f", token->type, token->atribute.double_value);
-  destruct_token(token);
-  token = get_token();
-  printf("\n%d %f", token->type, token->atribute.double_value);
-  destruct_token(token);
-  // token = get_token();
-  // printf("\n%d %d", token->type, token->atribute);  
-  // destruct_token(token);  
-  // token = get_token();  
-  // printf("\n%d %d", token->type, token->atribute);  
-  // destruct_token(token);  
+  printf("\n%d", token->type);
+
+  while(token->type != 9){
+    token = get_token();
+    printf("%d", token->type);
+    if(token->type == 7){
+      printf("\n");
+    }
+  }
+
   close_file();
   destruct_storage();
+  destruct_token_storage();
   return 0;
 }
