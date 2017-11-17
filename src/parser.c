@@ -218,6 +218,11 @@ int Stat()
 						printf("ERROR: Missing identifier after Intup statement\n");
 						return SYNTAX_ERROR;
 					}
+					symtab_item = symtab_search(sym_table, token, type_variable);
+					if (symtab_item == NULL) {
+						fprintf(stderr, "ERROR: Identifier used in Input statement was not declared.\n");
+						return SEMANTIC_ERROR;
+					}
 					// PROVED AKCI <<<<<<<<<<<<<<<<<<<<<
 				break;
 
@@ -288,8 +293,12 @@ int Stat()
 							return COMPILER_ERROR;
 						}
 						
-						//token = out->ReturnToken;
-						// if (out->Type != symtab_item->variable->type)
+						token = out->ReturnToken;
+						// nemusim resit ? <<<<<<<<<<<<<<<<<<<<<<<
+						if (out->Type != symtab_item->type_strct.variable->type) {
+							fprintf(stderr, "ERROR: Trying to assign incompatible types\n");
+							return SEMANTIC_TYPE_ERROR;
+						}
 						/*
 						data.type = type_id;
 						data.Atr = symtab_item->variable;
