@@ -183,6 +183,7 @@ Token* get_token(){
 					state = _EOF;
 					last_char = current_char;
 				}
+				break;
 			case _SLASH:
 				if(current_char == '\''){
 					state = _BLOCK_COMMENT;
