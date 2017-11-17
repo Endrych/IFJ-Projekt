@@ -24,7 +24,6 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             token = termData->Atr.Token;
         if(current != NULL){
             if(current->type == type_eol || current->type == type_semicolon || (current->type == type_keyword && current->atribute.keyword_value == kw_then)){
-                current = NULL;
                 readNextToken = 0;
             }
         }
@@ -80,7 +79,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
         else{
             token = lexical_token;
         }
-        if(token == NULL){
+        if(token == NULL || token->type == type_eol || token->type == type_semicolon || (token->type == type_keyword && token->atribute.keyword_value == kw_then)){
             curr_index = 14;            
         }
         else if(token->type == type_operator){
@@ -331,8 +330,8 @@ int findRule(tStack * s){
                                 exit(4);
                             }
                         }
+                        newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
-                    newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     stackPush(s,newData);
                     rule = estimate_precedence;
                 }
