@@ -398,8 +398,14 @@ Token* get_token(){
 					lowering = tolower(current_char);
 					str[length] = lowering;
 					length++;
-				}
-				else{
+					break;
+				}else if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t'){
+					if(current_char == '\n'){
+						last_char = '\n';
+					}else if(current_char == EOF){
+						last_char = EOF;
+					}
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
@@ -426,8 +432,11 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
+				}else{
+					token->type = type_wrong;
+					free(str);
+					return token;
 				}
-				break;
 			case _LESSER:
 				if(current_char == '='){
 					state = _LESSER_EQUAL;
