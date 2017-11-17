@@ -10,13 +10,13 @@ int main(int argc, char **argv)
   Token* token; 
   token = get_token();
   printf("\n%d", token->type);
-  destruct_token(token);
+  // destruct_token(token);
     token = get_token();
   printf("\n%d", token->type);
-  destruct_token(token);
+  // destruct_token(token);
     token = get_token();
   printf("\n%d", token->type);
-  destruct_token(token);
+  // destruct_token(token);
   // token = get_token();
   // printf("\n%d %f", token->type, token->atribute.operator_value);
   // destruct_token(token);
@@ -31,6 +31,6 @@ int main(int argc, char **argv)
   // destruct_token(token);  
   close_file();
    destruct_storage();
-  // destruct_token_storage();
+  destruct_token_storage();
   return 0;
 }

@@ -207,12 +207,9 @@ Token* get_token(){
 				break;
 			case _NUMBER:
 				if(current_char == '\n' || current_char == ' ' ||
-				current_char == EOF || current_char == '\t'){
-					if(current_char == '\n'){
-						last_char = '\n';
-					}else if(current_char == EOF){
-						last_char = EOF;
-					}
+				current_char == EOF || current_char == '\t' ||
+				current_char == '<' || current_char == '>' ||
+				current_char == '='){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -271,12 +268,8 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
-				!e_last_char)){
-					if(current_char == '\n'){
-						last_char = '\n';
-					}else if(current_char == EOF){
-						last_char = EOF;
-					}
+				!e_last_char) || current_char == '<' || 
+				current_char == '>' || current_char == '='){
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
