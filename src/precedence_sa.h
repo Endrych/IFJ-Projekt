@@ -1,11 +1,12 @@
 #include "token.h"
 #include "stack.h"
+#include "symtable.h"
 
 #ifndef PRECEDENCE_H
 #define PRECEDENCE_H
 
 typedef struct{
-    DataType Type;
+    Tvariable_type Type;
     Token* ReturnToken;
     ATLeaf * Tree;
 }PrecendentOutput;

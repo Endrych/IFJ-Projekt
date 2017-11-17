@@ -174,8 +174,8 @@ int findRule(tStack * s){
     {
         SData * data = stackTop(s);
         ATData aData;
-        DataType dataType;
-        DataType dataType1;
+        Tvariable_type dataType;
+        Tvariable_type dataType1;
         if(data != NULL)
             stackPop(s);
         switch(state){
@@ -191,19 +191,19 @@ int findRule(tStack * s){
                         state = 2;
                     }
                     else if(data->Atr.Token->type == type_string ){
-                            dataType = dt_String;
+                            dataType = type_str;
                             token = data->Atr.Token;
                             estimate_precedence = 13;
                             state = 3;
                     }
                     else if(data->Atr.Token->type == type_double){
-                        dataType = dt_Double;
+                        dataType = type_doub;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_integer){
-                        dataType = dt_Integer;
+                        dataType = type_int;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
                         state = 3;
@@ -302,20 +302,20 @@ int findRule(tStack * s){
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
                         if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash){
-                            if(dataType == dt_Integer && dataType1 == dt_Integer){
+                            if(dataType == type_int && dataType1 == type_int){
                                 if(oper == op_slash )
-                                    newData->DataType = dt_Double;
+                                    newData->DataType = type_doub;
                                 else 
-                                    newData->DataType = dt_Integer;
+                                    newData->DataType = type_int;
                             }
-                            else if((dataType == dt_Double && dataType1 == dt_Double) ||
-                                    (dataType == dt_Integer && dataType1 == dt_Double) ||
-                                    (dataType == dt_Double && dataType1 == dt_Integer)){
-                                newData->DataType = dt_Double;
+                            else if((dataType == type_doub && dataType1 == type_doub) ||
+                                    (dataType == type_int && dataType1 == type_doub) ||
+                                    (dataType == type_doub && dataType1 == type_int)){
+                                newData->DataType = type_doub;
                             }
-                            else if(dataType == dt_String && dataType1 == dt_String){
+                            else if(dataType == type_str && dataType1 == type_str){
                                 if(oper == op_add)
-                                    newData->DataType = dt_String;
+                                    newData->DataType = type_str;
                                 else{
                                     exit(4);
                                 }
@@ -325,8 +325,8 @@ int findRule(tStack * s){
                             }
                         }
                         else if(oper == op_division_int){
-                            if(dataType == dt_Integer && dataType1 == dt_Integer)
-                                    newData->DataType = dt_Integer;
+                            if(dataType == type_int && dataType1 == type_int)
+                                    newData->DataType = type_int;
                             else{
                                 exit(4);
                             }
