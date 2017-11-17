@@ -144,7 +144,7 @@ int main(){
     printf("Expr: inputToken  +5 \n");
     Token * inp_token = create_token();
     inp_token->type = type_integer;
-    inp_token->atribute.int_value = 4;
+    inp_token->atribute.int_value = 16;
     out = precedence_analysis(inp_token);
     if(out->StatusCode == OK)
         print_t(out->Tree);
@@ -154,6 +154,16 @@ int main(){
         while(token->type != type_eol){
             token = get_token();
         }
+    }
+
+    printf("Expr: 4 < 5 > 4  \n");
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token != NULL && token->type != type_eol){
+        token = get_token();
     }
 
     destruct_token_storage();   
