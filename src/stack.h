@@ -1,14 +1,8 @@
 #include "abstract_tree.h"
+#include "symtable.h"
 
 #ifndef STACK_H
 #define STACK_H
-
-typedef enum{
-    dt_Integer,
-    dt_String,
-    dt_Double
-}DataType;
-
 typedef enum{
     type_token,
     type_nonterm,
@@ -21,7 +15,7 @@ typedef union{
 }SAtribute;
 
 typedef struct{
-    DataType DataType;
+    Tvariable_type DataType;
     SType Type;
     SAtribute Atr;
 }SData;

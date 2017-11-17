@@ -12,7 +12,11 @@ int main(){
     printf("\n\n____________________________________________________\n");
 
     PrecendentOutput * out = precedence_analysis(NULL);
-    printf("Expr: 6 + 5 + 4 * 3\n");
+    printf("Expr: 6 + 5 + 4 * 3\nReturn EOL?");
+    if(out->ReturnToken->type == type_eol)
+        printf("Correct\n");
+    else
+        printf("Wrong\n");
     print_t(out->Tree);
     dispose_at(out->Tree);
 
@@ -52,8 +56,12 @@ int main(){
     dispose_at(out->Tree);
 
     out = precedence_analysis(NULL);
-    printf("Expr: 5 => 3  \n");
+    printf("Expr: 5 => 3; Return semicolon? \n");
     print_t(out->Tree);
+    if(out->ReturnToken->type == type_semicolon)
+        printf("Correct\n");
+    else
+        printf("Wrong\n");
     
     destruct_token_storage();   
     dispose_at(out->Tree);
