@@ -54,3 +54,8 @@ abstract_tree_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
 	valgrind ./abstract_tree_test
 	rm abstract_tree_test
+
+frame_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)frame.c -o frame_test
+	valgrind ./frame_test
+	rm frame_test
