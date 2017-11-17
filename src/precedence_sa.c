@@ -33,6 +33,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
     out->Tree = NULL;
     out->ReturnToken = NULL;
 
+    int logical = 0;
     int readNextToken = 1;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
@@ -85,10 +86,14 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             stackPush(s,data);
         }
         else if(operation == 2){
-            if(findRule(s) == -1){
+            int rule = findRule(s);
+            if( rule == -1){
                 out->ReturnToken = current;
                 out->StatusCode = SEMANTIC_ERROR;
                 return out;
+            }
+            else if(operation >= 7 && operation <= 12){
+                logical = 1;
             }
             continue;
         }
@@ -99,7 +104,11 @@ PrecendentOutput * precedence_analysis(Token* last_token){
     out->ReturnToken = current;
     if(!stackEmpty(s)){
         out->Tree = stackTop(s)->Atr.Leaf;
-        out->Type = stackTop(s)->DataType;
+        if(logical)
+            out->Type = type_bool;
+        else
+            out->Type = stackTop(s)->DataType;
+
     }
     out->StatusCode = OK;
     return out;
