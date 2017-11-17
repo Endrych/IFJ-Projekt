@@ -30,6 +30,7 @@ int main(int argc, char **argv)
   // printf("\n%d %d", token->type, token->atribute);  
   // destruct_token(token);  
   close_file();
-  destruct_storage();
+   destruct_storage();
+  // destruct_token_storage();
   return 0;
 }

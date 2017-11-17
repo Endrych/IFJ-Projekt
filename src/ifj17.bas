@@ -1,4 +1,8 @@
 ' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
+!"wowowow"
+#
+
+
 Test line comment
 45.6 < 487e-4
 ' ahoj 

@@ -63,6 +63,7 @@ Token* get_token(){
 	Token* token = create_token();
 	if(token == NULL){
 		fprintf(stderr, "Creation of token failed\n");
+		EXIT_FAILURE;
 	}
 	static char last_char;
 	char prev_char;
@@ -173,6 +174,7 @@ Token* get_token(){
 					token->type=type_semicolon;
 					return token;
 				}else{
+					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
 					token->type=type_wrong;
 					return token;
 				}
@@ -338,7 +340,7 @@ Token* get_token(){
 				else{
 					token->type = type_wrong;
 					fprintf(stderr, "Problem with string inicialization\n");
-					free(str);
+					// free(str);
 					return token;
 				}	
 			case _START_STRING:
