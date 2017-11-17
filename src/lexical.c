@@ -45,7 +45,7 @@ int load_file(char *file){
 	FILE *source;
 	source = fopen(file, "r");
   if(source == NULL){
-		printf("FILE ERROR");
+	  	fprintf(stderr, "File failed to open\n");
 		return 1;
 	}
 
@@ -56,6 +56,7 @@ int load_file(char *file){
 int close_file(){
 	fclose(source_file);
 	if(source_file != NULL){
+		fprintf(stderr, "File failed to close\n");
 		return 1;
 	}
 	return 0;
