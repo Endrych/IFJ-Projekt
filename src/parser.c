@@ -75,7 +75,7 @@ int Prog()
 
 int Scope()
 {
-	int return_value = OK;
+	int return_value;
 
 	// __SCOPE__
 	if (token->type != type_keyword)
@@ -133,7 +133,7 @@ int Scope()
 
 int St_list()
 {
-	int return_value = OK;
+	int return_value;
 
 	switch (token->type)
 	{
@@ -179,7 +179,9 @@ int St_list()
 				return return_value;
 			}
 			// __EOL__
-			token = get_token();
+			if (token->type != type_eol) {
+				token = get_token();
+			}
 			if (token->type != type_eol) {
 				printf("ERROR: Missing end of line after statement\n");
 				return SYNTAX_ERROR;
@@ -212,6 +214,7 @@ int Stat()
 			{
 				case kw_input:
 					// __Input id__
+					// JAK GENEROVAT ? <<<<<<<<<<<<<<<
 					token = get_token();
 					if (token->type != type_id)
 					{
@@ -294,7 +297,7 @@ int Stat()
 						}
 						
 						token = out->ReturnToken;
-						// nemusim resit ? <<<<<<<<<<<<<<<<<<<<<<<
+						
 						if (out->Type != symtab_item->type_strct.variable->type) {
 							fprintf(stderr, "ERROR: Trying to assign incompatible types\n");
 							return SEMANTIC_TYPE_ERROR;
@@ -316,7 +319,11 @@ int Stat()
 					// __Print__ JAK GENEROVAT ???
 					// __<expr>__
 					token = get_token();
-					token = get_token();
+					out = precedence_analysis(token);
+					if (out == NULL) {
+						return COMPILER_ERROR;
+					}
+					token = out->ReturnToken;
 					if (token->type != type_semicolon) {
 						printf("ERROR: Missing semicolon in 'print' function\n");
 						return SYNTAX_ERROR;
@@ -328,15 +335,46 @@ int Stat()
 					}
 
 				break;
-
-
-
-
-
 			}
 		break;
 
 		case type_id:
+			// id musi byt deklarovan
+			// <<<<<<<<< GENEROVAT <<<<<<<<<<<<<
+			symtab_item = symtab_search(sym_table, token, type_variable);
+			if (symtab_item == NULL) {
+				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
+				return SEMANTIC_ERROR;
+			}
+			// __ = __
+			token = get_token();
+			if (token->type != type_operator) {
+				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
+				return SYNTAX_ERROR;
+			}
+			if (token->atribute.int_value != op_assign) {
+				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
+				return SYNTAX_ERROR;
+			}
+			// __<expr>__ TYPOVA KONVERZE ???
+			token = get_token();
+			out = precedence_analysis(token);
+			if (out == NULL) {
+				return COMPILER_ERROR;
+			}
+			token = out->ReturnToken;
+			if ((return_value = check_type(symtab_item, out)) != OK) {
+				return return_value;
+			}
+			/*
+			data.type = type_id;
+			data.Atr = symtab_item->variable;
+			leaf = make_leaf(data);
+			data.type = type_operator;
+			data.Atr = op_assign;
+			tree = make_tree(leaf , out->Tree, data);
+			generate_instruction(tree);
+			*/
 			
 		break;
 
@@ -377,13 +415,27 @@ int Param();
 int Next_par();
 int ExprPrint()
 {
+	int return_value;
+	PrecendentOutput* out;
 	switch (token->type)
 	{
 		case type_eol:
 			return OK;
 		default:
-			token = get_token();// call expr
-			ExprPrint();
+			out = precedence_analysis(token);
+			if (out == NULL) {
+				return COMPILER_ERROR;
+			}
+			token = out->ReturnToken;
+
+			if (token->type != type_semicolon) {
+				fprintf(stderr, "ERROR: Missing semicolon in 'print' function\n");
+				return SYNTAX_ERROR;
+			}
+			token = get_token();
+			if ((return_value = ExprPrint()) != OK) {
+				return return_value;
+			}
 	}
 	return OK;
 }
@@ -405,6 +457,31 @@ int Tyype()
 	}
 }
 
+int check_type(Tsymtab_item* symtab_item, PrecendentOutput* out)
+{
+	if (out->Type != symtab_item->type_strct.variable->type) {
+		switch (symtab_item->type_strct.variable->type) {
+			case type_int:
+				if (out->Type == type_doub) {
+					break;// upozornit generator aby to pretypoval
+				}
+				
+			
+			case type_doub:
+				if (out->Type == type_int) {
+					break; // upozornit generator
+				}
+				
+			
+			default:
+				fprintf(stderr, "ERROR: Trying to assign incompatible types\n");
+				return SEMANTIC_TYPE_ERROR;
+
+		}	
+	
+	}
+	return OK;
+}
 
 int parse()
 {
@@ -418,7 +495,7 @@ int parse()
 
 int main(int argc, char const *argv[])
 {
-	int return_value = OK;
+	int return_value;
 	char *test_file;
 	if (argc != 2)
 	{

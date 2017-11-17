@@ -1,5 +1,7 @@
 
 #include <stdbool.h>
+#include "precedence_sa.h"
+#include "symtable.h"
 
 #ifndef PARSER_H
 #define PARSER_H
@@ -16,5 +18,6 @@ int Param();
 int Next_par();
 int ExprPrint();
 int Tyype();
+int check_type(Tsymtab_item* symtab_item, PrecendentOutput* out);
 
 #endif
