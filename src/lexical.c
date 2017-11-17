@@ -76,8 +76,8 @@ Token* get_token(){
 	char *str;
 	char current_char = '\0';
 	char lowering;					
-	bool e_present,e_last_char,dot_present = false;
-	
+	bool e_present,dot_present = false;
+	// bool e_last_char = false;
 	while(isIntToken){
     	if(last_char != '\0'){
     	  current_char = last_char;
@@ -238,7 +238,7 @@ Token* get_token(){
 						dot_present = true;
 					}else if(current_char == 'e' || current_char == 'E'){
 						e_present = true;
-						e_last_char = true;
+						// e_last_char = true;
 					}
 					if(length == size){
 	           			size += 10;
