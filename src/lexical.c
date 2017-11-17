@@ -14,29 +14,29 @@
 
 typedef enum{
 	_START,
-  _LINE_COMMENT,
-  _BLOCK_COMMENT,//USED IN SLASH
-  _BLOCK_COMMENT_FINISHED, //mozna neni treba
-  _SLASH,
-  _NUMBER,
-  _NUM_DOUBLE,  // 
-  _EXCLAMATION,
-  _START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
-  _END_STRING, //
-  _IDENTIFIER, 
-  _ASSIGN,
-  _ADD,
-  _SUB,
-  _MULTIPLY,
-  _DIVISION_INT, // {\}
-  _LESSER,
-  _LESSER_EQUAL, //USED IN LESSER
-  _NOT_EQUAL, //
-  _GREATER,
-  _GREATER_EQUAL, //USED IN GREATER
-  _BRACKET,
-  _BRACKET_END,
-  _EOF
+	_LINE_COMMENT,
+	_BLOCK_COMMENT,//USED IN SLASH
+	_BLOCK_COMMENT_FINISHED, //mozna neni treba
+	_SLASH,
+	_NUMBER,
+	_NUM_DOUBLE,  // 
+	_EXCLAMATION,
+	_START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
+	_END_STRING, //
+	_IDENTIFIER, 
+	_ASSIGN,
+	_ADD,
+	_SUB,
+	_MULTIPLY,
+	_DIVISION_INT, // {\}
+	_LESSER,
+	_LESSER_EQUAL, //USED IN LESSER
+	_NOT_EQUAL, //
+	_GREATER,
+	_GREATER_EQUAL, //USED IN GREATER
+	_BRACKET,
+	_BRACKET_END,
+	_EOF
 }_State;
 
 FILE* source_file = NULL;
@@ -76,7 +76,7 @@ Token* get_token(){
 	char *str;
 	char current_char = '\0';
 	char lowering;					
-	
+	bool e_present,e_last_char,dot_present = false;
 	
 	while(isIntToken){
     	if(last_char != '\0'){
@@ -97,6 +97,11 @@ Token* get_token(){
 				else if(current_char >= '0' && current_char <= '9'){
 					last_char = current_char;		
 					str=(char*)calloc(size,sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}		
 					state = _NUMBER;
 				}
 				else if(current_char == '!'){
@@ -203,9 +208,13 @@ Token* get_token(){
 				prev_char = current_char;				
 				break;
 			case _NUMBER:
-				if(!((current_char >= '0' && current_char <= '9')|| 
-				current_char == '.' || 
-				current_char == 'e')){
+				if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t'){
+					if(current_char == '\n'){
+						last_char = '\n';
+					}else if(current_char == EOF){
+						last_char = EOF;
+					}
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -214,37 +223,60 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
+				}else if((!(current_char >= '0' && current_char <= '9'))&&
+				(current_char != '.' && current_char != 'e' && 
+				current_char != 'E')){
+					token->type = type_wrong;
+					fprintf(stderr, "Error: not a number");
+					free(str);
+					return token;
 				}
 				else if(current_char == '.' || 
 				current_char == 'e' ||
 				current_char == 'E'){
+					if(current_char == '.'){
+						dot_present = true;
+					}else if(current_char == 'e' || current_char == 'E'){
+						e_present = true;
+						e_last_char = true;
+					}
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
-          }
+	           			size += 10;
+    	        		str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
+				  	}		
 					str[length] = current_char;
 					length++;
-					// bool isExponent = false;
-					// bool isPoint = false;
-
 					state = _NUM_DOUBLE;
 					break;
 				}
 				else{
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
-          }
+        				size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
+					}
 					str[length] = current_char;
 					length++;
-          break;
+        			break;
 				}
 				break;
 			case _NUM_DOUBLE:
-				if(!((current_char >= '0' && current_char <= '9')||
-				(current_char == '+' || current_char == '-' ||
-				 current_char == '.' || current_char == 'e'
-				|| current_char == 'E'))){
+				if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t'){
+					if(current_char == '\n'){
+						last_char = '\n';
+					}else if(current_char == EOF){
+						last_char = EOF;
+					}
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
@@ -252,11 +284,39 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
-				}
-				else{
+				}else if((!(current_char >= '0' && current_char <= '9'))&&
+				(current_char != '.' && current_char != 'e' && 
+				current_char != 'E')){
+					token->type = type_wrong;
+					fprintf(stderr, "Error: not a number");
+					free(str);
+					return token;
+				}else{
+					if((current_char == 'E' || current_char == 'e')&&
+					e_present){
+						fprintf(stderr, "Error: Not a number");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}else if (current_char == '.' && dot_present){
+						fprintf(stderr, "Error: Not a number");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}else if(current_char == '.' && e_present){
+						fprintf(stderr, "Error: Not a number");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
+           				size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = current_char;
 					length++;
@@ -264,7 +324,12 @@ Token* get_token(){
 				}
 			case _EXCLAMATION:
 				if(current_char == '\"'){
-					str=(char*)calloc(size,sizeof(char));					
+					str=(char*)calloc(size,sizeof(char));	
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}						
 					state = _START_STRING;
 					break;
 				}			
@@ -276,8 +341,13 @@ Token* get_token(){
 				if(current_char != '\"'){
 					// add to array
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
+            			size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = current_char;
 					length++;
@@ -291,6 +361,11 @@ Token* get_token(){
 				if(length == size){
 					size += 10;
 					str = (char *)realloc(str, size*sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}		
 				}
 				str[length] = '\0';
 				length++;
@@ -309,6 +384,11 @@ Token* get_token(){
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					lowering = tolower(current_char);
 					str[length] = lowering;
@@ -318,6 +398,11 @@ Token* get_token(){
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = '\0';
 					length++;
