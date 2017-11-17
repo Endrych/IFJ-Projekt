@@ -400,7 +400,9 @@ Token* get_token(){
 					length++;
 					break;
 				}else if(current_char == '\n' || current_char == ' ' ||
-				current_char == EOF || current_char == '\t'){
+				current_char == EOF || current_char == '\t' || 
+				current_char == '<' || current_char == '>' ||
+				current_char == '='){
 					if(current_char == '\n'){
 						last_char = '\n';
 					}else if(current_char == EOF){
