@@ -301,10 +301,12 @@ int findRule(tStack * s){
                     else{
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
-                        newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
-                        if(oper == op_add){
+                        if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash){
                             if(dataType == dt_Integer && dataType1 == dt_Integer){
-                                newData->DataType = dt_Integer;
+                                if(oper == op_slash )
+                                    newData->DataType = dt_Double;
+                                else 
+                                    newData->DataType = dt_Integer;
                             }
                             else if((dataType == dt_Double && dataType1 == dt_Double) ||
                                     (dataType == dt_Integer && dataType1 == dt_Double) ||
@@ -312,17 +314,25 @@ int findRule(tStack * s){
                                 newData->DataType = dt_Double;
                             }
                             else if(dataType == dt_String && dataType1 == dt_String){
-                                newData->DataType = dt_String;
-                            }
-                            else if(dataType == dt_String && dataType1 == dt_String){
-                                newData->DataType = dt_String;
+                                if(oper == op_add)
+                                    newData->DataType = dt_String;
+                                else{
+                                    exit(4);
+                                }
                             }
                             else{
                                 exit(4);
                             }
                         }
+                        else if(oper == op_division_int){
+                            if(dataType == dt_Integer && dataType1 == dt_Integer)
+                                    newData->DataType = dt_Integer;
+                            else{
+                                exit(4);
+                            }
+                        }
                     }
-                    
+                    newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     stackPush(s,newData);
                     rule = estimate_precedence;
                 }
