@@ -14,9 +14,9 @@
 
 #define SEMANTIC_TYPE_ERROR 4
 
-#define OTHER_ERROR 5
+#define OTHER_ERROR 6
 
-#define COMPILER_ERROR 6
+#define COMPILER_ERROR 99
 
 typedef int make_iso_compilers_happy;
 

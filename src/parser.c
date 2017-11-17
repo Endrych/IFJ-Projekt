@@ -297,10 +297,8 @@ int Stat()
 						}
 						
 						token = out->ReturnToken;
-						
-						if (out->Type != symtab_item->type_strct.variable->type) {
-							fprintf(stderr, "ERROR: Trying to assign incompatible types\n");
-							return SEMANTIC_TYPE_ERROR;
+						if ((return_value = check_type(symtab_item, out)) != OK) {
+							return return_value;
 						}
 						/*
 						data.type = type_id;
@@ -334,6 +332,107 @@ int Stat()
 						return return_value;
 					}
 
+				break;
+
+				case kw_do:
+					//__while__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Invalide syntax 'do', did you mean 'do while' ?\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_while) {
+						fprintf(stderr, "ERROR: Invalide syntax 'do', did you mean 'do while' ?\n");
+						return SYNTAX_ERROR;	
+					}
+					//__<expr>__
+					token = get_token();
+					out = precedence_analysis(token);
+					if (out == NULL) {
+						return COMPILER_ERROR;
+					}
+					token = out->ReturnToken;
+					if (out->Type != type_int) {
+						fprintf(stderr, "ERROR: Do While expression has to be of type integer\n"); //or boolean
+						return SEMANTIC_TYPE_ERROR;
+					}
+					// __EOL__
+					if (token->type != type_eol) {
+						fprintf(stderr, "ERROR: Missing end of line after 'do while <expr>' statement\n");
+						return SYNTAX_ERROR;
+					}
+					// generate_while(out->Tree);
+					// __<St_list>__
+					token = get_token();
+					if ((return_value = St_list()) != OK) {
+						return return_value;
+					}
+					// __LOOP__
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'Loop' keyword at the end of 'do while' statement\n");
+						return SYNTAX_ERROR;
+					} 
+					if (token->atribute.int_value != kw_loop) {
+						fprintf(stderr, "ERROR: Missing 'Loop' keyword at the end of 'do while' statement\n");
+						return SYNTAX_ERROR;	
+					}
+				break;
+
+				case kw_if: // generovat <<<<<<<<<<<<<<<<<<<<<<<
+					// __<expr>__
+					token = get_token();
+					out = precedence_analysis(token);
+					if (out == NULL) {
+						return COMPILER_ERROR;
+					}
+					token = out->ReturnToken;
+					if (out->Type != type_int) {
+						fprintf(stderr, "ERROR: Do While expression has to be of type integer\n"); //or boolean
+						return SEMANTIC_TYPE_ERROR;
+					}
+					// __THEN__
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'Then' keyword in 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_then) {
+						fprintf(stderr, "ERROR: Missing 'Then' keyword in 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					//__EOL__
+					token = get_token();
+					if (token->type != type_eol) {
+						fprintf(stderr, "ERROR: Missing end of line after 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					//__<St_list>__
+					token = get_token();
+					if ((return_value = St_list()) != OK) {
+						return return_value;
+					}
+					// __<Else>__
+					if ((return_value = Else()) != OK) {
+						return return_value;
+					}
+					// __End__
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_end) {
+						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					// __IF__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_if) {
+						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
+						return SYNTAX_ERROR;
+					}
 				break;
 			}
 		break;
@@ -384,7 +483,36 @@ int Stat()
 	}
 	return OK;
 }
-int Else();
+int Else()
+{
+	int return_value;
+	switch (token->atribute.int_value)
+	{
+		// __EPSILON__
+		case kw_end:
+			return OK;
+		break;
+
+		case kw_else:
+			//__EOL__
+			token = get_token();
+			if (token->type != type_eol) {
+				fprintf(stderr, "ERROR: Missing end of line after 'Else' keyword\n");
+				return SYNTAX_ERROR;
+			}
+			// __<St_list>__
+			token = get_token();
+			if ((return_value = St_list()) != OK) {
+				return return_value;
+			}
+		break;
+		default:
+			fprintf(stderr, "ERROR: What your doin maan\n"); // Unexpected usage of keyword
+			return SYNTAX_ERROR;
+	}
+	return OK;
+}
+
 int Assign()
 {
 	
@@ -394,11 +522,11 @@ int Assign()
 	}
 	// __ = __
 	if (token->type != type_operator) {
-		printf("ERROR: Assignment was expected\n");
+		printf("ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.operator_value != op_assign) {
-		printf("ERROR: Assignment was expected\n");
+		printf("ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	// <<<<<<<<<<<<<<<< call <expr> 
