@@ -24,7 +24,6 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             token = termData->Atr.Token;
         if(current != NULL){
             if(current->type == type_eol || current->type == type_semicolon || (current->type == type_keyword && current->atribute.keyword_value == kw_then)){
-                current = NULL;
                 readNextToken = 0;
             }
         }
@@ -80,7 +79,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
         else{
             token = lexical_token;
         }
-        if(token == NULL){
+        if(token == NULL || token->type == type_eol || token->type == type_semicolon || (token->type == type_keyword && token->atribute.keyword_value == kw_then)){
             curr_index = 14;            
         }
         else if(token->type == type_operator){
@@ -174,13 +173,15 @@ int findRule(tStack * s){
     {
         SData * data = stackTop(s);
         ATData aData;
-        DataType dataType;
+        Tvariable_type dataType;
+        Tvariable_type dataType1;
         if(data != NULL)
             stackPop(s);
         switch(state){
             case 0:
                 if(data->Type == type_nonterm){
                     leaf1 = data->Atr.Leaf;
+                    dataType = data->DataType;
                     state = 1;
                 }
                 else if(data->Type == type_token){
@@ -188,14 +189,31 @@ int findRule(tStack * s){
                         estimate_precedence = 1;
                         state = 2;
                     }
-                    else if(data->Atr.Token->type == type_string || 
-                            data->Atr.Token->type == type_id ||
-                            data->Atr.Token->type == type_double ||
-                            data->Atr.Token->type == type_integer){
-                            estimate_precedence = 13;
+                    else if(data->Atr.Token->type == type_string ){
+                            dataType = type_str;
                             token = data->Atr.Token;
+                            estimate_precedence = 13;
                             state = 3;
                     }
+                    else if(data->Atr.Token->type == type_double){
+                        dataType = type_doub;
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    else if(data->Atr.Token->type == type_integer){
+                        dataType = type_int;
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    else if(data->Atr.Token->type == type_id){
+                        // Detekce typu
+                        token = data->Atr.Token;
+                        estimate_precedence = 13;
+                        state = 3;
+                    }
+                    
                 }
                 break;
             case 1:
@@ -251,13 +269,14 @@ int findRule(tStack * s){
                 if(data->Type == type_nonterm){
                     if(estimate_precedence == 1){
                         leaf1 = data->Atr.Leaf;
+                        dataType = data->DataType;
                         state = 4;
                     }
                     else{
                         leaf2 = data->Atr.Leaf;
+                        dataType1 = data->DataType;
                         state = 3;
                     }
-                        
                 }
                 break;
             case 3:
@@ -269,20 +288,50 @@ int findRule(tStack * s){
                     newData->Type = type_nonterm;
                     
                     if(estimate_precedence == 13){
-                        newData->DataType = 
+                        newData->DataType = dataType;
                         aData.type = type_token;
                         aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);
                     }
                     else if(estimate_precedence == 1){
+                        newData->DataType = dataType;
                         newData->Atr.Leaf = leaf1;
                     }
                     else{
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
+                        if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash){
+                            if(dataType == type_int && dataType1 == type_int){
+                                if(oper == op_slash )
+                                    newData->DataType = type_doub;
+                                else 
+                                    newData->DataType = type_int;
+                            }
+                            else if((dataType == type_doub && dataType1 == type_doub) ||
+                                    (dataType == type_int && dataType1 == type_doub) ||
+                                    (dataType == type_doub && dataType1 == type_int)){
+                                newData->DataType = type_doub;
+                            }
+                            else if(dataType == type_str && dataType1 == type_str){
+                                if(oper == op_add)
+                                    newData->DataType = type_str;
+                                else{
+                                    exit(4);
+                                }
+                            }
+                            else{
+                                exit(4);
+                            }
+                        }
+                        else if(oper == op_division_int){
+                            if(dataType == type_int && dataType1 == type_int)
+                                    newData->DataType = type_int;
+                            else{
+                                exit(4);
+                            }
+                        }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
-                    
                     stackPush(s,newData);
                     rule = estimate_precedence;
                 }
