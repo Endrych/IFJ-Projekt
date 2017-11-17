@@ -174,7 +174,8 @@ Token* get_token(){
 					token->type=type_semicolon;
 					return token;
 				}else if(current_char == ','){
-					
+					token->type=type_comma;
+					return token;
 				}
 				else{
 					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
@@ -215,7 +216,8 @@ Token* get_token(){
 				current_char == '=' || current_char == '+' ||
 				current_char == '-' || current_char == '/' ||
 				current_char == '\\' || current_char == '*' ||
-				current_char == ';' || current_char == ','){
+				current_char == ';' || current_char == ','||
+				current_char == ')' || current_char == '('){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -278,7 +280,8 @@ Token* get_token(){
 				current_char == '>' || current_char == '=' || 
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
-				current_char == ','){
+				current_char == ','|| current_char == ')' ||
+				current_char == '('){
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
