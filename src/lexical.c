@@ -334,9 +334,11 @@ Token* get_token(){
 					break;
 				}			
 				else{
-					printf("ERROR");
+					token->type = type_wrong;
+					fprintf(stderr, "Problem with string inicialization");
+					free(str);
+					return token;
 				}	
-				break;
 			case _START_STRING:
 				if(current_char != '\"'){
 					// add to array
@@ -356,7 +358,6 @@ Token* get_token(){
 				else{
 					state = _END_STRING;
 				}
-				break;
 			case _END_STRING:
 				if(length == size){
 					size += 10;
