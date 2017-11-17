@@ -5,12 +5,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "abstract_tree.h"
+#include "error.h"
 
 PrecendentOutput * precedence_analysis(Token* last_token){
+    PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
+    if(out == NULL)
+        return NULL;
+
+    out->Tree = NULL;
+    out->ReturnToken = NULL;
+
     int readNextToken = 1;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
-        return NULL;
+        out->StatusCode = COMPILER_ERROR;
+        return out;
     }
     stackInit(s);
     Token * current = last_token;
@@ -29,12 +38,17 @@ PrecendentOutput * precedence_analysis(Token* last_token){
         }
         
         int operation = precedence_operation(token,current);
-        if(operation == -1)
-            break;
+        if(operation == -1){
+            out->ReturnToken = current;
+            out->StatusCode = SEMANTIC_ERROR;
+            return out;
+        }
         else if(operation == 0){
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                return NULL;
+                out->ReturnToken = current;
+                out->StatusCode = COMPILER_ERROR;
+                return out;
             }
             data->Type = type_token;
             data->Atr.Token = current;
@@ -44,27 +58,32 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             addHandler(s,termData);
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                return NULL;
+                out->ReturnToken = current;
+                out->StatusCode = COMPILER_ERROR;
+                return out;
             }
             data->Type = type_token;
             data->Atr.Token = current;
             stackPush(s,data);
         }
         else if(operation == 2){
-            findRule(s);
+            if(findRule(s) == -1){
+                out->ReturnToken = current;
+                out->StatusCode = SEMANTIC_ERROR;
+                return out;
+            }
             continue;
         }
         if(readNextToken)
             current = get_token();
     }
-    PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
-    if(out == NULL)
-        return NULL;
+    
     out->ReturnToken = current;
     if(!stackEmpty(s)){
         out->Tree = stackTop(s)->Atr.Leaf;
         out->Type = stackTop(s)->DataType;
     }
+    out->StatusCode = OK;
     return out;
 }
 
@@ -156,8 +175,15 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
                                             {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
                                             {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1}
                                         };
-
-    return precedence_table[index0][index1];
+    if(index0 == -1 || index1 == -1){
+        printf("Syntax error\n");
+        return -1;
+    }
+    int oper = precedence_table[index0][index1];
+    if(oper == -1){
+        printf("Syntax error\n");
+    }
+    return oper;
 }
 
 int findRule(tStack * s){
@@ -213,7 +239,14 @@ int findRule(tStack * s){
                         estimate_precedence = 13;
                         state = 3;
                     }
-                    
+                    else{
+                        printf("Syntax error\n");
+                        return -1;
+                    }
+                }
+                else{
+                    printf("Syntax error\n");
+                    return -1;
                 }
                 break;
             case 1:
@@ -262,7 +295,15 @@ int findRule(tStack * s){
                         estimate_precedence = 12;
                         state = 2;
                     }
+                    else{
+                        printf("Syntax error\n");
+                        return -1;
+                    }
                     oper = data->Atr.Token->atribute.operator_value;
+                }
+                else{
+                    printf("Syntax error\n");
+                    return -1;
                 }
                 break;
             case 2:
@@ -277,6 +318,10 @@ int findRule(tStack * s){
                         dataType1 = data->DataType;
                         state = 3;
                     }
+                }
+                else{
+                    printf("Syntax error\n");
+                    return -1;
                 }
                 break;
             case 3:
@@ -316,32 +361,45 @@ int findRule(tStack * s){
                                 if(oper == op_add)
                                     newData->DataType = type_str;
                                 else{
-                                    exit(4);
+                                    printf("Semantic error\n");
+                                    return -1;
                                 }
                             }
                             else{
-                                exit(4);
+                                printf("Semantic error\n");
+                                return -1;
                             }
                         }
                         else if(oper == op_division_int){
                             if(dataType == type_int && dataType1 == type_int)
                                     newData->DataType = type_int;
                             else{
-                                exit(4);
+                                printf("Semantic error\n");
+                                return -1;
                             }
                         }
+                        else{
+                                printf("Semantic error\n");
+                                return -1;
+                            }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
+                    
                     stackPush(s,newData);
                     rule = estimate_precedence;
                 }
                 else{
+                    printf("Semantic error\n");
                     rule = -1;
                 }
                 break;
             case 4:
                 if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket){
                        state = 3;
+                }
+                else{
+                    printf("Syntax error\n");
+                    return -1;
                 }
                 break;
         }

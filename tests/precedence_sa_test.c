@@ -3,6 +3,7 @@
 #include "../src/precedence_sa.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "../src/error.h"
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255]);
 void print_t(ATLeaf *tree);
@@ -11,58 +12,87 @@ int main(){
     load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
 
-    PrecendentOutput * out = precedence_analysis(NULL);
     printf("Expr: 6 + 5 + 4 * 3\nReturn EOL?");
+    PrecendentOutput * out = precedence_analysis(NULL);
     if(out->ReturnToken->type == type_eol)
         printf("Correct\n");
     else
         printf("Wrong\n");
-    print_t(out->Tree);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: (5 + 4) > 4\n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 5 <> 3 \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 5 = 3  \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 5 <= 3  \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
 
-    out = precedence_analysis(NULL);
     printf("Expr: 5 => 3; Return semicolon? \n");
-    print_t(out->Tree);
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     if(out->ReturnToken->type == type_semicolon)
         printf("Correct\n");
     else
         printf("Wrong\n");
-    
+    dispose_at(out->Tree);
+    get_token();
+
+    printf("Expr: 5 + 3 4 * 5  \n");
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+
+    printf("Expr: 5 + + 3 + - 3  4 * 5  \n");
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+
+    printf("Expr: 4 * \"5\"  \n");
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+
     destruct_token_storage();   
     dispose_at(out->Tree);
     printf("\n\n____________________________________________________\n");
