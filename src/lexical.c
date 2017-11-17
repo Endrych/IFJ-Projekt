@@ -65,9 +65,12 @@ int close_file(){
 Token* get_token(){
 	bool isIntToken = true;
 	Token* token = create_token();
+	if(token == NULL){
+		fprintf(stderr, "Creation of token failed\n");
+	}
 	static char last_char;
 	char prev_char;
-  int state = _START;
+	int state = _START;
 	int length = 0;
 	int size = 10;  //udelat konstantu
 	char *str;
@@ -75,85 +78,90 @@ Token* get_token(){
 	char lowering;					
 	
 	
-  while(isIntToken){
-    if(last_char != '\0'){
-      current_char = last_char;
-      last_char = '\0';
+	while(isIntToken){
+    	if(last_char != '\0'){
+    	  current_char = last_char;
+      	last_char = '\0';
 		}
 		else{
-      current_char = fgetc(source_file);
-    }
-    switch(state){
-      case _START:
-        if(current_char == '\''){
-          state = _LINE_COMMENT;
-        }
-        else if(current_char == '/'){
-          state = _SLASH;                    
-        }
-        else if(current_char >= '0' && current_char <= '9'){
+			current_char = fgetc(source_file);
+    	}
+		switch(state){
+			case _START:
+				if(current_char == '\''){
+				state = _LINE_COMMENT;
+				}
+				else if(current_char == '/'){
+				state = _SLASH;                    
+				}
+				else if(current_char >= '0' && current_char <= '9'){
 					last_char = current_char;		
 					str=(char*)calloc(size,sizeof(char));
 					state = _NUMBER;
-        }
-        else if(current_char == '!'){
-          state = _EXCLAMATION;
-        }
-        else if((current_char >= 'a' && current_char <= 'z') ||
+				}
+				else if(current_char == '!'){
+					state = _EXCLAMATION;
+				}
+				else if((current_char >= 'a' && current_char <= 'z') ||
 				(current_char >= 'A' && current_char <= 'Z') || 
 				current_char == '_'){
 					state = _IDENTIFIER;
-					str=(char*)calloc(size,sizeof(char));					
+					str=(char*)calloc(size,sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}					
 					last_char = current_char;
 				}
-        else if(current_char == '='){
-          token->type = type_operator;
+				else if(current_char == '='){
+					token->type = type_operator;
 					token->atribute.operator_value = op_assign;
 					return token;
-        }
-        else if(current_char == '+'){
-          token->type = type_operator;
+				}
+				else if(current_char == '+'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_add;
 					return token;
-        }
-        else if(current_char == '-'){
-          token->type = type_operator;
+				}
+				else if(current_char == '-'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_sub;
 					return token;
-        }
-        else if(current_char == '*'){
+				}
+				else if(current_char == '*'){
 					token->type = type_operator;
 					token->atribute.operator_value = op_mul;
 					return token;
-        }
-        else if(current_char == '\\'){
-          token->type = type_operator;
+				}
+				else if(current_char == '\\'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_division_int;
 					return token;
-        }
-        else if(current_char == '<'){
-          state = _LESSER;
-        }
-        else if(current_char == '>'){
-          state = _GREATER;
-        }
-    	  else if (current_char == '('){
+				}
+				else if(current_char == '<'){
+					state = _LESSER;
+				}
+				else if(current_char == '>'){
+					state = _GREATER;
+				}
+				else if (current_char == '('){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket;
 					return token; 
-        }
-        else if (current_char == ')'){
+				}
+				else if (current_char == ')'){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket_end;
 					return token;	
-        }
-        else if (current_char == EOF){
+				}
+				else if (current_char == EOF){
 					state = _EOF;
 					isIntToken = false;					
-          last_char = current_char;                    
+					last_char = current_char;                    
 				}
 				else if(current_char == ' ' || 
-				current_char == '\t'){
+					current_char == '\t'){
 					state = _START;
 				}
 				else if(current_char == '\n'){
@@ -163,8 +171,10 @@ Token* get_token(){
 				else if(current_char == ';'){
 					token->type=type_semicolon;
 					return token;
+				}else{
+					token->type=type_wrong;
+					return token;
 				}
-				break;
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
 					state = _START;
@@ -173,7 +183,6 @@ Token* get_token(){
 					state = _EOF;
 					last_char = current_char;
 				}
-				break;
 			case _SLASH:
 				if(current_char == '\''){
 					state = _BLOCK_COMMENT;
