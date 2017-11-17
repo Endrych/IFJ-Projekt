@@ -16,6 +16,7 @@
 #include "symtable.h"
 #include "abstract_tree.h"
 #include "precedence_sa.h"
+#include "set_values.h"
 
 // tabulka symbolu
 //Tsymtab *sym_tab;
@@ -199,6 +200,10 @@ int Stat()
 {
 	int return_value;
 	Tsymtab_item *symtab_item;
+	PrecendentOutput* out;
+	ATData data;
+	ATLeaf *leaf;
+	ATLeaf *tree;
 
 	switch (token->type)
 	{
@@ -226,14 +231,13 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 
-					// Uloz id do symtable <<<<<<<<<<<<<
-					/*
+					// ___Uloz identifikator do symtable___
+					
 					symtab_item = symtab_insert(sym_table, token, type_variable);
-					if (symtab_item->variable->declared) {
+					if (symtab_item->type_strct.variable->declared) {
 						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
-					*/
 
 					//__As__
 					token = get_token();
@@ -250,16 +254,51 @@ int Stat()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-					// Uloz typ id <<<<<<<<<<<<<<<<<< (predelat type_doub)
-					// set_type_variable(symtab_item->variable, 0.0, type_doub);
+					Tvalue init_value;
+					// ___Uloz typ identifikatoru___ 
+					switch (token->atribute.int_value)
+					{
+						case kw_integer:
+							init_value.value_int = 0;
+							set_item_variable(symtab_item->type_strct.variable, init_value, type_int);
+						break;
+						case kw_double:
+							init_value.value_double = 0.0;
+							set_item_variable(symtab_item->type_strct.variable, init_value, type_doub);
+						break;
+						case kw_string:
+							init_value.string = "";
+							set_item_variable(symtab_item->type_strct.variable, init_value, type_str);
+						break;
+					}
 
 					// __<assign>__
 					token = get_token();
 					if ((return_value = Assign()) != OK) {
 						return return_value;
 					}
-					if (token->atribute.operator_value == op_assign) {
-						;// uloz hodnotu id <<<<<<<<<<<<<<
+					// __<expr>__
+					if (token->type != type_operator) {
+						;
+					}
+					else if (token->atribute.operator_value == op_assign) {
+						token = get_token();
+						out = precedence_analysis(token);
+						if (out == NULL) {
+							return COMPILER_ERROR;
+						}
+						
+						//token = out->ReturnToken;
+						// if (out->Type != symtab_item->variable->type)
+						/*
+						data.type = type_id;
+						data.Atr = symtab_item->variable;
+						leaf = make_leaf(data);
+						data.type = type_operator;
+						data.Atr = op_assign;
+						tree = make_tree(leaf , out->Tree, data);
+						generate_instruction(tree);
+						*/
 					}
 					
 				break;
@@ -283,6 +322,8 @@ int Stat()
 
 
 
+
+
 			}
 		break;
 
@@ -297,9 +338,9 @@ int Stat()
 	return OK;
 }
 int Else();
-int Assign() // parametr ?
+int Assign()
 {
-	PrecendentOutput* out;
+	
 	// __EPSILON__
 	if (token->type == type_eol) {
 		return OK;
@@ -314,14 +355,7 @@ int Assign() // parametr ?
 		return SYNTAX_ERROR;
 	}
 	// <<<<<<<<<<<<<<<< call <expr> 
-	token = get_token();
-	// zkontrolovat typ, udelej strom ?
-	/*
-	out = precedence_analysis(token);
-	token = out->ReturnToken;
-	if (out->Type != )
-	*/
-
+	// zkontrolovat typ, udelej strom ???
 	return OK;
 
 }
