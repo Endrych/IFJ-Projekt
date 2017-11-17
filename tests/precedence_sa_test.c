@@ -47,7 +47,7 @@ int main(){
         token = get_token();
     }
 
-    printf("Expr: (5 + 4) > 4\n");
+    printf("Expr: (5 < 4) > 4\n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
@@ -99,12 +99,12 @@ int main(){
 
     printf("Expr: 5 => 3; Return semicolon? \n");
     out = precedence_analysis(NULL);
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
     if(out->ReturnToken->type == type_semicolon)
         printf("Correct\n");
     else
         printf("Wrong\n");
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
@@ -131,7 +131,7 @@ int main(){
         token = get_token();
     }
 
-    printf("Expr: 4 * \"5\"  \n");
+    printf("Expr: 4 * !\"5\"  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);

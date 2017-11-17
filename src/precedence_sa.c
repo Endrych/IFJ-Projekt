@@ -347,7 +347,9 @@ int findRule(tStack * s){
                     else{
                         aData.type = type_operator;
                         aData.Atr.op_value = oper;
-                        if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash){
+                        if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash ||
+                            oper == op_lesser || oper == op_greater || oper == op_lesser_equal || oper == op_greater_equal ||
+                            oper == op_assign || oper == op_not_equal){
                             if(dataType == type_int && dataType1 == type_int){
                                 if(oper == op_slash )
                                     newData->DataType = type_doub;
@@ -360,7 +362,7 @@ int findRule(tStack * s){
                                 newData->DataType = type_doub;
                             }
                             else if(dataType == type_str && dataType1 == type_str){
-                                if(oper == op_add)
+                                if(oper == op_add || oper == op_lesser || oper == op_greater || oper == op_lesser_equal || oper == op_greater_equal || oper == op_assign || oper == op_not_equal )
                                     newData->DataType = type_str;
                                 else{
                                     printf("Semantic error\n");
