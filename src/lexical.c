@@ -55,10 +55,6 @@ int load_file(char *file){
 
 int close_file(){
 	fclose(source_file);
-	if(source_file != NULL){
-		fprintf(stderr, "File failed to close\n");
-		return 1;
-	}
 	return 0;
 }
 
@@ -77,7 +73,7 @@ Token* get_token(){
 	char current_char = '\0';
 	char lowering;					
 	bool e_present,dot_present = false;
-	// bool e_last_char = false;
+	bool e_last_char = false;
 	while(isIntToken){
     	if(last_char != '\0'){
     	  current_char = last_char;
@@ -227,7 +223,7 @@ Token* get_token(){
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E')){
 					token->type = type_wrong;
-					fprintf(stderr, "Error: not a number");
+					fprintf(stderr, "Error: not a number\n");
 					free(str);
 					return token;
 				}
@@ -238,7 +234,7 @@ Token* get_token(){
 						dot_present = true;
 					}else if(current_char == 'e' || current_char == 'E'){
 						e_present = true;
-						// e_last_char = true;
+						e_last_char = true;
 					}
 					if(length == size){
 	           			size += 10;
@@ -271,7 +267,9 @@ Token* get_token(){
 				break;
 			case _NUM_DOUBLE:
 				if(current_char == '\n' || current_char == ' ' ||
-				current_char == EOF || current_char == '\t'){
+				current_char == EOF || current_char == '\t' ||
+				((current_char == '+' || current_char == '-') &&
+				!e_last_char)){
 					if(current_char == '\n'){
 						last_char = '\n';
 					}else if(current_char == EOF){
@@ -286,25 +284,26 @@ Token* get_token(){
 					return token;
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
 				(current_char != '.' && current_char != 'e' && 
-				current_char != 'E')){
+				current_char != 'E') && current_char != '+' &&
+				current_char != '-'){
 					token->type = type_wrong;
-					fprintf(stderr, "Error: not a number");
+					fprintf(stderr, "Error1: not a number\n");
 					free(str);
 					return token;
 				}else{
 					if((current_char == 'E' || current_char == 'e')&&
 					e_present){
-						fprintf(stderr, "Error: Not a number");
+						fprintf(stderr, "Error2: Not a number\n");
 						token->type = type_wrong;
 						free(str);
 						return token;
 					}else if (current_char == '.' && dot_present){
-						fprintf(stderr, "Error: Not a number");
+						fprintf(stderr, "Error3: Not a number\n");
 						token->type = type_wrong;
 						free(str);
 						return token;
 					}else if(current_char == '.' && e_present){
-						fprintf(stderr, "Error: Not a number");
+						fprintf(stderr, "Error4: Not a number\n");
 						token->type = type_wrong;
 						free(str);
 						return token;
@@ -320,6 +319,9 @@ Token* get_token(){
 					}
 					str[length] = current_char;
 					length++;
+					if(e_last_char){
+						e_last_char = false;
+					}
 					break;
 				}
 			case _EXCLAMATION:
@@ -335,7 +337,7 @@ Token* get_token(){
 				}			
 				else{
 					token->type = type_wrong;
-					fprintf(stderr, "Problem with string inicialization");
+					fprintf(stderr, "Problem with string inicialization\n");
 					free(str);
 					return token;
 				}	
@@ -355,7 +357,7 @@ Token* get_token(){
 					length++;
 					break;
 				}else if(current_char == '\n'){
-					fprintf(stderr,"Error: String wasnt ended properly");
+					fprintf(stderr,"Error: String wasnt ended properly\n");
 					free(str);
 					token->type = type_wrong;
 					return token;
@@ -436,6 +438,7 @@ Token* get_token(){
 					return token;
 				}else{
 					token->type = type_wrong;
+					fprintf(stderr, "Identifier obtains character which is not allowed: %c", current_char);
 					free(str);
 					return token;
 				}
