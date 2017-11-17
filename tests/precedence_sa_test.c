@@ -11,7 +11,7 @@ void print_t(ATLeaf *tree);
 int main(){
     load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
-
+    Token * token;
     printf("Expr: 6 + 5 + 4 * 3\nReturn EOL?");
     PrecendentOutput * out = precedence_analysis(NULL);
     if(out->ReturnToken->type == type_eol)
@@ -21,48 +21,81 @@ int main(){
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
+
 
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: (5 + 4) > 4\n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 <> 3 \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 = 3  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 <= 3  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 => 3; Return semicolon? \n");
     out = precedence_analysis(NULL);
@@ -73,25 +106,55 @@ int main(){
     else
         printf("Wrong\n");
     dispose_at(out->Tree);
-    get_token();
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 + 3 4 * 5  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 5 + + 3 + - 3  4 * 5  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
 
     printf("Expr: 4 * \"5\"  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token->type != type_eol){
+        token = get_token();
+    }
+
+    printf("Expr: inputToken  +5 \n");
+    Token * inp_token = create_token();
+    inp_token->type = type_integer;
+    inp_token->atribute.int_value = 4;
+    out = precedence_analysis(inp_token);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+    token = out->ReturnToken;
+        if(token != NULL){
+        while(token->type != type_eol){
+            token = get_token();
+        }
+    }
 
     destruct_token_storage();   
     dispose_at(out->Tree);
