@@ -154,7 +154,6 @@ Token* get_token(){
 				}
 				else if (current_char == EOF){
 					state = _EOF;
-					isIntToken = false;					
 					last_char = current_char;                    
 				}
 				else if(current_char == ' ' || 
@@ -177,6 +176,7 @@ Token* get_token(){
 					token->type=type_wrong;
 					return token;
 				}
+				break;
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
 					state = _START;
@@ -493,5 +493,7 @@ Token* get_token(){
 				return token;
 		}
 	}
-	return 0; //mozna neco jinyho sem dat uvidime
+	fprintf(stderr, "Something went wrong during lexical analyzation");
+	token->type = type_wrong;
+	return token; //mozna neco jinyho sem dat uvidime
 }
