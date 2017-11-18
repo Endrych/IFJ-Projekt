@@ -22,6 +22,7 @@ typedef union{
 
 // type of the variable
 typedef enum {
+	type_bool,
 	type_int,
 	type_doub,
 	type_str,

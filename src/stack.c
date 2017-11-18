@@ -40,6 +40,9 @@ void stackPop ( tStack* s ){
 
 void stackPush ( tStack* s, SData* data ){
     TSItem* new_elem = (TSItem*) malloc(sizeof(struct SItem));
+    if(new_elem == NULL){
+        return;
+    }
     new_elem->Data = data;
     new_elem->Next = s->Top;
     s->Top = new_elem;
