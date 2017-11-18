@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../src/error.h"
+#include "../src/string_storage.h"
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255]);
 void print_t(ATLeaf *tree);
@@ -25,6 +26,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
 
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
@@ -36,6 +38,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
     out = precedence_analysis(NULL);
@@ -46,6 +49,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: (5 < 4) > 4\n");
     out = precedence_analysis(NULL);
@@ -56,6 +60,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 <> 3 \n");
     out = precedence_analysis(NULL);
@@ -66,6 +71,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
     out = precedence_analysis(NULL);
@@ -76,6 +82,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 = 3  \n");
     out = precedence_analysis(NULL);
@@ -86,6 +93,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 <= 3  \n");
     out = precedence_analysis(NULL);
@@ -96,6 +104,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 => 3; Return semicolon? \n");
     out = precedence_analysis(NULL);
@@ -110,6 +119,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 + 3 4 * 5  \n");
     out = precedence_analysis(NULL);
@@ -120,6 +130,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 5 + + 3 + - 3  4 * 5  \n");
     out = precedence_analysis(NULL);
@@ -130,6 +141,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: 4 * !\"5\"  \n");
     out = precedence_analysis(NULL);
@@ -140,6 +152,7 @@ int main(){
     while(token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
     printf("Expr: inputToken  +5 \n");
     Token * inp_token = create_token();
@@ -155,6 +168,7 @@ int main(){
             token = get_token();
         }
     }
+    free(out);
 
     printf("Expr: 4 < 5 > 4  \n");
     out = precedence_analysis(NULL);
@@ -165,9 +179,21 @@ int main(){
     while(token != NULL && token->type != type_eol){
         token = get_token();
     }
+    free(out);
 
-    destruct_token_storage();   
+    printf("Expr: !\"test\" < !\"ahoj\"  \n");
+    out = precedence_analysis(NULL);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
     dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token != NULL && token->type != type_eol){
+        token = get_token();
+    }
+    free(out);
+
+    destruct_storage();
+    destruct_token_storage();   
     printf("\n\n____________________________________________________\n");
     close_file();
 }

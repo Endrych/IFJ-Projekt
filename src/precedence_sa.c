@@ -92,7 +92,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
                 out->StatusCode = SEMANTIC_ERROR;
                 return out;
             }
-            else if(operation >= 7 && operation <= 12){
+            else if(rule >= 7 && rule <= 12){
                 logical = 1;
             }
             continue;
@@ -111,6 +111,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
 
     }
     out->StatusCode = OK;
+    stackDestruct(s);
     return out;
 }
 
