@@ -9,7 +9,7 @@ int main(int argc, char **argv)
   load_file(argv[1]);
   Token* token; 
   token = get_token();
-  printf("\n%d", token->type);
+  printf("\n%d\n", token->type);
 
   while(token->type != 9){
     token = get_token();
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
       printf("\n");
     }
   }
-
+  printf("\n");
   close_file();
   destruct_storage();
   destruct_token_storage();

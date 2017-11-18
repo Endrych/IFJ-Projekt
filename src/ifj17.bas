@@ -1,12 +1,11 @@
 ' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
 'Test line comment
-17e-2 14e+4 1411e-1
-ahoj .22
+17e-2 14e+2 14
+ahoj 
 ;
 +
 =
 -
-]
 Or
 fOR
 17454asdasds
