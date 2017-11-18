@@ -206,6 +206,7 @@ int Stat()
 	ATData data;
 	ATLeaf *leaf;
 	ATLeaf *tree;
+	Tsymtab* local_symtab;
 
 	switch (token->type)
 	{
@@ -434,6 +435,17 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 				break;
+
+				case kw_return:
+					// __<Expr>__ GENEROVAT <<<<<<<<<<<<<<<
+					// resit navratovy typ funkce ?? (JAK)
+					token = get_token();
+					out = precedence_analysis(token);
+					if (out == NULL) {
+						return COMPILER_ERROR;
+					}
+
+				break;
 			}
 		break;
 
@@ -455,8 +467,50 @@ int Stat()
 				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
 				return SYNTAX_ERROR;
 			}
-			// __<expr>__ TYPOVA KONVERZE ???
+			// <expr> / volani funkce
 			token = get_token();
+			if (token->type == type_id) {
+				symtab_item = symtab_search(sym_table, token, type_variable);
+				if (symtab_item != NULL) {
+					;
+				}
+				else {
+					symtab_item = symtab_search(sym_table, token, type_function);
+					if (symtab_item == NULL) {
+						fprintf(stderr, "ERROR: Using variable before declaration\n");
+						return SEMANTIC_ERROR;
+					}
+					// __VOLANI_FUNKCE__ <<<<<<<<<<<<<<<<< generuj kod <<<<<<<<<<<<<
+					// __ ( __
+					token = get_token();
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Unexpected symbol after function identifier, did you mean to call the function like: f_id(params)?\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket) {
+						fprintf(stderr, "ERROR: Unexpected symbol after function identifier, did you mean to call the function like: f_id(params)?\n");
+						return SYNTAX_ERROR;
+					}
+					// ___<Param_list>__
+					/*
+					token = get_token();
+					if ((return_value = Param_list()) != OK) {
+						return return_value;
+					}
+					
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Missing closing bracket\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket_end) {
+						fprintf(stderr, "ERROR: Missing closing bracket\n");
+						return SYNTAX_ERROR;
+					}
+					*/
+				}
+
+			}
+			// __<Expr>__
 			out = precedence_analysis(token);
 			if (out == NULL) {
 				return COMPILER_ERROR;
@@ -538,9 +592,71 @@ int Func()
 {
 	return OK;
 }
-int Param_list();
-int Param();
-int Next_par();
+int Param_list()
+{
+	int return_value;
+	switch (token->type)
+	{
+		case type_operator:
+			if (token->atribute.int_value != op_bracket_end) {
+				fprintf(stderr, "ERROR: Missing closing bracket\n");
+				return SYNTAX_ERROR;
+			}
+		break;
+
+		case type_id:
+			// __<Param>__
+			if ((return_value = Param()) != OK) {
+				return return_value;
+			}
+			// __<Next_par>__
+			token = get_token();
+			if ((return_value = Next_par()) != OK) {
+				return return_value;
+			}
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: Unexpected symbol in function parameters list\n");
+			return SYNTAX_ERROR;
+	}
+	return OK;
+}
+
+int Param()
+{
+	Tsymtab_item* symtab_item;
+	int return_value;
+
+	if (token->type != type_id) {
+		fprintf(stderr, "ERROR: Invalide parameter in function\n");
+		return SYNTAX_ERROR;
+	}
+	// vklada do lokalni tabulky funkce ??????????? je to treba ???????????
+	symtab_item = symtab_insert(sym_table, token, type_variable);
+	// __AS__
+	token = get_token();
+	if (token->type != type_keyword) {
+		fprintf(stderr, "ERROR: Missing 'As' keyword in function parameter definition: 'id As <type>'\n");
+		return SYNTAX_ERROR;
+	}
+	if (token->atribute.int_value != kw_as) {
+		fprintf(stderr, "ERROR: Missing 'As' keyword in function parameter definition: 'id As <type>'\n");
+		return SYNTAX_ERROR;
+	}
+	// __<Tyype>__
+	token = get_token();
+	if ((return_value = Tyype()) != OK) {
+		return return_value;
+	}
+	// ulozime 
+
+}
+
+int Next_par()
+{
+	return OK;
+}
 int ExprPrint()
 {
 	int return_value;
