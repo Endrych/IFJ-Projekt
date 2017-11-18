@@ -1,11 +1,12 @@
 ' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
 'Test line comment
-17e-2 14e+2 14.4e10
-ahoj 
+17e-2 14e+4 1411e-1
+ahoj .22
 ;
 +
 =
 -
+]
 Or
 fOR
 17454asdasds
@@ -14,8 +15,6 @@ Function
   
 !"AHoj kaj je"
 !"dasdAHoj kaj je"
-1745654446.4564552
-1745654446.4564552
 Function Length(s As String) As Integer
   Return Len(s)
 End Function
