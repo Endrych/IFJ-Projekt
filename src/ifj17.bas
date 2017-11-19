@@ -1,6 +1,6 @@
 ' Zajisteni zakladni kompatibility IFJ17->FreeBASIC '/
 'Test line comment
-17e-2 14e+2 14.4e10
+17e-2 14e+2 14
 ahoj 
 ;
 +
@@ -14,8 +14,6 @@ Function
   
 !"AHoj kaj je"
 !"dasdAHoj kaj je"
-1745654446.4564552
-1745654446.4564552
 Function Length(s As String) As Integer
   Return Len(s)
 End Function

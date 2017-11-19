@@ -5,38 +5,33 @@
 #include "token.h"
 #include "string_storage.h"
 
-//TODO: CASE INSENSITIVE ?
-//TODO: ERRORS
 //TODO: TESTS
-//TODO: NUMBER CHECK - kontrola jestli se dobre prevedlo cislo
-//TODO: co kdyz narazi na EOF?
-//TODO: co kdyz dostanu jiny znak napriklad ?
 
 typedef enum{
 	_START,
-  _LINE_COMMENT,
-  _BLOCK_COMMENT,//USED IN SLASH
-  _BLOCK_COMMENT_FINISHED, //mozna neni treba
-  _SLASH,
-  _NUMBER,
-  _NUM_DOUBLE,  // 
-  _EXCLAMATION,
-  _START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
-  _END_STRING, //
-  _IDENTIFIER, 
-  _ASSIGN,
-  _ADD,
-  _SUB,
-  _MULTIPLY,
-  _DIVISION_INT, // {\}
-  _LESSER,
-  _LESSER_EQUAL, //USED IN LESSER
-  _NOT_EQUAL, //
-  _GREATER,
-  _GREATER_EQUAL, //USED IN GREATER
-  _BRACKET,
-  _BRACKET_END,
-  _EOF
+	_LINE_COMMENT,
+	_BLOCK_COMMENT,//USED IN SLASH
+	_BLOCK_COMMENT_FINISHED, //mozna neni treba
+	_SLASH,
+	_NUMBER,
+	_NUM_DOUBLE,  // 
+	_EXCLAMATION,
+	_START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
+	_END_STRING, //
+	_IDENTIFIER, 
+	_ASSIGN,
+	_ADD,
+	_SUB,
+	_MULTIPLY,
+	_DIVISION_INT, // {\}
+	_LESSER,
+	_LESSER_EQUAL, //USED IN LESSER
+	_NOT_EQUAL, //
+	_GREATER,
+	_GREATER_EQUAL, //USED IN GREATER
+	_BRACKET,
+	_BRACKET_END,
+	_EOF
 }_State;
 
 FILE* source_file = NULL;
@@ -45,7 +40,7 @@ int load_file(char *file){
 	FILE *source;
 	source = fopen(file, "r");
   if(source == NULL){
-		printf("FILE ERROR");
+	  	fprintf(stderr, "File failed to open\n");
 		return 1;
 	}
 
@@ -55,104 +50,114 @@ int load_file(char *file){
 
 int close_file(){
 	fclose(source_file);
-	if(source_file != NULL){
-		return 1;
-	}
 	return 0;
 }
 
 Token* get_token(){
 	bool isIntToken = true;
 	Token* token = create_token();
+	if(token == NULL){
+		fprintf(stderr, "Creation of token failed\n");
+		EXIT_FAILURE;
+	}
 	static char last_char;
 	char prev_char;
-  int state = _START;
+	int state = _START;
 	int length = 0;
 	int size = 10;  //udelat konstantu
 	char *str;
 	char current_char = '\0';
 	char lowering;					
-	
-	
-  while(isIntToken){
-    if(last_char != '\0'){
-      current_char = last_char;
-      last_char = '\0';
+	bool e_present,dot_present = false;
+	bool e_last_char = false;
+	while(isIntToken){
+    	if(last_char != '\0'){
+    	  current_char = last_char;
+      	last_char = '\0';
 		}
 		else{
-      current_char = fgetc(source_file);
-    }
-    switch(state){
-      case _START:
-        if(current_char == '\''){
-          state = _LINE_COMMENT;
-        }
-        else if(current_char == '/'){
-          state = _SLASH;                    
-        }
-        else if(current_char >= '0' && current_char <= '9'){
+			current_char = fgetc(source_file);
+    	}
+		switch(state){
+			case _START:
+				if(current_char == '\''){
+				state = _LINE_COMMENT;
+				}
+				else if(current_char == '/'){
+				state = _SLASH;                    
+				}
+				else if(current_char >= '0' && current_char <= '9'){
 					last_char = current_char;		
 					str=(char*)calloc(size,sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}		
 					state = _NUMBER;
-        }
-        else if(current_char == '!'){
-          state = _EXCLAMATION;
-        }
-        else if((current_char >= 'a' && current_char <= 'z') ||
+				}
+				else if(current_char == '!'){
+					state = _EXCLAMATION;
+				}
+				else if((current_char >= 'a' && current_char <= 'z') ||
 				(current_char >= 'A' && current_char <= 'Z') || 
 				current_char == '_'){
 					state = _IDENTIFIER;
-					str=(char*)calloc(size,sizeof(char));					
+					str=(char*)calloc(size,sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}					
 					last_char = current_char;
 				}
-        else if(current_char == '='){
-          token->type = type_operator;
+				else if(current_char == '='){
+					token->type = type_operator;
 					token->atribute.operator_value = op_assign;
 					return token;
-        }
-        else if(current_char == '+'){
-          token->type = type_operator;
+				}
+				else if(current_char == '+'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_add;
 					return token;
-        }
-        else if(current_char == '-'){
-          token->type = type_operator;
+				}
+				else if(current_char == '-'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_sub;
 					return token;
-        }
-        else if(current_char == '*'){
+				}
+				else if(current_char == '*'){
 					token->type = type_operator;
 					token->atribute.operator_value = op_mul;
 					return token;
-        }
-        else if(current_char == '\\'){
-          token->type = type_operator;
+				}
+				else if(current_char == '\\'){
+					token->type = type_operator;
 					token->atribute.operator_value = op_division_int;
 					return token;
-        }
-        else if(current_char == '<'){
-          state = _LESSER;
-        }
-        else if(current_char == '>'){
-          state = _GREATER;
-        }
-    	  else if (current_char == '('){
+				}
+				else if(current_char == '<'){
+					state = _LESSER;
+				}
+				else if(current_char == '>'){
+					state = _GREATER;
+				}
+				else if (current_char == '('){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket;
 					return token; 
-        }
-        else if (current_char == ')'){
+				}
+				else if (current_char == ')'){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket_end;
 					return token;	
-        }
-        else if (current_char == EOF){
+				}
+				else if (current_char == EOF){
 					state = _EOF;
-					isIntToken = false;					
-          last_char = current_char;                    
+					last_char = current_char;                    
 				}
 				else if(current_char == ' ' || 
-				current_char == '\t'){
+					current_char == '\t'){
 					state = _START;
 				}
 				else if(current_char == '\n'){
@@ -161,6 +166,14 @@ Token* get_token(){
 				}
 				else if(current_char == ';'){
 					token->type=type_semicolon;
+					return token;
+				}else if(current_char == ','){
+					token->type=type_comma;
+					return token;
+				}
+				else{
+					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
+					token->type=type_wrong;
 					return token;
 				}
 				break;
@@ -192,9 +205,14 @@ Token* get_token(){
 				prev_char = current_char;				
 				break;
 			case _NUMBER:
-				if(!((current_char >= '0' && current_char <= '9')|| 
-				current_char == '.' || 
-				current_char == 'e')){
+				if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t' ||
+				current_char == '<' || current_char == '>' ||
+				current_char == '=' || current_char == '+' ||
+				current_char == '-' || current_char == '/' ||
+				current_char == '\\' || current_char == '*' ||
+				current_char == ';' || current_char == ','||
+				current_char == ')' || current_char == '('){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -203,37 +221,62 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
+				}else if((!(current_char >= '0' && current_char <= '9'))&&
+				(current_char != '.' && current_char != 'e' && 
+				current_char != 'E')){
+					token->type = type_wrong;
+					fprintf(stderr, "Error: not a number\n");
+					free(str);
+					return token;
 				}
 				else if(current_char == '.' || 
 				current_char == 'e' ||
 				current_char == 'E'){
+					if(current_char == '.'){
+						dot_present = true;
+					}else if(current_char == 'e' || current_char == 'E'){
+						e_present = true;
+						e_last_char = true;
+					}
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
-          }
+	           			size += 10;
+    	        		str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
+				  	}		
 					str[length] = current_char;
 					length++;
-					// bool isExponent = false;
-					// bool isPoint = false;
-
 					state = _NUM_DOUBLE;
 					break;
 				}
 				else{
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
-          }
+        				size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
+					}
 					str[length] = current_char;
 					length++;
-          break;
+        			break;
 				}
 				break;
 			case _NUM_DOUBLE:
-				if(!((current_char >= '0' && current_char <= '9')||
-				(current_char == '+' || current_char == '-' ||
-				 current_char == '.' || current_char == 'e'
-				|| current_char == 'E'))){
+				if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t' ||
+				((current_char == '+' || current_char == '-') &&
+				!e_last_char) || current_char == '<' || 
+				current_char == '>' || current_char == '=' || 
+				current_char == '/' || current_char == '\\' 
+				|| current_char == '*' || current_char == ';' ||
+				current_char == ','|| current_char == ')' ||
+				current_char == '('){
 					double convert;
 					convert = atof(str);
 					token->type = type_double;
@@ -241,53 +284,105 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
-				}
-				else{
+				}else if((!(current_char >= '0' && current_char <= '9'))&&
+				(current_char != '.' && current_char != 'e' && 
+				current_char != 'E') && current_char != '+' &&
+				current_char != '-'){
+					token->type = type_wrong;
+					fprintf(stderr, "Error1: not a number\n");
+					free(str);
+					return token;
+				}else{
+					if((current_char == 'E' || current_char == 'e')&&
+					e_present){
+						fprintf(stderr, "Error2: Not a number\n");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}else if (current_char == '.' && dot_present){
+						fprintf(stderr, "Error3: Not a number\n");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}else if(current_char == '.' && e_present){
+						fprintf(stderr, "Error4: Not a number\n");
+						token->type = type_wrong;
+						free(str);
+						return token;
+					}
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
+           				size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = current_char;
 					length++;
+					if(e_last_char){
+						e_last_char = false;
+					}
 					break;
 				}
 			case _EXCLAMATION:
 				if(current_char == '\"'){
-					str=(char*)calloc(size,sizeof(char));					
+					str=(char*)calloc(size,sizeof(char));	
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}						
 					state = _START_STRING;
 					break;
 				}			
 				else{
-					printf("ERROR");
+					token->type = type_wrong;
+					fprintf(stderr, "Problem with string inicialization\n");
+					// free(str);
+					return token;
 				}	
-				break;
 			case _START_STRING:
 				if(current_char != '\"'){
 					// add to array
 					if(length == size){
-            size += 10;
-            str = (char *)realloc(str, size*sizeof(char));
+            			size += 10;
+            			str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = current_char;
 					length++;
 					break;
-				}
-				else{
+				}else if(current_char == '\n'){
+					fprintf(stderr,"Error: String wasnt ended properly\n");
+					free(str);
+					token->type = type_wrong;
+					return token;
+				}else{
+					last_char = current_char;
 					state = _END_STRING;
+					break;
 				}
-				break;
 			case _END_STRING:
 				if(length == size){
 					size += 10;
 					str = (char *)realloc(str, size*sizeof(char));
+					if (str == NULL)
+					{
+						fprintf(stderr,"Problem with memory\n");
+						EXIT_FAILURE;
+					}		
 				}
 				str[length] = '\0';
 				length++;
 				int adress = add_string_to_storage(str);
-				// printf("Adresa:%d ,",adress);_NOT_EQUAL
 				token->type = type_string;
 				token->atribute.int_value = adress;
-				last_char = current_char;
 				free(str);
 				return token;
 			case _IDENTIFIER:
@@ -298,15 +393,37 @@ Token* get_token(){
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					lowering = tolower(current_char);
 					str[length] = lowering;
 					length++;
-				}
-				else{
+					break;
+				}else if(current_char == '\n' || current_char == ' ' ||
+				current_char == EOF || current_char == '\t' || 
+				current_char == '<' || current_char == '>' ||
+				current_char == '=' || current_char == '/' ||
+				current_char == '\\' || current_char == '*' ||
+				current_char == '+' || current_char == '-' ||
+				current_char == ')' || current_char == '(' ||
+				current_char == ';' || current_char == ','){
+					if(current_char == '\n'){
+						last_char = '\n';
+					}else if(current_char == EOF){
+						last_char = EOF;
+					}
 					if(length == size){
 						size += 10;
 						str = (char *)realloc(str, size*sizeof(char));
+						if (str == NULL)
+						{
+							fprintf(stderr,"Problem with memory\n");
+							EXIT_FAILURE;
+						}		
 					}
 					str[length] = '\0';
 					length++;
@@ -325,8 +442,12 @@ Token* get_token(){
 					last_char = current_char;
 					free(str);
 					return token;
+				}else{
+					token->type = type_wrong;
+					fprintf(stderr, "Identifier obtains character which is not allowed: %c", current_char);
+					free(str);
+					return token;
 				}
-				break;
 			case _LESSER:
 				if(current_char == '='){
 					state = _LESSER_EQUAL;
@@ -372,5 +493,7 @@ Token* get_token(){
 				return token;
 		}
 	}
-	return 0; //mozna neco jinyho sem dat uvidime
+	fprintf(stderr, "Something went wrong during lexical analyzation");
+	token->type = type_wrong;
+	return token; //mozna neco jinyho sem dat uvidime
 }

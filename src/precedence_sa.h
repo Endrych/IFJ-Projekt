@@ -6,6 +6,7 @@
 #define PRECEDENCE_H
 
 typedef struct{
+    int StatusCode;
     Tvariable_type Type;
     Token* ReturnToken;
     ATLeaf * Tree;
