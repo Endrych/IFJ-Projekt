@@ -2,15 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-Identifikátor pro- ˇ
-menné se skládá ze dvou ˇ cástí odd ˇ elených zaviná ˇ cem (znak ˇ @; bez bílých znak ˚u), oznacení ˇ
-rámce LF, TF nebo GF a samotného jména promenné (sekvence libovolných alfanume- ˇ
-rický a speciálních znak ˚u bez bílých znak ˚u zacínající písmenem nebo speciálním znakem, ˇ
-kde speciální znaky jsou: _, -, $, &, %, *). Napˇr. GF@_x znací prom ˇ ennou ˇ _x uloženou
-v globálním rámci.
-*/
-
 char * generate_name(GType type){
     int length = 1;
     int index = 0;
@@ -42,11 +33,11 @@ char * generate_name(GType type){
         if(curr >= 0 && curr <= 25){
             name[i] = 'a' + curr;
         }   
-        else if(curr >= 26 && curr <= 61){
+        else if(curr >= 26 && curr <= 51){
             name[i] = 'A' + (curr - 26);
         }   
         else{
-            name[i] = '0' + (curr - 62);
+            name[i] = '0' + (curr - 52);
         }  
         index = (int) index / 62;
         i++;
