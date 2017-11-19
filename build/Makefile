@@ -63,3 +63,7 @@ frame_test:
 parser: 
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)parser.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)abstract_tree.c  -g -o parser
 
+name_generator:
+	$(CC) $(STD_C99) $(CFLAGS) $(TEST_FOLDER)name_generator_test.c $(SRC_FOLDER)name_generator.c -o name_generator
+	./name_generator
+	rm name_generator
