@@ -1,4 +1,5 @@
 #include "token.h"
+#include "symtable.h"
 
 #ifndef ATREE_H
 #define ATREE_H
@@ -7,6 +8,7 @@
 typedef union{
     Operators op_value;
     Token * token;
+    Tsymtab_item * tsItem;
 }ATAtribute;
 
 typedef struct{

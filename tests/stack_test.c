@@ -88,6 +88,7 @@ int main()
         printf("Correct\n");
     printf("\n\n");
     stackPush(s,test);
+    
     stackDestruct(s);
     destruct_token_storage();
     return 0;

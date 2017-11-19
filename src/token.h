@@ -12,7 +12,7 @@ typedef enum{
     type_eol,
     type_semicolon,
     type_eof,
-    type_comma
+    type_comma,
 }Type;
 
 typedef enum{
