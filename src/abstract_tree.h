@@ -4,11 +4,24 @@
 #ifndef ATREE_H
 #define ATREE_H
 
+typedef enum{
+    Integer2Double,
+    Double2Integer
+}TCast;
+
+
+typedef enum{
+    at_operators,
+    at_token,
+    at_tsitem,
+    at_type_cast
+}ATType;
 
 typedef union{
     Operators op_value;
     Token * token;
     Tsymtab_item * tsItem;
+    TCast type_cast;
 }ATAtribute;
 
 typedef struct{

@@ -87,7 +87,6 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
         }
         else if(operation == 2){
             int rule = findRule(s, sym_table);
-            printf("%d ",rule);
             if( rule == -1){
                 out->ReturnToken = current;
                 out->StatusCode = SEMANTIC_ERROR;
