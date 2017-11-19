@@ -253,13 +253,7 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         
                         Tsymtab_item * item = symtab_search(sym_table,data->Atr.Token,type_variable);
                         if(item != NULL){
-                            if(item->type_strct.variable->declared == true){
-                                dataType = item->type_strct.variable->type;
-                            }
-                            else{
-                                printf("Variable is not defined\n");
-                                return -1;
-                            }
+                            dataType = item->type_strct.variable->type;
                         }
                         else{
                             printf("Variable is not declared\n");
