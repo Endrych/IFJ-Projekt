@@ -13,8 +13,11 @@ int main(){
     load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
     Token * token;
+    Tsymtab * symtable = symtab_init(17);
+
+
     printf("Expr: 6 + 5 + 4 * 3\nReturn EOL?");
-    PrecendentOutput * out = precedence_analysis(NULL);
+    PrecendentOutput * out = precedence_analysis(NULL,symtable);
     if(out->ReturnToken->type == type_eol)
         printf("Correct\n");
     else
@@ -30,7 +33,7 @@ int main(){
 
 
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -41,7 +44,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -52,7 +55,7 @@ int main(){
     free(out);
 
     printf("Expr: (5 < 4) > 4\n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -63,7 +66,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 <> 3 \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -74,7 +77,7 @@ int main(){
     free(out);
 
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -85,7 +88,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 = 3  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -96,7 +99,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 <= 3  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -107,7 +110,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 => 3; Return semicolon? \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->ReturnToken->type == type_semicolon)
         printf("Correct\n");
     else
@@ -122,7 +125,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 + 3 4 * 5  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -133,7 +136,7 @@ int main(){
     free(out);
 
     printf("Expr: 5 + + 3 + - 3  4 * 5  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -144,7 +147,7 @@ int main(){
     free(out);
 
     printf("Expr: 4 * !\"5\"  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -158,7 +161,7 @@ int main(){
     Token * inp_token = create_token();
     inp_token->type = type_integer;
     inp_token->atribute.int_value = 16;
-    out = precedence_analysis(inp_token);
+    out = precedence_analysis(inp_token,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -171,7 +174,7 @@ int main(){
     free(out);
 
     printf("Expr: 4 < 5 > 4  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -182,16 +185,56 @@ int main(){
     free(out);
 
     printf("Expr: !\"test\" < !\"ahoj\"  \n");
-    out = precedence_analysis(NULL);
+    out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
     token = out->ReturnToken;
-    while(token != NULL && token->type != type_eol){
+    while(token != NULL && (token->type != type_eol && token->type != type_eof)){
         token = get_token();
     }
     free(out);
 
+    printf("Expr: jak + se + mas  \n");
+    out = precedence_analysis(NULL,symtable);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token != NULL && (token->type != type_eol && token->type != type_eof)){
+        token = get_token();
+    }
+    free(out);
+    
+    Token * tokenv = get_token();
+    Tsymtab_item * item = symtab_insert(symtable,tokenv,type_variable); 
+    item->type_strct.variable->declared = false;
+    printf("Expr: prom + 5  \n");
+    out = precedence_analysis(NULL,symtable);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token != NULL && (token->type != type_eol && token->type != type_eof)){
+        token = get_token();
+    }
+    free(out);
+
+    Token * tokenv1 = get_token();
+    Tsymtab_item * item1 =  symtab_insert(symtable,tokenv1,type_variable);   
+    item1->type_strct.variable->declared = true;
+    printf("Expr: prom + 5  \n");
+    out = precedence_analysis(NULL,symtable);
+    if(out->StatusCode == OK)
+        print_t(out->Tree);
+    dispose_at(out->Tree);
+    token = out->ReturnToken;
+    while(token != NULL && (token->type != type_eol && token->type != type_eof)){
+        token = get_token();
+    }
+    free(out);
+
+    symtab_free(symtable);
     destruct_storage();
     destruct_token_storage();   
     printf("\n\n____________________________________________________\n");
