@@ -8,24 +8,24 @@
 #include "error.h"
 
 static int precedence_table[][15] = {  
-                                            {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
-                                            {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
-                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
-                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
-                                            {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
-                                            {1,1,1,1,1,1,1,1,1,1,1,1,0,1,-1},
-                                            {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
-                                            {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
-                                            {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1}
-                                        };
+                                        {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
+                                        {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
+                                        {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                        {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                        {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
+                                        {1,1,1,1,1,1,1,1,1,1,1,1,0,1,-1},
+                                        {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
+                                        {2,2,2,2,2,2,2,2,2,2,2,-1,2,-1,2},
+                                        {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1}
+                                    };
 
-PrecendentOutput * precedence_analysis(Token* last_token){
+PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
     if(out == NULL)
         return NULL;
@@ -86,7 +86,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             stackPush(s,data);
         }
         else if(operation == 2){
-            int rule = findRule(s);
+            int rule = findRule(s, sym_table);
             if( rule == -1){
                 out->ReturnToken = current;
                 out->StatusCode = SEMANTIC_ERROR;
@@ -198,7 +198,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
     return oper;
 }
 
-int findRule(tStack * s){
+int findRule(tStack * s,Tsymtab *sym_table){
     int rule = 0;
     int state = 0;
     int estimate_precedence = 0;
@@ -213,8 +213,7 @@ int findRule(tStack * s){
         ATData aData;
         Tvariable_type dataType;
         Tvariable_type dataType1;
-        if(data != NULL)
-            stackPop(s);
+        
         switch(state){
             case 0:
                 if(data->Type == type_nonterm){
@@ -230,23 +229,37 @@ int findRule(tStack * s){
                     else if(data->Atr.Token->type == type_string ){
                             dataType = type_str;
                             token = data->Atr.Token;
+                            aData.type = type_string;
                             estimate_precedence = 13;
                             state = 3;
                     }
                     else if(data->Atr.Token->type == type_double){
                         dataType = type_doub;
                         token = data->Atr.Token;
+                        aData.type = type_double;
                         estimate_precedence = 13;
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_integer){
                         dataType = type_int;
+                        aData.type = type_integer;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_id){
                         // Detekce typu
+                        
+                        Tsymtab_item * item = symtab_search(sym_table,data->Atr.Token,type_variable);
+                        if(item != NULL){
+                            dataType = item->type_strct.variable->type;
+                        }
+                        else{
+                            printf("Variable is not declared\n");
+                            return -1;
+                        }
+                        aData.type = type_id;
+                        aData.Atr.tsItem = item;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
                         state = 3;
@@ -346,8 +359,8 @@ int findRule(tStack * s){
                     
                     if(estimate_precedence == 13){
                         newData->DataType = dataType;
-                        aData.type = type_token;
-                        aData.Atr.token = token;
+                        if(aData.type != type_id)
+                            aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);
                     }
                     else if(estimate_precedence == 1){
@@ -398,9 +411,11 @@ int findRule(tStack * s){
                             }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
-                    
+                    if(data != NULL)
+                        stackPop(s);            
                     stackPush(s,newData);
                     rule = estimate_precedence;
+                    continue;
                 }
                 else{
                     printf("Semantic error\n");
@@ -417,6 +432,9 @@ int findRule(tStack * s){
                 }
                 break;
         }
+        if(data != NULL)
+            stackPop(s);
+        
     }
     return rule;
 }
