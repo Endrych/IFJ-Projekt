@@ -17,13 +17,6 @@ Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type
 	{	
 		if ((strcmp(temp->key, key)) == 0)
 		{	
-			if (type == type_variable)
-			{	
-				temp->type_strct.variable->declared = true;
-			} else if (type == type_function)
-			{
-				temp->type_strct.function->declared = true;
-			}
 			free(key);
 			return temp;
 		}
