@@ -236,6 +236,7 @@ void pop_frame(TFstack *stack)
 		}
 
 		free(local_frame);
+		free(temp_frame);
 	}	
 }
 
@@ -266,6 +267,7 @@ int main()
 								frame->next_instr, frame->var_count);
 	create_frame();
 	pop_frame(stack);
-	free(temp_frame);
+	//free(temp_frame);
 	FS_destruct(stack);
-}*/
+}
+*/
