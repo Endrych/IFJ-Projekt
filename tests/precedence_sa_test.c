@@ -209,6 +209,7 @@ int main(){
     Token * tokenv = get_token();
     Tsymtab_item * item = symtab_insert(symtable,tokenv,type_variable); 
     item->type_strct.variable->declared = false;
+    item->type_strct.variable->type = type_int;
     printf("Expr: prom + 5  \n");
     out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
@@ -223,6 +224,7 @@ int main(){
     Token * tokenv1 = get_token();
     Tsymtab_item * item1 =  symtab_insert(symtable,tokenv1,type_variable);   
     item1->type_strct.variable->declared = true;
+    item1->type_strct.variable->type = type_int;
     printf("Expr: prom + 5  \n");
     out = precedence_analysis(NULL,symtable);
     if(out->StatusCode == OK)
@@ -248,7 +250,7 @@ int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
 
     if (!tree) return 0;
 
-    if(tree->data.type == type_operator){
+    if(tree->data.type == at_operators){
         if(tree->data.Atr.op_value == op_add)
             sprintf(b, "(%s)", " + ");
         else if(tree->data.Atr.op_value == op_sub)
@@ -272,9 +274,10 @@ int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
         else if(tree->data.Atr.op_value == op_not_equal)
             sprintf(b, "(%s)", " <>");
     }
-    else
+    else if(tree->data.type = at_token)
         sprintf(b, "(%03d)", tree->data.Atr.token->atribute.int_value);
-
+    else
+        sprintf(b, "(xxx)");
 
     int left  = _print_t(tree->left,  1, offset,                depth + 1, s);
     int right = _print_t(tree->right, 0, offset + left + width, depth + 1, s);

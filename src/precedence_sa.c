@@ -229,20 +229,20 @@ int findRule(tStack * s,Tsymtab *sym_table){
                     else if(data->Atr.Token->type == type_string ){
                             dataType = type_str;
                             token = data->Atr.Token;
-                            aData.type = type_string;
+                            aData.type = at_token;
                             estimate_precedence = 13;
                             state = 3;
                     }
                     else if(data->Atr.Token->type == type_double){
                         dataType = type_doub;
                         token = data->Atr.Token;
-                        aData.type = type_double;
+                        aData.type = at_token;
                         estimate_precedence = 13;
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_integer){
                         dataType = type_int;
-                        aData.type = type_integer;
+                        aData.type = at_token;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
                         state = 3;
@@ -258,7 +258,7 @@ int findRule(tStack * s,Tsymtab *sym_table){
                             printf("Variable is not declared\n");
                             return -1;
                         }
-                        aData.type = type_id;
+                        aData.type = at_tsitem;
                         aData.Atr.tsItem = item;
                         token = data->Atr.Token;
                         estimate_precedence = 13;
@@ -359,7 +359,7 @@ int findRule(tStack * s,Tsymtab *sym_table){
                     
                     if(estimate_precedence == 13){
                         newData->DataType = dataType;
-                        if(aData.type != type_id)
+                        if(aData.type != at_tsitem)
                             aData.Atr.token = token;
                         newData->Atr.Leaf = make_leaf(aData);
                     }
@@ -368,14 +368,20 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         newData->Atr.Leaf = leaf1;
                     }
                     else{
-                        aData.type = type_operator;
+                        aData.type = at_operators;
                         aData.Atr.op_value = oper;
                         if(oper == op_add || oper == op_sub || oper == op_mul || oper == op_slash ||
                             oper == op_lesser || oper == op_greater || oper == op_lesser_equal || oper == op_greater_equal ||
                             oper == op_assign || oper == op_not_equal){
                             if(dataType == type_int && dataType1 == type_int){
-                                if(oper == op_slash )
+                                if(oper == op_slash ){
+                                    ATData cData;
+                                    cData.type = at_type_cast;
+                                    cData.Atr.type_cast = Integer2Double;
+                                    leaf2 = make_tree(leaf2,NULL,cData);
+                                    leaf1 = make_tree(leaf1,NULL,cData);
                                     newData->DataType = type_doub;
+                                }
                                 else 
                                     newData->DataType = type_int;
                             }
@@ -406,9 +412,9 @@ int findRule(tStack * s,Tsymtab *sym_table){
                             }
                         }
                         else{
-                                printf("Semantic error\n");
-                                return -1;
-                            }
+                            printf("Semantic error\n");
+                            return -1;
+                        }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
                     if(data != NULL)

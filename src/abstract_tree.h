@@ -25,7 +25,7 @@ typedef union{
 }ATAtribute;
 
 typedef struct{
-    Type type;
+    ATType type;
     ATAtribute Atr;
 }ATData;
 
