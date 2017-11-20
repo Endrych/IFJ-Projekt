@@ -1,5 +1,6 @@
 #include "token.h"
 #include "symtable.h"
+#include <stdbool.h>
 
 #ifndef ATREE_H
 #define ATREE_H
@@ -30,6 +31,7 @@ typedef struct{
 }ATData;
 
 typedef struct atleaf{
+    bool processed;
     ATData data;
     struct atleaf *left;
     struct atleaf *right;
