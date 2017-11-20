@@ -274,10 +274,29 @@ int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
         else if(tree->data.Atr.op_value == op_not_equal)
             sprintf(b, "(%s)", " <>");
     }
-    else if(tree->data.type = at_token)
-        sprintf(b, "(%03d)", tree->data.Atr.token->atribute.int_value);
-    else
-        sprintf(b, "(xxx)");
+    else if(tree->data.type == at_type_cast){
+        if(tree->data.Atr.type_cast == Integer2Double)
+            sprintf(b, "(I2D)");
+        else
+            sprintf(b, "(D2I)");
+    }
+    else if(tree->data.type == at_tsitem){
+        char * str = tree->data.Atr.tsItem->key;
+        sprintf(b, "(%c%c%c)",str[0],str[1],str[2]);
+    }
+    else{
+        Token * tk = tree->data.Atr.token;
+        if(tk->type == type_double){
+            sprintf(b, "(%.1f)",tk->atribute.double_value);
+        }
+        else if(tk->type == type_integer){
+            sprintf(b, "(%03d)",tk->atribute.int_value);
+        }
+        else if(tk->type == type_string){
+            char * str = get_string(tk->atribute.int_value);
+            sprintf(b, "(%c%c%c)",str[0],str[1],str[2]);
+        }
+    }
 
     int left  = _print_t(tree->left,  1, offset,                depth + 1, s);
     int right = _print_t(tree->right, 0, offset + left + width, depth + 1, s);

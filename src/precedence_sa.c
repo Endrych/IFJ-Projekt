@@ -385,9 +385,21 @@ int findRule(tStack * s,Tsymtab *sym_table){
                                 else 
                                     newData->DataType = type_int;
                             }
-                            else if((dataType == type_doub && dataType1 == type_doub) ||
-                                    (dataType == type_int && dataType1 == type_doub) ||
-                                    (dataType == type_doub && dataType1 == type_int)){
+                            else if(dataType == type_doub && dataType1 == type_doub){
+                                newData->DataType = type_doub;
+                            }
+                            else if(dataType == type_doub && dataType1 == type_int){
+                                ATData cData;
+                                cData.type = at_type_cast;
+                                cData.Atr.type_cast = Integer2Double;
+                                leaf2 = make_tree(leaf2,NULL,cData);
+                                newData->DataType = type_doub;
+                            }
+                            else if(dataType == type_int && dataType1 == type_doub){
+                                ATData cData;
+                                cData.type = at_type_cast;
+                                cData.Atr.type_cast = Integer2Double;
+                                leaf1 = make_tree(leaf1,NULL,cData);
                                 newData->DataType = type_doub;
                             }
                             else if(dataType == type_str && dataType1 == type_str){
