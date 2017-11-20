@@ -22,6 +22,9 @@ int main(){
         printf("Correct\n");
     else
         printf("Wrong\n");
+    printf("Return double: ");
+    if(out->Type == type_doub)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -34,6 +37,9 @@ int main(){
 
     printf("Expr: 4 * (5 + 3 * 2) - 4 \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return integer: ");
+    if(out->Type == type_int)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -45,6 +51,9 @@ int main(){
 
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return double: ");
+    if(out->Type == type_doub)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -56,6 +65,9 @@ int main(){
 
     printf("Expr: (5 < 4) > 4\n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -67,6 +79,9 @@ int main(){
 
     printf("Expr: 5 <> 3 \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -78,6 +93,9 @@ int main(){
 
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -89,6 +107,9 @@ int main(){
 
     printf("Expr: 5 = 3  \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -100,6 +121,9 @@ int main(){
 
     printf("Expr: 5 <= 3  \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -111,6 +135,9 @@ int main(){
 
     printf("Expr: 5 => 3; Return semicolon? \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return bool: ");
+    if(out->Type == type_bool)
+        printf("Correct\n");
     if(out->ReturnToken->type == type_semicolon)
         printf("Correct\n");
     else
@@ -212,6 +239,9 @@ int main(){
     item->type_strct.variable->type = type_int;
     printf("Expr: prom + 5  \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return integer: ");
+    if(out->Type == type_int)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
@@ -227,6 +257,9 @@ int main(){
     item1->type_strct.variable->type = type_int;
     printf("Expr: prom + 5  \n");
     out = precedence_analysis(NULL,symtable);
+    printf("Return integer: ");
+    if(out->Type == type_int)
+        printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
     dispose_at(out->Tree);
