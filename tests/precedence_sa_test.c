@@ -13,8 +13,7 @@ void print_t(ATLeaf *tree);
 extern Tsymtab * symtab;
 
 
-int main(){
-    load_file("../tests/precedence-test.ifj");
+int main(){  
     ATQueue * q = malloc(sizeof(ATQueue));
     queInit(q);
     printf("\n\n____________________________________________________\n");
@@ -173,7 +172,6 @@ int main(){
     destruct_storage();
     destruct_token_storage();   
     printf("\n\n____________________________________________________\n");
-    close_file();
 }
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
