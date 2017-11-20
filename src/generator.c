@@ -32,7 +32,7 @@ void generate_expression(ATLeaf *tree){
     gsval_init(gv_stack);
     ATLeaf * current = tree;
 
-    // while(tree->processed != true){
+    while(tree->processed != true){
         if(current->left != NULL && current->left->processed == false){
             if(current->left->data.type == at_token){
                 if(current->left->data.Atr.token->type == type_integer){//int
@@ -41,6 +41,8 @@ void generate_expression(ATLeaf *tree){
                     new_data->type = gvs_type_int;
                     new_data->value.int_value = current->left->data.Atr.token->atribute.int_value;
                     gsval_stackPush(gv_stack,new_data);
+                    left_data = gsval_stackTop(gv_stack);                                    
+                    printf("%d\n",left_data->value.int_value);
                 }
                 else if(current->left->data.Atr.token->type == type_double){//double
                     current->left->processed = true;
@@ -48,8 +50,8 @@ void generate_expression(ATLeaf *tree){
                     new_data->type = gvs_type_double;
                     new_data->value.float_value = current->left->data.Atr.token->atribute.double_value;
                     gsval_stackPush(gv_stack,new_data);
-                    // left_data = gsval_stackTop(gv_stack);                                    
-                    // printf("%f\n",left_data->value.float_value);
+                    left_data = gsval_stackTop(gv_stack);                                    
+                    printf("%f\n",left_data->value.float_value);
                 }
             }
             else if(current->left->data.type == at_tsitem){
@@ -59,12 +61,46 @@ void generate_expression(ATLeaf *tree){
 
             }
             else if(current->left->data.type == at_operators){
+                gsptr_stackPush(gp_stack, current);
+                current = current->left;
+            }
+        }
+        else if(current->right != NULL && current->right->processed == false){
+            if(current->right->data.type == at_token){
+                if(current->right->data.Atr.token->type == type_integer){//int
+                    current->right->processed = true;
+                    new_data = malloc(sizeof(struct GVSData));
+                    new_data->type = gvs_type_int;
+                    new_data->value.int_value = current->right->data.Atr.token->atribute.int_value;
+                    gsval_stackPush(gv_stack,new_data);
+                    left_data = gsval_stackTop(gv_stack);                                    
+                    printf("%d\n",left_data->value.int_value);
+                }
+                else if(current->right->data.Atr.token->type == type_double){//double
+                    current->left->processed = true;
+                    new_data = malloc(sizeof(struct GVSData));
+                    new_data->type = gvs_type_double;
+                    new_data->value.float_value = current->right->data.Atr.token->atribute.double_value;
+                    gsval_stackPush(gv_stack,new_data);
+                    left_data = gsval_stackTop(gv_stack);                                    
+                    printf("%f\n",left_data->value.float_value);
+                }
+            }
+            else if(current->right->data.type == at_tsitem){
+                //pres globalni ramec
+            }
+            else if(current->right->data.type == at_type_cast){
 
             }
-            
-            
+            else if(current->right->data.type == at_operators){
+                gsptr_stackPush(gp_stack, current);
+                current = current->right;
+            }
         }
-    // }
+        else if(current->right->processed == true && current->right->processed == true){
+            current->processed = true;
+        }
+    }
 }
 
 
