@@ -184,7 +184,6 @@ int main(){
     destruct_storage();
     destruct_token_storage();   
     printf("\n\n____________________________________________________\n");
-    close_file();
 }
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])
