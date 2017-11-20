@@ -32,7 +32,6 @@ typedef struct Stack{
 void stackInit ( tStack* s );
 void stackDestruct ( tStack* s );
 int stackEmpty ( const tStack* s );
-int stackFull ( const tStack* s );
 SData* stackTop ( const tStack* s);
 void stackPop ( tStack* s );
 void stackPush ( tStack* s, SData* data);
