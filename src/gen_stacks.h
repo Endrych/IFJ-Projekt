@@ -1,3 +1,4 @@
+#include "abstract_tree.h"
 
 #ifndef STACK_H
 #define STACK_H
@@ -27,23 +28,17 @@ typedef struct GVStack{
     GVSVal* Top;
 } GVStack;
 
-// typedef struct Stack{
-//     TSItem* Top;
-// } tStack;
-
 // xxxxxxxx PTR STACK xxxxxxxxx
 
-// typedef enum{
-//     type_token,
-//     type_nonterm,
-//     type_handler
-// }Type;
+typedef struct GPSVal{
+    ATLeaf *leaf;
+    struct GPSVal *next;
+}GPSVal;
 
-// typedef struct{
-//     Tvariable_type DataType;
-//     SType Type;
-//     SAtribute Atr;
-// }SData;
+typedef struct GPStack{
+    GPSVal* Top;
+} GPStack;
+
 
 void gsval_init(GVStack *s);
 void gsval_stackPush ( GVStack* s, GSVData* data);
@@ -52,5 +47,11 @@ GSVData* gsval_stackTop(const GVStack *s);
 void gsval_stackPop(GVStack *s);
 int gsval_stackCount(GVStack *s);
 void gsval_stackDestruct(GVStack *s);
+void gsptr_stackInit(GPStack *s);
+void gsptr_stackPush(GPStack* s, ATLeaf* leaf);
+int gsptr_stackEmpty(const GPStack *s);
+ATLeaf* gsptr_stackTop(const GPStack *s);
+void gsptr_stackPop(GPStack *s);
+void gsptr_stackDestruct(GPStack *s);
 
 #endif

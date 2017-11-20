@@ -1,6 +1,8 @@
 #include "gen_stacks.h"
 #include <stdlib.h>
 
+// xxxxxxxx VAL STACK xxxxxxxxx
+
 void gsval_init(GVStack *s){
     s->Top = NULL;
 }
@@ -52,11 +54,55 @@ int gsval_stackCount(GVStack *s){
 void gsval_stackDestruct(GVStack *s){
     if(s != NULL){
         GVSVal* current = s->Top;
-        GVSVal* rm = NULL;
         while(current != NULL){
-            rm = current;
             current = current->next;
             gsval_stackPop(s);
+        }
+        free(s);
+        s = NULL;
+    }
+}
+
+// xxxxxxxx PTR STACK xxxxxxxxx
+
+void gsptr_stackInit(GPStack *s){
+    s->Top = NULL;
+}
+
+void gsptr_stackPush(GPStack* s, ATLeaf* leaf){
+    GPSVal* new_item = (GPSVal*) malloc(sizeof(struct GPSVal));
+    if(leaf == NULL){
+        return;
+    }
+    new_item->leaf = leaf;
+    new_item->next = s->Top;
+    s->Top = new_item;
+}
+//
+int gsptr_stackEmpty(const GPStack *s){
+    return(s->Top == NULL);
+}
+
+ATLeaf* gsptr_stackTop(const GPStack *s){
+    if(!gsptr_stackEmpty(s)){
+        return s->Top->leaf;
+    }else{
+        return NULL;
+    }
+}
+
+void gsptr_stackPop(GPStack *s){
+    GPSVal *rm = s->Top;
+    s->Top = rm->next;
+    free(rm);
+}
+
+void gsptr_stackDestruct(GPStack *s){
+    if(s != NULL){
+        GPSVal* current = s->Top;
+        while(current != NULL){
+            current = current->next;
+            gsptr_stackPop(s);
         }
         free(s);
         s = NULL;
