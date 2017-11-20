@@ -48,3 +48,7 @@ void to_print(ATLeaf *leaf, int value){
         }
     }
 }
+
+void generate_expression(ATLeaf *tree){
+
+}
