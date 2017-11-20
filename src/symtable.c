@@ -6,6 +6,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+Tsymtab * symtab;
+
 Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type)
 {
 	int position = token->atribute.int_value;
