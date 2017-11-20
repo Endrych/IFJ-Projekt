@@ -12,9 +12,7 @@ void to_print(ATLeaf *leaf, int value){
     if(leaf->left != NULL){
         to_print(leaf->left, 2);
     }
-    Type _int_new = type_int;
-    Type _operator_new = type_operator;
-    if(leaf->data.type == _int_new){
+    if(leaf->data.type == 1){
         if(value == 1){
             printf("|%d|\n",leaf->data.Atr.token->atribute.int_value);        
         }else if(value == 2){
@@ -26,13 +24,24 @@ void to_print(ATLeaf *leaf, int value){
             to_print(leaf->right, 3);
         }
     }
-    else if(leaf->data.type == _operator_new){
+    else if(leaf->data.type == 0){
          if(value == 1){
             printf("|%d op|\n",leaf->data.Atr.op_value);        
         }else if(value == 2){
             printf("/%d op/\n",leaf->data.Atr.op_value);                
         }else{
             printf("\\%d op\\\n",leaf->data.Atr.op_value);                
+        }
+        if(leaf->right != NULL){
+            to_print(leaf->right, 3);
+        }
+    }else if(leaf->data.type == 2){
+        if(value == 1){
+            printf("|%s|\n",leaf->data.Atr.tsItem->key);        
+        }else if(value == 2){
+            printf("/%s/\n",leaf->data.Atr.tsItem->key);                
+        }else{
+            printf("\\%s\\\n",leaf->data.Atr.tsItem->key);                
         }
         if(leaf->right != NULL){
             to_print(leaf->right, 3);

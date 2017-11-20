@@ -8,6 +8,7 @@
 #include "string_storage.h"
 #include "lexical.h"
 #include "generator.h"
+#include "gen_stacks.h"
 
 int main(int argc, char **argv)
 {
@@ -29,26 +30,48 @@ int main(int argc, char **argv)
   // destruct_token_storage();
   // return 0;
 
-      ATLeaf *leaf;
+    ATLeaf *leaf;
     ATLeaf *leaf2;
     ATLeaf *tree;
+    ATLeaf *tree2;
     ATData data;
     ATData data2;    
     ATData data3; 
    	Token* token = create_token();
    	Token* token2 = create_token();
-           printf("@@\n");
+    printf("@@\n");
 
     token->atribute.int_value = 7;
     token2->atribute.int_value = 2;    
     data.Atr.token = token;
     data2.Atr.token = token2;
-    data.type = type_int;
-    data2.type = type_int;    
+    data.type = at_token;
+    data2.type = at_token;    
     leaf = make_leaf(data);
     leaf2 = make_leaf(data2);
-    data3.type = type_operator;
+    data3.type = at_operators;
     data3.Atr.op_value = 3;
     tree = make_tree(leaf, leaf2, data3);
-    to_print(tree, 1);
+    data3.type = at_operators;
+    data3.Atr.op_value = 0;
+    Token * x = create_token();
+    x->type = type_id;
+    char * x_str = "x";
+    int x_index = add_string_to_storage(x_str);
+    x->atribute.int_value = x_index;
+    Tsymtab * symtab = symtab_init(17);
+    Tsymtab_item *item;
+    item = symtab_insert(symtab,x,type_variable);
+    data.Atr.tsItem = item;
+    data.type = at_tsitem;
+    leaf = make_leaf(data);
+    tree2 = make_tree(leaf, tree, data3);
+    to_print(tree2, 1);
+
+    GVStack *s = (GVStack*) malloc(sizeof(struct GVStack));
+    gsval_init(s);
+    GSVData new_data;
+    new_data.type = gvs_type_int;
+    new_data.value.int_value = 45;
+    gsval_stackPush(s, &new_data);
 }
