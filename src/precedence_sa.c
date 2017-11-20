@@ -190,12 +190,13 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
     }
     
     if(index0 == -1 || index1 == -1){
-        printf("Syntax error\n");
-        return -1;
+        fprintf(stderr,"SYNTAX ERROR\n");
+        exit(SYNTAX_ERROR);
     }
     int oper = precedence_table[index0][index1];
     if(oper == -1){
-        printf("Syntax error\n");
+        fprintf(stderr,"SYNTAX ERROR\n");
+        exit(SYNTAX_ERROR);
     }
     return oper;
 }
@@ -250,15 +251,13 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_id){
-                        // Detekce typu
-                        
                         Tsymtab_item * item = symtab_search(sym_table,data->Atr.Token,type_variable);
                         if(item != NULL){
                             dataType = item->type_strct.variable->type;
                         }
                         else{
-                            printf("ERROR: Variable %s is not declared\n", get_string(data->Atr.Token->atribute.int_value));
-                            return -1;
+                            fprintf(stderr,"SEMANTIC ERROR: Variable %s is not declared\n", get_string(data->Atr.Token->atribute.int_value));
+                            exit(SEMANTIC_ERROR);
                         }
                         aData.type = at_tsitem;
                         aData.Atr.tsItem = item;
@@ -267,13 +266,13 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         state = 3;
                     }
                     else{
-                        printf("Syntax error\n");
-                        return -1;
+                        fprintf(stderr,"SYNTAX ERROR\n");
+                        exit(SYNTAX_ERROR);
                     }
                 }
                 else{
-                    printf("Syntax error\n");
-                    return -1;
+                    fprintf(stderr,"SYNTAX ERROR\n");
+                    exit(SYNTAX_ERROR);
                 }
                 break;
             case 1:
@@ -323,14 +322,14 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         state = 2;
                     }
                     else{
-                        printf("Syntax error\n");
-                        return -1;
+                        fprintf(stderr,"SYNTAX ERROR: Wrong operator\n");
+                        exit(SYNTAX_ERROR);
                     }
                     oper = data->Atr.Token->atribute.operator_value;
                 }
                 else{
-                    printf("Syntax error\n");
-                    return -1;
+                    fprintf(stderr,"SYNTAX ERROR: Missing operator\n");
+                    exit(SYNTAX_ERROR);
                 }
                 break;
             case 2:
@@ -347,8 +346,8 @@ int findRule(tStack * s,Tsymtab *sym_table){
                     }
                 }
                 else{
-                    printf("Syntax error\n");
-                    return -1;
+                    fprintf(stderr,"SYNTAX ERROR\n");
+                    exit(SYNTAX_ERROR);
                 }
                 break;
             case 3:
@@ -409,26 +408,36 @@ int findRule(tStack * s,Tsymtab *sym_table){
                                 if(oper == op_add || oper == op_lesser || oper == op_greater || oper == op_lesser_equal || oper == op_greater_equal || oper == op_assign || oper == op_not_equal )
                                     newData->DataType = type_str;
                                 else{
-                                    printf("Semantic error\n");
-                                    return -1;
+                                    fprintf(stderr,"SEMANTIC ERROR\n");
+                                    exit(SEMANTIC_ERROR);
                                 }
                             }
                             else{
-                                printf("Semantic error\n");
-                                return -1;
+                                fprintf(stderr,"SEMANTIC ERROR\n");
+                                exit(SEMANTIC_ERROR);
                             }
                         }
                         else if(oper == op_division_int){
-                            if(dataType == type_int && dataType1 == type_int)
+                            if(dataType == type_int && dataType1 == type_int){
+                                    ATData cData;
+                                    cData.type = at_type_cast;
+                                    cData.Atr.type_cast = Integer2Double;
+                                    leaf2 = make_tree(leaf2,NULL,cData);
+                                    leaf1 = make_tree(leaf1,NULL,cData);
+                                    leaf1 = make_tree(leaf2,leaf1,aData);
+                                    cData.Atr.type_cast = Double2Integer;
+                                    leaf2 = NULL;
+                                    aData = cData;
                                     newData->DataType = type_int;
+                            }
                             else{
-                                printf("Semantic error\n");
-                                return -1;
+                                fprintf(stderr,"SEMANTIC ERROR\n");
+                                exit(SEMANTIC_ERROR);
                             }
                         }
                         else{
-                            printf("Semantic error\n");
-                            return -1;
+                            fprintf(stderr,"SEMANTIC ERROR\n");
+                            exit(SEMANTIC_ERROR);
                         }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
@@ -439,8 +448,8 @@ int findRule(tStack * s,Tsymtab *sym_table){
                     continue;
                 }
                 else{
-                    printf("Semantic error\n");
-                    rule = -1;
+                    fprintf(stderr,"SEMANTIC ERROR\n");
+                    exit(SEMANTIC_ERROR);
                 }
                 break;
             case 4:
@@ -448,8 +457,8 @@ int findRule(tStack * s,Tsymtab *sym_table){
                        state = 3;
                 }
                 else{
-                    printf("Syntax error\n");
-                    return -1;
+                    fprintf(stderr,"SYNTAX ERROR\n");
+                    exit(SYNTAX_ERROR);
                 }
                 break;
         }
