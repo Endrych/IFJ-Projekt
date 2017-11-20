@@ -7,6 +7,36 @@
 // #include "frame.h"
 #include "abstract_tree.h"
 #include "generator.h"
+#include "error.h"
+#include "name_generator.h"
+#include "gen_stack.h"
+
+void open_output(){
+    fprintf(stdout,".IFJcode17\n");
+}
+
+void generate_expression(ATLeaf *leaf){
+    char * id = generate_name(gt_variable);
+    GVStack * gv_stack = malloc(sizeof(struct GVStack));
+    GPStack * gp_stack = malloc(sizeof(struct GPStack));
+    if(gp_stack == NULL){
+        return NULL;
+    }
+    if(gv_stack == NULL){
+        return;
+    }
+    gsptr_stackInit(gp_stack);
+    gsval_init(gv_stack);
+    ATLeaf * current = leaf;
+    while(leaf->processed != true){
+        if(current->left != NULL){
+            if(current->data.type == type_operator){
+                gsval_stackPush(gv_stack, )
+            }
+        }
+    }
+}
+
 
 void to_print(ATLeaf *leaf, int value){
     if(leaf->left != NULL){
