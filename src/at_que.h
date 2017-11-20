@@ -1,7 +1,7 @@
 #include "abstract_tree.h"
 
-#ifndef AT_STACK_H
-#define AT_STACK_H
+#ifndef AT_QUE_H
+#define AT_QUE_H
  
 typedef struct atq_item{
     ATLeaf * Tree;

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "../src/error.h"
 #include "../src/string_storage.h"
+#include "../src/at_que.h"
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255]);
 void print_t(ATLeaf *tree);
@@ -14,6 +15,8 @@ extern Tsymtab * symtab;
 
 int main(){
     load_file("../tests/precedence-test.ifj");
+    ATQueue * q = malloc(sizeof(ATQueue));
+    queInit(q);
     printf("\n\n____________________________________________________\n");
     Token * token;
     symtab = symtab_init(17);
@@ -26,13 +29,11 @@ int main(){
     printf("Return double: ");
     if(out->Type == type_doub)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
 
@@ -41,13 +42,11 @@ int main(){
     printf("Return integer: ");
     if(out->Type == type_int)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: 5 / 4 *(4 + 3 \\ 2) \n");
@@ -55,13 +54,11 @@ int main(){
     printf("Return double: ");
     if(out->Type == type_doub)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: (5 < 4) > 4\n");
@@ -69,13 +66,11 @@ int main(){
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: 5 <> 3 \n");
@@ -83,13 +78,11 @@ int main(){
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: (8/4)>(4*(3+2)-4) \n");
@@ -97,13 +90,11 @@ int main(){
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: 5 = 3  \n");
@@ -111,13 +102,11 @@ int main(){
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     printf("Expr: 5 <= 3  \n");
@@ -125,31 +114,26 @@ int main(){
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
-    printf("Expr: 5 => 3; Return semicolon? \n");
+    printf("Expr: 5 => 3; \nReturn semicolon? \n");
     out = precedence_analysis(NULL);
+    if(out->ReturnToken->type == type_semicolon)
+       printf("Correct\n");
     printf("Return bool: ");
     if(out->Type == type_bool)
         printf("Correct\n");
-    if(out->ReturnToken->type == type_semicolon)
-        printf("Correct\n");
-    else
-        printf("Wrong\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
+   
     token = out->ReturnToken;
     while(token->type != type_eol){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
     Token * tokenv = get_token();
@@ -161,15 +145,14 @@ int main(){
     printf("Return double: ");
     if(out->Type == type_doub)
         printf("Correct\n");
-    if(out->StatusCode == OK)
-        print_t(out->Tree);
-    dispose_at(out->Tree);
     token = out->ReturnToken;
     while(token != NULL && (token->type != type_eol && token->type != type_eof)){
         token = get_token();
     }
+    queUp(q,out->Tree);
     free(out);
 
+/*
     printf("Expr: 5 + 3 4 * 5  \n");
     out = precedence_analysis(NULL);
     if(out->StatusCode == OK)
@@ -180,6 +163,11 @@ int main(){
         token = get_token();
     }
     free(out);
+*/
+    while(!queEmpty(q)){
+         print_t(queFront(q));
+         queRemove(q);
+    }
 
     symtab_free(symtab);
     destruct_storage();

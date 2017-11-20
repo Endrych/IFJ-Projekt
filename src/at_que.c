@@ -1,4 +1,4 @@
-#include "at_stack.h"
+#include "at_que.h"
 #include <stdlib.h>
 
 void queInit ( ATQueue* s ){
@@ -7,8 +7,8 @@ void queInit ( ATQueue* s ){
 
 void queDestruct ( ATQueue* s ){
     if(s != NULL){
-        ATSItem* current = s->Front;
-        ATSItem* rm = NULL;
+        ATQItem* current = s->Front;
+        ATQItem* rm = NULL;
         while(current != NULL){
             rm = current;
             current = current->Next;
@@ -32,7 +32,7 @@ ATLeaf* queFront ( const ATQueue* s){
 }
 
 void queRemove ( ATQueue* s ){
-    ATSItem * rm = s->Front;
+    ATQItem * rm = s->Front;
     s->Front = rm->Next;
     dispose_at(rm->Tree);
     free(rm);
@@ -44,8 +44,8 @@ void queUp ( ATQueue* s, ATLeaf* Tree){
         return;
     }
     new_elem->Tree = Tree;
-    new_elem->Next = s->NULL;
-    ATQItem * current = queFront(s);
+    new_elem->Next = NULL;
+    ATQItem * current = s->Front;
     if(queEmpty(s)){
         s->Front = new_elem;
         return;
