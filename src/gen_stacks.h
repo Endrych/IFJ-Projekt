@@ -47,5 +47,10 @@ typedef struct GVStack{
 
 void gsval_init(GVStack *s);
 void gsval_stackPush ( GVStack* s, GSVData* data);
+int gsval_stackEmpty(const GVStack *s);
+GSVData* gsval_stackTop(const GVStack *s);
+void gsval_stackPop(GVStack *s);
+int gsval_stackCount(GVStack *s);
+void gsval_stackDestruct(GVStack *s);
 
 #endif
