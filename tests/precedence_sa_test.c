@@ -13,7 +13,6 @@ extern Tsymtab * symtab;
 
 
 int main(){
-    load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
     Token * token;
     symtab = symtab_init(17);
@@ -185,7 +184,6 @@ int main(){
     destruct_storage();
     destruct_token_storage();   
     printf("\n\n____________________________________________________\n");
-    close_file();
 }
 
 int _print_t(ATLeaf *tree, int is_left, int offset, int depth, char s[20][255])

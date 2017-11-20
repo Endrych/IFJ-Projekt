@@ -34,25 +34,6 @@ typedef enum{
 	_EOF
 }_State;
 
-FILE* source_file = NULL;
-
-int load_file(char *file){
-	FILE *source;
-	source = fopen(file, "r");
-  if(source == NULL){
-	  	fprintf(stderr, "File failed to open\n");
-		return 1;
-	}
-
-	source_file = source;
-	return 0;
-}
-
-int close_file(){
-	fclose(source_file);
-	return 0;
-}
-
 Token* get_token(){
 	bool isIntToken = true;
 	Token* token = create_token();
@@ -72,11 +53,11 @@ Token* get_token(){
 	bool e_last_char = false;
 	while(isIntToken){
     	if(last_char != '\0'){
-    	  current_char = last_char;
-      	last_char = '\0';
+    	  	current_char = last_char;
+      		last_char = '\0';
 		}
 		else{
-			current_char = fgetc(source_file);
+			current_char = getchar();
     	}
 		switch(state){
 			case _START:
