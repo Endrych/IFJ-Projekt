@@ -9,6 +9,8 @@
 #include <stdbool.h>
 #include "string_storage.h"
 
+extern Tsymtab * symtab;
+
 static int precedence_table[][15] = {  
                                         {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                         {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
@@ -27,7 +29,7 @@ static int precedence_table[][15] = {
                                         {1,1,1,1,1,1,1,1,1,1,1,1,-1,1,-1}
                                     };
 
-PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
+PrecendentOutput * precedence_analysis(Token* last_token){
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
     if(out == NULL){
         fprintf(stderr,"ERROR: Internal error\n");
@@ -88,7 +90,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
             stackPush(s,data);
         }
         else if(operation == 2){
-            int rule = findRule(s, sym_table);
+            int rule = findRule(s);
             if( rule == -1){
                 out->ReturnToken = current;
                 out->StatusCode = SEMANTIC_ERROR;
@@ -201,7 +203,7 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
     return oper;
 }
 
-int findRule(tStack * s,Tsymtab *sym_table){
+int findRule(tStack * s){
     int rule = 0;
     int state = 0;
     int estimate_precedence = 0;
@@ -251,7 +253,7 @@ int findRule(tStack * s,Tsymtab *sym_table){
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_id){
-                        Tsymtab_item * item = symtab_search(sym_table,data->Atr.Token,type_variable);
+                        Tsymtab_item * item = symtab_search(symtab,data->Atr.Token,type_variable);
                         if(item != NULL){
                             dataType = item->type_strct.variable->type;
                         }
