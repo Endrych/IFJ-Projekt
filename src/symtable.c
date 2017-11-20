@@ -19,13 +19,6 @@ Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type
 	{	
 		if ((strcmp(temp->key, key)) == 0)
 		{	
-			if (type == type_variable)
-			{	
-				temp->type_strct.variable->declared = true;
-			} else if (type == type_function)
-			{
-				temp->type_strct.function->declared = true;
-			}
 			free(key);
 			return temp;
 		}
@@ -138,6 +131,14 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 		new_item->key = key;
 		new_item->type = type;
 
+		if (type == type_variable)
+		{	
+			new_item->type_strct.variable->declared = true;
+		} else if (type == type_function)
+		{
+			new_item->type_strct.function->declared = true;
+		}
+
 		// empty list
 		if (sym_table->symtab_list[index] == NULL)
 		{
@@ -205,7 +206,9 @@ unsigned int hash_func( char *key)
 	return hash;
 }
 /***************************************
+
  MAIN - POUZE NA ZKOUSKU FUNKCNOSTI
+
 */
 
 /*
@@ -230,30 +233,39 @@ int main()
 	Token *token_q;
 	token_q = malloc(sizeof(Token));
 	Tsymtab *tab = symtab_init(10);
+
 	int a = add_string_to_storage("aaoj");
 	token_a->type = type_string;
 	(token_a->atribute).int_value = a; 
+
 	int b = add_string_to_storage("aaoj");
 	token_b->type = type_string;
 	token_b->atribute.int_value = b;
+
 	int c = add_string_to_storage("aaoj");
 	token_c->type = type_string;
 	token_c->atribute.int_value = c;
+
 	int d = add_string_to_storage("adoj");
 	token_d->type = type_string;
 	token_d->atribute.int_value = d;
+
 	int n = add_string_to_storage("anoj");
 	token_n->type = type_string;
 	token_n->atribute.int_value = n;
+
 	int o = add_string_to_storage("aooj");
 	token_o->type = type_string;
 	token_o->atribute.int_value = o;
+
 	int p = add_string_to_storage("zdar");
 	token_p->type = type_string;
 	token_p->atribute.int_value = p;
+
 	int q = add_string_to_storage("aqoj");
 	token_q->type = type_string;
 	token_q->atribute.int_value = q;
+
 	symtab_insert(tab, token_a, type);
 	symtab_insert(tab, token_b, type);
 	symtab_insert(tab, token_c, type);
@@ -262,13 +274,16 @@ int main()
 	symtab_insert(tab, token_o, type2);
 	symtab_insert(tab, token_p, type2);
 	symtab_insert(tab, token_q, type2);
+
 	Tvalue value;
 	value.value_int = 10;
 	Tvariable_type type3;
 	type3 = type_int;
 	Tsymtab_item *temp = tab->symtab_list[1];
+
 	set_item_variable(temp->type_strct.variable, value, type3);
 	printf("%s  %d  %d\n", temp->key, temp->type_strct.variable->value.value_int, temp->type_strct.variable->type);
+
 	Tsymtab_item *temp2 = tab->symtab_list[3];
 	Tsymtab *table = symtab_init(101);
 	init_item_function(temp2->type_strct.function);
@@ -295,6 +310,7 @@ int main()
 		}
 		printf("\n");
 	}
+
 	destruct_storage();
 	symtab_free(table);
 	symtab_free(tab);
@@ -308,3 +324,4 @@ int main()
 	free(token_q);
 	return 0;
 }*/
+
