@@ -13,7 +13,6 @@ extern Tsymtab * symtab;
 
 
 int main(){
-    load_file("../tests/precedence-test.ifj");
     printf("\n\n____________________________________________________\n");
     Token * token;
     symtab = symtab_init(17);

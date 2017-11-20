@@ -72,11 +72,11 @@ Token* get_token(){
 	bool e_last_char = false;
 	while(isIntToken){
     	if(last_char != '\0'){
-    	  current_char = last_char;
-      	last_char = '\0';
+    	  	current_char = last_char;
+      		last_char = '\0';
 		}
 		else{
-			current_char = fgetc(source_file);
+			current_char = getchar();
     	}
 		switch(state){
 			case _START:
