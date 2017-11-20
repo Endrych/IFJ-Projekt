@@ -14,13 +14,13 @@ typedef union{
     double float_value;
 }GVSValue;
 
-typedef struct{
+typedef struct GVSData{
     GVSType type;
     GVSValue value;
-}GSVData;
+}GVSData;
 
 typedef struct GVSVal{
-    GSVData* data;
+    GVSData* data;
     struct GVSVal* next;
 }GVSVal;
 
@@ -41,9 +41,9 @@ typedef struct GPStack{
 
 
 void gsval_init(GVStack *s);
-void gsval_stackPush ( GVStack* s, GSVData* data);
+void gsval_stackPush ( GVStack* s, GVSData* data);
 int gsval_stackEmpty(const GVStack *s);
-GSVData* gsval_stackTop(const GVStack *s);
+GVSData* gsval_stackTop(const GVStack *s);
 void gsval_stackPop(GVStack *s);
 int gsval_stackCount(GVStack *s);
 void gsval_stackDestruct(GVStack *s);

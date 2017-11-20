@@ -7,7 +7,7 @@ void gsval_init(GVStack *s){
     s->Top = NULL;
 }
 
-void gsval_stackPush(GVStack* s, GSVData* data){
+void gsval_stackPush(GVStack* s, GVSData* data){
     GVSVal* new_elem = (GVSVal*) malloc(sizeof(struct GVSVal));
     if(new_elem == NULL){
         return;
@@ -21,7 +21,7 @@ int gsval_stackEmpty(const GVStack *s){
     return(s->Top == NULL);
 }
 
-GSVData* gsval_stackTop(const GVStack *s){
+GVSData* gsval_stackTop(const GVStack *s){
     if(!gsval_stackEmpty(s)){
         return s->Top->data;
     }else{

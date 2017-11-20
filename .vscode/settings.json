@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "*.js": "typescriptreact",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "generator.h": "c",
+        "abstract_tree.h": "c"
     }
 }

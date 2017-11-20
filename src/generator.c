@@ -9,14 +9,17 @@
 #include "generator.h"
 #include "error.h"
 #include "name_generator.h"
-#include "gen_stack.h"
+#include "gen_stacks.h"
 
 void open_output(){
     fprintf(stdout,".IFJcode17\n");
 }
 
-void generate_expression(ATLeaf *leaf){
+void generate_expression(ATLeaf *tree){
     char * id = generate_name(gt_variable);
+    GVSData *new_data;  //free dole nekde
+    GVSData *left_data;
+    GVSData *right_data;    
     GVStack * gv_stack = malloc(sizeof(struct GVStack));
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
@@ -27,14 +30,41 @@ void generate_expression(ATLeaf *leaf){
     }
     gsptr_stackInit(gp_stack);
     gsval_init(gv_stack);
-    ATLeaf * current = leaf;
-    while(leaf->processed != true){
-        if(current->left != NULL){
-            if(current->data.type == type_operator){
-                gsval_stackPush(gv_stack, )
+    ATLeaf * current = tree;
+
+    // while(tree->processed != true){
+        if(current->left != NULL && current->left->processed == false){
+            if(current->left->data.type == at_token){
+                if(current->left->data.Atr.token->type == type_integer){//int
+                    current->left->processed = true;
+                    new_data = malloc(sizeof(struct GVSData));
+                    new_data->type = gvs_type_int;
+                    new_data->value.int_value = current->left->data.Atr.token->atribute.int_value;
+                    gsval_stackPush(gv_stack,new_data);
+                }
+                else if(current->left->data.Atr.token->type == type_double){//double
+                    current->left->processed = true;
+                    new_data = malloc(sizeof(struct GVSData));
+                    new_data->type = gvs_type_double;
+                    new_data->value.float_value = current->left->data.Atr.token->atribute.double_value;
+                    gsval_stackPush(gv_stack,new_data);
+                    // left_data = gsval_stackTop(gv_stack);                                    
+                    // printf("%f\n",left_data->value.float_value);
+                }
             }
+            else if(current->left->data.type == at_tsitem){
+                //pres globalni ramec
+            }
+            else if(current->left->data.type == at_type_cast){
+
+            }
+            else if(current->left->data.type == at_operators){
+
+            }
+            
+            
         }
-    }
+    // }
 }
 
 
@@ -77,8 +107,4 @@ void to_print(ATLeaf *leaf, int value){
             to_print(leaf->right, 3);
         }
     }
-}
-
-void generate_expression(ATLeaf *tree){
-
 }
