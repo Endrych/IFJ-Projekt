@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include "abstract_tree.h"
 #include "error.h"
+#include <stdbool.h>
+#include "string_storage.h"
 
 static int precedence_table[][15] = {  
                                         {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
@@ -27,18 +29,20 @@ static int precedence_table[][15] = {
 
 PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
-    if(out == NULL)
-        return NULL;
+    if(out == NULL){
+        fprintf(stderr,"ERROR: Internal error\n");
+        exit(COMPILER_ERROR);
+    }
 
     out->Tree = NULL;
     out->ReturnToken = NULL;
 
-    int logical = 0;
-    int readNextToken = 1;
+    bool logical = false;
+    bool readNextToken = true;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
-        out->StatusCode = COMPILER_ERROR;
-        return out;
+        fprintf(stderr,"ERROR: Internal error\n");
+        exit(COMPILER_ERROR);
     }
     stackInit(s);
     Token * current = last_token;
@@ -52,7 +56,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
             token = termData->Atr.Token;
         if(current != NULL){
             if(current->type == type_eol || current->type == type_semicolon || (current->type == type_keyword && current->atribute.keyword_value == kw_then)){
-                readNextToken = 0;
+                readNextToken = false;
             }
         }
         
@@ -65,9 +69,8 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
         else if(operation == 0){
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                out->ReturnToken = current;
-                out->StatusCode = COMPILER_ERROR;
-                return out;
+                fprintf(stderr,"ERROR: Internal error\n");
+                exit(COMPILER_ERROR);
             }
             data->Type = type_token;
             data->Atr.Token = current;
@@ -77,9 +80,8 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
             addHandler(s,termData);
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                out->ReturnToken = current;
-                out->StatusCode = COMPILER_ERROR;
-                return out;
+                fprintf(stderr,"ERROR: Internal error\n");
+                exit(COMPILER_ERROR);
             }
             data->Type = type_token;
             data->Atr.Token = current;
@@ -93,7 +95,7 @@ PrecendentOutput * precedence_analysis(Token* last_token, Tsymtab *sym_table){
                 return out;
             }
             else if(rule >= 7 && rule <= 12){
-                logical = 1;
+                logical = true;
             }
             continue;
         }
@@ -255,7 +257,7 @@ int findRule(tStack * s,Tsymtab *sym_table){
                             dataType = item->type_strct.variable->type;
                         }
                         else{
-                            printf("Variable is not declared\n");
+                            printf("ERROR: Variable %s is not declared\n", get_string(data->Atr.Token->atribute.int_value));
                             return -1;
                         }
                         aData.type = at_tsitem;
@@ -353,7 +355,8 @@ int findRule(tStack * s,Tsymtab *sym_table){
                 if(data->Type == type_handler){
                     SData * newData = malloc(sizeof(SData));
                     if(newData == NULL){
-                        return -1;
+                        fprintf(stderr,"ERROR: Internal error\n");
+                        exit(COMPILER_ERROR);
                     }
                     newData->Type = type_nonterm;
                     

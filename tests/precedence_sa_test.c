@@ -14,8 +14,6 @@ int main(){
     printf("\n\n____________________________________________________\n");
     Token * token;
     Tsymtab * symtable = symtab_init(17);
-
-
     printf("Expr: 6 + 5 + 4 * 3\nReturn EOL?");
     PrecendentOutput * out = precedence_analysis(NULL,symtable);
     if(out->ReturnToken->type == type_eol)
@@ -255,10 +253,10 @@ int main(){
     Tsymtab_item * item1 =  symtab_insert(symtable,tokenv1,type_variable);   
     item1->type_strct.variable->declared = true;
     item1->type_strct.variable->type = type_int;
-    printf("Expr: prom + 5  \n");
+    printf("Expr: prom + 5.4  \n");
     out = precedence_analysis(NULL,symtable);
-    printf("Return integer: ");
-    if(out->Type == type_int)
+    printf("Return double: ");
+    if(out->Type == type_doub)
         printf("Correct\n");
     if(out->StatusCode == OK)
         print_t(out->Tree);
