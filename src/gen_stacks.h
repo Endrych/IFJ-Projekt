@@ -3,31 +3,6 @@
 #ifndef STACK_H
 #define STACK_H
 
-// xxxxxxx VAR STACK xxxxxxxxx
-typedef enum{
-    gvs_type_int,
-    gvs_type_double
-}GVSType;
-
-typedef union{
-    int int_value;
-    double float_value;
-}GVSValue;
-
-typedef struct GVSData{
-    GVSType type;
-    GVSValue value;
-}GVSData;
-
-typedef struct GVSVal{
-    GVSData* data;
-    struct GVSVal* next;
-}GVSVal;
-
-typedef struct GVStack{
-    GVSVal* Top;
-} GVStack;
-
 // xxxxxxxx PTR STACK xxxxxxxxx
 
 typedef struct GPSVal{
@@ -40,13 +15,6 @@ typedef struct GPStack{
 } GPStack;
 
 
-void gsval_init(GVStack *s);
-void gsval_stackPush ( GVStack* s, GVSData* data);
-int gsval_stackEmpty(const GVStack *s);
-GVSData* gsval_stackTop(const GVStack *s);
-void gsval_stackPop(GVStack *s);
-int gsval_stackCount(GVStack *s);
-void gsval_stackDestruct(GVStack *s);
 void gsptr_stackInit(GPStack *s);
 void gsptr_stackPush(GPStack* s, ATLeaf* leaf);
 int gsptr_stackEmpty(const GPStack *s);

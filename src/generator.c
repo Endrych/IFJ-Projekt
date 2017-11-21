@@ -46,59 +46,27 @@ void generate_while(ATLeaf * condition, ATQueue * state){
 
 void generate_expression(ATLeaf *tree){
     char * id = generate_name(gt_variable);
-    GVSData *new_data;  //free dole nekde
-    GVSData *left_data;
-    GVSData *right_data;    
-    GVStack * gv_stack = malloc(sizeof(struct GVStack));
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
-    int int_for_math_operations;
-    double double_for_math_operations;
     if(gp_stack == NULL){
         return;
     }
-    if(gv_stack == NULL){
-        return;
-    }
+
     gsptr_stackInit(gp_stack);
-    gsval_init(gv_stack);
     ATLeaf * current = tree;
     fprintf(stdout, "DEFVAR GF@%s\n", id);
 
     while(tree->processed != true){
-        // if(current->data.type == at_token){
-        //     printf("TOKEN\n");
-        // }
-        // else if(current->data.type == at_operators){
-        //     printf("OPERATOR\n");
-        // }
-        // else if(current->data.type == at_tsitem){
-        //     printf("TABLE\n");
-        // }
-        // else if(current->data.type == at_type_cast){
-        //     printf("CAST\n");
-        // }
-
         if((current->data.type == at_token) || (current->data.type == at_operators) || 
         (current->data.type == at_tsitem)){
             if(current->left != NULL && current->left->processed == false){//mozna se bude dat zbavit NULL
                 if(current->left->data.type == at_token){
                     if(current->left->data.Atr.token->type == type_integer){//int
                         current->left->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_int;
-                        new_data->value.int_value = current->left->data.Atr.token->atribute.int_value;
-                        gsval_stackPush(gv_stack,new_data);
-                        // left_data = gsval_stackTop(gv_stack);                                    
-                        // printf("%d\n",left_data->value.int_value);
                         fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->left->data.Atr.token->atribute.int_value);
                         fprintf(stdout, "PUSHS GF@%s\n",id);
                     }
                     else if(current->left->data.Atr.token->type == type_double){//double
                         current->left->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_double;
-                        new_data->value.float_value = current->left->data.Atr.token->atribute.double_value;
-                        gsval_stackPush(gv_stack,new_data);
                         fprintf(stdout, "MOVE GF@%s float@%f\n", id, current->left->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS GF@%s\n", id);
                     }
@@ -119,23 +87,11 @@ void generate_expression(ATLeaf *tree){
                 if(current->right->data.type == at_token){
                     if(current->right->data.Atr.token->type == type_integer){//int
                         current->right->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_int;
-                        new_data->value.int_value = current->right->data.Atr.token->atribute.int_value;
-                        gsval_stackPush(gv_stack,new_data);
-                        // left_data = gsval_stackTop(gv_stack);                                    
-                        // printf("%d\n",left_data->value.int_value);
                         fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->right->data.Atr.token->atribute.int_value);
                         fprintf(stdout, "PUSHS GF@%s\n",id);
                     }
                     else if(current->right->data.Atr.token->type == type_double){//double
                         current->right->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_double;
-                        new_data->value.float_value = current->right->data.Atr.token->atribute.double_value;
-                        gsval_stackPush(gv_stack,new_data);
-                        // left_data = gsval_stackTop(gv_stack);                                    
-                        // printf("%f\n",left_data->value.float_value);
                         fprintf(stdout, "MOVE GF@%s float@%f\n", id, current->right->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS GF@%s\n", id);
                     }
@@ -158,81 +114,16 @@ void generate_expression(ATLeaf *tree){
                     if(current->data.Atr.op_value == op_assign){
                         
                     }
-                    else if(current->data.Atr.op_value == op_add){
-                        right_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        left_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        if(left_data->type == gvs_type_double && right_data->type == gvs_type_double){
-                            double_for_math_operations = left_data->value.float_value + right_data->value.float_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_double;
-                            new_data->value.float_value = double_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);
-                        }
-                        else if(left_data->type == gvs_type_int && right_data->type == gvs_type_int) {
-                            int_for_math_operations = left_data->value.int_value + right_data->value.int_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_int;
-                            new_data->value.int_value = int_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);                    
-                        }            
+                    else if(current->data.Atr.op_value == op_add){        
                         fprintf(stdout, "ADDS\n");
                     }
                     else if(current->data.Atr.op_value == op_sub){
-                        right_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        left_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        if(left_data->type == gvs_type_double && right_data->type == gvs_type_double){
-                            double_for_math_operations = left_data->value.float_value - right_data->value.float_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_double;
-                            new_data->value.float_value = double_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);
-                        }
-                        else if(left_data->type == gvs_type_int && right_data->type == gvs_type_int) {
-                            int_for_math_operations = left_data->value.int_value - right_data->value.int_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_int;
-                            new_data->value.int_value = int_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);
-                        }            
                         fprintf(stdout, "SUBS\n");
                     }
                     else if(current->data.Atr.op_value == op_mul){
-                        right_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        left_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        if(left_data->type == gvs_type_double && right_data->type == gvs_type_double){
-                            double_for_math_operations = left_data->value.float_value * right_data->value.float_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_double;
-                            new_data->value.float_value = double_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);
-                        }
-                        else if(left_data->type == gvs_type_int && right_data->type == gvs_type_int) {
-                            int_for_math_operations = left_data->value.int_value * right_data->value.int_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_int;
-                            new_data->value.int_value = int_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);                    
-                        }            
                         fprintf(stdout, "MULS\n");
                     }
                     else if(current->data.Atr.op_value == op_division_int || current->data.Atr.op_value == op_slash){
-                        right_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        left_data = gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        if(left_data->type == gvs_type_double && right_data->type == gvs_type_double){
-                            double_for_math_operations = left_data->value.float_value / right_data->value.float_value;
-                            new_data = malloc(sizeof(struct GVSData));
-                            new_data->type = gvs_type_double;
-                            new_data->value.float_value = double_for_math_operations;
-                            gsval_stackPush(gv_stack, new_data);
-                        }    
                         fprintf(stdout, "DIVS\n");
                     }
                     //na podminky jak udelat je rovno?
@@ -258,46 +149,17 @@ void generate_expression(ATLeaf *tree){
                         gsptr_stackPop(gp_stack);
                     }
                 }
-                // else if(current->data.type == at_type_cast){
-                //     if(current->data.Atr.type_cast == 0){
-                //         fprintf(stdout, "INT2FLOATS\n");
-                //     }
-                //     else if(current->data.Atr.type_cast == 1){
-                //         fprintf(stdout, "FLOAT2R2EINTS\n");
-                //     }
-                // }
-
             }
         }
         else if(current->data.type == at_type_cast){
-            // else if((current->right->processed == true) ||
-        // (current->left->processed == true)){
             if(current->data.Atr.type_cast == 0){
                 if(current->left == NULL){
                     if(current->right->processed == true){
-                        right_data =  gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        int_for_math_operations = right_data->value.int_value;
-                        double_for_math_operations = (double)int_for_math_operations;
-                        new_data = malloc(sizeof(struct GVSData));                        
-                        new_data->type = gvs_type_double;
-                        new_data->value.float_value = double_for_math_operations;
-                        gsval_stackPush(gv_stack, new_data);
-                        fprintf(stdout, "INT2FLOATS\n");
                         current->processed = true;
-                        if(!(gsptr_stackEmpty(gp_stack))){
-                            current = gsptr_stackTop(gp_stack);
-                            gsptr_stackPop(gp_stack);
-                        }
+                        fprintf(stdout, "INT2FLOATS\n");
                     }
                     else if(current->right->data.type == at_token && current->right->processed == false){
                         current->right->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_int;
-                        new_data->value.int_value = current->right->data.Atr.token->atribute.int_value;
-                        gsval_stackPush(gv_stack,new_data);
-                        // left_data = gsval_stackTop(gv_stack);                                    
-                        // printf("%d\n",new_data->value.int_value);
                         fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->right->data.Atr.token->atribute.int_value);
                         fprintf(stdout, "PUSHS GF@%s\n",id);
                     }
@@ -308,31 +170,10 @@ void generate_expression(ATLeaf *tree){
                     && (current->right->processed == false)){
                         gsptr_stackPush(gp_stack, current);
                         current = current->right;
-                        // printf("RIGHT2\n");
-                        // left_data =  gsval_stackTop(gv_stack);
-                        // gsval_stackPop(gv_stack);
-                        // double_for_math_operations = (double)left_data->value.int_value;
-                        // new_data->type = gvs_type_double;
-                        // new_data->value.float_value = double_for_math_operations;
-                        // gsval_stackPush(gv_stack, new_data);
-                        // fprintf(stdout, "INT2FLOATS\n");
                     }
-                    
-                
-                // else if(current->data.Atr.type_cast == 1){
-                //     fprintf(stdout, "FLOAT2R2EINTS\n");
-                // }
                 }
                 else if(current->right == NULL){
                     if(current->left->processed == true){
-                        left_data =  gsval_stackTop(gv_stack);
-                        gsval_stackPop(gv_stack);
-                        int_for_math_operations = left_data->value.int_value;
-                        double_for_math_operations = (double)int_for_math_operations;
-                        new_data = malloc(sizeof(struct GVSData));                        
-                        new_data->type = gvs_type_double;
-                        new_data->value.float_value = double_for_math_operations;
-                        gsval_stackPush(gv_stack, new_data);
                         fprintf(stdout, "INT2FLOATS\n");
                         current->processed = true;
                         if(!(gsptr_stackEmpty(gp_stack))){
@@ -342,12 +183,6 @@ void generate_expression(ATLeaf *tree){
                     }
                     else if(current->left->data.type == at_token && current->left->processed == false){
                         current->left->processed = true;
-                        new_data = malloc(sizeof(struct GVSData));
-                        new_data->type = gvs_type_int;
-                        new_data->value.int_value = current->left->data.Atr.token->atribute.int_value;
-                        gsval_stackPush(gv_stack,new_data);
-                        // left_data = gsval_stackTop(gv_stack);                                    
-                        // printf("%d\n",left_data->value.int_value);
                         fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->left->data.Atr.token->atribute.int_value);
                         fprintf(stdout, "PUSHS GF@%s\n",id);
                     }
@@ -358,17 +193,7 @@ void generate_expression(ATLeaf *tree){
                     && (current->left->processed == false)){
                         gsptr_stackPush(gp_stack, current);
                         current = current->left;
-                        // printf("RIGHT2\n");
-                        // left_data =  gsval_stackTop(gv_stack);
-                        // gsval_stackPop(gv_stack);
-                        // double_for_math_operations = (double)left_data->value.int_value;
-                        // new_data->type = gvs_type_double;
-                        // new_data->value.float_value = double_for_math_operations;
-                        // gsval_stackPush(gv_stack, new_data);
-                        // fprintf(stdout, "INT2FLOATS\n");
                     }
-                    
-                
                 // else if(current->data.Atr.type_cast == 1){
                 //     fprintf(stdout, "FLOAT2R2EINTS\n");
                 // }
@@ -378,6 +203,8 @@ void generate_expression(ATLeaf *tree){
     }
     fprintf(stdout, "POPS GF@%s\n",id);
     fprintf(stdout, "WRITE GF@%s\n",id);
+    gsptr_stackDestruct(gp_stack);;
+
 }
 
 void generate_condition(ATLeaf *leaf, char* label){
