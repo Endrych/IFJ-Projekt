@@ -11,9 +11,9 @@ extern Tsymtab * symtab;
 
 int main(){
     symtab = symtab_init(17);
-    while(1){
+    // while(1){
         printf("Zadejte vyraz\n");
         PrecendentOutput * out = precedence_analysis(NULL);
         generate_expression(out->Tree);
-    }
+    // }
 }
