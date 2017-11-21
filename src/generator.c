@@ -112,7 +112,7 @@ void generate_expression(ATLeaf *tree){
             else if(current->right->processed == true && current->right->processed == true){
                 if(current->data.type == at_operators){
                     if(current->data.Atr.op_value == op_assign){
-                        
+                        fprintf(stdout, "EQS\n");
                     }
                     else if(current->data.Atr.op_value == op_add){        
                         fprintf(stdout, "ADDS\n");
@@ -127,21 +127,45 @@ void generate_expression(ATLeaf *tree){
                         fprintf(stdout, "DIVS\n");
                     }
                     //na podminky jak udelat je rovno?
-                    // else if(current->data.Atr.op_value == op_not_equal){
-                        
-                    // }
-                    // else if(current->data.Atr.op_value == op_lesser){
-                        
-                    // }
-                    // else if(current->data.Atr.op_value == op_lesser_equal){
-                        
-                    // }
-                    // else if(current->data.Atr.op_value == op_greater){
-                        
-                    // }
-                    // else if(current->data.Atr.op_value == op_greater_equal){
-                        
-                    // } + pridat assign
+                    else if(current->data.Atr.op_value == op_not_equal){
+                        fprintf(stdout, "EQS\n");
+                        fprintf(stdout, "NOTS\n");
+                    }
+                    else if(current->data.Atr.op_value == op_lesser){
+                        fprintf(stdout, "LTS\n");
+                    }
+                    else if(current->data.Atr.op_value == op_greater){
+                        fprintf(stdout, "GTS\n");
+                    }
+                    else if(current->data.Atr.op_value == op_lesser_equal ||
+                    current->data.Atr.op_value == op_greater_equal){
+                        char * help1 = generate_name(gt_variable);
+                        char * help2 = generate_name(gt_variable);
+                        fprintf(stdout, "DEFVAR GF@%s\n", help1);
+                        fprintf(stdout, "DEFVAR GF@%s\n", help2);
+                        fprintf(stdout,"POPS GF@%s\n",help1);
+                        fprintf(stdout,"POPS GF@%s\n",help2);
+                        fprintf(stdout,"PUSHS GF@%s\n",help2);
+                        fprintf(stdout,"PUSHS GF@%s\n",help1);
+                        fprintf(stdout,"PUSHS GF@%s\n",help2);
+                        fprintf(stdout,"PUSHS GF@%s\n",help1);
+                        if(current->data.Atr.op_value == op_lesser_equal){
+                            fprintf(stdout, "LTS\n");
+                            fprintf(stdout,"POPS GF@%s\n",help1);
+                            fprintf(stdout, "EQS\n");
+                            fprintf(stdout,"PUSHS GF@%s\n",help1);
+                            fprintf(stdout, "ORS\n");
+                        }
+                        else if(current->data.Atr.op_value == op_greater_equal){
+                            fprintf(stdout, "GTS\n");
+                            fprintf(stdout,"POPS GF@%s\n",help1);
+                            fprintf(stdout, "EQS\n");
+                            fprintf(stdout,"PUSHS GF@%s\n",help1);
+                            fprintf(stdout, "ORS\n");
+                        }
+                        free(help1);
+                        free(help2);
+                    }
                     //podminky pro if and while END
                     current->processed = true;
                     if(!(gsptr_stackEmpty(gp_stack))){
