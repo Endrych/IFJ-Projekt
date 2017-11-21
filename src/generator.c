@@ -82,7 +82,7 @@ void generate_expression(ATLeaf *tree){
                     fprintf(stdout, "PUSHS GF@%s\n",id);
                 }
                 else if(current->right->data.Atr.token->type == type_double){//double
-                    current->left->processed = true;
+                    current->right->processed = true;
                     new_data = malloc(sizeof(struct GVSData));
                     new_data->type = gvs_type_double;
                     new_data->value.float_value = current->right->data.Atr.token->atribute.double_value;
