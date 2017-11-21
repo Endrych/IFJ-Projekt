@@ -152,54 +152,57 @@ void generate_expression(ATLeaf *tree){
             }
         }
         else if(current->data.type == at_type_cast){
-            if(current->data.Atr.type_cast == 0){
-                if(current->left == NULL){
-                    if(current->right->processed == true){
-                        current->processed = true;
+            if(current->left == NULL){
+                if(current->right->processed == true){
+                    current->processed = true;
+                    if(current->data.Atr.type_cast == 0){
                         fprintf(stdout, "INT2FLOATS\n");
-                    }
-                    else if(current->right->data.type == at_token && current->right->processed == false){
-                        current->right->processed = true;
-                        fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->right->data.Atr.token->atribute.int_value);
-                        fprintf(stdout, "PUSHS GF@%s\n",id);
-                    }
-                    else if(current->right->data.type == at_tsitem && current->right->processed == false){
-
-                    }
-                    else if((current->right->data.type == at_operators || current->right->data.type == at_type_cast) 
-                    && (current->right->processed == false)){
-                        gsptr_stackPush(gp_stack, current);
-                        current = current->right;
+                    }else if(current->data.Atr.type_cast == 1){
+                        fprintf(stdout, "FLOAT2R2EINTS\n");
                     }
                 }
-                else if(current->right == NULL){
-                    if(current->left->processed == true){
-                        fprintf(stdout, "INT2FLOATS\n");
-                        current->processed = true;
-                        if(!(gsptr_stackEmpty(gp_stack))){
-                            current = gsptr_stackTop(gp_stack);
-                            gsptr_stackPop(gp_stack);
-                        }
-                    }
-                    else if(current->left->data.type == at_token && current->left->processed == false){
-                        current->left->processed = true;
-                        fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->left->data.Atr.token->atribute.int_value);
-                        fprintf(stdout, "PUSHS GF@%s\n",id);
-                    }
-                    else if(current->left->data.type == at_tsitem && current->left->processed == false){
+                else if(current->right->data.type == at_token && current->right->processed == false){
+                    current->right->processed = true;
+                    fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->right->data.Atr.token->atribute.int_value);
+                    fprintf(stdout, "PUSHS GF@%s\n",id);
+                }
+                else if(current->right->data.type == at_tsitem && current->right->processed == false){
 
-                    }
-                    else if((current->left->data.type == at_operators || current->left->data.type == at_type_cast) 
-                    && (current->left->processed == false)){
-                        gsptr_stackPush(gp_stack, current);
-                        current = current->left;
-                    }
-                // else if(current->data.Atr.type_cast == 1){
-                //     fprintf(stdout, "FLOAT2R2EINTS\n");
-                // }
+                }
+                else if((current->right->data.type == at_operators || current->right->data.type == at_type_cast) 
+                && (current->right->processed == false)){
+                    gsptr_stackPush(gp_stack, current);
+                    current = current->right;
                 }
             }
-        }        
+            else if(current->right == NULL){
+                if(current->left->processed == true){
+                    if(current->data.Atr.type_cast == 0){
+                        fprintf(stdout, "INT2FLOATS\n");
+                    }else if(current->data.Atr.type_cast == 1){
+                        fprintf(stdout, "FLOAT2R2EINTS\n");
+                    }
+                    current->processed = true;
+                    if(!(gsptr_stackEmpty(gp_stack))){
+                        current = gsptr_stackTop(gp_stack);
+                        gsptr_stackPop(gp_stack);
+                    }
+                }
+                else if(current->left->data.type == at_token && current->left->processed == false){
+                    current->left->processed = true;
+                    fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->left->data.Atr.token->atribute.int_value);
+                    fprintf(stdout, "PUSHS GF@%s\n",id);
+                }
+                else if(current->left->data.type == at_tsitem && current->left->processed == false){
+
+                }
+                else if((current->left->data.type == at_operators || current->left->data.type == at_type_cast) 
+                && (current->left->processed == false)){
+                    gsptr_stackPush(gp_stack, current);
+                    current = current->left;
+                }
+            }
+        }       
     }
     fprintf(stdout, "POPS GF@%s\n",id);
     fprintf(stdout, "WRITE GF@%s\n",id);
