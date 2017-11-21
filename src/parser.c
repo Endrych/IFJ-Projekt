@@ -241,12 +241,12 @@ int Stat()
 					}
 
 					// ___Uloz identifikator do symtable___
-					
-					symtab_item = symtab_insert(sym_table, token, type_variable);
-					if (symtab_item->type_strct.variable->declared) {
+					if (symtab_search(sym_table, token, type_variable) != NULL) {
 						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
+
+					symtab_item = symtab_insert(sym_table, token, type_variable);
 
 					//__As__
 					token = get_token();
@@ -740,17 +740,7 @@ int parse()
 int main(int argc, char const *argv[])
 {
 	int return_value;
-	char *test_file;
-	if (argc != 2)
-	{
-		printf("CHYBA: Nebyl zadan testovaci soubor.\n\n");
-		printf("Usage:\n\t ./parser test_file \n");
-		return 1;
-	}
-	test_file = argv[1];
 
-	// funkce otevre testovaci soubor
-	load_file(test_file);
 	return_value = parse();
 	printf("\n");
 	switch (return_value)
@@ -777,6 +767,5 @@ int main(int argc, char const *argv[])
 			printf("COMPILER_ERROR\n");
 			break;
 	}
-	close_file();
 	return 0;
 }
