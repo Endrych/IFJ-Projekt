@@ -32,6 +32,18 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
     fprintf(stdout,"LABEL %s\n",end_label);
 }
 
+void generate_while(ATLeaf * condition, ATQueue * state){
+    char *label = generate_name(gt_label);
+    char * end_label = generate_name(gt_label);
+    fprintf(stdout,"LABEL %s\n",label);
+    generate_condition(condition,end_label);
+    while(!queEmpty(state)){
+        generate_expression(queFront(state));
+        queRemove(state);
+    }
+    fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+}
+
 void generate_expression(ATLeaf *tree){
     char * id = generate_name(gt_variable);
     GVSData *new_data;  //free dole nekde

@@ -9,7 +9,7 @@
 #include "../src/at_que.h"
 
 extern Tsymtab * symtab;
-#define N 1
+#define N 2
 
 int main(){
     printf("prom je definovana na 5\n");
@@ -57,6 +57,22 @@ int main(){
                 out = precedence_analysis(NULL);
                 queUp(&state_false, out->Tree);
                 generate_if(cond,&state_true,&state_false);
+                printf("\n______________________________\n");
+            }
+            break;
+         case 2:
+            while(1){
+                printf("Zadejte podminku\n");
+                out = precedence_analysis(NULL);
+                cond = out->Tree;
+                printf("Zadejte vyraz\n");
+                out = precedence_analysis(NULL);
+                queUp(&state_true, out->Tree);
+                 printf("Zadejte druhy vyraz\n");
+                out = precedence_analysis(NULL);
+                queUp(&state_true, out->Tree);
+                
+                generate_while(cond,&state_true);
                 printf("\n______________________________\n");
             }
             break;
