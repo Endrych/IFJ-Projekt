@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 
     GVStack *s = (GVStack*) malloc(sizeof(struct GVStack));
     gsval_init(s);
-    GSVData new_data;
+    GVSData new_data;
     new_data.type = gvs_type_int;
     new_data.value.int_value = 45;
     gsval_stackPush(s, &new_data);
@@ -85,7 +85,7 @@ int main(int argc, char **argv)
     one = gsval_stackCount(s);
     printf("\nw%d\n", one);
     gsval_stackPop(s);
-    GSVData *lol;
+    GVSData *lol;
     lol = gsval_stackTop(s);
     printf("\n%d\n",lol->value.int_value);
 

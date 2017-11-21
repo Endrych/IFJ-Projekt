@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.js": "typescriptreact",
-        "at_que.h": "c"
-    }
-}
