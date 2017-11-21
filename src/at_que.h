@@ -4,6 +4,8 @@
 #ifndef AT_QUE_H
 #define AT_QUE_H
  
+struct ATQueue;
+
 typedef struct eq_item{
     ATLeaf * Expr;
     struct eq_item * Next;
@@ -32,7 +34,7 @@ typedef struct{
 
 typedef struct{
     Tsymtab_item * sym_item;
-    ATQueue * queue;
+    struct ATQueue * queue;
 }FuncDeclarInput;
 
 typedef struct{
@@ -42,13 +44,13 @@ typedef struct{
 
 typedef struct{
     ATLeaf * cond_expr;
-    ATQueue * true_queue;
-    ATQueue * false_queue;
+    struct ATQueue * true_queue;
+    struct ATQueue * false_queue;
 }IfInput;
 
 typedef struct{
     ATLeaf * cond_expr;
-    ATQueue * queue;
+    struct ATQueue * queue;
 }WhileInput;
 
 typedef struct{
@@ -75,7 +77,7 @@ typedef struct atq_item{
     struct atq_item * Next;
 }ATQItem;
 
-typedef struct{
+typedef struct atQueue{
     ATQItem * Front;
 }ATQueue;
 
