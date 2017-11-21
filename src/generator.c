@@ -16,6 +16,27 @@ void open_output(){
     fprintf(stdout,".IFJcode17\n");
 }
 
+void generate_function(Tsymtab_item * item, ATQueue * state){
+    fprintf(stdout, "LABEL $%s\n",item->key);
+    fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
+    Tfunction_item *  function = item->type_strct.function;
+    if(function->return_type == type_doub){
+        fprintf(stderr,"MOVE LF@%%retval float@0.0\n");
+    }
+    else if(function->return_type == type_int){
+        fprintf(stderr,"MOVE LF@%%retval int@0\n");
+    }
+    else if(function->return_type == type_str){
+        fprintf(stderr,"MOVE LF@%%retval string@\n");
+    }
+    while(!queEmpty(state)){
+        generate_expression(queFront(state));
+        queRemove(state);
+    }
+    fprintf(stdout, "LABEL $%s$epilog\n",item->key);
+    fprintf(stdout, "POPFRAME\nRETURN\n");
+}
+
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
     char *label = generate_name(gt_label);
     generate_condition(condition,label);

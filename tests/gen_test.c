@@ -23,6 +23,16 @@ int main(){
     item->type_strct.variable->declared = true;
     item->type_strct.variable->type = type_int;
     item->type_strct.variable->value.value_int = 5;
+
+    Token f;
+    f.type = type_id;
+    char * f_id = "func";
+    f.atribute.int_value = add_string_to_storage(f_id);
+    Tsymtab_item * item1 =  symtab_insert(symtab,&f,type_function);
+    item1->type = type_int;
+    item1->type_strct.function->declared = true;
+    item1->type_strct.function->return_type = type_int;
+
     ATLeaf* cond;
     ATQueue state_true;
     ATQueue state_false;
@@ -60,7 +70,7 @@ int main(){
                 printf("\n______________________________\n");
             }
             break;
-         case 2:
+        case 2:
             while(1){
                 printf("Zadejte podminku\n");
                 out = precedence_analysis(NULL);
@@ -73,6 +83,20 @@ int main(){
                 queUp(&state_true, out->Tree);
                 
                 generate_while(cond,&state_true);
+                printf("\n______________________________\n");
+            }
+            break;
+        case 3:
+            while(1){
+                printf("Generovani funkci\n");
+                printf("Zadejte vyraz\n");
+                out = precedence_analysis(NULL);
+                queUp(&state_true, out->Tree);
+                 printf("Zadejte druhy vyraz\n");
+                out = precedence_analysis(NULL);
+                queUp(&state_true, out->Tree);
+                
+                generate_function(item1,&state_true);
                 printf("\n______________________________\n");
             }
             break;

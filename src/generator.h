@@ -11,4 +11,5 @@ void generate_expression(ATLeaf *leaf);
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false);
 void generate_condition(ATLeaf *leaf, char* label);
 void generate_while(ATLeaf * condition, ATQueue * state);
+void generate_function(Tsymtab_item * item, ATQueue * state);
 #endif
