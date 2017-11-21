@@ -14,6 +14,7 @@ void stackDestruct ( tStack* s ){
         while(current != NULL){
             rm = current;
             current = current->Next;
+            free(rm->Data);
             free(rm);
         }
         free(s);
@@ -35,6 +36,7 @@ SData* stackTop ( const tStack* s){
 void stackPop ( tStack* s ){
     TSItem* rm = s->Top;
     s->Top = rm->Next;
+    free(rm->Data);
     free(rm);
 }
 

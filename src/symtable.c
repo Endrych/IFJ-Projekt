@@ -6,6 +6,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+Tsymtab * symtab;
+
 Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type)
 {
 	int position = token->atribute.int_value;
@@ -17,13 +19,6 @@ Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type
 	{	
 		if ((strcmp(temp->key, key)) == 0)
 		{	
-			if (type == type_variable)
-			{	
-				temp->type_strct.variable->declared = true;
-			} else if (type == type_function)
-			{
-				temp->type_strct.function->declared = true;
-			}
 			free(key);
 			return temp;
 		}
@@ -135,6 +130,14 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 
 		new_item->key = key;
 		new_item->type = type;
+
+		if (type == type_variable)
+		{	
+			new_item->type_strct.variable->declared = true;
+		} else if (type == type_function)
+		{
+			new_item->type_strct.function->declared = true;
+		}
 
 		// empty list
 		if (sym_table->symtab_list[index] == NULL)

@@ -11,7 +11,7 @@ STD_C99 = -std=c99
 CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c  $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)main.c -o $(PROJECT)
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)main.c -o $(PROJECT)
 string_storage_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(TEST_FOLDER)string_storage_test.c -o string_storage_test
 	valgrind --leak-check=full ./string_storage_test
@@ -23,7 +23,7 @@ token_test:
 
 stack_test: 
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)stack.c $(TEST_FOLDER)stack_test.c -o stack_test
-	valgrind ./stack_test
+	valgrind --leak-check=full ./stack_test
 	rm stack_test
 
 stack_test_coverage:
@@ -39,11 +39,8 @@ lexan_test:
 	rm lexan_test
 
 precedence_test_coverage:
-	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
-	valgrind ./precedence_test
-	lcov --capture --directory . --output-file precedence_coverage.info
-	genhtml precedence_coverage.info --output-directory ./precedence/
-	rm *.gcda *gcno *.info
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)at_que.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
+	./precedence_test
 
 sym_table_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)set_values.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c -o sym_table_test
@@ -54,5 +51,17 @@ abstract_tree_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)abstract_tree_test.c -o abstract_tree_test
 	valgrind ./abstract_tree_test
 	rm abstract_tree_test
+
+frame_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)frame.c -o frame_test
+	./frame_test
+	rm frame_test
+
 parser: 
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)parser.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)abstract_tree.c  -g -o parser
+generator:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)main.c -o $(PROJECT)
+name_generator:
+	$(CC) $(STD_C99) $(CFLAGS) $(TEST_FOLDER)name_generator_test.c $(SRC_FOLDER)name_generator.c -o name_generator
+	./name_generator
+	rm name_generator

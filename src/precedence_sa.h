@@ -12,7 +12,7 @@ typedef struct{
     ATLeaf * Tree;
 }PrecendentOutput;
 
-PrecendentOutput* precedence_analysis(Token* token);
+PrecendentOutput* precedence_analysis(Token* last_token);
 int precedence_operation(Token* stack_token,Token* lexical_token);
 int findRule(tStack * s);
 #endif
