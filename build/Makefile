@@ -39,11 +39,7 @@ lexan_test:
 	rm lexan_test
 
 precedence_test_coverage:
-	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
-	./precedence_test
-
-precedence_test_coverage1:
-	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)precedence_sa_test1.c -o precedence_test
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)at_que.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
 	./precedence_test
 
 sym_table_test:
@@ -70,3 +66,8 @@ name_generator:
 	$(CC) $(STD_C99) $(CFLAGS) $(TEST_FOLDER)name_generator_test.c $(SRC_FOLDER)name_generator.c -o name_generator
 	./name_generator
 	rm name_generator
+
+
+generator_test:
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)gen_test.c -o generator_test
+	./generator_test
