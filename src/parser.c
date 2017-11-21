@@ -22,7 +22,7 @@
 //Tsymtab *sym_tab;
 // aktualni token
 Token* token;
-Tsymtab* sym_table;
+extern Tsymtab * symtab;
 
 void get_non_eol_token()
 {
@@ -222,7 +222,7 @@ int Stat()
 						printf("ERROR: Missing identifier after Intup statement\n");
 						return SYNTAX_ERROR;
 					}
-					symtab_item = symtab_search(sym_table, token, type_variable);
+					symtab_item = symtab_search(symtab, token, type_variable);
 					if (symtab_item == NULL) {
 						fprintf(stderr, "ERROR: Identifier used in Input statement was not declared.\n");
 						return SEMANTIC_ERROR;
@@ -241,12 +241,12 @@ int Stat()
 					}
 
 					// ___Uloz identifikator do symtable___
-					if (symtab_search(sym_table, token, type_variable) != NULL) {
+					if (symtab_search(symtab, token, type_variable) != NULL) {
 						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
 
-					symtab_item = symtab_insert(sym_table, token, type_variable);
+					symtab_item = symtab_insert(symtab, token, type_variable);
 
 					//__As__
 					token = get_token();
@@ -452,7 +452,7 @@ int Stat()
 		case type_id:
 			// id musi byt deklarovan
 			// <<<<<<<<< GENEROVAT <<<<<<<<<<<<<
-			symtab_item = symtab_search(sym_table, token, type_variable);
+			symtab_item = symtab_search(symtab, token, type_variable);
 			if (symtab_item == NULL) {
 				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
 				return SEMANTIC_ERROR;
@@ -470,12 +470,12 @@ int Stat()
 			// <expr> / volani funkce
 			token = get_token();
 			if (token->type == type_id) {
-				symtab_item = symtab_search(sym_table, token, type_variable);
+				symtab_item = symtab_search(symtab, token, type_variable);
 				if (symtab_item != NULL) {
 					;
 				}
 				else {
-					symtab_item = symtab_search(sym_table, token, type_function);
+					symtab_item = symtab_search(symtab, token, type_function);
 					if (symtab_item == NULL) {
 						fprintf(stderr, "ERROR: Using variable before declaration\n");
 						return SEMANTIC_ERROR;
@@ -633,7 +633,7 @@ int Param()
 		return SYNTAX_ERROR;
 	}
 	// vklada do lokalni tabulky funkce ??????????? je to treba ???????????
-	symtab_item = symtab_insert(sym_table, token, type_variable);
+	symtab_item = symtab_insert(symtab, token, type_variable);
 	// __AS__
 	token = get_token();
 	if (token->type != type_keyword) {
@@ -729,9 +729,9 @@ int check_type(Tsymtab_item* symtab_item, PrecendentOutput* out)
 
 int parse()
 {
-	sym_table = symtab_init(42); 
+	symtab = symtab_init(42); 
 	return Prog();
-	symtab_free(sym_table); 
+	symtab_free(symtab); 
 }
 
 
