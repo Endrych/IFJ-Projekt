@@ -65,3 +65,8 @@ name_generator:
 	$(CC) $(STD_C99) $(CFLAGS) $(TEST_FOLDER)name_generator_test.c $(SRC_FOLDER)name_generator.c -o name_generator
 	./name_generator
 	rm name_generator
+
+at_que_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)abstract_tree.c $(TEST_FOLDER)at_que_test.c $(SRC_FOLDER)at_que.c -o at_que_test
+	./at_que_test
+	rm at_que_test
