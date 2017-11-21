@@ -10,9 +10,38 @@
 #include "error.h"
 #include "name_generator.h"
 #include "gen_stacks.h"
+#include "at_que.h"
 
 void open_output(){
     fprintf(stdout,".IFJcode17\n");
+}
+
+void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
+    char *label = generate_name(gt_label);
+    generate_condition(condition,label);
+    while(!queEmpty(state_true)){
+        generate_expression(queFront(state_true));
+        queRemove(state_true);
+    }
+    char * end_label = generate_name(gt_label);
+    fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
+    while(!queEmpty(state_false)){
+        generate_expression(queFront(state_false));
+        queRemove(state_false);
+    }
+    fprintf(stdout,"LABEL %s\n",end_label);
+}
+
+void generate_while(ATLeaf * condition, ATQueue * state){
+    char *label = generate_name(gt_label);
+    char * end_label = generate_name(gt_label);
+    fprintf(stdout,"LABEL %s\n",label);
+    generate_condition(condition,end_label);
+    while(!queEmpty(state)){
+        generate_expression(queFront(state));
+        queRemove(state);
+    }
+    fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
 }
 
 void generate_expression(ATLeaf *tree){
@@ -349,6 +378,10 @@ void generate_expression(ATLeaf *tree){
     }
     fprintf(stdout, "POPS GF@%s\n",id);
     fprintf(stdout, "WRITE GF@%s\n",id);
+}
+
+void generate_condition(ATLeaf *leaf, char* label){
+    fprintf(stdout,"GENERATE CONDITION\n");
 }
 
 
