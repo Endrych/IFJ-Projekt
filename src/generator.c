@@ -44,7 +44,7 @@ void generate_program(ATQueue *queue){
             generate_return(value.return_input->sym_item, value.return_input->expr);
         else if(type == gt_main)
             generate_main((ATQueue*)value.at_queue);
-        else{
+        else{ 
             printf("COMPILER ERROR");
             exit(COMPILER_ERROR);
         }
@@ -62,8 +62,11 @@ void generate_main(ATQueue * queue){
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
-    id = id;
-    expr = expr;
+    fprintf(stdout, "DEFVAR LF@%s\n", id->key);
+    if(expr != NULL){
+        char *e = generate_expression(expr);
+        fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
+    }
     //Marek, po deklaraci vlozi do ramce v c 
 }
 
