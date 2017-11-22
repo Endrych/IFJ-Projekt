@@ -38,7 +38,6 @@ int main(){
     ATQueue state_false;
     queInit(&state_true);
     queInit(&state_false);
-    char *input = malloc(sizeof(250));
     PrecendentOutput * out;
     char *strl;
     switch(N){

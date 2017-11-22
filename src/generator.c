@@ -20,32 +20,36 @@ void generate_start(ATQueue *queue){
 }
 
 void generate_program(ATQueue *queue){
-    
+    queue = queue;
 
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
-
+    id = id;
+    expr = expr;
 }
 
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
-
+    id = id;
+    expr = expr;
 }
 
 void generate_input(Tsymtab_item * id){
-
+    id = id;
 }
 
 void generate_print(eQueue * exprs){
-
+    exprs = exprs;
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-
+    id = id;
+    sym_item = sym_item;
+    param = param;
 }
 
 void generate_return(ATLeaf * expr){
-
+    expr = expr;
 }
 
 void open_output(){
@@ -66,7 +70,7 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
         fprintf(stderr,"MOVE LF@%%retval string@\n");
     }
     while(!queEmpty(state)){
-        generate_expression(queFront(state));
+        generate_program(state);
         queRemove(state);
     }
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
@@ -74,6 +78,11 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
+    state_true = state_true;
+    state_false = state_false;
+
+
+
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
@@ -92,12 +101,13 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
+    condition = condition;
+
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"LABEL %s\n",label);
-    generate_condition(condition,end_label);
     while(!queEmpty(state)){
-        generate_expression(queFront(state));
+        generate_program(state);
         queRemove(state);
     }
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
@@ -109,7 +119,7 @@ char * generate_expression(ATLeaf *tree){
     bool isString;
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
-        return;
+        return NULL;
     }
 
     gsptr_stackInit(gp_stack);
@@ -342,52 +352,4 @@ char * generate_expression(ATLeaf *tree){
     return id;
     fprintf(stdout, "WRITE LF@%s\n",id);
 
-}
-
-void generate_condition(ATLeaf *leaf, char* label){
-    fprintf(stdout,"GENERATE CONDITION\n");
-}
-
-
-void to_print(ATLeaf *leaf, int value){
-    if(leaf->left != NULL){
-        to_print(leaf->left, 2);
-    }
-    if(leaf->data.type == 1){
-        if(value == 1){
-            printf("|%d|\n",leaf->data.Atr.token->atribute.int_value);        
-        }else if(value == 2){
-            printf("/%d/\n",leaf->data.Atr.token->atribute.int_value);                
-        }else{
-            printf("\\%d\\\n",leaf->data.Atr.token->atribute.int_value);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }
-    else if(leaf->data.type == 0){
-         if(value == 1){
-            printf("|%d op|\n",leaf->data.Atr.op_value);        
-        }else if(value == 2){
-            printf("/%d op/\n",leaf->data.Atr.op_value);                
-        }else{
-            printf("\\%d op\\\n",leaf->data.Atr.op_value);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }else if(leaf->data.type == 2){
-        if(value == 1){
-            printf("|%s|\n",leaf->data.Atr.tsItem->key);        
-        }else if(value == 2){
-            printf("/%s/\n",leaf->data.Atr.tsItem->key);                
-        }else{
-            printf("\\%s\\\n",leaf->data.Atr.tsItem->key);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }
-
-    
 }
