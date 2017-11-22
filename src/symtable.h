@@ -53,6 +53,7 @@ typedef struct var_item{
 // structure for functions
 typedef struct fc_item{
 	bool declared;
+	bool defined;
 	Tvariable_type return_type;
 	int arg_count;
 	Tfunction_argument *arguments;

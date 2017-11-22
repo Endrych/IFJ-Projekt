@@ -259,7 +259,7 @@ Token* get_token(){
 				current_char == ','|| current_char == ')' ||
 				current_char == '('){
 					double convert;
-					convert = atof(str);
+					convert = atof(str); // Zkusit strtof
 					token->type = type_double;
 					token->atribute.double_value = convert; //add check for max
 					last_char = current_char;
