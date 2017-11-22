@@ -11,6 +11,7 @@
 #include "name_generator.h"
 #include "gen_stacks.h"
 #include "at_que.h"
+#include "string_storage.h"
 
 void open_output(){
     fprintf(stdout,".IFJcode17\n");
@@ -67,6 +68,8 @@ void generate_while(ATLeaf * condition, ATQueue * state){
 
 void generate_expression(ATLeaf *tree){
     char * id = generate_name(gt_variable);
+    char * for_string;
+    bool isString;
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
         return;
@@ -90,6 +93,13 @@ void generate_expression(ATLeaf *tree){
                         current->left->processed = true;
                         fprintf(stdout, "MOVE GF@%s float@%f\n", id, current->left->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS GF@%s\n", id);
+                    }
+                    else if(current->left->data.Atr.token->type == type_string){
+                        current->left->processed = true;
+                        for_string = get_string(current->left->data.Atr.token->atribute.int_value);
+                        fprintf(stdout, "MOVE GF@%s string@%s\n", id, for_string);
+                        fprintf(stdout, "PUSHS GF@%s\n", id);
+                        isString = true;
                     }
                 }
                 else if(current->left->data.type == at_tsitem){
@@ -116,6 +126,13 @@ void generate_expression(ATLeaf *tree){
                         fprintf(stdout, "MOVE GF@%s float@%f\n", id, current->right->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS GF@%s\n", id);
                     }
+                    else if(current->right->data.Atr.token->type == type_string){
+                        current->right->processed = true;
+                        for_string = get_string(current->right->data.Atr.token->atribute.int_value);
+                        fprintf(stdout, "MOVE GF@%s string@%s\n", id, for_string);
+                        fprintf(stdout, "PUSHS GF@%s\n", id);
+                        isString = true;                        
+                    }
                 }
                 else if(current->right->data.type == at_tsitem){
                     //pres globalni ramec
@@ -135,8 +152,22 @@ void generate_expression(ATLeaf *tree){
                     if(current->data.Atr.op_value == op_assign){
                         fprintf(stdout, "EQS\n");
                     }
-                    else if(current->data.Atr.op_value == op_add){        
-                        fprintf(stdout, "ADDS\n");
+                    else if(current->data.Atr.op_value == op_add){
+                        if(isString){
+                            char * help1 = generate_name(gt_variable);
+                            char * help2 = generate_name(gt_variable);
+                            fprintf(stdout, "DEFVAR GF@%s\n", help1);
+                            fprintf(stdout, "DEFVAR GF@%s\n", help2);
+                            fprintf(stdout,"POPS GF@%s\n",help1);
+                            fprintf(stdout,"POPS GF@%s\n",help2); 
+                            fprintf(stdout,"CONCAT GF@%s GF@%s GF@%s\n",id, help2, help1);
+                            free(help1);
+                            free(help2);
+                            //pak se sem da dat return zatim to pushnu at se to popne
+                            fprintf(stdout,"PUSHS GF@%s\n", id);
+                        }else{ 
+                            fprintf(stdout, "ADDS\n");
+                        }
                     }
                     else if(current->data.Atr.op_value == op_sub){
                         fprintf(stdout, "SUBS\n");
