@@ -48,7 +48,6 @@ void generate_program(ATQueue *queue){
             printf("COMPILER ERROR");
             exit(COMPILER_ERROR);
         }
-            
         queRemove(queue);
     }
 
@@ -56,35 +55,43 @@ void generate_program(ATQueue *queue){
 
 void generate_main(ATQueue * queue){
     queue = queue;
+
+    //David
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
     id = id;
     expr = expr;
+    //Marek
 }
 
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
     id = id;
     expr = expr;
+    //Marek
 }
 
 void generate_input(Tsymtab_item * id){
     id = id;
+    //Marek
 }
 
 void generate_print(eQueue * exprs){
     exprs = exprs;
+    //Marek
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
     id = id;
     sym_item = sym_item;
     param = param;
+    //David
 }
 
 void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
     expr = expr;
     sym_item = sym_item;
+    //Marek
 }
 
 void open_output(){
@@ -92,6 +99,7 @@ void open_output(){
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
+    //David
     fprintf(stdout, "LABEL $%s\n",item->key);
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     Tfunction_item *  function = item->type_strct.function;
@@ -110,6 +118,7 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
+    //David
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
@@ -122,6 +131,7 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
+    //David
     condition = condition;
 
     char *label = generate_name(gt_label);
