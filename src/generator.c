@@ -58,6 +58,7 @@ void generate_main(ATQueue * queue){
     fprintf(stderr,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
     generate_program(queue);
     fprintf(stderr,"POPFRAME\n");
+    // Pop frame in c
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
@@ -83,10 +84,14 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-    id = id;
-    sym_item = sym_item;
     param = param;
     //David
+    // Vytvorit frame in c
+    fprintf(stderr,"CREATEFRAME\n");
+    // Parametry do TF 
+    fprintf(stderr,"CALL $%s\n",sym_item->key);
+    fprintf(stderr,"MOVE GF@%s TF@%%retval\n",id->key);
+    // Pop frame in c
 }
 
 void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
@@ -100,7 +105,6 @@ void open_output(){
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
-    //David
     fprintf(stdout, "LABEL $%s\n",item->key);
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     Tfunction_item *  function = item->type_strct.function;
