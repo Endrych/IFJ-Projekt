@@ -101,7 +101,7 @@ void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
 }
 
 void open_output(){
-    fprintf(stdout,".IFJcode17\nJUMP ");
+    fprintf(stdout,".IFJcode17\nJUMP $$main\n");
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
