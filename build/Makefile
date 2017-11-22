@@ -81,3 +81,9 @@ destructor_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)error.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)destructor.c -o destructor_test
 	valgrind ./destructor_test
 	rm destructor_test
+
+builtin_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)error.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)built_in.c -o builtin_test
+	valgrind --leak-check=full ./builtin_test
+	rm builtin_test
+
