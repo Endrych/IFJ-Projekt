@@ -74,13 +74,23 @@ void symtab_free(Tsymtab *sym_table)
 		{
 			Tsymtab_item *current_item = temp_item;
 			temp_item = temp_item->next;
+
 			if (current_item->type == type_variable)
 			{
 				free(current_item->type_strct.variable);
+
 			} else if (current_item->type == type_function)
-			{
+			{	
+				for (int i = 0; i < current_item->type_strct.function->arg_count; i++)
+				{	
+					free(current_item->type_strct.function->arguments[i].key);
+					free(current_item->type_strct.function->arguments[i].type_strct.variable);
+				}
+				free(current_item->type_strct.function->arguments);
+				symtab_free(current_item->type_strct.function->sym_table);
 				free(current_item->type_strct.function);
 			}
+
 			free(current_item->key);
 			free(current_item);
 		}
