@@ -64,7 +64,7 @@ void generate_main(ATQueue * queue){
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
     id = id;
     expr = expr;
-    //Marek
+    //Marek, po deklaraci vlozi do ramce v c 
 }
 
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
