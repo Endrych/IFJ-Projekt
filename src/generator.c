@@ -54,9 +54,10 @@ void generate_program(ATQueue *queue){
 }
 
 void generate_main(ATQueue * queue){
-    queue = queue;
-
-    //David
+    // Create frame in C
+    fprintf(stderr,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
+    generate_program(queue);
+    fprintf(stderr,"POPFRAME\n");
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
