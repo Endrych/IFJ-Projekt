@@ -70,7 +70,7 @@ typedef union{
     WhileInput * while_input;
     CallFuncInput * call_func_input;
     ATLeaf * expr;
-    ATQueue * at_queue;
+    struct ATQueue * at_queue;
 }GenValue;
 
 typedef struct atq_item{
@@ -82,6 +82,15 @@ typedef struct atq_item{
 typedef struct atQueue{
     ATQItem * Front;
 }ATQueue;
+
+typedef struct qSItem{
+    ATQueue * Queue;
+    struct qSItem * Next;
+} QSItem;
+
+typedef struct{
+    QSItem * Top;
+} QStack;
 
 void queInit ( ATQueue* s );
 void queDestruct ( ATQueue* s );
@@ -96,5 +105,12 @@ int equeEmpty ( const eQueue* s );
 ATLeaf* equeFront ( const eQueue* s);
 void equeRemove ( eQueue* s );
 void equeUp ( eQueue* s, ATLeaf* Tree);
+
+void qstackInit ( QStack* s );
+void qstackDestruct ( QStack* s );
+int qstackEmpty ( const QStack* s );
+ATQueue* qstackTop ( const QStack* s);
+void qstackPop ( QStack* s );
+void qstackPush ( QStack* s, ATQueue* queue);
 
 #endif
