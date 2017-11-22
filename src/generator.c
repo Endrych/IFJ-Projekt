@@ -13,8 +13,95 @@
 #include "at_que.h"
 #include "string_storage.h"
 
+
+void generate_start(ATQueue *queue){
+    open_output();
+    generate_program(queue);
+}
+
+void generate_program(ATQueue *queue){
+    while(!queEmpty(queue)){
+        ATQItem * item = queFront(queue);
+        GenValue value = item->GenValue;
+        GenType type = item->GenType;
+        if(type == gt_var_declar)
+            generate_variable_declaration(value.var_declar_input->id,value.var_declar_input->expr);
+        else if(type == gt_func_declar)
+            generate_function(value.func_declar_input->sym_item,(ATQueue*)value.func_declar_input->queue);
+        else if(type == gt_assign)
+            generate_assign(value.assign_input->id,value.assign_input->expr);
+        else if(type == gt_input)
+            generate_input(value.id);
+        else if(type == gt_print)
+            generate_print(value.exprs);
+        else if(type == gt_if)
+            generate_if(value.if_input->cond_expr,(ATQueue*) value.if_input->true_queue,(ATQueue*)value.if_input->false_queue);
+        else if(type == gt_while)
+            generate_while(value.while_input->cond_expr,(ATQueue*) value.while_input->queue);
+        else if(type == gt_call_func)
+            generate_call_function(value.call_func_input->id,value.call_func_input->sym_item, value.call_func_input->param);
+        else if(type == gt_return)
+            generate_return(value.return_input->sym_item, value.return_input->expr);
+        else if(type == gt_main)
+            generate_main((ATQueue*)value.at_queue);
+        else{
+            printf("COMPILER ERROR");
+            exit(COMPILER_ERROR);
+        }
+        queRemove(queue);
+    }
+
+}
+
+void generate_main(ATQueue * queue){
+    // Create frame in C
+    fprintf(stderr,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
+    generate_program(queue);
+    fprintf(stderr,"POPFRAME\n");
+    // Pop frame in c
+}
+
+void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
+    id = id;
+    expr = expr;
+    //Marek, po deklaraci vlozi do ramce v c 
+}
+
+void generate_assign(Tsymtab_item* id, ATLeaf * expr){
+    id = id;
+    expr = expr;
+    //Marek
+}
+
+void generate_input(Tsymtab_item * id){
+    id = id;
+    //Marek
+}
+
+void generate_print(eQueue * exprs){
+    exprs = exprs;
+    //Marek
+}
+
+void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
+    param = param;
+    //David
+    // Vytvorit frame in c
+    fprintf(stderr,"CREATEFRAME\n");
+    // Parametry do TF 
+    fprintf(stderr,"CALL $%s\n",sym_item->key);
+    fprintf(stderr,"MOVE GF@%s TF@%%retval\n",id->key);
+    // Pop frame in c
+}
+
+void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
+    expr = expr;
+    sym_item = sym_item;
+    //Marek
+}
+
 void open_output(){
-    fprintf(stdout,".IFJcode17\n");
+    fprintf(stdout,".IFJcode17\nJUMP ");
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
@@ -30,44 +117,33 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     else if(function->return_type == type_str){
         fprintf(stderr,"MOVE LF@%%retval string@\n");
     }
-    while(!queEmpty(state)){
-        generate_expression(queFront(state));
-        queRemove(state);
-    }
+    generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
+    //David
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
     //musime upravit pak ty ramce
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",label,cond);
-    // while(!queEmpty(state_true)){
-    //     generate_expression(queFront(state_true));
-    //     queRemove(state_true);
-    // }
+    generate_program(state_true);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
-    // while(!queEmpty(state_false)){
-    //     generate_expression(queFront(state_false));
-    //     queRemove(state_false);
-    // }
+    generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
-    char *start_label = generate_name(gt_label);
+    //David
+    condition = condition;
+
+    char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
-    fprintf(stdout,"LABEL %s\n",start_label);
-    char *cond = generate_expression(condition);
-    fprintf(stdout, "JUMPIFNEQ %s bool@true LF%s\n", end_label, cond);
-    // while(!queEmpty(state)){
-        // generate_expression(queFront(state));
-        // queRemove(state);
-    // }
-    fprintf(stdout, "JUMP %s\n", start_label);
-    fprintf(stdout, "LABEL %s\n", end_label);
+    fprintf(stdout,"LABEL %s\n",label);
+    generate_program(state);
+    fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
 }
 
 char * generate_expression(ATLeaf *tree){
@@ -77,7 +153,7 @@ char * generate_expression(ATLeaf *tree){
     bool isString;
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
-        return;
+        return NULL;
     }
 
     gsptr_stackInit(gp_stack);
@@ -330,52 +406,4 @@ char * generate_expression(ATLeaf *tree){
     return id;
     fprintf(stdout, "WRITE LF@%s\n",id);
 
-}
-
-void generate_condition(ATLeaf *leaf, char* label){
-    fprintf(stdout,"GENERATE CONDITION\n");
-}
-
-
-void to_print(ATLeaf *leaf, int value){
-    if(leaf->left != NULL){
-        to_print(leaf->left, 2);
-    }
-    if(leaf->data.type == 1){
-        if(value == 1){
-            printf("|%d|\n",leaf->data.Atr.token->atribute.int_value);        
-        }else if(value == 2){
-            printf("/%d/\n",leaf->data.Atr.token->atribute.int_value);                
-        }else{
-            printf("\\%d\\\n",leaf->data.Atr.token->atribute.int_value);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }
-    else if(leaf->data.type == 0){
-         if(value == 1){
-            printf("|%d op|\n",leaf->data.Atr.op_value);        
-        }else if(value == 2){
-            printf("/%d op/\n",leaf->data.Atr.op_value);                
-        }else{
-            printf("\\%d op\\\n",leaf->data.Atr.op_value);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }else if(leaf->data.type == 2){
-        if(value == 1){
-            printf("|%s|\n",leaf->data.Atr.tsItem->key);        
-        }else if(value == 2){
-            printf("/%s/\n",leaf->data.Atr.tsItem->key);                
-        }else{
-            printf("\\%s\\\n",leaf->data.Atr.tsItem->key);                
-        }
-        if(leaf->right != NULL){
-            to_print(leaf->right, 3);
-        }
-    }
-
-    
 }
