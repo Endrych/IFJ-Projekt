@@ -8,6 +8,7 @@
 */
 
 #include <stdbool.h>
+#include <stdlib.h> // exit
 #include <stdio.h>
 #include "parser.h"
 #include "lexical.h"
@@ -48,7 +49,7 @@ int Prog()
 					return return_value;
 				}
 				get_non_eol_token();
-				return_value = Func();
+				return_value = Funcs();
 				return return_value;
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -264,22 +265,10 @@ int Stat()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-					Tvalue init_value;
-					// ___Uloz typ identifikatoru___ 
-					switch (token->atribute.int_value)
-					{
-						case kw_integer:
-							init_value.value_int = 0;
-							set_item_variable(symtab_item->type_strct.variable, init_value, type_int);
-						break;
-						case kw_double:
-							init_value.value_double = 0.0;
-							set_item_variable(symtab_item->type_strct.variable, init_value, type_doub);
-						break;
-						case kw_string:
-							init_value.string = "";
-							set_item_variable(symtab_item->type_strct.variable, init_value, type_str);
-						break;
+					
+					// nastavime typ promenne
+					if ((return_value = set_type_variable(symtab_item->type_strct.variable)) != OK) {
+						return return_value;
 					}
 
 					// __<assign>__
@@ -589,9 +578,43 @@ int Assign()
 	return OK;
 
 }
+
+int Funcs()
+{
+	int return_value;
+	switch (token->type)
+	{
+		case type_keyword:
+			if (token->atribute.int_value == kw_declare || 
+				token->atribute.int_value == kw_function) 
+			{
+				if ((return_value = Func()) != OK) {
+					return return_value;
+				}
+				get_non_eol_token();
+				return Funcs();
+			}
+			else {
+				fprintf(stderr, "ERROR: Unexpected token in function definition/declaration\n");
+				return SYNTAX_ERROR;
+			}
+		break;
+
+		case type_eof:
+			// EPSILON
+			return OK;
+		break;
+		default:
+			fprintf(stderr, "ERROR: Unexpected token in function definition/declaration\n");
+			return SYNTAX_ERROR;
+	}
+	return OK;
+}
+
 int Func()
 {
 	int return_value;
+	Tsymtab * global_symtab;
 	Tsymtab_item* symtab_item;
 	switch (token->type) {
 		case type_eof:
@@ -607,10 +630,28 @@ int Func()
 						fprintf(stderr, "ERROR: Missing identifier after function keyword\n");
 						return SYNTAX_ERROR;
 					}
+
+					// nejprve zkusime id najit v tabulce mezi promennymi
+					symtab_item = symtab_search(symtab, token, type_variable);
+					if (symtab_item != NULL) {
+						fprintf(stderr, "ERROR: Function identifier '%s' already used as variable identifier\n", symtab_item->key);
+						return SEMANTIC_ERROR;
+					}
 					symtab_item = symtab_search(symtab, token, type_function);
 					// pokud jeste neni v tabulce symbolu, uloz ho tam
 					if (symtab_item == NULL) {
-						symtab_insert(symtab, token, type_function);
+						symtab_item = symtab_insert(symtab, token, type_function);
+						symtab_item->type_strct.function->defined = true; // defined = definice funkce
+					}
+					else {
+					// pokud uz v tabulce je
+						// pokud jiz byl definovan -> redefinice (error)
+						if (symtab_item->type_strct.function->defined == true) {
+							fprintf(stderr, "ERROR: Redefinition of function %s\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
+						// byl pouze deklarovan, uloz do defined = true
+						symtab_item->type_strct.function->defined = true;
 					}
 					// __(__
 					token = get_token();
@@ -623,11 +664,17 @@ int Func()
 						return SYNTAX_ERROR;
 					}
 
+					// budeme ukladat do lokalni tabulky symbolu funkce
+					global_symtab = symtab;
+					symtab = symtab_item->type_strct.function->sym_table;
+
 					// __<param_list>__
 					token = get_token();
 					if ((return_value = Param_list()) != OK) {
 						return return_value;
 					}
+
+					symtab = global_symtab;
 
 					// __)__
 					token = get_token();
@@ -655,27 +702,10 @@ int Func()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-
-					// nastavime navratovou hodnotu
-					Tvariable_type f_ret_value;
-					
-					// ___Uloz typ identifikatoru___ 
-					switch (token->atribute.int_value)
-					{
-						case kw_integer:
-							f_ret_value = type_int;
-						break;
-						case kw_double:
-							f_ret_value = type_doub;
-						break;
-						case kw_string:
-							f_ret_value = type_str;
-						break;
-						case kw_boolean:
-							f_ret_value = type_bool;
-						break;
+					// nastavime navratovou hodnotu funkce
+					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
+						return return_value;
 					}
-					set_item_function(symtab_item->type_strct.function, f_ret_value, symtab);
 
 					// __EOL__
 					token = get_token();
@@ -707,21 +737,108 @@ int Func()
 						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
 						return SYNTAX_ERROR;
 					}
+				
 
 				break;
 				case kw_declare:
-				;
+					// __function__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'function' keyword in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_function) {
+						fprintf(stderr, "ERROR: Missing 'function' keyword in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					// __id__
+					token = get_token();
+					if (token->type != type_id) {
+						fprintf(stderr, "ERROR: Missing identifier in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+
+					symtab_item = symtab_search(symtab, token, type_variable);
+					if (symtab_item != NULL) {
+						fprintf(stderr, "ERROR: Redefinition of %s\n", symtab_item->key);
+						return SEMANTIC_ERROR;
+					}
+					
+					symtab_item = symtab_search(symtab, token, type_function);
+					if (symtab_item == NULL) {
+						symtab_item = symtab_insert(symtab, token, type_function);
+					}
+					// __(__
+					token = get_token();
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Missing bracket in function definition\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket) {
+						fprintf(stderr, "ERROR: Missing bracket in function definition\n");
+						return SYNTAX_ERROR;
+					}
+
+					// budeme ukladat do lokalni tabulky symbolu funkce
+					global_symtab = symtab;
+					symtab = symtab_item->type_strct.function->sym_table;
+
+					// __<param_list>__
+					token = get_token();
+					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
+						return return_value;
+					}
+
+					// obnovime globalni tabulku symbolu
+					symtab = global_symtab;
+
+					// __)__ 
+					token = get_token();
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Missing closing bracket in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket_end) {
+						fprintf(stderr, "ERROR: Missing closing bracket in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					// __AS__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'As' keyword in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_as) {
+						fprintf(stderr, "ERROR: Missing 'As' keyword in function declaration\n");
+						return SYNTAX_ERROR;
+					}
+					// __<type>__
+					token = get_token();
+					if ((return_value = Tyype()) != OK) {
+						return return_value;
+					}
+					// nastavime navratovou hodnotu funkce
+					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
+						return return_value;
+					}
+					
 				break;
+
+				default:
+					fprintf(stderr, "ERROR: Unexpected symbol in function declaration/definition\n");
+					return SYNTAX_ERROR;
 			}
 		break;
 
 		default:
-			fprintf(stderr, "ERROR: function or declare keyword was expected\n");
+			fprintf(stderr, "ERROR: Unexpected symbol in function declaration/definition\n");
 			return SYNTAX_ERROR;
 	}
+	return OK;
 }
 int Param_list()
 {
+	return OK;
 	int return_value;
 	switch (token->type)
 	{
@@ -753,6 +870,7 @@ int Param_list()
 
 int Param()
 {
+	return OK;
 	Tsymtab_item* symtab_item;
 	int return_value;
 
@@ -829,6 +947,65 @@ int Tyype()
 	}
 }
 
+// nastavi navratovou hodnotu funkce v tabulce symbolu
+int set_return(Tfunction_item *function)
+{
+	// nastavime navratovou hodnotu
+	Tvariable_type f_ret_value;
+	
+	// ___Uloz typ identifikatoru___ 
+	switch (token->atribute.int_value)
+	{
+		case kw_integer:
+			f_ret_value = type_int;
+			break;
+		case kw_double:
+			f_ret_value = type_doub;
+			break;
+		case kw_string:
+			f_ret_value = type_str;
+			break;
+		case kw_boolean:
+			f_ret_value = type_bool;
+			break;
+		default:
+			fprintf(stderr, "ERROR: Unknown identifier type in function definition/declaration\n");
+			return SYNTAX_ERROR;
+	}
+	set_item_function(function, f_ret_value, symtab);
+	return OK;
+}
+
+// nastavi typ a inicializuje promennou v tabulce symbolu
+int set_type_variable(Tvariable_item *variable)
+{
+	Tvalue init_value;
+	// ___Uloz typ identifikatoru___ 
+	switch (token->atribute.int_value)
+	{
+		case kw_integer:
+			init_value.value_int = 0;
+			set_item_variable(variable, init_value, type_int);
+			break;
+		case kw_double:
+			init_value.value_double = 0.0;
+			set_item_variable(variable, init_value, type_doub);
+			break;
+		case kw_string:
+			init_value.string = "";
+			set_item_variable(variable, init_value, type_str);
+			break;
+		case kw_boolean:
+			init_value.value_int = 1; // ??????????????? na co inicializovat bool ????????????????
+			set_item_variable(variable, init_value, type_bool);
+			break;
+		default:
+			fprintf(stderr, "ERROR: Unknown type in variable declaration\n");
+			return SYNTAX_ERROR;
+	}
+	return OK;
+}
+
 int check_type(Tsymtab_item* symtab_item, PrecendentOutput* out)
 {
 	if (out->Type != symtab_item->type_strct.variable->type) {
@@ -865,7 +1042,7 @@ int parse()
 
 
 
-int main(int argc, char const *argv[])
+int main()
 {
 	int return_value;
 
