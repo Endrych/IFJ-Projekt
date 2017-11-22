@@ -40,17 +40,19 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
     char *label = generate_name(gt_label);
-    generate_condition(condition,label);
-    while(!queEmpty(state_true)){
-        generate_expression(queFront(state_true));
-        queRemove(state_true);
-    }
+    char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
+    //musime upravit pak ty ramce
+    fprintf(stdout, "JUMPIFNEQ %s bool@true GF@%s\n",label,cond);
+    // while(!queEmpty(state_true)){
+    //     generate_expression(queFront(state_true));
+    //     queRemove(state_true);
+    // }
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
-    while(!queEmpty(state_false)){
-        generate_expression(queFront(state_false));
-        queRemove(state_false);
-    }
+    // while(!queEmpty(state_false)){
+    //     generate_expression(queFront(state_false));
+    //     queRemove(state_false);
+    // }
     fprintf(stdout,"LABEL %s\n",end_label);
 }
 
@@ -82,7 +84,26 @@ char * generate_expression(ATLeaf *tree){
     while(tree->processed != true){
         if((current->data.type == at_token) || (current->data.type == at_operators) || 
         (current->data.type == at_tsitem)){
-            if(current->left != NULL && current->left->processed == false){//mozna se bude dat zbavit NULL
+            if(current->left == NULL && current->right == NULL){
+                if(current->data.Atr.token->type == type_integer){//int
+                    current->processed = true;
+                    fprintf(stdout, "MOVE GF@%s int@%d\n", id,current->data.Atr.token->atribute.int_value);
+                    return id;
+                }
+                else if(current->data.Atr.token->type == type_double){//double
+                    current->processed = true;
+                    fprintf(stdout, "MOVE GF@%s float@%f\n", id, current->data.Atr.token->atribute.double_value);
+                    return id;                
+                }
+                else if(current->data.Atr.token->type == type_string){
+                    current->processed = true;
+                    for_string = get_string(current->data.Atr.token->atribute.int_value);
+                    fprintf(stdout, "MOVE GF@%s string@%s\n", id, for_string);
+                    return id;
+                    isString = true;
+                }
+            }
+            else if(current->left != NULL && current->left->processed == false){//mozna se bude dat zbavit NULL
                 if(current->left->data.type == at_token){
                     if(current->left->data.Atr.token->type == type_integer){//int
                         current->left->processed = true;
@@ -284,7 +305,7 @@ char * generate_expression(ATLeaf *tree){
     fprintf(stdout, "POPS GF@%s\n",id);
     gsptr_stackDestruct(gp_stack);;
     return id;
-    // fprintf(stdout, "WRITE GF@%s\n",id);
+    fprintf(stdout, "WRITE GF@%s\n",id);
 
 }
 
