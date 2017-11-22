@@ -12,8 +12,43 @@
 #include "gen_stacks.h"
 #include "at_que.h"
 
+
+void generate_start(ATQueue *queue){
+    open_output();
+    generate_program(queue);
+}
+
+void generate_program(ATQueue *queue){
+    
+
+}
+
+void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
+
+}
+
+void generate_assign(Tsymtab_item* id, ATLeaf * expr){
+
+}
+
+void generate_input(Tsymtab_item * id){
+
+}
+
+void generate_print(eQueue * exprs){
+
+}
+
+void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
+
+}
+
+void generate_return(ATLeaf * expr){
+
+}
+
 void open_output(){
-    fprintf(stdout,".IFJcode17\n");
+    fprintf(stdout,".IFJcode17\nJUMP ");
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
@@ -42,7 +77,7 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
     generate_condition(condition,label);
     while(!queEmpty(state_true)){
         generate_expression(queFront(state_true));
-        queRemove(state_true);
+        queRemove(state_true); 
     }
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
