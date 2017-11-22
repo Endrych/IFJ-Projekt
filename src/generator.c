@@ -123,16 +123,21 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
-    //David
+    //Vytvorit frame in c
+    fprintf(stdout,"CREATEFRAME\n");
+    // NAhazet do TF
+    fprintf(stdout,"PUSHFRAME\n");
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
-    //musime upravit pak ty ramce
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",label,cond);
     generate_program(state_true);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
     generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
+    fprintf(stdout,"POPFRAME\n");
+    //Vyhazet z TF
+    //Popframe in c
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
