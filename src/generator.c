@@ -98,11 +98,11 @@ void generate_print(eQueue * exprs){
                 fprintf(stdout, "WRITE int@%d\n", new->Front->Expr->data.Atr.token->atribute.int_value);            
             }
             else if(new->Front->Expr->data.Atr.token->type == type_double){
-                fprintf(stdout, "WRITE int@%g\n", new->Front->Expr->data.Atr.token->atribute.double_value);            
+                fprintf(stdout, "WRITE float@%g\n", new->Front->Expr->data.Atr.token->atribute.double_value);            
             }
             if(new->Front->Expr->data.Atr.token->type == type_string){
                 str_temp = get_string(new->Front->Expr->data.Atr.token->atribute.int_value);
-                fprintf(stdout, "WRITE int@%s\n", str_temp);            
+                fprintf(stdout, "WRITE string@%s\n", str_temp);            
             }
         }
         else if(new->Front->Expr->data.type == at_tsitem){
