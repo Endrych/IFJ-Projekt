@@ -5,6 +5,7 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
+void generate_main(ATQueue * queue);
 void generate_start(ATQueue *queue);
 void generate_program(ATQueue *queue);
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr);

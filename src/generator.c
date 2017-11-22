@@ -20,8 +20,42 @@ void generate_start(ATQueue *queue){
 }
 
 void generate_program(ATQueue *queue){
-    queue = queue;
+    while(!queEmpty(queue)){
+        ATQItem * item = queFront(queue);
+        GenValue value = item->GenValue;
+        GenType type = item->GenType;
+        if(type == gt_var_declar)
+            generate_variable_declaration(value.var_declar_input->id,value.var_declar_input->expr);
+        else if(type == gt_func_declar)
+            generate_function(value.func_declar_input->sym_item,(ATQueue*)value.func_declar_input->queue);
+        else if(type == gt_assign)
+            generate_assign(value.assign_input->id,value.assign_input->expr);
+        else if(type == gt_input)
+            generate_input(value.id);
+        else if(type == gt_print)
+            generate_print(value.exprs);
+        else if(type == gt_if)
+            generate_if(value.if_input->cond_expr,(ATQueue*) value.if_input->true_queue,(ATQueue*)value.if_input->false_queue);
+        else if(type == gt_while)
+            generate_while(value.while_input->cond_expr,(ATQueue*) value.while_input->queue);
+        else if(type == gt_call_func)
+            generate_call_function(value.call_func_input->id,value.call_func_input->sym_item, value.call_func_input->param);
+        else if(type == gt_return)
+            generate_return(value.return_input->sym_item, value.return_input->expr);
+        else if(type == gt_main)
+            generate_main((ATQueue*)value.at_queue);
+        else{
+            printf("COMPILER ERROR");
+            exit(COMPILER_ERROR);
+        }
+            
+        queRemove(queue);
+    }
 
+}
+
+void generate_main(ATQueue * queue){
+    queue = queue;
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
@@ -93,10 +127,7 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"LABEL %s\n",label);
-    while(!queEmpty(state)){
-        generate_program(state);
-        queRemove(state);
-    }
+    generate_program(state);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
 }
 
