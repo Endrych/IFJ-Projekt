@@ -73,6 +73,8 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
     id = id;
     expr = expr;
+    char *e = generate_expression(expr);
+    fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
     //Marek
 }
 
@@ -407,6 +409,5 @@ char * generate_expression(ATLeaf *tree){
     fprintf(stdout, "POPS LF@%s\n",id);
     gsptr_stackDestruct(gp_stack);;
     return id;
-    fprintf(stdout, "WRITE LF@%s\n",id);
-
+    // fprintf(stdout, "WRITE LF@%s\n",id);
 }
