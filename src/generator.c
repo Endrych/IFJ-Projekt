@@ -127,8 +127,40 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
 }
 
 void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
-    expr = expr;
-    sym_item = sym_item;
+    // type_bool,
+	// type_int,
+	// type_doub,
+	// type_str,
+    char *e; //expression
+    e = generate_expression(expr->Tree);
+    if(sym_item->type_strct.function->return_type == type_int){
+        if(expr->Type == type_int){
+            fprintf(stdout, "MOVE LF@%%retval LF@%s\n", e);
+        }
+        else if(expr->Type == type_doub){
+            fprintf(stdout, "MOVE LF@%%retval LF@%s\n", e);
+            fprintf(stdout, "PUSHS LF@%%retval\n");
+            fprintf(stdout, "FLOAT2R2EINTS\n");
+            fprintf(stdout, "POPS LF@%%retval\n");
+        }
+    }
+    else if(sym_item->type_strct.function->return_type == type_doub){
+        if(expr->Type == type_doub){
+            fprintf(stdout, "MOVE LF@%%retval LF@%s\n", e);
+        }
+        else if(expr->Type == type_int){
+            fprintf(stdout, "MOVE LF@%%retval LF@%s\n", e);
+            fprintf(stdout, "PUSHS LF@%%retval\n");
+            fprintf(stdout, "INT2FLOATS\n");
+            fprintf(stdout, "POPS LF@%%retval\n");
+        }
+    }
+    else if(sym_item->type_strct.function->return_type == type_str){
+        if(expr->Type == type_str){
+            fprintf(stdout, "MOVE LF@%%retval LF@%s\n", e);
+        }
+    }
+    fprintf(stdout, "JUMP $%s$epilog\n",sym_item->key);
     //Marek
 }
 
