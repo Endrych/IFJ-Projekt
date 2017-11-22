@@ -1,5 +1,6 @@
 #include "abstract_tree.h"
 #include "symtable.h"
+#include "precedence_sa.h"
 
 #ifndef AT_QUE_H
 #define AT_QUE_H
@@ -62,7 +63,7 @@ typedef struct{
 
 typedef struct{
     Tsymtab_item * sym_item;
-    ATLeaf * expr;
+    PrecendentOutput * expr;
 }ReturnInput;
 
 typedef union{

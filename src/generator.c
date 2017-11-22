@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "symtable.h"
 #include "token.h"
-// #include "frame.h"
+#include "frame.h"
 #include "abstract_tree.h"
 #include "generator.h"
 #include "error.h"
@@ -13,6 +13,7 @@
 #include "at_que.h"
 #include "string_storage.h"
 
+extern Tframe* temp_frame;
 
 void generate_start(ATQueue *queue){
     open_output();
@@ -55,9 +56,9 @@ void generate_program(ATQueue *queue){
 
 void generate_main(ATQueue * queue){
     // Create frame in C
-    fprintf(stderr,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
+    fprintf(stdout,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
     generate_program(queue);
-    fprintf(stderr,"POPFRAME\n");
+    fprintf(stdout,"POPFRAME\n");
     // Pop frame in c
 }
 
@@ -113,24 +114,26 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-    param = param;
-    //David
     // Vytvorit frame in c
-    fprintf(stderr,"CREATEFRAME\n");
-    // Parametry do TF 
-    fprintf(stderr,"CALL $%s\n",sym_item->key);
-    fprintf(stderr,"MOVE GF@%s TF@%%retval\n",id->key);
+    fprintf(stdout,"CREATEFRAME\n");
+    for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
+        fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
+        char * prom = generate_expression(equeFront(param));
+        fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+    }
+    fprintf(stdout,"CALL $%s\n",sym_item->key);
+    fprintf(stdout,"MOVE GF@%s TF@%%retval\n",id->key);
     // Pop frame in c
 }
 
-void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
+void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
     expr = expr;
     sym_item = sym_item;
     //Marek
 }
 
 void open_output(){
-    fprintf(stdout,".IFJcode17\nJUMP ");
+    fprintf(stdout,".IFJcode17\nJUMP $$main\n");
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
@@ -138,13 +141,13 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     Tfunction_item *  function = item->type_strct.function;
     if(function->return_type == type_doub){
-        fprintf(stderr,"MOVE LF@%%retval float@0.0\n");
+        fprintf(stdout,"MOVE LF@%%retval float@0.0\n");
     }
     else if(function->return_type == type_int){
-        fprintf(stderr,"MOVE LF@%%retval int@0\n");
+        fprintf(stdout,"MOVE LF@%%retval int@0\n");
     }
     else if(function->return_type == type_str){
-        fprintf(stderr,"MOVE LF@%%retval string@\n");
+        fprintf(stdout,"MOVE LF@%%retval string@\n");
     }
     generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
@@ -152,27 +155,39 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
-    //David
+    //Vytvorit frame in c
+    fprintf(stdout,"CREATEFRAME\n");
+    // NAhazet do TF
+    fprintf(stdout,"PUSHFRAME\n");
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
-    //musime upravit pak ty ramce
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",label,cond);
     generate_program(state_true);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
     generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
+    fprintf(stdout,"POPFRAME\n");
+    //Vyhazet z TF
+    //Popframe in c
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
-    //David
-    condition = condition;
-
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"LABEL %s\n",label);
+    fprintf(stdout,"CREATEFRAME\n");
+    // Nahazet do TF
+    fprintf(stdout,"PUSHFRAME\n");
+    char * cond = generate_expression(condition);
+    fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",end_label,cond);
     generate_program(state);
+    fprintf(stdout,"POPFRAME\n");
+    //Vyhazet z TF
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+    fprintf(stdout,"POPFRAME\n");
+    //Vyhazet z TF
+    //Popframe in c
 }
 
 char * generate_expression(ATLeaf *tree){

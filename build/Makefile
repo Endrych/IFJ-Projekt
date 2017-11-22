@@ -68,7 +68,7 @@ name_generator:
 	rm name_generator
 
 generator_test:
-	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)gen_test.c -o generator_test
+	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)precedence_sa.c $(TEST_FOLDER)gen_test.c -o generator_test
 	./generator_test
 	rm generator_test
 
