@@ -32,13 +32,13 @@ void insert_length()
 	temp_item->type_strct.function->declared = true;
 	temp_item->type_strct.function->return_type = type_int;
 
+	// parametr
 	position = add_string_to_storage("s");
 
 	token->atribute.int_value = position;
 	type = type_variable;
 
 	char *key = get_string(position);
-	
 	Tvalue value; 
 
 	temp_item->type_strct.function->arg_count = 0;
@@ -68,6 +68,7 @@ void insert_substr()
 	}
 
 	token->atribute.int_value = position;
+	
 	Telement_type type = type_function;
 
 	temp_item = symtab_insert(symtab, token, type);
@@ -78,8 +79,8 @@ void insert_substr()
 
 	// prvni parametr
 	position = add_string_to_storage("s");
-
 	token->atribute.int_value = position;
+	
 	type = type_variable;
 
 	char *key = get_string(position);
@@ -92,18 +93,22 @@ void insert_substr()
 	temp_item->type_strct.function->sym_table = symtab_init(11);
 
 	Tsymtab_item *param1 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
+	
 	param1->type_strct.variable->declared = true;
 	param1->type_strct.variable->type = type_str;
 
 	// druhy parametr 
 	position = add_string_to_storage("i");
 	token->atribute.int_value = position;
+	
 	type = type_variable;
 
 	char *key2 = get_string(position);
 	
 	set_args_function(temp_item->type_strct.function, key2, type_int, value);
+	
 	Tsymtab_item *param2 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
+	
 	param2->type_strct.variable->declared = true;
 	param2->type_strct.variable->type = type_int;
 
@@ -117,6 +122,7 @@ void insert_substr()
 	set_args_function(temp_item->type_strct.function, key3, type_int, value);
 
 	Tsymtab_item *param3 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
+	
 	param3->type_strct.variable->declared = true;
 	param3->type_strct.variable->type = type_int;
 
@@ -215,14 +221,23 @@ void insert_chr()
 
 	free(token);
 }
-/*
-int main()
+
+void insert_built_in()
 {
-	symtab = symtab_init(17);
 	insert_length();
 	insert_substr();
 	insert_asc();
 	insert_chr();
+}
+
+
+
+
+
+int main()
+{
+	symtab = symtab_init(17);
+	insert_built_in();
 	for (unsigned int i = 0; i < symtab->size; i++)
 	{
 		Tsymtab_item *temp_item = symtab->symtab_list[i];
@@ -261,5 +276,5 @@ int main()
 	
 	return 0;
 }
-*/
+
 
