@@ -55,9 +55,9 @@ void generate_program(ATQueue *queue){
 
 void generate_main(ATQueue * queue){
     // Create frame in C
-    fprintf(stderr,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
+    fprintf(stdout,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
     generate_program(queue);
-    fprintf(stderr,"POPFRAME\n");
+    fprintf(stdout,"POPFRAME\n");
     // Pop frame in c
 }
 
@@ -87,10 +87,10 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
     param = param;
     //David
     // Vytvorit frame in c
-    fprintf(stderr,"CREATEFRAME\n");
+    fprintf(stdout,"CREATEFRAME\n");
     // Parametry do TF 
-    fprintf(stderr,"CALL $%s\n",sym_item->key);
-    fprintf(stderr,"MOVE GF@%s TF@%%retval\n",id->key);
+    fprintf(stdout,"CALL $%s\n",sym_item->key);
+    fprintf(stdout,"MOVE GF@%s TF@%%retval\n",id->key);
     // Pop frame in c
 }
 
@@ -109,13 +109,13 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     Tfunction_item *  function = item->type_strct.function;
     if(function->return_type == type_doub){
-        fprintf(stderr,"MOVE LF@%%retval float@0.0\n");
+        fprintf(stdout,"MOVE LF@%%retval float@0.0\n");
     }
     else if(function->return_type == type_int){
-        fprintf(stderr,"MOVE LF@%%retval int@0\n");
+        fprintf(stdout,"MOVE LF@%%retval int@0\n");
     }
     else if(function->return_type == type_str){
-        fprintf(stderr,"MOVE LF@%%retval string@\n");
+        fprintf(stdout,"MOVE LF@%%retval string@\n");
     }
     generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
@@ -142,13 +142,17 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 
 void generate_while(ATLeaf * condition, ATQueue * state){
     //David
-    condition = condition;
-
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
+    fprintf(stdout,"CREATEFRAME\n");
+    // Nahazet do TF
+    fprintf(stdout,"PUSHFRAME\n");
+    char * cond = generate_expression(condition);
     fprintf(stdout,"LABEL %s\n",label);
     generate_program(state);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+    //Vyhazet z TF
+    //Popframe in c
 }
 
 char * generate_expression(ATLeaf *tree){
