@@ -29,7 +29,6 @@ typedef enum{
 
 typedef struct{
     Tsymtab_item * id;
-    Tvariable_type type;
     ATLeaf * expr;
 }VarDeclarInput;
 
