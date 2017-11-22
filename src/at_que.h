@@ -23,7 +23,8 @@ typedef enum{
     gt_if,
     gt_while,
     gt_call_func,
-    gt_return
+    gt_return,
+    gt_main
 }GenType;
 
 typedef struct{
@@ -69,6 +70,7 @@ typedef union{
     WhileInput * while_input;
     CallFuncInput * call_func_input;
     ATLeaf * expr;
+    ATQueue * at_queue;
 }GenValue;
 
 typedef struct atq_item{
