@@ -85,7 +85,6 @@ void generate_print(eQueue * exprs){
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
     param = param;
-    //David
     // Vytvorit frame in c
     fprintf(stdout,"CREATEFRAME\n");
     // Parametry do TF 
@@ -141,16 +140,19 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
-    //David
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
+    fprintf(stdout,"LABEL %s\n",label);
     fprintf(stdout,"CREATEFRAME\n");
     // Nahazet do TF
     fprintf(stdout,"PUSHFRAME\n");
     char * cond = generate_expression(condition);
-    fprintf(stdout,"LABEL %s\n",label);
+    fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",end_label,cond);
     generate_program(state);
+    fprintf(stdout,"POPFRAME\n");
+    //Vyhazet z TF
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+    fprintf(stdout,"POPFRAME\n");
     //Vyhazet z TF
     //Popframe in c
 }
