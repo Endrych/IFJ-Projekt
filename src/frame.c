@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+Tframe *temp_frame = NULL; // docasny ramec 
 
 
 void FS_init(TFstack *stack)

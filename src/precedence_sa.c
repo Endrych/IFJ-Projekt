@@ -253,7 +253,7 @@ int findRule(tStack * s){
                         state = 3;
                     }
                     else if(data->Atr.Token->type == type_id){
-                        Tsymtab_item * item = symtab_search(symtab,data->Atr.Token,type_variable);
+                        Tsymtab_item * item = symtab_search(symtab,data->Atr.Token);
                         if(item != NULL){
                             dataType = item->type_strct.variable->type;
                         }

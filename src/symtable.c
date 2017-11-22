@@ -8,7 +8,7 @@
 
 Tsymtab * symtab;
 
-Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type)
+Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token)
 {
 	int position = token->atribute.int_value;
 	char *key = get_string(position);
@@ -97,7 +97,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 	int position = token->atribute.int_value;
 	char *key = get_string(position);
 	unsigned int index = hash_func(key) % sym_table->size;
-	Tsymtab_item *temp = symtab_search(sym_table, token, type);
+	Tsymtab_item *temp = symtab_search(sym_table, token);
 
 	if (temp == NULL)
 	{

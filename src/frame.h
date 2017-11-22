@@ -31,7 +31,7 @@ typedef struct frame_stack {
 
 
 
-Tframe *temp_frame = NULL;		// docasny ramec
+//Tframe *temp_frame = NULL;		// docasny ramec
 
 
 void FS_init(TFstack *stack);					// inicializuje zasobnik
