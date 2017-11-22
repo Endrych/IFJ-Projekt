@@ -137,6 +137,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 		} else if (type == type_function)
 		{
 			new_item->type_strct.function->declared = true;
+			new_item->type_strct.function->defined = false;
 		}
 
 		// empty list
