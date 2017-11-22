@@ -20,6 +20,7 @@ typedef enum{
     gt_func_declar,
     gt_assign,
     gt_input,
+    gt_print,
     gt_if,
     gt_while,
     gt_call_func,
