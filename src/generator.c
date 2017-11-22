@@ -48,8 +48,9 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
     param = param;
 }
 
-void generate_return(ATLeaf * expr){
+void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
     expr = expr;
+    sym_item = sym_item;
 }
 
 void open_output(){
@@ -69,34 +70,20 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     else if(function->return_type == type_str){
         fprintf(stderr,"MOVE LF@%%retval string@\n");
     }
-    while(!queEmpty(state)){
-        generate_program(state);
-        queRemove(state);
-    }
+    generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
-    state_true = state_true;
-    state_false = state_false;
-
-
-
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
     //musime upravit pak ty ramce
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",label,cond);
-    // while(!queEmpty(state_true)){
-    //     generate_expression(queFront(state_true));
-    //     queRemove(state_true);
-    // }
+    generate_program(state_true);
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
-    // while(!queEmpty(state_false)){
-    //     generate_expression(queFront(state_false));
-    //     queRemove(state_false);
-    // }
+    generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
 }
 

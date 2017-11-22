@@ -12,7 +12,7 @@ void generate_assign(Tsymtab_item* id, ATLeaf * expr);
 void generate_input(Tsymtab_item * id);
 void generate_print(eQueue * exprs);
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param);
-void generate_return(ATLeaf * expr);
+void generate_return(Tsymtab_item * sym_item, ATLeaf * expr);
 void open_output();
 char * generate_expression(ATLeaf *leaf);
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false);
