@@ -19,6 +19,7 @@
 #include "precedence_sa.h"
 #include "set_values.h"
 
+
 // tabulka symbolu
 //Tsymtab *sym_tab;
 // aktualni token
@@ -460,14 +461,16 @@ int Stat()
 			// <expr> / volani funkce
 			token = get_token();
 			if (token->type == type_id) {
+				// nejdrive hledame jesti to neni promenna
 				symtab_item = symtab_search(symtab, token, type_variable);
 				if (symtab_item != NULL) {
-					;
+					; // je to promenna, nasleduje <Expr>
 				}
 				else {
+					// zjistime jestli se jedna o funkci
 					symtab_item = symtab_search(symtab, token, type_function);
 					if (symtab_item == NULL) {
-						fprintf(stderr, "ERROR: Using variable before declaration\n");
+						fprintf(stderr, "ERROR: Using undeclared variable\n");
 						return SEMANTIC_ERROR;
 					}
 					// __VOLANI_FUNKCE__ <<<<<<<<<<<<<<<<< generuj kod <<<<<<<<<<<<<
@@ -481,13 +484,17 @@ int Stat()
 						fprintf(stderr, "ERROR: Unexpected symbol after function identifier, did you mean to call the function like: f_id(params)?\n");
 						return SYNTAX_ERROR;
 					}
+
+					// lokalni tabulka funkce
+					global_symtab = symtab;
+					symtab = symtab_item->type_strct.function->sym_table;
 					// ___<Param_list>__
-					/*
+					
 					token = get_token();
-					if ((return_value = Param_list()) != OK) {
+					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
-					
+					// __)__
 					if (token->type != type_operator) {
 						fprintf(stderr, "ERROR: Missing closing bracket\n");
 						return SYNTAX_ERROR;
@@ -496,7 +503,7 @@ int Stat()
 						fprintf(stderr, "ERROR: Missing closing bracket\n");
 						return SYNTAX_ERROR;
 					}
-					*/
+					
 				}
 
 			}
@@ -763,7 +770,7 @@ int Func()
 						fprintf(stderr, "ERROR: Redefinition of %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
-					
+
 					symtab_item = symtab_search(symtab, token, type_function);
 					if (symtab_item == NULL) {
 						symtab_item = symtab_insert(symtab, token, type_function);
@@ -836,16 +843,14 @@ int Func()
 	}
 	return OK;
 }
-int Param_list()
+int Param_list(Tfunction_item *function)
 {
-	return OK;
 	int return_value;
 	switch (token->type)
 	{
 		case type_operator:
-			if (token->atribute.int_value != op_bracket_end) {
-				fprintf(stderr, "ERROR: Missing closing bracket\n");
-				return SYNTAX_ERROR;
+			if (token->atribute.int_value == op_bracket_end) {
+				return OK;
 			}
 		break;
 
@@ -868,6 +873,7 @@ int Param_list()
 	return OK;
 }
 
+// pridat args
 int Param()
 {
 	return OK;
