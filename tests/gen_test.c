@@ -9,7 +9,7 @@
 #include "../src/at_que.h"
 
 extern Tsymtab * symtab;
-#define N 1
+#define N 0
 
 int main(){
     symtab = symtab_init(17);
