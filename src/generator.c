@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include "symtable.h"
 #include "token.h"
-// #include "frame.h"
+#include "frame.h"
 #include "abstract_tree.h"
 #include "generator.h"
 #include "error.h"
@@ -13,6 +13,7 @@
 #include "at_que.h"
 #include "string_storage.h"
 
+extern Tframe* temp_frame;
 
 void generate_start(ATQueue *queue){
     open_output();
@@ -84,16 +85,19 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-    param = param;
     // Vytvorit frame in c
     fprintf(stdout,"CREATEFRAME\n");
-    // Parametry do TF 
+    for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
+        fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
+        char * prom = generate_expression(equeFront(param));
+        fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+    }
     fprintf(stdout,"CALL $%s\n",sym_item->key);
     fprintf(stdout,"MOVE GF@%s TF@%%retval\n",id->key);
     // Pop frame in c
 }
 
-void generate_return(Tsymtab_item * sym_item, ATLeaf * expr){
+void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
     expr = expr;
     sym_item = sym_item;
     //Marek
