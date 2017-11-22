@@ -127,10 +127,6 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
 }
 
 void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
-    // type_bool,
-	// type_int,
-	// type_doub,
-	// type_str,
     char *e; //expression
     e = generate_expression(expr->Tree);
     if(sym_item->type_strct.function->return_type == type_int){
