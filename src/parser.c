@@ -47,6 +47,7 @@ int Prog()
 				{
 					return return_value;
 				}
+				get_non_eol_token();
 				return_value = Func();
 				return return_value;
 			}
@@ -241,7 +242,7 @@ int Stat()
 					}
 
 					// ___Uloz identifikator do symtable___
-					if (symtab_search(symtab, token, type_variable) != NULL) {
+					if ((symtab_item = symtab_search(symtab, token, type_variable)) != NULL) {
 						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
@@ -353,7 +354,7 @@ int Stat()
 						return COMPILER_ERROR;
 					}
 					token = out->ReturnToken;
-					if (out->Type != type_int) {
+					if (out->Type != type_int && out->Type != type_bool) {
 						fprintf(stderr, "ERROR: Do While expression has to be of type integer\n"); //or boolean
 						return SEMANTIC_TYPE_ERROR;
 					}
@@ -364,7 +365,7 @@ int Stat()
 					}
 					// generate_while(out->Tree);
 					// __<St_list>__
-					token = get_token();
+					get_non_eol_token();
 					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
@@ -407,7 +408,7 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 					//__<St_list>__
-					token = get_token();
+					get_non_eol_token();
 					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
@@ -555,7 +556,7 @@ int Else()
 				return SYNTAX_ERROR;
 			}
 			// __<St_list>__
-			token = get_token();
+			get_non_eol_token();
 			if ((return_value = St_list()) != OK) {
 				return return_value;
 			}
@@ -590,7 +591,134 @@ int Assign()
 }
 int Func()
 {
-	return OK;
+	int return_value;
+	Tsymtab_item* symtab_item;
+	switch (token->type) {
+		case type_eof:
+			return OK;
+		break;
+
+		case type_keyword:
+			switch (token->atribute.int_value) {
+				case kw_function:
+					// __id__
+					token = get_token();
+					if (token->type != type_id) {
+						fprintf(stderr, "ERROR: Missing identifier after function keyword\n");
+						return SYNTAX_ERROR;
+					}
+					symtab_item = symtab_search(symtab, token, type_function);
+					// pokud jeste neni v tabulce symbolu, uloz ho tam
+					if (symtab_item == NULL) {
+						symtab_insert(symtab, token, type_function);
+					}
+					// __(__
+					token = get_token();
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Missing bracket after function identifier\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket) {
+						fprintf(stderr, "ERROR: Missing bracket after function identifier\n");
+						return SYNTAX_ERROR;
+					}
+
+					// __<param_list>__
+					token = get_token();
+					if ((return_value = Param_list()) != OK) {
+						return return_value;
+					}
+
+					// __)__
+					token = get_token();
+					if (token->type != type_operator) {
+						fprintf(stderr, "ERROR: Missing closing bracket in function definition\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != op_bracket_end) {
+						fprintf(stderr, "ERROR: Missing closing bracket in function definition\n");
+						return SYNTAX_ERROR;
+					}
+
+					// __As__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'As' keyword in function definition\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_as) {
+						fprintf(stderr, "ERROR: Missing 'As' keyword in function definition\n");
+						return SYNTAX_ERROR;
+					}
+					// ___<type>__
+					token = get_token();
+					if ((return_value = Tyype()) != OK) {
+						return return_value;
+					}
+
+					// nastavime navratovou hodnotu
+					Tvariable_type f_ret_value;
+					
+					// ___Uloz typ identifikatoru___ 
+					switch (token->atribute.int_value)
+					{
+						case kw_integer:
+							f_ret_value = type_int;
+						break;
+						case kw_double:
+							f_ret_value = type_doub;
+						break;
+						case kw_string:
+							f_ret_value = type_str;
+						break;
+						case kw_boolean:
+							f_ret_value = type_bool;
+						break;
+					}
+					set_item_function(symtab_item->type_strct.function, f_ret_value, symtab);
+
+					// __EOL__
+					token = get_token();
+					if (token->type != type_eol) {
+						fprintf(stderr, "Missing end of line in function definition\n");
+						return SYNTAX_ERROR;
+					}
+					// __ST_list__
+					get_non_eol_token();
+					if ((return_value = St_list()) != OK) {
+						return return_value;
+					}
+					// __END__
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_end) {
+						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
+						return SYNTAX_ERROR;
+					}
+					// __Function__
+					token = get_token();
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_function) {
+						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
+						return SYNTAX_ERROR;
+					}
+
+				break;
+				case kw_declare:
+				;
+				break;
+			}
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: function or declare keyword was expected\n");
+			return SYNTAX_ERROR;
+	}
 }
 int Param_list()
 {
