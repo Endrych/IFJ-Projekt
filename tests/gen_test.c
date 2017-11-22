@@ -40,13 +40,14 @@ int main(){
     queInit(&state_false);
     char *input = malloc(sizeof(250));
     PrecendentOutput * out;
-
+    char *strl;
     switch(N){
         case 0:
             while(1){
                 printf("Zadejte vyraz\n");
                 out = precedence_analysis(NULL);
-                generate_expression(out->Tree);
+                strl = generate_expression(out->Tree);
+                printf("%s\n",strl);
             }
             break;
         case 1:

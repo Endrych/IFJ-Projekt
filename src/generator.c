@@ -66,7 +66,7 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
 }
 
-void generate_expression(ATLeaf *tree){
+char * generate_expression(ATLeaf *tree){
     char * id = generate_name(gt_variable);
     char * for_string;
     bool isString;
@@ -163,8 +163,9 @@ void generate_expression(ATLeaf *tree){
                             fprintf(stdout,"CONCAT GF@%s GF@%s GF@%s\n",id, help2, help1);
                             free(help1);
                             free(help2);
+                            return id;
                             //pak se sem da dat return zatim to pushnu at se to popne
-                            fprintf(stdout,"PUSHS GF@%s\n", id);
+                            // fprintf(stdout,"PUSHS GF@%s\n", id);
                         }else{ 
                             fprintf(stdout, "ADDS\n");
                         }
@@ -281,8 +282,9 @@ void generate_expression(ATLeaf *tree){
         }       
     }
     fprintf(stdout, "POPS GF@%s\n",id);
-    fprintf(stdout, "WRITE GF@%s\n",id);
     gsptr_stackDestruct(gp_stack);;
+    return id;
+    // fprintf(stdout, "WRITE GF@%s\n",id);
 
 }
 
