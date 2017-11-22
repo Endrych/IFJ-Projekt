@@ -18,6 +18,7 @@
 #include "abstract_tree.h"
 #include "precedence_sa.h"
 #include "set_values.h"
+#include "at_que.h"
 
 
 // tabulka symbolu
@@ -25,6 +26,8 @@
 // aktualni token
 Token* token;
 extern Tsymtab * symtab;
+QStack* qstack;
+
 
 void get_non_eol_token()
 {
@@ -78,6 +81,11 @@ int Prog()
 
 int Scope()
 {
+	ATQueue* scope_queue;
+	scope_queue = (ATQueue*)malloc(sizeof(ATQueue));
+	queInit(scope_queue);
+	qstackPush(qstack, scope_queue);
+
 	int return_value;
 
 	// __SCOPE__
@@ -203,13 +211,13 @@ int St_list()
 
 int Stat()
 {
+	ATQueue* top_queue;
 	int return_value;
 	Tsymtab_item *symtab_item;
 	PrecendentOutput* out;
 	ATData data;
-	ATLeaf *leaf;
-	ATLeaf *tree;
-	Tsymtab* local_symtab;
+	Tsymtab_item* symtab_item_left;
+	ATQItem* qitem;
 
 	switch (token->type)
 	{
@@ -217,8 +225,9 @@ int Stat()
 			switch (token->atribute.int_value)
 			{
 				case kw_input:
-					// __Input id__
+					// __Input id__ input id
 					// JAK GENEROVAT ? <<<<<<<<<<<<<<<
+
 					token = get_token();
 					if (token->type != type_id)
 					{
@@ -230,7 +239,13 @@ int Stat()
 						fprintf(stderr, "ERROR: Identifier used in Input statement was not declared.\n");
 						return SEMANTIC_ERROR;
 					}
-					// PROVED AKCI <<<<<<<<<<<<<<<<<<<<<
+					qitem = (ATQItem *) malloc(sizeof(ATQItem));
+					qitem->GenType = gt_input;
+					qitem->GenValue.id = symtab_item;
+					qitem->Next = NULL;
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
+
 				break;
 
 				case kw_dim:
@@ -271,6 +286,15 @@ int Stat()
 					if ((return_value = set_type_variable(symtab_item->type_strct.variable)) != OK) {
 						return return_value;
 					}
+					ATQItem* qitem;
+					VarDeclarInput* declar_input;
+					declar_input = (VarDeclarInput*) malloc(sizeof(VarDeclarInput));
+					declar_input->id = symtab_item;
+					declar_input->expr = NULL;
+
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					qitem->GenType = gt_var_declar;
+					qitem->GenValue.var_declar_input = declar_input;
 
 					// __<assign>__
 					token = get_token();
@@ -292,22 +316,25 @@ int Stat()
 						if ((return_value = check_type(symtab_item, out)) != OK) {
 							return return_value;
 						}
-						/*
-						data.type = type_id;
-						data.Atr = symtab_item->variable;
-						leaf = make_leaf(data);
-						data.type = type_operator;
-						data.Atr = op_assign;
-						tree = make_tree(leaf , out->Tree, data);
-						generate_instruction(tree);
-						*/
+						declar_input->expr = out->Tree;
+						
 					}
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
 					
 				break;
 
 				case kw_print:
-					// __Print__ JAK GENEROVAT ???
 					// __<expr>__
+					// vyrazy nemuzou byt bool
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+
+					qitem->GenType = gt_print;
+					qitem->GenValue.exprs = (eQueue *) malloc(sizeof(eQueue));
+					qitem->Next = NULL; // ??????????????????????
+
+					equeInit(qitem->GenValue.exprs);
+
 					token = get_token();
 					out = precedence_analysis(token);
 					if (out == NULL) {
@@ -318,11 +345,15 @@ int Stat()
 						printf("ERROR: Missing semicolon in 'print' function\n");
 						return SYNTAX_ERROR;
 					}
+					equeUp(qitem->GenValue.exprs, out->Tree);
+
 					// __<exprPrint>__
 					token = get_token();
-					if ((return_value = ExprPrint()) != OK) {
+					if ((return_value = ExprPrint(qitem->GenValue.exprs)) != OK) {
 						return return_value;
 					}
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
 
 				break;
 
@@ -344,8 +375,8 @@ int Stat()
 						return COMPILER_ERROR;
 					}
 					token = out->ReturnToken;
-					if (out->Type != type_int && out->Type != type_bool) {
-						fprintf(stderr, "ERROR: Do While expression has to be of type integer\n"); //or boolean
+					if (out->Type != type_bool) {
+						fprintf(stderr, "ERROR: Do While expression has to be of type boolean\n");
 						return SEMANTIC_TYPE_ERROR;
 					}
 					// __EOL__
@@ -353,12 +384,27 @@ int Stat()
 						fprintf(stderr, "ERROR: Missing end of line after 'do while <expr>' statement\n");
 						return SYNTAX_ERROR;
 					}
-					// generate_while(out->Tree);
+
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					qitem->GenType = gt_while;
+					qitem->GenValue.while_input = (WhileInput*) malloc(sizeof(WhileInput));
+
+					qitem->GenValue.while_input->cond_expr = out->Tree;
+					// fronta
+					ATQueue* while_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					queInit(while_queue);
+					qitem->GenValue.while_input->queue = while_queue;
+
+					top_queue = qstackTop(qstack);
+					queUp(top_queue , qitem);
+					qstackPush (qstack, while_queue);
+
 					// __<St_list>__
 					get_non_eol_token();
 					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
+					qstackPop (qstack);
 					// __LOOP__
 					if (token->type != type_keyword) {
 						fprintf(stderr, "ERROR: Missing 'Loop' keyword at the end of 'do while' statement\n");
@@ -378,8 +424,8 @@ int Stat()
 						return COMPILER_ERROR;
 					}
 					token = out->ReturnToken;
-					if (out->Type != type_int) {
-						fprintf(stderr, "ERROR: Do While expression has to be of type integer\n"); //or boolean
+					if (out->Type != type_bool) {
+						fprintf(stderr, "ERROR: 'If' expression has to be of type boolean\n"); //or boolean
 						return SEMANTIC_TYPE_ERROR;
 					}
 					// __THEN__
@@ -397,11 +443,31 @@ int Stat()
 						fprintf(stderr, "ERROR: Missing end of line after 'If <expr> Then' statement\n");
 						return SYNTAX_ERROR;
 					}
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					ATQueue* true_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					ATQueue* false_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					queInit(true_queue);
+					queInit(false_queue);
+					
+					qitem->GenType = gt_if;
+					qitem->GenValue.if_input = (IfInput*) malloc(sizeof(IfInput));
+					qitem->GenValue.if_input->cond_expr = out->Tree;
+					qitem->GenValue.if_input->true_queue = true_queue;
+					qitem->GenValue.if_input->false_queue = false_queue;
+
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
+
+					qstackPush(qstack, true_queue);
+
 					//__<St_list>__
 					get_non_eol_token();
 					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
+
+					qstackPop(qstack);
+					qstackPush(qstack, false_queue);
 					// __<Else>__
 					if ((return_value = Else()) != OK) {
 						return return_value;
@@ -425,6 +491,7 @@ int Stat()
 						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
 						return SYNTAX_ERROR;
 					}
+					qstackPop(qstack);
 				break;
 
 				case kw_return:
@@ -442,12 +509,13 @@ int Stat()
 
 		case type_id:
 			// id musi byt deklarovan
-			// <<<<<<<<< GENEROVAT <<<<<<<<<<<<<
+			
 			symtab_item = symtab_search(symtab, token, type_variable);
 			if (symtab_item == NULL) {
 				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
 				return SEMANTIC_ERROR;
 			}
+			symtab_item_left = symtab_item;
 			// __ = __
 			token = get_token();
 			if (token->type != type_operator) {
@@ -458,6 +526,10 @@ int Stat()
 				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
 				return SYNTAX_ERROR;
 			}
+
+			ATQItem* qitem;
+			qitem = (ATQItem*) malloc(sizeof(ATQItem));
+
 			// <expr> / volani funkce
 			token = get_token();
 			if (token->type == type_id) {
@@ -485,9 +557,6 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 
-					// lokalni tabulka funkce
-					global_symtab = symtab;
-					symtab = symtab_item->type_strct.function->sym_table;
 					// ___<Param_list>__
 					
 					token = get_token();
@@ -507,6 +576,10 @@ int Stat()
 				}
 
 			}
+			qitem->GenType = gt_assign;
+			qitem->GenValue.assign_input = (AssignInput *) malloc(sizeof(AssignInput));
+			qitem->GenValue.assign_input->id = symtab_item_left;
+
 			// __<Expr>__
 			out = precedence_analysis(token);
 			if (out == NULL) {
@@ -516,16 +589,10 @@ int Stat()
 			if ((return_value = check_type(symtab_item, out)) != OK) {
 				return return_value;
 			}
-			/*
-			data.type = type_id;
-			data.Atr = symtab_item->variable;
-			leaf = make_leaf(data);
-			data.type = type_operator;
-			data.Atr = op_assign;
-			tree = make_tree(leaf , out->Tree, data);
-			generate_instruction(tree);
-			*/
-			
+			qitem->GenValue.assign_input->expr = out->Tree;
+			top_queue = qstackTop(qstack);
+			queUp(top_queue, qitem);
+
 		break;
 
 		default:
@@ -620,9 +687,13 @@ int Funcs()
 
 int Func()
 {
+
 	int return_value;
-	Tsymtab * global_symtab;
 	Tsymtab_item* symtab_item;
+	ATQItem* qitem = NULL;
+	ATQueue* top_queue;
+	FuncDeclarInput *input;
+
 	switch (token->type) {
 		case type_eof:
 			return OK;
@@ -637,6 +708,8 @@ int Func()
 						fprintf(stderr, "ERROR: Missing identifier after function keyword\n");
 						return SYNTAX_ERROR;
 					}
+					// fronta na vrcholu zasobniku (mela by to byl globalni)
+					top_queue = qstackTop(qstack);
 
 					// nejprve zkusime id najit v tabulce mezi promennymi
 					symtab_item = symtab_search(symtab, token, type_variable);
@@ -649,6 +722,16 @@ int Func()
 					if (symtab_item == NULL) {
 						symtab_item = symtab_insert(symtab, token, type_function);
 						symtab_item->type_strct.function->defined = true; // defined = definice funkce
+
+						qitem = (ATQItem*) malloc(sizeof(ATQItem));
+						input = (FuncDeclarInput *) malloc(sizeof(FuncDeclarInput));
+
+						input->sym_item = symtab_item;
+						//input->queue = NULL;
+						qitem->GenType = gt_func_declar;
+						qitem->GenValue.func_declar_input = input;
+						queUp(top_queue, qitem);
+
 					}
 					else {
 					// pokud uz v tabulce je
@@ -659,7 +742,28 @@ int Func()
 						}
 						// byl pouze deklarovan, uloz do defined = true
 						symtab_item->type_strct.function->defined = true;
+						ATQItem* temp = queFront(top_queue);
+						while (temp != NULL) {
+							if (temp->GenType == gt_func_declar) {
+								if (temp->GenValue.func_declar_input->sym_item == symtab_item) {
+									qitem = temp;
+									break;
+								}
+							}
+
+							temp = temp->Next;
+						}
+						if (qitem == NULL) {
+							fprintf(stderr, "ERROR: WTF\n");
+							return COMPILER_ERROR;
+						}
 					}
+					ATQueue* func_queue;
+					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					qitem->GenValue.func_declar_input->queue = func_queue;
+					queInit(func_queue);
+					qstackPush (qstack, func_queue);
+
 					// __(__
 					token = get_token();
 					if (token->type != type_operator) {
@@ -671,17 +775,11 @@ int Func()
 						return SYNTAX_ERROR;
 					}
 
-					// budeme ukladat do lokalni tabulky symbolu funkce
-					global_symtab = symtab;
-					symtab = symtab_item->type_strct.function->sym_table;
-
 					// __<param_list>__
 					token = get_token();
 					if ((return_value = Param_list()) != OK) {
 						return return_value;
 					}
-
-					symtab = global_symtab;
 
 					// __)__
 					token = get_token();
@@ -744,6 +842,8 @@ int Func()
 						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
 						return SYNTAX_ERROR;
 					}
+
+					qstackPop(qstack);
 				
 
 				break;
@@ -786,18 +886,11 @@ int Func()
 						return SYNTAX_ERROR;
 					}
 
-					// budeme ukladat do lokalni tabulky symbolu funkce
-					global_symtab = symtab;
-					symtab = symtab_item->type_strct.function->sym_table;
-
 					// __<param_list>__
 					token = get_token();
 					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
-
-					// obnovime globalni tabulku symbolu
-					symtab = global_symtab;
 
 					// __)__ 
 					token = get_token();
@@ -828,7 +921,16 @@ int Func()
 					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
-					
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					input = (FuncDeclarInput*) malloc(sizeof(FuncDeclarInput));
+
+					input->sym_item = symtab_item;
+					input->queue = NULL;
+					qitem->GenType = gt_func_declar;
+					qitem->GenValue.func_declar_input = input;
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
+
 				break;
 
 				default:
@@ -873,7 +975,6 @@ int Param_list(Tfunction_item *function)
 	return OK;
 }
 
-// pridat args
 int Param()
 {
 	return OK;
@@ -909,7 +1010,7 @@ int Next_par()
 {
 	return OK;
 }
-int ExprPrint()
+int ExprPrint(eQueue* exprs)
 {
 	int return_value;
 	PrecendentOutput* out;
@@ -928,8 +1029,10 @@ int ExprPrint()
 				fprintf(stderr, "ERROR: Missing semicolon in 'print' function\n");
 				return SYNTAX_ERROR;
 			}
+			equeUp(exprs, out->Tree);
+
 			token = get_token();
-			if ((return_value = ExprPrint()) != OK) {
+			if ((return_value = ExprPrint(exprs)) != OK) {
 				return return_value;
 			}
 	}
@@ -1001,10 +1104,6 @@ int set_type_variable(Tvariable_item *variable)
 			init_value.string = "";
 			set_item_variable(variable, init_value, type_str);
 			break;
-		case kw_boolean:
-			init_value.value_int = 1; // ??????????????? na co inicializovat bool ????????????????
-			set_item_variable(variable, init_value, type_bool);
-			break;
 		default:
 			fprintf(stderr, "ERROR: Unknown type in variable declaration\n");
 			return SYNTAX_ERROR;
@@ -1040,6 +1139,14 @@ int check_type(Tsymtab_item* symtab_item, PrecendentOutput* out)
 
 int parse()
 {
+	ATQueue* global_queue;
+	global_queue = (ATQueue*) malloc(sizeof(ATQueue));	
+	qstack = (QStack*) malloc(sizeof(QStack));
+
+	queInit (global_queue);
+	qstackPush (qstack, global_queue);
+	qstackInit (qstack);
+
 	symtab = symtab_init(42); 
 	return Prog();
 	symtab_free(symtab); 

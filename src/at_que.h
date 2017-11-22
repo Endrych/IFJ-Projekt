@@ -20,6 +20,7 @@ typedef enum{
     gt_func_declar,
     gt_assign,
     gt_input,
+    gt_print,
     gt_if,
     gt_while,
     gt_call_func,
@@ -45,8 +46,8 @@ typedef struct{
 
 typedef struct{
     ATLeaf * cond_expr;
-    struct ATQueue * true_queue;
-    struct ATQueue * false_queue;
+    ATQueue * true_queue;
+    ATQueue * false_queue;
 }IfInput;
 
 typedef struct{
