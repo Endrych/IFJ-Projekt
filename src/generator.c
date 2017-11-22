@@ -14,10 +14,16 @@
 #include "string_storage.h"
 
 extern Tframe* temp_frame;
+TFstack * frame_stack = NULL;
 
 void generate_start(ATQueue *queue){
+    frame_stack = malloc(sizeof(TFstack));
+    FS_init(frame_stack);
+    create_frame();
+    push_frame(frame_stack,NULL,0);
     open_output();
     generate_program(queue);
+    pop_frame(frame_stack);
 }
 
 void generate_program(ATQueue *queue){
@@ -46,7 +52,7 @@ void generate_program(ATQueue *queue){
         else if(type == gt_main)
             generate_main((ATQueue*)value.at_queue);
         else{
-            printf("COMPILER ERROR");
+            printf("COMPILER ERROR\n");
             exit(COMPILER_ERROR);
         }
         queRemove(queue);
@@ -55,11 +61,12 @@ void generate_program(ATQueue *queue){
 }
 
 void generate_main(ATQueue * queue){
-    // Create frame in C
+    create_frame();
+    push_frame(frame_stack,NULL,0);
     fprintf(stdout,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
     generate_program(queue);
     fprintf(stdout,"POPFRAME\n");
-    // Pop frame in c
+    pop_frame(frame_stack);
 }
 
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
@@ -85,16 +92,16 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-    // Vytvorit frame in c
+    create_frame();
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
         char * prom = generate_expression(equeFront(param));
         fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+        // Pridat argumenty do TF C
     }
     fprintf(stdout,"CALL $%s\n",sym_item->key);
     fprintf(stdout,"MOVE GF@%s TF@%%retval\n",id->key);
-    // Pop frame in c
 }
 
 void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
@@ -109,6 +116,7 @@ void open_output(){
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
     fprintf(stdout, "LABEL $%s\n",item->key);
+    push_frame(frame_stack,NULL,0);
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     Tfunction_item *  function = item->type_strct.function;
     if(function->return_type == type_doub){
@@ -123,12 +131,14 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
     fprintf(stdout, "POPFRAME\nRETURN\n");
+    pop_frame(frame_stack);
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
-    //Vytvorit frame in c
     fprintf(stdout,"CREATEFRAME\n");
+    create_frame();
     // NAhazet do TF
+    push_frame(frame_stack,NULL,0);
     fprintf(stdout,"PUSHFRAME\n");
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
@@ -139,8 +149,8 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
     generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
     fprintf(stdout,"POPFRAME\n");
+    pop_frame(frame_stack);
     //Vyhazet z TF
-    //Popframe in c
 }
 
 void generate_while(ATLeaf * condition, ATQueue * state){
@@ -148,8 +158,10 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"LABEL %s\n",label);
     fprintf(stdout,"CREATEFRAME\n");
+    create_frame();
     // Nahazet do TF
     fprintf(stdout,"PUSHFRAME\n");
+    push_frame(frame_stack,NULL,0);
     char * cond = generate_expression(condition);
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",end_label,cond);
     generate_program(state);
@@ -158,7 +170,7 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
     fprintf(stdout,"POPFRAME\n");
     //Vyhazet z TF
-    //Popframe in c
+    pop_frame(frame_stack);
 }
 
 char * generate_expression(ATLeaf *tree){
