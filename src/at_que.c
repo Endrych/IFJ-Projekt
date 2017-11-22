@@ -87,19 +87,54 @@ void queRemove ( ATQueue* s ){
 }
 
 void queUp ( ATQueue* s, ATQItem * item){
-    ATQItem* new_elem = (ATQItem*) malloc(sizeof(ATQItem));
-    if(new_elem == NULL){
-        return;
-    }
-    new_elem = item;
-    new_elem->Next = NULL;
+    item->Next = NULL;
     ATQItem * current = s->Front;
     if(queEmpty(s)){
-        s->Front = new_elem;
+        s->Front = item;
         return;
     }
     while(current->Next != NULL){
         current = current->Next;
     }
-    current->Next = new_elem;
+    current->Next = item;
+}
+
+void qstackInit ( QStack* s ){
+    s->Top = NULL;
+}
+void qstackDestruct ( QStack* s ){
+    if(s != NULL){
+        QSItem* current = s->Top;
+        QSItem* rm = NULL;
+        while(current != NULL){
+            rm = current;
+            current = current->Next;
+            free(rm);
+        }
+        free(s);
+        s = NULL;
+    }
+}
+int qstackEmpty ( const QStack* s ){
+    return (s->Top == NULL);
+}
+ATQueue* qstackTop ( const QStack* s){
+    if(!qstackEmpty(s))
+        return s->Top->Queue;
+    else
+        return NULL;
+}
+void qstackPop ( QStack* s ){
+    QSItem* rm = s->Top;
+    s->Top = rm->Next;
+    free(rm);
+}
+void qstackPush ( QStack* s, ATQueue* queue){
+    QSItem* new_elem = (QSItem*) malloc(sizeof(struct qSItem));
+    if(new_elem == NULL){
+        return;
+    }
+    new_elem->Queue = queue;
+    new_elem->Next = s->Top;
+    s->Top = new_elem;
 }

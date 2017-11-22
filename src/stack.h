@@ -29,6 +29,8 @@ typedef struct Stack{
     TSItem* Top;
 } tStack;
 
+
+
 void stackInit ( tStack* s );
 void stackDestruct ( tStack* s );
 int stackEmpty ( const tStack* s );

@@ -53,6 +53,7 @@ typedef struct var_item{
 // structure for functions
 typedef struct fc_item{
 	bool declared;
+	bool defined;
 	Tvariable_type return_type;
 	int arg_count;
 	Tfunction_argument *arguments;
@@ -99,7 +100,7 @@ Tsymtab *symtab_init(unsigned int);
 Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type);
 
 // funkce pro vyhledavani v tabulce
-Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token, Telement_type type);
+Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token);
 
 // vymaze tabulku a dealokuje pamet tabulky
 void symtab_free(Tsymtab *sym_table);
