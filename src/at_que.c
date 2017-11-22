@@ -87,21 +87,16 @@ void queRemove ( ATQueue* s ){
 }
 
 void queUp ( ATQueue* s, ATQItem * item){
-    ATQItem* new_elem = (ATQItem*) malloc(sizeof(ATQItem));
-    if(new_elem == NULL){
-        return;
-    }
-    new_elem = item;
-    new_elem->Next = NULL;
+    item->Next = NULL;
     ATQItem * current = s->Front;
     if(queEmpty(s)){
-        s->Front = new_elem;
+        s->Front = item;
         return;
     }
     while(current->Next != NULL){
         current = current->Next;
     }
-    current->Next = new_elem;
+    current->Next = item;
 }
 
 void qstackInit ( QStack* s ){

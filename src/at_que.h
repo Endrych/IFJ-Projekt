@@ -30,7 +30,6 @@ typedef enum{
 
 typedef struct{
     Tsymtab_item * id;
-    Tvariable_type type;
     ATLeaf * expr;
 }VarDeclarInput;
 
@@ -61,6 +60,11 @@ typedef struct{
     eQueue * param;
 }CallFuncInput;
 
+typedef struct{
+    Tsymtab_item * sym_item;
+    ATLeaf * expr;
+}ReturnInput;
+
 typedef union{
     VarDeclarInput * var_declar_input;
     FuncDeclarInput * func_declar_input;
@@ -70,7 +74,7 @@ typedef union{
     IfInput * if_input;
     WhileInput * while_input;
     CallFuncInput * call_func_input;
-    ATLeaf * expr;
+    ReturnInput * return_input;
     struct ATQueue * at_queue;
 }GenValue;
 
