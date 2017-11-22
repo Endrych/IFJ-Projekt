@@ -9,7 +9,7 @@
 #include "../src/at_que.h"
 
 extern Tsymtab * symtab;
-#define N 1
+#define N 0
 
 int main(){
     printf("prom je definovana na 5\n");
