@@ -43,6 +43,9 @@ Token* get_token(){
 	}
 	static char last_char;
 	char prev_char;
+	char int_to_str_1[1]; // pro escape sekvence vzdycky dostanu jedno cislo!	
+	char int_to_str_2[2]; // pro escape sekvence vzdycky dostanu dve cisla!
+	int str_to_int;
 	int state = _START;
 	int length = 0;
 	int size = 10;  //udelat konstantu
@@ -327,7 +330,7 @@ Token* get_token(){
 			case _START_STRING:
 				if(current_char != '\"'){
 					// add to array
-					if(length == size){
+					if((length + 3) >= size){
             			size += 10;
             			str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
@@ -336,9 +339,38 @@ Token* get_token(){
 							EXIT_FAILURE;
 						}		
 					}
-					str[length] = current_char;
-					length++;
-					break;
+					str_to_int = (int)current_char;
+					printf("%d\n",str_to_int);
+					if((str_to_int >= 10 && str_to_int <= 32) || 
+					str_to_int == 35 || str_to_int == 92){
+						sprintf(int_to_str_2, "%d", str_to_int);						
+						str[length] = '\\';
+						length++;
+						str[length] = '0';
+						length++;
+						str[length] = int_to_str_2[0];
+						length++;
+						str[length] = int_to_str_2[1];
+						length++;
+						break;
+					}else if(str_to_int >= 0 && str_to_int <= 9){
+						sprintf(int_to_str_1, "%d", str_to_int);						
+						str[length] = '\\';
+						length++;
+						str[length] = '0';
+						length++;
+						str[length] = '0';
+						length++;
+						str[length] = int_to_str_1[0];
+						length++;
+						break;
+					}
+					else{
+						str[length] = current_char;
+						length++;
+						break;
+					}
+					
 				}else if(current_char == '\n'){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
 					free(str);

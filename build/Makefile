@@ -33,9 +33,9 @@ stack_test_coverage:
 	genhtml stack_coverage.info --output-directory ./stack/
 	rm stack_test *.gcda *gcno *.info
 
-lexan_test:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(TEST_FOLDER)lexical_test.c -o lexan_test
-	./lexan_test $(TEST_FOLDER)test_file1.ifj
+lex_test:
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)lexical.c $(TEST_FOLDER)lex_test.c -o lex_test
+	./lex_test
 	rm lexan_test
 
 precedence_test_coverage:
