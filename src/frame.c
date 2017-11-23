@@ -180,7 +180,7 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 
 		*local_frame = *temp_frame;
 
-		def_return_value(local_frame, var);
+		//def_return_value(local_frame, var);
 
 		local_frame->next_instr = next_instr;
 
@@ -222,7 +222,7 @@ void pop_frame(TFstack *stack)
 
 		if (test != NULL)
 		{
-			get_return_value(temp_frame, FS_top(stack));
+			//get_return_value(temp_frame, FS_top(stack));
 		}
 
 		if (local_frame->var_count != 0)

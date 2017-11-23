@@ -23,6 +23,7 @@ void generate_start(ATQueue *queue){
     push_frame(frame_stack,NULL,0);
     open_output();
     generate_program(queue);
+    create_frame();
     pop_frame(frame_stack);
 }
 
@@ -65,6 +66,7 @@ void generate_main(ATQueue * queue){
     fprintf(stdout,"LABEL $$main\nCREATEFRAME\nPUSHFRAME\n");
     generate_program(queue);
     fprintf(stdout,"POPFRAME\n");
+    create_frame();
     pop_frame(frame_stack);
 }
 
@@ -98,13 +100,13 @@ void generate_assign(Tsymtab_item* id, ATLeaf * expr){
 
 void generate_input(Tsymtab_item * id){
     if(id->type_strct.variable->type == type_int){
-        fprintf(stdout, "READ LF@%s int",id->key);  
+        fprintf(stdout, "READ LF@%s int\n",id->key);  
     }
     else if(id->type_strct.variable->type == type_doub){
-        fprintf(stdout, "READ LF@%s float",id->key);  
+        fprintf(stdout, "READ LF@%s float\n",id->key);  
     }
     else if(id->type_strct.variable->type == type_str){
-        fprintf(stdout, "READ LF@%s string",id->key);  
+        fprintf(stdout, "READ LF@%s string\n",id->key);  
     }
 }
 
@@ -212,20 +214,6 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
 }
 
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false){
-    fprintf(stdout,"CREATEFRAME\n");
-    create_frame();
-    Tframe * top_frame =  FS_top(frame_stack);
-    for(int i= 0;i<top_frame->var_count;i++){
-        Tvariable * new_var = malloc(sizeof(Tvariable));
-        new_var->id = top_frame->vars[i].id;
-        new_var->type = top_frame->vars[i].type;
-        add_var_to_frame(temp_frame,new_var);
-        fprintf(stdout,"DEFVAR TF@%s\n",new_var->id);
-        fprintf(stdout,"MOVE TF@%s LF@%s\n",new_var->id,new_var->id);
-    }
-
-    push_frame(frame_stack,NULL,0);
-    fprintf(stdout,"PUSHFRAME\n");
     char *label = generate_name(gt_label);
     char *cond = generate_expression(condition);
     char * end_label = generate_name(gt_label);
@@ -234,28 +222,19 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
     fprintf(stdout,"JUMP %s\nLABEL %s\n",end_label,label);
     generate_program(state_false);
     fprintf(stdout,"LABEL %s\n",end_label);
-    fprintf(stdout,"POPFRAME\n");
-    pop_frame(frame_stack);
-    for(int i= 0;i<top_frame->var_count;i++){
-        fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
-        fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
-    }
 }
 
+//TODO
 void generate_while(ATLeaf * condition, ATQueue * state){
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
     fprintf(stdout,"LABEL %s\n",label);
     fprintf(stdout,"CREATEFRAME\n");
-    create_frame();
     Tframe * top_frame =  FS_top(frame_stack);
     for(int i= 0;i<top_frame->var_count;i++){
         Tvariable * new_var = malloc(sizeof(Tvariable));
-        new_var->id = top_frame->vars[i].id;
-        new_var->type = top_frame->vars[i].type;
-        add_var_to_frame(temp_frame,new_var);
-        fprintf(stdout,"DEFVAR TF@%s\n",new_var->id);
-        fprintf(stdout,"MOVE TF@%s LF@%s\n",new_var->id,new_var->id);
+        fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
+        fprintf(stdout,"MOVE TF@%s LF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
     fprintf(stdout,"PUSHFRAME\n");
     push_frame(frame_stack,NULL,0);
@@ -273,6 +252,7 @@ void generate_while(ATLeaf * condition, ATQueue * state){
         fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
         fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
+    create_frame();
     pop_frame(frame_stack);
 }
 

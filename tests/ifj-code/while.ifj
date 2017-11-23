@@ -1,0 +1,10 @@
+scope
+Dim x as integer = 0
+do while x <=20
+Dim y as integer = 20
+x = x + 1
+y = y + 1
+loop
+print !"\032";
+print x;y;
+end scope
