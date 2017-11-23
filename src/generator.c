@@ -7,6 +7,7 @@
 #include "frame.h"
 #include "abstract_tree.h"
 #include "generator.h"
+#include "destructor.h"
 #include "error.h"
 #include "name_generator.h"
 #include "gen_stacks.h"
@@ -18,6 +19,11 @@ TFstack * frame_stack = NULL;
 
 void generate_start(ATQueue *queue){
     frame_stack = malloc(sizeof(TFstack));
+    if (frame_stack == NULL)
+    {
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+    }
     FS_init(frame_stack);
     create_frame();
     push_frame(frame_stack,NULL,0);
@@ -74,7 +80,23 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
         char *e = generate_expression(expr);
         fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
     }
+    else{
+        if(id->type_strct.variable->type == type_int){
+            fprintf(stdout, "MOVE LF@%s int@0\n",id->key);  
+        }
+        else if(id->type_strct.variable->type == type_doub){
+            fprintf(stdout, "MOVE LF@%s float@0.0\n",id->key);  
+        }
+        else if(id->type_strct.variable->type == type_str){
+            fprintf(stdout, "MOVE LF@%s string@\n",id->key);  
+        }
+    }
     Tvariable * item = malloc(sizeof(Tvariable));
+    if (item == NULL)
+    {
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+    }
     item->id = id->key;
     item->type = id->type_strct.variable->type;
     add_var_to_frame(FS_top(frame_stack),item);
@@ -101,32 +123,35 @@ void generate_print(eQueue * exprs){
     eQueue * new = exprs;
     char * str_temp;
     while(!equeEmpty(new)){
-        if(new->Front->Expr->data.type == at_token){
-            if(new->Front->Expr->data.Atr.token->type == type_integer){
-                fprintf(stdout, "WRITE int@%d\n", new->Front->Expr->data.Atr.token->atribute.int_value);            
+        if(new->Front->eValue.tree_value->data.type == at_token){
+            if(new->Front->eValue.tree_value->data.Atr.token->type == type_integer){
+                fprintf(stdout, "WRITE int@%d\n", new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);            
             }
-            else if(new->Front->Expr->data.Atr.token->type == type_double){
-                fprintf(stdout, "WRITE float@%g\n", new->Front->Expr->data.Atr.token->atribute.double_value);            
+            else if(new->Front->eValue.tree_value->data.Atr.token->type == type_double){
+                fprintf(stdout, "WRITE float@%g\n", new->Front->eValue.tree_value->data.Atr.token->atribute.double_value);            
             }
-            if(new->Front->Expr->data.Atr.token->type == type_string){
-                str_temp = get_string(new->Front->Expr->data.Atr.token->atribute.int_value);
+            if(new->Front->eValue.tree_value->data.Atr.token->type == type_string){
+                str_temp = get_string(new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);
                 fprintf(stdout, "WRITE string@%s\n", str_temp);            
             }
         }
-        else if(new->Front->Expr->data.type == at_tsitem){
-            fprintf(stdout, "WRITE LF@%s\n",new->Front->Expr->data.Atr.tsItem->key);
+        else if(new->Front->eValue.tree_value->data.type == at_tsitem){
+            fprintf(stdout, "WRITE LF@%s\n",new->Front->eValue.tree_value->data.Atr.tsItem->key);
         }
         equeRemove(new);
     }
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
+    param = param;
     //create_frame();
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
-        char * prom = generate_expression(equeFront(param));
-        fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+        //char * prom = generate_expression(equeFront(param)->eValue.tree_value);
+        // Oprava
+
+       // fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
        
     }
     fprintf(stdout,"CALL $%s\n",sym_item->key);
@@ -175,6 +200,11 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     create_frame();
     for(int i = 0; i < item->type_strct.function->arg_count;i++){
         Tvariable * item1 = malloc(sizeof(Tvariable));
+        if (item1 == NULL)
+        {
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
+        }
         item1->id = item->type_strct.function->arguments[i].key;
         item1->type = item->type_strct.function->arguments[i].type;
         add_var_to_frame(temp_frame,item1);
@@ -203,6 +233,11 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
     Tframe * top_frame =  FS_top(frame_stack);
     for(int i= 0;i<top_frame->var_count;i++){
         Tvariable * new_var = malloc(sizeof(Tvariable));
+        if (new_var == NULL)
+        {
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
+        }
         new_var->id = top_frame->vars[i].id;
         new_var->type = top_frame->vars[i].type;
         add_var_to_frame(temp_frame,new_var);
@@ -237,6 +272,11 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     Tframe * top_frame =  FS_top(frame_stack);
     for(int i= 0;i<top_frame->var_count;i++){
         Tvariable * new_var = malloc(sizeof(Tvariable));
+        if (new_var == NULL)
+        {
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
+        }
         new_var->id = top_frame->vars[i].id;
         new_var->type = top_frame->vars[i].type;
         add_var_to_frame(temp_frame,new_var);
@@ -269,7 +309,8 @@ char * generate_expression(ATLeaf *tree){
     bool isString;
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
-        return NULL;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
 
     gsptr_stackInit(gp_stack);

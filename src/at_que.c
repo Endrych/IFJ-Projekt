@@ -1,4 +1,5 @@
 #include "at_que.h"
+#include "destructor.h"
 #include <stdlib.h>
 
 void equeInit ( eQueue* s ){
@@ -11,7 +12,6 @@ void equeDestruct ( eQueue* s ){
         while(current != NULL){
             rm = current;
             current = current->Next;
-            dispose_at(rm->Expr);
             free(rm);
         }
         free(s);
@@ -21,34 +21,28 @@ void equeDestruct ( eQueue* s ){
 int equeEmpty ( const eQueue* s ){
     return (s->Front == NULL);
 }
-ATLeaf* equeFront ( const eQueue* s){
+eQItem* equeFront ( const eQueue* s){
     if(!equeEmpty(s))
-        return s->Front->Expr;
+        return s->Front;
     else
         return NULL;
 }
 void equeRemove ( eQueue* s ){
     eQItem * rm = s->Front;
     s->Front = rm->Next;
-    dispose_at(rm->Expr);
     free(rm);
 }
-void equeUp ( eQueue* s, ATLeaf* Tree){
-    eQItem* new_elem = (eQItem*) malloc(sizeof(eQItem));
-    if(new_elem == NULL){
-        return;
-    }
-    new_elem->Expr = Tree;
-    new_elem->Next = NULL;
+void equeUp ( eQueue* s, eQItem * item){
+    item->Next = NULL;
     eQItem * current = s->Front;
     if(equeEmpty(s)){
-        s->Front = new_elem;
+        s->Front = item;
         return;
     }
     while(current->Next != NULL){
         current = current->Next;
     }
-    current->Next = new_elem;
+    current->Next = item;
 }
 
 void queInit ( ATQueue* s ){
@@ -132,7 +126,8 @@ void qstackPop ( QStack* s ){
 void qstackPush ( QStack* s, ATQueue* queue){
     QSItem* new_elem = (QSItem*) malloc(sizeof(struct qSItem));
     if(new_elem == NULL){
-        return;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_elem->Queue = queue;
     new_elem->Next = s->Top;

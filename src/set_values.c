@@ -1,4 +1,5 @@
 #include "set_values.h"
+#include "destructor.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -26,16 +27,16 @@ void set_args_function(Tfunction_item *item, char *key, Tvariable_type type, Tva
 		item->arguments = (Tsymtab_item *) malloc(sizeof(Tsymtab_item));
 		if (item->arguments == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 		item->arguments[(item->arg_count)-1].type = type_variable;
 		(item->arguments[(item->arg_count)-1]).type_strct.variable = (struct var_item *) malloc(sizeof(struct var_item));
 		
 		if ((item->arguments[(item->arg_count)-1]).type_strct.variable == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 		(item->arguments[(item->arg_count)-1]).type_strct.variable->type = type;
 		(item->arguments[(item->arg_count)-1]).key = key;
@@ -45,15 +46,15 @@ void set_args_function(Tfunction_item *item, char *key, Tvariable_type type, Tva
 		item->arguments = (Tsymtab_item *) realloc(item->arguments, (sizeof(Tsymtab_item) * item->arg_count));
 		if (item->arguments == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();;
 		}
 		
 		(item->arguments[(item->arg_count)-1]).type_strct.variable = (struct var_item *) malloc(sizeof(struct var_item));
 		if ((item->arguments[(item->arg_count)-1]).type_strct.variable == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 		(item->arguments[(item->arg_count)-1]).type_strct.variable->type = type;
 		(item->arguments[(item->arg_count)-1]).key = key;
