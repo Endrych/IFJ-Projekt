@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "token.h"
 #include "string_storage.h"
+#include "destructor.h"
 
 //TODO: TESTS
 
@@ -38,8 +39,8 @@ Token* get_token(){
 	bool isIntToken = true;
 	Token* token = create_token();
 	if(token == NULL){
-		fprintf(stderr, "Creation of token failed\n");
-		EXIT_FAILURE;
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 	static char last_char;
 	char prev_char;
@@ -75,8 +76,8 @@ Token* get_token(){
 					str=(char*)calloc(size,sizeof(char));
 					if (str == NULL)
 					{
-						fprintf(stderr,"Problem with memory\n");
-						EXIT_FAILURE;
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       					dispose_global();
 					}		
 					state = _NUMBER;
 				}
@@ -90,8 +91,8 @@ Token* get_token(){
 					str=(char*)calloc(size,sizeof(char));
 					if (str == NULL)
 					{
-						fprintf(stderr,"Problem with memory\n");
-						EXIT_FAILURE;
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
 					}					
 					last_char = current_char;
 				}
@@ -227,8 +228,8 @@ Token* get_token(){
     	        		str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
 						}		
 				  	}		
 					str[length] = current_char;
@@ -242,8 +243,8 @@ Token* get_token(){
             			str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
 						}		
 					}
 					str[length] = current_char;
@@ -299,8 +300,8 @@ Token* get_token(){
             			str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
 						}		
 					}
 					str[length] = current_char;
@@ -315,8 +316,8 @@ Token* get_token(){
 					str=(char*)calloc(size,sizeof(char));	
 					if (str == NULL)
 					{
-						fprintf(stderr,"Problem with memory\n");
-						EXIT_FAILURE;
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       					dispose_global();
 					}						
 					state = _START_STRING;
 					break;
@@ -335,8 +336,8 @@ Token* get_token(){
             			str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       						dispose_global();
 						}		
 					}
 					str_to_int = (int)current_char;
@@ -387,8 +388,8 @@ Token* get_token(){
 					str = (char *)realloc(str, size*sizeof(char));
 					if (str == NULL)
 					{
-						fprintf(stderr,"Problem with memory\n");
-						EXIT_FAILURE;
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
 					}		
 				}
 				str[length] = '\0';
@@ -408,8 +409,8 @@ Token* get_token(){
 						str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
 						}		
 					}
 					lowering = tolower(current_char);
@@ -434,8 +435,8 @@ Token* get_token(){
 						str = (char *)realloc(str, size*sizeof(char));
 						if (str == NULL)
 						{
-							fprintf(stderr,"Problem with memory\n");
-							EXIT_FAILURE;
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
 						}		
 					}
 					str[length] = '\0';
