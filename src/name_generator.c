@@ -1,4 +1,5 @@
 #include "name_generator.h"
+#include "destructor.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,7 +22,8 @@ char * generate_name(GType type){
     length = length + 1;
     char * name = malloc(sizeof(char) * length);
     if(name == NULL){
-        return NULL;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     if(type == gt_label)
         name[0] = '$';
