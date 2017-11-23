@@ -81,9 +81,17 @@ int Prog()
 
 int Scope()
 {
+	// vytvorime qitem a novou frontu pro scope
+	ATQItem* qitem = (ATQItem*) malloc(sizeof(ATQItem));
 	ATQueue* scope_queue;
+	ATQueue* top_queue;
+
 	scope_queue = (ATQueue*)malloc(sizeof(ATQueue));
 	queInit(scope_queue);
+	qitem->GenType = gt_main;
+	qitem->GenValue.at_queue = scope_queue;
+	top_queue = qstackTop(qstack);
+	// pushneme frontu na vrchol zasobniku
 	qstackPush(qstack, scope_queue);
 
 	int return_value;
@@ -234,16 +242,24 @@ int Stat()
 						printf("ERROR: Missing identifier after Intup statement\n");
 						return SYNTAX_ERROR;
 					}
-					symtab_item = symtab_search(symtab, token, type_variable);
+					symtab_item = symtab_search(symtab, token);
 					if (symtab_item == NULL) {
 						fprintf(stderr, "ERROR: Identifier used in Input statement was not declared.\n");
 						return SEMANTIC_ERROR;
 					}
+					if (symtab_item->type == type_function) {
+						fprintf(stderr, "ERROR: Trying to use function identifier in 'Input' statement.\n");
+						return SEMANTIC_ERROR;
+					}
+					// generuj kod
+					// qitem
 					qitem = (ATQItem *) malloc(sizeof(ATQItem));
 					qitem->GenType = gt_input;
 					qitem->GenValue.id = symtab_item;
 					qitem->Next = NULL;
+					// zjisti co je na vrcholu zasobniku (muze to byt Scope nebo Funkce...)
 					top_queue = qstackTop(qstack);
+					// vloz instrukci do fronty
 					queUp(top_queue, qitem);
 
 				break;
@@ -259,7 +275,7 @@ int Stat()
 					}
 
 					// ___Uloz identifikator do symtable___
-					if ((symtab_item = symtab_search(symtab, token, type_variable)) != NULL) {
+					if ((symtab_item = symtab_search(symtab, token)) != NULL) {
 						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
@@ -468,10 +484,27 @@ int Stat()
 
 					qstackPop(qstack);
 					qstackPush(qstack, false_queue);
-					// __<Else>__
-					if ((return_value = Else()) != OK) {
+					// __else__
+					if (token->type != type_keyword) {
+						fprintf(stderr, "ERROR: Missing 'else' in 'if' statement\n");
+						return SYNTAX_ERROR;
+					}
+					if (token->atribute.int_value != kw_else) {
+						fprintf(stderr, "ERROR: Missing 'else' in 'if' statement\n");
+						return SYNTAX_ERROR;
+					}
+					// __EOL__
+					token = get_token();
+					if (token->type != type_eol) {
+						fprintf(stderr, "ERROR: Missing end of line after 'Else' keyword\n");
+						return SYNTAX_ERROR;
+					}
+					// __<St_list>__
+					get_non_eol_token();
+					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
+
 					// __End__
 					if (token->type != type_keyword) {
 						fprintf(stderr, "ERROR: Missing 'End if' at the end of 'If <expr> Then' statement\n");
@@ -510,9 +543,13 @@ int Stat()
 		case type_id:
 			// id musi byt deklarovan
 			
-			symtab_item = symtab_search(symtab, token, type_variable);
+			symtab_item = symtab_search(symtab, token);
 			if (symtab_item == NULL) {
 				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
+				return SEMANTIC_ERROR;
+			}
+			if (symtab_item->type == type_function) {
+				fprintf(stderr, "ERROR: Use of function identifier where variable was expected\n");
 				return SEMANTIC_ERROR;
 			}
 			symtab_item_left = symtab_item;
@@ -534,18 +571,13 @@ int Stat()
 			token = get_token();
 			if (token->type == type_id) {
 				// nejdrive hledame jesti to neni promenna
-				symtab_item = symtab_search(symtab, token, type_variable);
-				if (symtab_item != NULL) {
-					; // je to promenna, nasleduje <Expr>
+				symtab_item = symtab_search(symtab, token);
+				if (symtab_item == NULL) {
+					fprintf(stderr, "ERROR: Use of undeclared variable\n");
+					return SEMANTIC_ERROR; // ?????????????????????????????
 				}
-				else {
-					// zjistime jestli se jedna o funkci
-					symtab_item = symtab_search(symtab, token, type_function);
-					if (symtab_item == NULL) {
-						fprintf(stderr, "ERROR: Using undeclared variable\n");
-						return SEMANTIC_ERROR;
-					}
-					// __VOLANI_FUNKCE__ <<<<<<<<<<<<<<<<< generuj kod <<<<<<<<<<<<<
+				if (symtab_item->type == type_function) {
+					// __VOLANI_FUNKCE__
 					// __ ( __
 					token = get_token();
 					if (token->type != type_operator) {
@@ -573,6 +605,7 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 					
+					return OK;
 				}
 
 			}
@@ -601,35 +634,7 @@ int Stat()
 	}
 	return OK;
 }
-int Else()
-{
-	int return_value;
-	switch (token->atribute.int_value)
-	{
-		// __EPSILON__
-		case kw_end:
-			return OK;
-		break;
 
-		case kw_else:
-			//__EOL__
-			token = get_token();
-			if (token->type != type_eol) {
-				fprintf(stderr, "ERROR: Missing end of line after 'Else' keyword\n");
-				return SYNTAX_ERROR;
-			}
-			// __<St_list>__
-			get_non_eol_token();
-			if ((return_value = St_list()) != OK) {
-				return return_value;
-			}
-		break;
-		default:
-			fprintf(stderr, "ERROR: What your doin maan\n"); // Unexpected usage of keyword
-			return SYNTAX_ERROR;
-	}
-	return OK;
-}
 
 int Assign()
 {
@@ -692,7 +697,6 @@ int Func()
 	Tsymtab_item* symtab_item;
 	ATQItem* qitem = NULL;
 	ATQueue* top_queue;
-	FuncDeclarInput *input;
 
 	switch (token->type) {
 		case type_eof:
@@ -701,6 +705,7 @@ int Func()
 
 		case type_keyword:
 			switch (token->atribute.int_value) {
+				// function definition
 				case kw_function:
 					// __id__
 					token = get_token();
@@ -711,37 +716,41 @@ int Func()
 					// fronta na vrcholu zasobniku (mela by to byl globalni)
 					top_queue = qstackTop(qstack);
 
-					// nejprve zkusime id najit v tabulce mezi promennymi
-					symtab_item = symtab_search(symtab, token, type_variable);
-					if (symtab_item != NULL) {
-						fprintf(stderr, "ERROR: Function identifier '%s' already used as variable identifier\n", symtab_item->key);
-						return SEMANTIC_ERROR;
-					}
-					symtab_item = symtab_search(symtab, token, type_function);
-					// pokud jeste neni v tabulce symbolu, uloz ho tam
+					// zkusime najit id v tabulce symbolu
+					symtab_item = symtab_search(symtab, token);
+					// jestli uz je v tabulce
 					if (symtab_item == NULL) {
-						symtab_item = symtab_insert(symtab, token, type_function);
+						// id v tabulce jeste neni
+						symtab_item = symtab_insert(symtab, token, type_function); // vlozime do tabulky
 						symtab_item->type_strct.function->defined = true; // defined = definice funkce
 
+						// GENEROVANI
 						qitem = (ATQItem*) malloc(sizeof(ATQItem));
-						input = (FuncDeclarInput *) malloc(sizeof(FuncDeclarInput));
 
-						input->sym_item = symtab_item;
 						//input->queue = NULL;
 						qitem->GenType = gt_func_declar;
-						qitem->GenValue.func_declar_input = input;
+						qitem->GenValue.func_declar_input = (FuncDeclarInput *) malloc(sizeof(FuncDeclarInput));
+						qitem->GenValue.func_declar_input->sym_item = symtab_item;
 						queUp(top_queue, qitem);
-
 					}
+
 					else {
-					// pokud uz v tabulce je
-						// pokud jiz byl definovan -> redefinice (error)
-						if (symtab_item->type_strct.function->defined == true) {
+						// pokud uz v tabulce je
+						if (symtab_item->type == type_variable) {
+							fprintf(stderr, "ERROR: Function identifier '%s' already used as variable identifier\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
+						// jestli jiz byla funkce definovana
+						if (symtab_item->type_strct.function->defined) {
 							fprintf(stderr, "ERROR: Redefinition of function %s\n", symtab_item->key);
 							return SEMANTIC_ERROR;
 						}
-						// byl pouze deklarovan, uloz do defined = true
+
+						// byla pouze deklarovana, uloz do defined = true
 						symtab_item->type_strct.function->defined = true;
+
+						// jelikoz uz byla funkce deklarovana, ma jiz vygenerovany qitem
+						// a proto jej zkusime najit ve fronte na vrcholu zasobniku (coz je globalni fronta definic funkci a Scope)
 						ATQItem* temp = queFront(top_queue);
 						while (temp != NULL) {
 							if (temp->GenType == gt_func_declar) {
@@ -753,11 +762,14 @@ int Func()
 
 							temp = temp->Next;
 						}
-						if (qitem == NULL) {
+						if (temp == NULL) {
 							fprintf(stderr, "ERROR: WTF\n");
 							return COMPILER_ERROR;
 						}
+						// zde jiz mame qitem
 					}
+					// nasledujici faze je jiz shodna pro obe varianty
+					// vytvorime frontu pro instrukce funkce a pushneme ji na vrchol zasobniku
 					ATQueue* func_queue;
 					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
 					qitem->GenValue.func_declar_input->queue = func_queue;
@@ -842,7 +854,7 @@ int Func()
 						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
 						return SYNTAX_ERROR;
 					}
-
+					// nakonec popneme frontu funkce ze zasobniku
 					qstackPop(qstack);
 				
 
@@ -865,16 +877,25 @@ int Func()
 						return SYNTAX_ERROR;
 					}
 
-					symtab_item = symtab_search(symtab, token, type_variable);
+					symtab_item = symtab_search(symtab, token);
+					// pokud jiz id je v tabulce symbolu
 					if (symtab_item != NULL) {
-						fprintf(stderr, "ERROR: Redefinition of %s\n", symtab_item->key);
-						return SEMANTIC_ERROR;
+						if (symtab_item->type == type_variable) {
+							fprintf(stderr, "ERROR: Redeclaration of variable %s\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
+						if (symtab_item->type_strct.function->declared) {
+							fprintf(stderr, "ERROR: Function %s was declared more than once\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
 					}
-
-					symtab_item = symtab_search(symtab, token, type_function);
-					if (symtab_item == NULL) {
+					else {
+						// jinak vlozime id do tabulky symbolu
 						symtab_item = symtab_insert(symtab, token, type_function);
 					}
+					// nastavime, ze funkce jiz byla deklarovana
+					symtab_item->type_strct.function->declared = true;
+					
 					// __(__
 					token = get_token();
 					if (token->type != type_operator) {
@@ -921,13 +942,15 @@ int Func()
 					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
+					// _______GENERATOR________
+					// nastavime qitem
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
-					input = (FuncDeclarInput*) malloc(sizeof(FuncDeclarInput));
 
-					input->sym_item = symtab_item;
-					input->queue = NULL;
 					qitem->GenType = gt_func_declar;
-					qitem->GenValue.func_declar_input = input;
+					qitem->GenValue.func_declar_input = (FuncDeclarInput*) malloc(sizeof(FuncDeclarInput));
+					qitem->GenValue.func_declar_input->sym_item = symtab_item;
+					qitem->GenValue.func_declar_input->queue = NULL;
+					// pushneme qitem na vrchol zasobniku
 					top_queue = qstackTop(qstack);
 					queUp(top_queue, qitem);
 
@@ -945,6 +968,7 @@ int Func()
 	}
 	return OK;
 }
+
 int Param_list(Tfunction_item *function)
 {
 	int return_value;
