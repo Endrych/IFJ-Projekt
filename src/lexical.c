@@ -255,14 +255,14 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
-				!e_last_char) || current_char == '<' || 
+				e_last_char) || current_char == '<' || 
 				current_char == '>' || current_char == '=' || 
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
 				current_char == '('){
 					double convert;
-					convert = atof(str); // Zkusit strtof
+					convert = strtof(str, NULL);  // Zkusit strtof
 					token->type = type_double;
 					token->atribute.double_value = convert; //add check for max
 					last_char = current_char;
