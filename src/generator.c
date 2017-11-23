@@ -132,18 +132,59 @@ void generate_print(eQueue * exprs){
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
     param = param;
-    //create_frame();
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
+        eQItem * par = equeFront(param);
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
-        //char * prom = generate_expression(equeFront(param)->eValue.tree_value);
-        // Oprava
+        if(sym_item->type_strct.function->arguments[i].type_strct.variable->type == type_doub){
+            if(par->etype == eq_id){
+                if(par->eValue.id_value->type_strct.variable->type == type_int){
 
-       // fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
-       
+                }
+                else if(par->eValue.id_value->type_strct.variable->type == type_doub){
+                    fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
+                }
+            }
+            else if(par->etype == eq_token){
+                if(par->eValue.token_value->type == type_integer){
+                    fprintf(stdout,"MOVE TF@%s double@%g\n",sym_item->type_strct.function->arguments[i].key,(double)par->eValue.token_value->atribute.int_value);
+                }
+                else if(par->eValue.token_value->type == type_double){
+                    fprintf(stdout,"MOVE TF@%s double@%g\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.double_value);
+                }
+            }
+        }
+        else if(sym_item->type_strct.function->arguments[i].type_strct.variable->type == type_int){
+            if(par->etype == eq_id){
+                if(par->eValue.id_value->type_strct.variable->type == type_int){
+                    fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
+                }
+                else if(par->eValue.id_value->type_strct.variable->type == type_doub){
+                    
+                }
+            }
+            else if(par->etype == eq_token){
+                if(par->eValue.token_value->type == type_integer){
+                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.int_value);
+                }
+                else if(par->eValue.token_value->type == type_double){
+                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,(int)par->eValue.token_value->atribute.double_value);
+                }
+            }
+        }
+        else if(sym_item->type_strct.function->arguments[i].type_strct.variable->type == type_str){
+            if(par->etype == eq_id){
+                fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
+            }
+            else if(par->etype == eq_token){
+                fprintf(stdout,"MOVE TF@%s string@%s\n",sym_item->type_strct.function->arguments[i].key,get_string(par->eValue.token_value->atribute.int_value));
+            }  
+        }
+        //fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+        equeRemove(param);
     }
     fprintf(stdout,"CALL $%s\n",sym_item->key);
-    fprintf(stdout,"MOVE GF@%s TF@%%retval\n",id->key);
+    fprintf(stdout,"MOVE LF@%s TF@%%retval\n",id->key);
 }
 
 void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
@@ -212,6 +253,7 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     generate_program(state);
     fprintf(stdout, "LABEL $%s$epilog\n",item->key);
     fprintf(stdout, "POPFRAME\nRETURN\n");
+    create_frame();
     pop_frame(frame_stack);
 }
 
