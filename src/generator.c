@@ -132,12 +132,15 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
+    param = param;
     //create_frame();
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
-        char * prom = generate_expression(equeFront(param)->eValue.tree_value);
-        fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
+        //char * prom = generate_expression(equeFront(param)->eValue.tree_value);
+        // Oprava
+
+       // fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
        
     }
     fprintf(stdout,"CALL $%s\n",sym_item->key);
