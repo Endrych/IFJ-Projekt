@@ -123,25 +123,7 @@ void generate_input(Tsymtab_item * id){
 
 void generate_print(eQueue * exprs){
     eQueue * new = exprs;
-    char * str_temp;
     while(!equeEmpty(new)){
-        /*
-        if(new->Front->eValue.tree_value->data.type == at_token){
-            if(new->Front->eValue.tree_value->data.Atr.token->type == type_integer){
-                fprintf(stdout, "WRITE int@%d\n", new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);            
-            }
-            else if(new->Front->eValue.tree_value->data.Atr.token->type == type_double){
-                fprintf(stdout, "WRITE float@%g\n", new->Front->eValue.tree_value->data.Atr.token->atribute.double_value);            
-            }
-            if(new->Front->eValue.tree_value->data.Atr.token->type == type_string){
-                str_temp = get_string(new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);
-                fprintf(stdout, "WRITE string@%s\n", str_temp);            
-            }
-        }
-        else if(new->Front->eValue.tree_value->data.type == at_tsitem){
-            fprintf(stdout, "WRITE LF@%s\n",new->Front->eValue.tree_value->data.Atr.tsItem->key);
-        }
-        */
         char * expr = generate_expression(new->Front->eValue.tree_value);
         fprintf(stdout,"WRITE LF@%s\n",expr);
         equeRemove(new);
@@ -251,7 +233,6 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     fprintf(stdout,"CREATEFRAME\n");
     Tframe * top_frame =  FS_top(frame_stack);
     for(int i= 0;i<top_frame->var_count;i++){
-        Tvariable * new_var = malloc(sizeof(Tvariable));
         fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
         fprintf(stdout,"MOVE TF@%s LF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
@@ -261,7 +242,6 @@ void generate_while(ATLeaf * condition, ATQueue * state){
     generate_program(state);
     fprintf(stdout,"POPFRAME\n");   
     for(int i= 0;i<top_frame->var_count;i++){
-        Tvariable * new_var = malloc(sizeof(Tvariable));
         fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
