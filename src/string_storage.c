@@ -1,3 +1,5 @@
+#include "destructor.h"
+#include "string_storage.h"
 #include<stdlib.h>
 #include<string.h>
 #include<stdio.h>
@@ -18,8 +20,8 @@ int add_string_to_storage(char* array)
             _string_storage = (char*)malloc((ALLOC_SPACE + length) * sizeof(char));
             if(_string_storage == NULL)
             {
-                fprintf(stderr,"Problem with memory\n");
-                return -1;
+                fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                dispose_global();
             }
             pos = 0;
             space = ALLOC_SPACE + length;
@@ -29,8 +31,8 @@ int add_string_to_storage(char* array)
             _string_storage =  (char*) realloc(_string_storage,(space + strlen(array) + ALLOC_SPACE) * sizeof(char));
             if(_string_storage == NULL)
             {
-                fprintf(stderr,"Problem with memory\n");
-                return -1;
+                fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                dispose_global();
             }
             space = space + strlen(array) + ALLOC_SPACE;
         }
@@ -61,8 +63,8 @@ char * get_string(int pos)
 	char *key = (char *) malloc(sizeof(char) * length + 1);
 	if (key == NULL)
 	{
-		fprintf(stderr, "Memory allocation failed!\n");
-		return NULL;
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();   
 	}
 
 	int i = 0;

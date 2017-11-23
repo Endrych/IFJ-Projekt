@@ -1,4 +1,5 @@
 #include "token.h"
+#include "destructor.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -8,13 +9,13 @@
 typedef struct tsItem{
     Token* Token;
     struct tsItem* Next;
-}TSItem;
+}TItem;
 
-static TSItem * _token_storage = NULL;
+static TItem * _token_storage = NULL;
 
 void destruct_token_storage(){
-    TSItem *curr = _token_storage;
-    TSItem *rm;
+    TItem *curr = _token_storage;
+    TItem *rm;
     while(curr != NULL){
         rm = curr;
         destruct_token(curr->Token);
@@ -31,12 +32,13 @@ Token *create_token()
     token = (Token *)malloc(sizeof(Token));
     if (token == NULL)
     {
-        fprintf(stderr,"Problem with memory\n");
-        EXIT_FAILURE;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
-    TSItem *newItem = malloc(sizeof(TSItem));
+    TItem *newItem = malloc(sizeof(TSItem));
     if(newItem == NULL){
-        return NULL;
+        fprintf(stderr, "Problem with memory\n");
+        dispose_global();
     }
     newItem->Next = NULL;
     newItem->Token = token;
@@ -44,7 +46,7 @@ Token *create_token()
         _token_storage = newItem;
     }
     else{
-        TSItem * curr = _token_storage;
+        TItem * curr = _token_storage;
         while(curr->Next != NULL){
             curr = curr->Next;
         }

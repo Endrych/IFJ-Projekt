@@ -1,5 +1,6 @@
 #include "error.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 
 void print_error(int error_code)
@@ -30,4 +31,7 @@ void print_error(int error_code)
 			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
 			break;
 	}
+
+	exit(error_code);
+
 }

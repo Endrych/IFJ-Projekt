@@ -1,9 +1,9 @@
 #include "frame.h"
+#include "destructor.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 Tframe *temp_frame = NULL; // docasny ramec 
-
 
 void FS_init(TFstack *stack)
 {
@@ -109,8 +109,8 @@ void create_frame()
 		temp_frame = (Tframe *) malloc(sizeof(Tframe));
 		if (temp_frame == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed!\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 
 		temp_frame->return_value = NULL;
@@ -146,8 +146,8 @@ void add_var_to_frame(Tframe *frame, Tvariable *var)
 		frame->vars = (Tvariable *) malloc(sizeof(Tvariable));
 		if (frame->vars == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed!\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 
 		frame->vars[frame->var_count-1] = *var;
@@ -155,11 +155,10 @@ void add_var_to_frame(Tframe *frame, Tvariable *var)
 	} else 
 	{
 		frame->vars = (Tvariable *) realloc(frame->vars, sizeof(Tvariable) * frame->var_count);
-		
 		if (frame->vars == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed!\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 
 		frame->vars[frame->var_count-1] = *var;
@@ -174,8 +173,8 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 		Tframe *local_frame = (Tframe *) malloc(sizeof(Tframe));
 		if (local_frame == NULL)
 		{
-			fprintf(stderr, "Memory allocation failed!\n");
-			return ;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 
 		*local_frame = *temp_frame;

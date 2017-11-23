@@ -1,4 +1,5 @@
 #include "gen_stacks.h"
+#include "destructor.h"
 #include <stdlib.h>
 
 // xxxxxxxx PTR STACK xxxxxxxxx
@@ -10,7 +11,8 @@ void gsptr_stackInit(GPStack *s){
 void gsptr_stackPush(GPStack* s, ATLeaf* leaf){
     GPSVal* new_item = (GPSVal*) malloc(sizeof(struct GPSVal));
     if(leaf == NULL){
-        return;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_item->leaf = leaf;
     new_item->next = s->Top;

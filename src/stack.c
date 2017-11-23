@@ -1,5 +1,6 @@
 #include "token.h"
 #include "stack.h"
+#include "destructor.h"
 #include <stdlib.h>
 
 
@@ -43,7 +44,8 @@ void stackPop ( tStack* s ){
 void stackPush ( tStack* s, SData* data ){
     TSItem* new_elem = (TSItem*) malloc(sizeof(struct SItem));
     if(new_elem == NULL){
-        return;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_elem->Data = data;
     new_elem->Next = s->Top;
@@ -67,11 +69,13 @@ void addHandler(tStack *s,SData * sData){
     if(sData == NULL){
         TSItem * newItem = malloc(sizeof(TSItem));
         if(newItem == NULL){
-            return;
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
         }
         newItem->Data = malloc(sizeof(SData));
         if(newItem->Data == NULL){
-            return;
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
         }
         newItem->Data->Type = type_handler;
         newItem->Next = NULL;
@@ -90,7 +94,8 @@ void addHandler(tStack *s,SData * sData){
                 if(current->Data == sData){
                     TSItem * newItem = malloc(sizeof(TSItem));
                     if(newItem == NULL){
-                        return;
+                        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                        dispose_global();
                     }
                     if(prev != NULL)
                         prev->Next = newItem;
@@ -99,7 +104,8 @@ void addHandler(tStack *s,SData * sData){
                     newItem->Next = current;
                     newItem->Data = malloc(sizeof(SData));
                     if(newItem->Data == NULL){
-                        return;
+                        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                        dispose_global();
                     }
                     newItem->Data->Type = type_handler;
                     return;
