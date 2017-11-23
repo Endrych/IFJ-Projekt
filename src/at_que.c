@@ -1,4 +1,5 @@
 #include "at_que.h"
+#include "destructor.h"
 #include <stdlib.h>
 
 void equeInit ( eQueue* s ){
@@ -125,7 +126,8 @@ void qstackPop ( QStack* s ){
 void qstackPush ( QStack* s, ATQueue* queue){
     QSItem* new_elem = (QSItem*) malloc(sizeof(struct qSItem));
     if(new_elem == NULL){
-        return;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_elem->Queue = queue;
     new_elem->Next = s->Top;
