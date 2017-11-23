@@ -1,5 +1,6 @@
 #include "token.h"
 #include "abstract_tree.h"
+#include "destructor.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +8,8 @@
 ATLeaf *make_leaf(ATData data){
     ATLeaf *new_leaf = (ATLeaf *) malloc(sizeof(struct atleaf));
     if(new_leaf == NULL){
-        return 0;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_leaf->data = data;
     new_leaf->left = NULL;
@@ -19,7 +21,8 @@ ATLeaf *make_leaf(ATData data){
 ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data){
     ATLeaf *new_tree = (ATLeaf *) malloc(sizeof(struct atleaf));
     if(new_tree == NULL){
-        return 0;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     new_tree->data = data;
     new_tree->left = leaf_1;
