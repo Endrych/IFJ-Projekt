@@ -138,30 +138,24 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
         if(sym_item->type_strct.function->arguments[i].type_strct.variable->type == type_doub){
             if(par->etype == eq_id){
-                if(par->eValue.id_value->type_strct.variable->type == type_int){
-
-                }
-                else if(par->eValue.id_value->type_strct.variable->type == type_doub){
-                    fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
-                }
+                fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
+                if(par->eValue.id_value->type_strct.variable->type == type_int)
+                    fprintf(stdout,"INT2FLOAT TF@%s TF@%s\n",sym_item->type_strct.function->arguments[i].key,sym_item->type_strct.function->arguments[i].key);
             }
             else if(par->etype == eq_token){
                 if(par->eValue.token_value->type == type_integer){
-                    fprintf(stdout,"MOVE TF@%s double@%g\n",sym_item->type_strct.function->arguments[i].key,(double)par->eValue.token_value->atribute.int_value);
+                    fprintf(stdout,"MOVE TF@%s float@%g\n",sym_item->type_strct.function->arguments[i].key,(double)par->eValue.token_value->atribute.int_value);
                 }
                 else if(par->eValue.token_value->type == type_double){
-                    fprintf(stdout,"MOVE TF@%s double@%g\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.double_value);
+                    fprintf(stdout,"MOVE TF@%s float@%g\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.double_value);
                 }
             }
         }
         else if(sym_item->type_strct.function->arguments[i].type_strct.variable->type == type_int){
             if(par->etype == eq_id){
-                if(par->eValue.id_value->type_strct.variable->type == type_int){
-                    fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
-                }
-                else if(par->eValue.id_value->type_strct.variable->type == type_doub){
-                    
-                }
+                fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,par->eValue.id_value->key);
+                if(par->eValue.id_value->type_strct.variable->type == type_doub)
+                    fprintf(stdout,"FLOAT2R2EINT TF@%s TF@%s\n",sym_item->type_strct.function->arguments[i].key,sym_item->type_strct.function->arguments[i].key);
             }
             else if(par->etype == eq_token){
                 if(par->eValue.token_value->type == type_integer){
