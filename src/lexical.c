@@ -341,7 +341,6 @@ Token* get_token(){
 						}		
 					}
 					str_to_int = (int)current_char;
-					printf("%d\n",str_to_int);
 					if((str_to_int >= 10 && str_to_int <= 32) || 
 					str_to_int == 35 || str_to_int == 92){
 						sprintf(int_to_str_2, "%d", str_to_int);						
@@ -449,7 +448,6 @@ Token* get_token(){
 					}
 					else{
 						int adress = add_string_to_storage(str);
-						// printf("Adresa:%d ,",adress);
 						token->type = type_id;
 						token->atribute.int_value = adress;
 					}

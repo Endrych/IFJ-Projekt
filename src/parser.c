@@ -19,6 +19,7 @@
 #include "precedence_sa.h"
 #include "set_values.h"
 #include "at_que.h"
+#include "generator.h"
 
 
 // tabulka symbolu
@@ -55,6 +56,7 @@ int Prog()
 				}
 				get_non_eol_token();
 				return_value = Func();
+				//generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -66,6 +68,7 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
+				//generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
@@ -84,17 +87,17 @@ int Scope()
 {
 	// vytvorime qitem a novou frontu pro scope
 	ATQItem* qitem = (ATQItem*) malloc(sizeof(ATQItem));
-	ATQueue* scope_queue;
+	struct ATQueue* scope_queue;
 	ATQueue* top_queue;
 
-	scope_queue = (ATQueue*)malloc(sizeof(ATQueue));
-	queInit(scope_queue);
+	scope_queue = (struct ATQueue*)malloc(sizeof(ATQueue));
+	queInit((ATQueue*)scope_queue);
 	qitem->GenType = gt_main;
 	qitem->GenValue.at_queue = scope_queue;
 	top_queue = qstackTop(qstack);
 	queUp(top_queue, qitem);
 	// pushneme frontu na vrchol zasobniku
-	qstackPush(qstack, scope_queue);
+	qstackPush(qstack,(ATQueue*) scope_queue);
 
 	int return_value;
 
@@ -227,7 +230,6 @@ int Stat()
 	int return_value;
 	Tsymtab_item *symtab_item;
 	PrecendentOutput* out;
-	ATData data;
 	Tsymtab_item* symtab_item_left;
 	ATQItem* qitem;
 
@@ -365,7 +367,12 @@ int Stat()
 						printf("ERROR: Missing semicolon in 'print' function\n");
 						return SYNTAX_ERROR;
 					}
-					equeUp(qitem->GenValue.exprs, out->Tree);
+					eQItem * eItem;
+					eItem = (eQItem*) malloc(sizeof(eQItem));
+					eItem->Next = NULL;
+					eItem->etype = eq_tree;
+					eItem->eValue.tree_value = out->Tree;
+					equeUp(qitem->GenValue.exprs, eItem);
 
 					// __<exprPrint>__
 					token = get_token();
@@ -411,13 +418,13 @@ int Stat()
 
 					qitem->GenValue.while_input->cond_expr = out->Tree;
 					// fronta
-					ATQueue* while_queue = (ATQueue*) malloc(sizeof(ATQueue));
-					queInit(while_queue);
+					struct ATQueue* while_queue = (struct ATQueue*) malloc(sizeof(ATQueue));
+					queInit((ATQueue*)while_queue);
 					qitem->GenValue.while_input->queue = while_queue;
 
 					top_queue = qstackTop(qstack);
 					queUp(top_queue , qitem);
-					qstackPush (qstack, while_queue);
+					qstackPush (qstack, (ATQueue*) while_queue);
 
 					// __<St_list>__
 					get_non_eol_token();
@@ -472,8 +479,8 @@ int Stat()
 					qitem->GenType = gt_if;
 					qitem->GenValue.if_input = (IfInput*) malloc(sizeof(IfInput));
 					qitem->GenValue.if_input->cond_expr = out->Tree;
-					qitem->GenValue.if_input->true_queue = true_queue;
-					qitem->GenValue.if_input->false_queue = false_queue;
+					qitem->GenValue.if_input->true_queue = (struct ATQueue*) true_queue;
+					qitem->GenValue.if_input->false_queue = (struct ATQueue*) false_queue;
 
 					top_queue = qstackTop(qstack);
 					queUp(top_queue, qitem);
@@ -539,7 +546,7 @@ int Stat()
 					}
 
 					// __<Expr>__ 
-					qitem = (ATQueue*) malloc(sizeof(ATQueue));
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
 					qitem->GenType = gt_return;
 					qitem->GenValue.return_input = (ReturnInput*) malloc(sizeof(ReturnInput));
 
@@ -764,7 +771,7 @@ int Func()
 					// vytvorime frontu pro instrukce funkce a pushneme ji na vrchol zasobniku
 					ATQueue* func_queue;
 					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
-					qitem->GenValue.func_declar_input->queue = func_queue;
+					qitem->GenValue.func_declar_input->queue = (struct ATQueue *)func_queue;
 					queInit(func_queue);
 					qstackPush (qstack, func_queue);
 
@@ -1063,7 +1070,13 @@ int ExprPrint(eQueue* exprs)
 				fprintf(stderr, "ERROR: Missing semicolon in 'print' function\n");
 				return SYNTAX_ERROR;
 			}
-			equeUp(exprs, out->Tree);
+			eQItem * eItem;
+			eItem = (eQItem*) malloc(sizeof(eQItem));
+			eItem->Next = NULL;
+			eItem->etype = eq_tree;
+			eItem->eValue.tree_value = out->Tree;
+
+			equeUp(exprs, eItem);
 
 			token = get_token();
 			if ((return_value = ExprPrint(exprs)) != OK) {
