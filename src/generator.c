@@ -74,6 +74,17 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
         char *e = generate_expression(expr);
         fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
     }
+    else{
+        if(id->type_strct.variable->type == type_int){
+            fprintf(stdout, "MOVE LF@%s int@0\n",id->key);  
+        }
+        else if(id->type_strct.variable->type == type_doub){
+            fprintf(stdout, "MOVE LF@%s float@0.0\n",id->key);  
+        }
+        else if(id->type_strct.variable->type == type_str){
+            fprintf(stdout, "MOVE LF@%s string@\n",id->key);  
+        }
+    }
     Tvariable * item = malloc(sizeof(Tvariable));
     item->id = id->key;
     item->type = id->type_strct.variable->type;
