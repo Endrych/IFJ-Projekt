@@ -28,7 +28,7 @@ Token* token;
 extern Tsymtab * symtab;
 Tsymtab_item* func_symtab_item = NULL;
 QStack* qstack;
-Tsymtab* local_tab;
+Tsymtab** local_tab;
 
 
 void get_non_eol_token()
@@ -917,7 +917,7 @@ int Func()
 					// budeme pouzivat lokalni tabulku symbolu
 					temp = symtab;
 					symtab = symtab_item->type_strct.function->sym_table;
-					local_tab = & (symtab_item->type_strct.function->sym_table);
+					local_tab = &(symtab_item->type_strct.function->sym_table);
 
 					// __<param_list>__
 					token = get_token();
@@ -1139,7 +1139,7 @@ int set_return(Tfunction_item *function)
 			fprintf(stderr, "ERROR: Unknown identifier type in function definition/declaration\n");
 			return SYNTAX_ERROR;
 	}
-	set_item_function(function, f_ret_value, symtab);
+	set_item_function(function, f_ret_value, function->sym_table);
 	return OK;
 }
 
