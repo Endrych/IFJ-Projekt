@@ -101,20 +101,20 @@ void generate_print(eQueue * exprs){
     eQueue * new = exprs;
     char * str_temp;
     while(!equeEmpty(new)){
-        if(new->Front->Expr->data.type == at_token){
-            if(new->Front->Expr->data.Atr.token->type == type_integer){
-                fprintf(stdout, "WRITE int@%d\n", new->Front->Expr->data.Atr.token->atribute.int_value);            
+        if(new->Front->eValue.tree_value->data.type == at_token){
+            if(new->Front->eValue.tree_value->data.Atr.token->type == type_integer){
+                fprintf(stdout, "WRITE int@%d\n", new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);            
             }
-            else if(new->Front->Expr->data.Atr.token->type == type_double){
-                fprintf(stdout, "WRITE float@%g\n", new->Front->Expr->data.Atr.token->atribute.double_value);            
+            else if(new->Front->eValue.tree_value->data.Atr.token->type == type_double){
+                fprintf(stdout, "WRITE float@%g\n", new->Front->eValue.tree_value->data.Atr.token->atribute.double_value);            
             }
-            if(new->Front->Expr->data.Atr.token->type == type_string){
-                str_temp = get_string(new->Front->Expr->data.Atr.token->atribute.int_value);
+            if(new->Front->eValue.tree_value->data.Atr.token->type == type_string){
+                str_temp = get_string(new->Front->eValue.tree_value->data.Atr.token->atribute.int_value);
                 fprintf(stdout, "WRITE string@%s\n", str_temp);            
             }
         }
-        else if(new->Front->Expr->data.type == at_tsitem){
-            fprintf(stdout, "WRITE LF@%s\n",new->Front->Expr->data.Atr.tsItem->key);
+        else if(new->Front->eValue.tree_value->data.type == at_tsitem){
+            fprintf(stdout, "WRITE LF@%s\n",new->Front->eValue.tree_value->data.Atr.tsItem->key);
         }
         equeRemove(new);
     }
@@ -125,7 +125,7 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",sym_item->type_strct.function->arguments[i].key);
-        char * prom = generate_expression(equeFront(param));
+        char * prom = generate_expression(equeFront(param)->eValue.tree_value);
         fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
        
     }

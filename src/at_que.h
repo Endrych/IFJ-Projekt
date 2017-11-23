@@ -7,8 +7,21 @@
  
 struct ATQueue;
 
+typedef enum{
+    eq_token,
+    eq_id,
+    eq_tree
+}eType;
+
+typedef union{
+    Tsymtab_item * id_value;
+    ATLeaf * tree_value;
+    Token * token_value;
+}eValue;
+
 typedef struct eq_item{
-    ATLeaf * Expr;
+    eType etype;
+    eValue eValue;
     struct eq_item * Next;
 }eQItem;
 
@@ -108,9 +121,9 @@ void queUp ( ATQueue* s, ATQItem* Tree);
 void equeInit ( eQueue* s );
 void equeDestruct ( eQueue* s );
 int equeEmpty ( const eQueue* s );
-ATLeaf* equeFront ( const eQueue* s);
+eQItem* equeFront ( const eQueue* s);
 void equeRemove ( eQueue* s );
-void equeUp ( eQueue* s, ATLeaf* Tree);
+void equeUp ( eQueue* s, eQItem* item);
 
 void qstackInit ( QStack* s );
 void qstackDestruct ( QStack* s );
