@@ -228,6 +228,7 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 void generate_while(ATLeaf * condition, ATQueue * state){
     char *label = generate_name(gt_label);
     char * end_label = generate_name(gt_label);
+    
     fprintf(stdout,"LABEL %s\n",label);
     fprintf(stdout,"CREATEFRAME\n");
     Tframe * top_frame =  FS_top(frame_stack);
@@ -237,23 +238,33 @@ void generate_while(ATLeaf * condition, ATQueue * state){
         fprintf(stdout,"MOVE TF@%s LF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
     fprintf(stdout,"PUSHFRAME\n");
-    push_frame(frame_stack,NULL,0);
     char * cond = generate_expression(condition);
     fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",end_label,cond);
     generate_program(state);
+    fprintf(stdout,"POPFRAME\n");   
+    //fprintf(stdout,"CREATEFRAME\n");
+    for(int i= 0;i<top_frame->var_count;i++){
+        Tvariable * new_var = malloc(sizeof(Tvariable));
+        //fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
+        fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
+    }
+    fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+    fprintf(stdout,"CREATEFRAME\n");
     fprintf(stdout,"POPFRAME\n");
+    /*
+    push_frame(frame_stack,NULL,0);
     for(int i= 0;i<top_frame->var_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
         fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
-    fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
+    
     fprintf(stdout,"POPFRAME\n");
     for(int i= 0;i<top_frame->var_count;i++){
         fprintf(stdout,"DEFVAR TF@%s\n",top_frame->vars[i].id);
         fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
     create_frame();
-    pop_frame(frame_stack);
+    pop_frame(frame_stack);*/
 }
 
 char * generate_expression(ATLeaf *tree){

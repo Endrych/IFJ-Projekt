@@ -1,8 +1,10 @@
 scope
 Dim x as integer = 0
 do while x <=20
+Dim y as integer = 20
 x = x + 1
-print x;
+y = y + 1
+print x;y;
 loop
 print x;
 end scope
