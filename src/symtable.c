@@ -135,6 +135,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 				fprintf(stderr, "Memory allocation failed\n");
 				return NULL;
 			}
+			new_item->type_strct.function->sym_table = symtab_init(42); // ?? size
 		}
 
 
