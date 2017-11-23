@@ -1,11 +1,13 @@
 scope
 Dim x as integer = 1
-Dim y as integer = 0
+Dim y as integer = 1
 do while x <=10
+y = 1
 do while y <=10
 print x * y;
 y = y+1
 loop
+print !"\013\010";
 x = x + 1
 loop
 end scope

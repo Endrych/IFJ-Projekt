@@ -249,7 +249,6 @@ void generate_while(ATLeaf * condition, ATQueue * state){
         fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
     }
     fprintf(stdout,"JUMP %s\nLABEL %s\n",label,end_label);
-    fprintf(stdout,"CREATEFRAME\n");
     fprintf(stdout,"POPFRAME\n");
 }
 

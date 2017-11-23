@@ -1,0 +1,18 @@
+scope
+dim x as integer
+do while x <> 42
+    print !"Hadej Smrckovo cislo";
+    print !"\013\010";
+    input x
+    if x >= 42 then
+        if x = 42 then
+            print !"Uhodl jsi";
+        else
+            print !"Smrckovo cislo je mensi nez";x;
+        end if
+    else
+        print !"Smrckovo cislo je vetsi nez";x; 
+    end if
+    print !"\013\010";
+loop
+end scope
