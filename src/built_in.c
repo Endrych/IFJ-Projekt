@@ -1,6 +1,7 @@
 #include "built_in.h"
 #include "error.h"
 #include "string_storage.h"
+#include "destructor.h"
 #include "set_values.h"
 #include "symtable.h"
 #include <string.h>
@@ -15,12 +16,12 @@ void insert_length()
 	int position = add_string_to_storage("Length");
 
 	Tsymtab_item *temp_item;
-	//Tsymtab *temp_symtab;
 
 	Token *token = (Token *) malloc(sizeof(Token));
 	if (token == NULL)
 	{
-		print_error(COMPILER_ERROR);
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 
 	token->atribute.int_value = position;
@@ -45,7 +46,7 @@ void insert_length()
 
 	set_args_function(temp_item->type_strct.function, key, type_str, value);
 
-	temp_item->type_strct.function->sym_table = symtab_init(11);
+	//temp_item->type_strct.function->sym_table = symtab_init(11);
 	
 	Tsymtab_item *param1 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
 
@@ -64,7 +65,8 @@ void insert_substr()
 	Token *token = (Token *) malloc(sizeof(Token));
 	if (token == NULL)
 	{
-		print_error(COMPILER_ERROR);
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 
 	token->atribute.int_value = position;
@@ -90,7 +92,7 @@ void insert_substr()
 
 	set_args_function(temp_item->type_strct.function, key, type_str, value);
 
-	temp_item->type_strct.function->sym_table = symtab_init(11);
+	//temp_item->type_strct.function->sym_table = symtab_init(11);
 
 	Tsymtab_item *param1 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
 	
@@ -138,7 +140,8 @@ void insert_asc()
 	Token *token = (Token *) malloc(sizeof(Token));
 	if (token == NULL)
 	{
-		print_error(COMPILER_ERROR);
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 
 	token->atribute.int_value = position;
@@ -160,7 +163,7 @@ void insert_asc()
 
 	set_args_function(temp_item->type_strct.function, key, type_str, value);
 
-	temp_item->type_strct.function->sym_table = symtab_init(11);
+	//temp_item->type_strct.function->sym_table = symtab_init(11);
 
 	Tsymtab_item *param1 = symtab_insert(temp_item->type_strct.function->sym_table, token, type);
 	param1->type_strct.variable->declared = true;
@@ -190,7 +193,8 @@ void insert_chr()
 	Token *token = (Token *) malloc(sizeof(Token));
 	if (token == NULL)
 	{
-		print_error(COMPILER_ERROR);
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 
 	token->atribute.int_value = position;
@@ -211,7 +215,7 @@ void insert_chr()
 	Tvalue value;
 
 	temp_item->type_strct.function->arg_count = 0;
-	temp_item->type_strct.function->sym_table = symtab_init(11);
+	//temp_item->type_strct.function->sym_table = symtab_init(11);
 
 	set_args_function(temp_item->type_strct.function, key, type_int, value);
 
@@ -232,7 +236,7 @@ void insert_built_in()
 
 
 
-
+/*
 
 int main()
 {
@@ -277,4 +281,4 @@ int main()
 	return 0;
 }
 
-
+*/

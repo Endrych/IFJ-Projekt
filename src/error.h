@@ -1,8 +1,14 @@
 /* error.h
 
 */
+
+
 #ifndef ERROR_H
 #define ERROR_H
+
+#include "destructor.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define OK 0
 

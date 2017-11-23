@@ -1,6 +1,7 @@
 #include "symtable.h"
 #include "string_storage.h"
 #include "set_values.h"
+#include "destructor.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,8 +43,8 @@ Tsymtab *symtab_init(unsigned int size)
 	Tsymtab *sym_table = (Tsymtab *) malloc(sizeof(*sym_table) + size * sizeof(sym_table->symtab_list[0]));
 	if (sym_table == NULL)
 	{	
-		fprintf(stderr, "Memory allocation failed!\n");
-		return NULL;
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
 	}
 
 	sym_table->size = size;
@@ -115,8 +116,8 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 		Tsymtab_item *new_item = (Tsymtab_item *) malloc(sizeof(Tsymtab_item));
 		if (new_item == NULL)
 		{	
-			fprintf(stderr, "Memory allocation failed\n");
-			return NULL;
+			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        	dispose_global();
 		}
 
 		if (type == type_variable)
@@ -124,16 +125,16 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 			new_item->type_strct.variable = (struct var_item *) malloc(sizeof(struct var_item));
 			if (new_item->type_strct.variable == NULL)
 			{
-				fprintf(stderr, "Memory allocation failed\n");
-				return NULL;
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
 			}
 		} else if (type == type_function)
 		{
 			new_item->type_strct.function = (struct fc_item *) malloc(sizeof(struct fc_item ));
 			if (new_item->type_strct.function == NULL)
 			{
-				fprintf(stderr, "Memory allocation failed\n");
-				return NULL;
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       			dispose_global();
 			}
 			new_item->type_strct.function->sym_table = symtab_init(42); // ?? size
 		}
@@ -222,7 +223,6 @@ unsigned int hash_func( char *key)
  MAIN - POUZE NA ZKOUSKU FUNKCNOSTI
 
 */
-
 /*
 int main()
 {	
@@ -302,10 +302,8 @@ int main()
 	set_item_function(temp2->type_strct.function, type3, table);
 	set_args_function(temp2->type_strct.function, "cus", type_int, value);
 	set_args_function(temp2->type_strct.function, "cau", type_int, value);
-	printf("%s->%s(%d)->%s(%d)\n", temp2->key, temp2->type_strct.function->arguments[0].key,\
-								 temp2->type_strct.function->arguments[0].value.value_int, \
-								 temp2->type_strct.function->arguments->key, \
-								 temp2->type_strct.function->arguments->value.value_int);
+	printf("%s->%s->%s\n", temp2->key, temp2->type_strct.function->arguments[0].key,\
+								 temp2->type_strct.function->arguments->key);
 	free_args_function(temp2->type_strct.function);
 	for (unsigned int i = 0; i < tab->size; i++)
 	{
@@ -322,7 +320,6 @@ int main()
 		}
 		printf("\n");
 	}
-
 	destruct_storage();
 	symtab_free(table);
 	symtab_free(tab);
@@ -336,4 +333,3 @@ int main()
 	free(token_q);
 	return 0;
 }*/
-

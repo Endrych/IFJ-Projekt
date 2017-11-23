@@ -7,6 +7,7 @@
 #include "frame.h"
 #include "abstract_tree.h"
 #include "generator.h"
+#include "destructor.h"
 #include "error.h"
 #include "name_generator.h"
 #include "gen_stacks.h"
@@ -18,6 +19,11 @@ TFstack * frame_stack = NULL;
 
 void generate_start(ATQueue *queue){
     frame_stack = malloc(sizeof(TFstack));
+    if (frame_stack == NULL)
+    {
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+    }
     FS_init(frame_stack);
     create_frame();
     push_frame(frame_stack,NULL,0);
@@ -88,6 +94,11 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
         }
     }
     Tvariable * item = malloc(sizeof(Tvariable));
+    if (item == NULL)
+    {
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+    }
     item->id = id->key;
     item->type = id->type_strct.variable->type;
     add_var_to_frame(FS_top(frame_stack),item);
@@ -195,6 +206,11 @@ void generate_function(Tsymtab_item * item, ATQueue * state){
     create_frame();
     for(int i = 0; i < item->type_strct.function->arg_count;i++){
         Tvariable * item1 = malloc(sizeof(Tvariable));
+        if (item1 == NULL)
+        {
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
+        }
         item1->id = item->type_strct.function->arguments[i].key;
         item1->type = item->type_strct.function->arguments[i].type;
         add_var_to_frame(temp_frame,item1);
@@ -259,7 +275,8 @@ char * generate_expression(ATLeaf *tree){
     bool isString;
     GPStack * gp_stack = malloc(sizeof(struct GPStack));
     if(gp_stack == NULL){
-        return NULL;
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
 
     gsptr_stackInit(gp_stack);
