@@ -28,6 +28,7 @@ Token* token;
 extern Tsymtab * symtab;
 Tsymtab_item* func_symtab_item = NULL;
 QStack* qstack;
+Tsymtab* local_tab;
 
 
 void get_non_eol_token()
@@ -54,8 +55,10 @@ int Prog()
 					return return_value;
 				}
 				get_non_eol_token();
-				return_value = Func();
-				return return_value;
+				if (token->type != type_eof) {
+					fprintf(stderr, "ERROR: Program has to end after 'Scope'\n");
+					return SYNTAX_ERROR;
+				}
 			}
 			else if (token->atribute.int_value == kw_declare ||
 					token->atribute.int_value == kw_function)
@@ -78,6 +81,7 @@ int Prog()
 			printf("ERROR: Missing Scope or function definition/declaration at the begining of program\n");
 			return SYNTAX_ERROR;
 	}
+	return OK;
 }
 
 int Scope()
@@ -227,7 +231,6 @@ int Stat()
 	int return_value;
 	Tsymtab_item *symtab_item;
 	PrecendentOutput* out;
-	ATData data;
 	Tsymtab_item* symtab_item_left;
 	ATQItem* qitem;
 
@@ -303,7 +306,7 @@ int Stat()
 					}
 					
 					// nastavime typ promenne
-					if ((return_value = set_type_variable(symtab_item->type_strct.variable)) != OK) {
+					if ((return_value = set_type_variable(symtab_item)) != OK) {
 						return return_value;
 					}
 					ATQItem* qitem;
@@ -539,7 +542,7 @@ int Stat()
 					}
 
 					// __<Expr>__ 
-					qitem = (ATQueue*) malloc(sizeof(ATQueue));
+					qitem = (ATQItem*) malloc(sizeof(ATQItem));
 					qitem->GenType = gt_return;
 					qitem->GenValue.return_input = (ReturnInput*) malloc(sizeof(ReturnInput));
 
@@ -593,7 +596,7 @@ int Stat()
 			// <expr> / volani funkce
 			token = get_token();
 			if (token->type == type_id) {
-				// nejdrive hledame jesti to neni promenna
+				
 				symtab_item = symtab_search(symtab, token);
 				if (symtab_item == NULL) {
 					fprintf(stderr, "ERROR: Use of undeclared variable\n");
@@ -612,12 +615,12 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 
-					// ___<Param_list>__
+					// ___<args_list>__
 					
-					token = get_token();
-					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
-						return return_value;
-					}
+				//	token = get_token();
+				//	if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
+				//		return return_value;
+				//	}
 					// __)__
 					if (token->type != type_operator) {
 						fprintf(stderr, "ERROR: Missing closing bracket\n");
@@ -771,6 +774,7 @@ int Func()
 					// do globalni promenne ulozime adresu funkce v tabulce symbolu
 					func_symtab_item = symtab_item;
 
+
 					// __(__
 					token = get_token();
 					if (token->type != type_operator) {
@@ -788,14 +792,11 @@ int Func()
 
 					// __<param_list>__
 					token = get_token();
-					if ((return_value = Param_list()) != OK) {
+					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
-					// vratime zpet
-					symtab = temp;
 
 					// __)__
-					token = get_token();
 					if (token->type != type_operator) {
 						fprintf(stderr, "ERROR: Missing closing bracket in function definition\n");
 						return SYNTAX_ERROR;
@@ -836,6 +837,10 @@ int Func()
 					if ((return_value = St_list()) != OK) {
 						return return_value;
 					}
+
+					// vratime zpet
+					symtab = temp;
+
 					// __END__
 					if (token->type != type_keyword) {
 						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
@@ -897,8 +902,6 @@ int Func()
 						// jinak vlozime id do tabulky symbolu
 						symtab_item = symtab_insert(symtab, token, type_function);
 					}
-					// nastavime, ze funkce jiz byla deklarovana
-					symtab_item->type_strct.function->declared = true;
 					
 					// __(__
 					token = get_token();
@@ -914,6 +917,7 @@ int Func()
 					// budeme pouzivat lokalni tabulku symbolu
 					temp = symtab;
 					symtab = symtab_item->type_strct.function->sym_table;
+					local_tab = & (symtab_item->type_strct.function->sym_table);
 
 					// __<param_list>__
 					token = get_token();
@@ -952,6 +956,10 @@ int Func()
 					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
+					// nastavime, ze funkce jiz byla deklarovana
+					symtab_item->type_strct.function->declared = true;
+
+
 					// _______GENERATOR________
 					// nastavime qitem
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
@@ -992,7 +1000,7 @@ int Param_list(Tfunction_item *function)
 
 		case type_id:
 			// __<Param>__
-			if ((return_value = Param()) != OK) {
+			if ((return_value = Param(function)) != OK) {
 				return return_value;
 			}
 			// __<Next_par>__
@@ -1009,17 +1017,19 @@ int Param_list(Tfunction_item *function)
 	return OK;
 }
 
-int Param()
+int Param(Tfunction_item *function)
 {
 	Tsymtab_item* symtab_item;
+	Token* param_token;
 	int return_value;
 
 	if (token->type != type_id) {
 		fprintf(stderr, "ERROR: Invalide parameter in function\n");
 		return SYNTAX_ERROR;
 	}
-	// vklada do lokalni tabulky funkce
-	symtab_item = symtab_insert(symtab, token, type_variable);
+	// ulozime si token na identifikator
+	param_token = token;
+
 	// __AS__
 	token = get_token();
 	if (token->type != type_keyword) {
@@ -1035,7 +1045,24 @@ int Param()
 	if ((return_value = Tyype()) != OK) {
 		return return_value;
 	}
-	// ulozime 
+	if (function->declared) {
+		if ((return_value = check_param_type(function->arguments[0].type_strct.variable->type)) != OK)
+			return return_value;
+	}
+	else {
+		// ulozime identifikator do tabulky symbolu
+		symtab_item = symtab_insert(symtab, param_token, type_variable);
+		// nastavime typ identifikatoru
+		if ((return_value = set_type_variable(symtab_item)) != OK) {
+			return return_value;
+		}
+		symtab_item->type = type_variable;
+		// void init_item_variable(Tvariable_item *item) ???
+
+		// nastavime parametr funkce
+		Tvalue value;
+		set_args_function(function, symtab_item->key, symtab_item->type_strct.variable->type, value);
+	} 
 	return OK;
 
 }
@@ -1108,9 +1135,6 @@ int set_return(Tfunction_item *function)
 		case kw_string:
 			f_ret_value = type_str;
 			break;
-		case kw_boolean:
-			f_ret_value = type_bool;
-			break;
 		default:
 			fprintf(stderr, "ERROR: Unknown identifier type in function definition/declaration\n");
 			return SYNTAX_ERROR;
@@ -1120,7 +1144,7 @@ int set_return(Tfunction_item *function)
 }
 
 // nastavi typ a inicializuje promennou v tabulce symbolu
-int set_type_variable(Tvariable_item *variable)
+int set_type_variable(Tsymtab_item* symtab_item)
 {
 	Tvalue init_value;
 	// ___Uloz typ identifikatoru___ 
@@ -1128,19 +1152,19 @@ int set_type_variable(Tvariable_item *variable)
 	{
 		case kw_integer:
 			init_value.value_int = 0;
-			set_item_variable(variable, init_value, type_int);
+			set_item_variable(symtab_item->type_strct.variable, init_value, type_int);
 			break;
 		case kw_double:
 			init_value.value_double = 0.0;
-			set_item_variable(variable, init_value, type_doub);
+			set_item_variable(symtab_item->type_strct.variable, init_value, type_doub);
 			break;
 		case kw_string:
 			init_value.string = "";
-			set_item_variable(variable, init_value, type_str);
+			set_item_variable(symtab_item->type_strct.variable, init_value, type_str);
 			break;
 		default:
 			fprintf(stderr, "ERROR: Unknown type in variable declaration\n");
-			return SYNTAX_ERROR;
+			return (SYNTAX_ERROR);
 	}
 	return OK;
 }
@@ -1171,11 +1195,36 @@ int check_type(Tvariable_type type, PrecendentOutput* out)
 	return OK;
 }
 
-void swap_symtab(Tsymtab* tab1, Tsymtab* tab2)
+int check_param_type(Tvariable_type type)
 {
-	Tsymtab* temp = tab1;
-	tab1 = tab2;
-	tab2 = temp;
+	switch (token->atribute.int_value) 
+	{
+		case kw_integer:
+			if (type != type_int) {
+				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+		break;
+
+		case kw_double:
+			if (type != type_doub) {
+				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+		break;
+
+		case kw_string:
+			if (type != type_str) {
+				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: Unknown data type in function parameter\n");
+			return SYNTAX_ERROR;
+	}
+	return OK;
 }
 
 int parse()

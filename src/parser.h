@@ -20,7 +20,8 @@ int Next_par();
 int ExprPrint(eQueue* exprs);
 int Tyype();
 int set_return(Tfunction_item *function);
-int set_type_variable(Tvariable_item *variable);
+int set_type_variable(Tsymtab_item* symtab_item);
 int check_type(Tvariable_type type, PrecendentOutput* out);
+int check_param_type(Tvariable_type type);
 
 #endif
