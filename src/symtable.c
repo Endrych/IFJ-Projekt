@@ -135,6 +135,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 				fprintf(stderr, "Memory allocation failed\n");
 				return NULL;
 			}
+			new_item->type_strct.function->sym_table = symtab_init(42); // ?? size
 		}
 
 
@@ -146,7 +147,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 			new_item->type_strct.variable->declared = true;
 		} else if (type == type_function)
 		{
-			new_item->type_strct.function->declared = true;
+			new_item->type_strct.function->declared = false;
 			new_item->type_strct.function->defined = false;
 		}
 
