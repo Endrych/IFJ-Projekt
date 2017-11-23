@@ -20,6 +20,7 @@
 #include "set_values.h"
 #include "at_que.h"
 #include "generator.h"
+#include "destructor.h"
 
 
 // tabulka symbolu
@@ -87,10 +88,20 @@ int Scope()
 {
 	// vytvorime qitem a novou frontu pro scope
 	ATQItem* qitem = (ATQItem*) malloc(sizeof(ATQItem));
+	if (qitem == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 	struct ATQueue* scope_queue;
 	ATQueue* top_queue;
 
 	scope_queue = (struct ATQueue*)malloc(sizeof(ATQueue));
+	if (scope_queue == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 	queInit((ATQueue*)scope_queue);
 	qitem->GenType = gt_main;
 	qitem->GenValue.at_queue = scope_queue;
@@ -260,6 +271,11 @@ int Stat()
 					// generuj kod
 					// qitem
 					qitem = (ATQItem *) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+     				    dispose_global();
+					}
 					qitem->GenType = gt_input;
 					qitem->GenValue.id = symtab_item;
 					qitem->Next = NULL;
@@ -311,10 +327,20 @@ int Stat()
 					ATQItem* qitem;
 					VarDeclarInput* declar_input;
 					declar_input = (VarDeclarInput*) malloc(sizeof(VarDeclarInput));
+					if (declar_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					declar_input->id = symtab_item;
 					declar_input->expr = NULL;
 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_var_declar;
 					qitem->GenValue.var_declar_input = declar_input;
 
@@ -350,9 +376,19 @@ int Stat()
 					// __<expr>__
 					// vyrazy nemuzou byt bool
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenType = gt_print;
 					qitem->GenValue.exprs = (eQueue *) malloc(sizeof(eQueue));
+					if (qitem->GenValue.exprs == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					} 
 					qitem->Next = NULL; // ??????????????????????
 
 					equeInit(qitem->GenValue.exprs);
@@ -369,6 +405,11 @@ int Stat()
 					}
 					eQItem * eItem;
 					eItem = (eQItem*) malloc(sizeof(eQItem));
+					if (eItem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					eItem->Next = NULL;
 					eItem->etype = eq_tree;
 					eItem->eValue.tree_value = out->Tree;
@@ -413,12 +454,27 @@ int Stat()
 					}
 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_while;
 					qitem->GenValue.while_input = (WhileInput*) malloc(sizeof(WhileInput));
+					if (qitem->GenValue.while_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenValue.while_input->cond_expr = out->Tree;
 					// fronta
 					struct ATQueue* while_queue = (struct ATQueue*) malloc(sizeof(ATQueue));
+					if (while_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					queInit((ATQueue*)while_queue);
 					qitem->GenValue.while_input->queue = while_queue;
 
@@ -471,13 +527,33 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+     				    dispose_global();
+					}
 					ATQueue* true_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (true_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					ATQueue* false_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (false_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					queInit(true_queue);
 					queInit(false_queue);
 					
 					qitem->GenType = gt_if;
 					qitem->GenValue.if_input = (IfInput*) malloc(sizeof(IfInput));
+					if (qitem->GenValue.if_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.if_input->cond_expr = out->Tree;
 					qitem->GenValue.if_input->true_queue = (struct ATQueue*) true_queue;
 					qitem->GenValue.if_input->false_queue = (struct ATQueue*) false_queue;
@@ -547,8 +623,18 @@ int Stat()
 
 					// __<Expr>__ 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_return;
 					qitem->GenValue.return_input = (ReturnInput*) malloc(sizeof(ReturnInput));
+					if (qitem->GenValue.return_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					token = get_token();
 					out = precedence_analysis(token);
@@ -596,6 +682,11 @@ int Stat()
 
 			ATQItem* qitem;
 			qitem = (ATQItem*) malloc(sizeof(ATQItem));
+			if (qitem == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 
 			// <expr> / volani funkce
 			token = get_token();
@@ -641,6 +732,11 @@ int Stat()
 			}
 			qitem->GenType = gt_assign;
 			qitem->GenValue.assign_input = (AssignInput *) malloc(sizeof(AssignInput));
+			if (qitem->GenValue.assign_input == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 			qitem->GenValue.assign_input->id = symtab_item_left;
 
 			// __<Expr>__
@@ -725,10 +821,20 @@ int Func()
 
 						// GENEROVANI
 						qitem = (ATQItem*) malloc(sizeof(ATQItem));
+						if (qitem == NULL)
+						{
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
+						}
 
 						//input->queue = NULL;
 						qitem->GenType = gt_func_declar;
 						qitem->GenValue.func_declar_input = (FuncDeclarInput *) malloc(sizeof(FuncDeclarInput));
+						if (qitem->GenValue.func_declar_input == NULL)
+						{
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
+						}
 						qitem->GenValue.func_declar_input->sym_item = symtab_item;
 						queUp(top_queue, qitem);
 					}
@@ -771,6 +877,11 @@ int Func()
 					// vytvorime frontu pro instrukce funkce a pushneme ji na vrchol zasobniku
 					ATQueue* func_queue;
 					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (func_queue)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.func_declar_input->queue = (struct ATQueue *)func_queue;
 					queInit(func_queue);
 					qstackPush (qstack, func_queue);
@@ -962,9 +1073,19 @@ int Func()
 					// _______GENERATOR________
 					// nastavime qitem
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenType = gt_func_declar;
 					qitem->GenValue.func_declar_input = (FuncDeclarInput*) malloc(sizeof(FuncDeclarInput));
+					if (qitem->GenValue.func_declar_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.func_declar_input->sym_item = symtab_item;
 					qitem->GenValue.func_declar_input->queue = NULL;
 					// pushneme qitem na vrchol zasobniku
@@ -1072,6 +1193,11 @@ int ExprPrint(eQueue* exprs)
 			}
 			eQItem * eItem;
 			eItem = (eQItem*) malloc(sizeof(eQItem));
+			if (eItem == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 			eItem->Next = NULL;
 			eItem->etype = eq_tree;
 			eItem->eValue.tree_value = out->Tree;
@@ -1195,7 +1321,18 @@ int parse()
 {
 	ATQueue* global_queue;
 	global_queue = (ATQueue*) malloc(sizeof(ATQueue));	
+	if (global_queue == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
+
 	qstack = (QStack*) malloc(sizeof(QStack));
+	if (qstack == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 
 	queInit (global_queue);
 	qstackInit(qstack);
