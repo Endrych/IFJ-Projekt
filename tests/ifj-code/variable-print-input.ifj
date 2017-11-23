@@ -1,0 +1,7 @@
+Scope
+Dim x as integer
+x = 5 + 4
+print x;
+input x
+print x;
+end scope
