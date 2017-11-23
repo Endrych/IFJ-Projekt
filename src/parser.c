@@ -57,7 +57,7 @@ int Prog()
 				}
 				get_non_eol_token();
 				return_value = Func();
-				//generate_start(qstackTop(qstack));
+				generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -69,17 +69,17 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
-				//generate_start(qstackTop(qstack));
+				generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
 			{
-				printf("ERROR: Missing Scope or function definition/declaration at the begining of program\n");
+				fprintf(stderr,"ERROR: Missing Scope or function definition/declaration at the begining of program\n");
 				return SYNTAX_ERROR;
 			}
 			break;
 		default:
-			printf("ERROR: Missing Scope or function definition/declaration at the begining of program\n");
+			fprintf(stderr,"ERROR: Missing Scope or function definition/declaration at the begining of program\n");
 			return SYNTAX_ERROR;
 	}
 }
@@ -115,13 +115,13 @@ int Scope()
 	// __SCOPE__
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'Scope' definition\n");
+		fprintf(stderr,"ERROR: Missing 'Scope' definition\n");
 		return SYNTAX_ERROR;
 	}
 
 	if (token->atribute.int_value != kw_scope)
 	{
-		printf("ERROR: Missing 'Scope' definition\n");
+		fprintf(stderr,"ERROR: Missing 'Scope' definition\n");
 		return SYNTAX_ERROR;
 	}
 	
@@ -129,7 +129,7 @@ int Scope()
 	token = get_token();
 	if (token->type != type_eol)
 	{
-		printf("ERROR: Missing end of line after Scope keyword\n");
+		fprintf(stderr,"ERROR: Missing end of line after Scope keyword\n");
 		return SYNTAX_ERROR;
 	}
 
@@ -142,12 +142,12 @@ int Scope()
 	// __End__ (token mne pripravil <st-list>)
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.int_value != kw_end)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 
@@ -155,12 +155,12 @@ int Scope()
 	token = get_token();
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.int_value != kw_scope)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	// popneme frontu ze zasobniku
@@ -192,7 +192,7 @@ int St_list()
 						token = get_token();
 					}
 					if (token->type != type_eol) {
-						printf("ERROR: Missing end of line after statement\n");
+						fprintf(stderr,"ERROR: Missing end of line after statement\n");
 						return SYNTAX_ERROR;
 					}
 					// __<st-list>__
@@ -220,7 +220,7 @@ int St_list()
 				token = get_token();
 			}
 			if (token->type != type_eol) {
-				printf("ERROR: Missing end of line after statement\n");
+				fprintf(stderr,"ERROR: Missing end of line after statement\n");
 				return SYNTAX_ERROR;
 			}
 			// __<st-list>__
@@ -229,7 +229,7 @@ int St_list()
 		break;
 
 		default:
-			printf("ERROR: Wrong statement\n");
+			fprintf(stderr,"ERROR: Wrong statement\n");
 			return SYNTAX_ERROR;
 	}
 	return OK;
@@ -256,7 +256,7 @@ int Stat()
 					token = get_token();
 					if (token->type != type_id)
 					{
-						printf("ERROR: Missing identifier after Intup statement\n");
+						fprintf(stderr,"ERROR: Missing identifier after Intup statement\n");
 						return SYNTAX_ERROR;
 					}
 					symtab_item = symtab_search(symtab, token);
@@ -292,13 +292,13 @@ int Stat()
 					token = get_token();
 					if (token->type != type_id)
 					{
-						printf("ERROR: Missing identifier after 'Dim' keyword\n");
+						fprintf(stderr,"ERROR: Missing identifier after 'Dim' keyword\n");
 						return SYNTAX_ERROR;
 					}
 
 					// ___Uloz identifikator do symtable___
 					if ((symtab_item = symtab_search(symtab, token)) != NULL) {
-						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
+						fprintf(stderr,"ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
 
@@ -307,11 +307,11 @@ int Stat()
 					//__As__
 					token = get_token();
 					if (token->type != type_keyword) {
-						printf("ERROR: Missing 'As' in variable declaration\n");
+						fprintf(stderr,"ERROR: Missing 'As' in variable declaration\n");
 						return SYNTAX_ERROR;
 					}
 					if (token->atribute.int_value != kw_as) {
-						printf("ERROR: Missing 'As' in variable declaration\n");
+						fprintf(stderr,"ERROR: Missing 'As' in variable declaration\n");
 						return SYNTAX_ERROR;
 					}
 					// __<type>__
@@ -400,7 +400,7 @@ int Stat()
 					}
 					token = out->ReturnToken;
 					if (token->type != type_semicolon) {
-						printf("ERROR: Missing semicolon in 'print' function\n");
+						fprintf(stderr,"ERROR: Missing semicolon in 'print' function\n");
 						return SYNTAX_ERROR;
 					}
 					eQItem * eItem;
@@ -755,7 +755,7 @@ int Stat()
 		break;
 
 		default:
-			printf("ERROR: Wrong statement\n");
+			fprintf(stderr,"ERROR: Wrong statement\n");
 			return SYNTAX_ERROR;
 	}
 	return OK;
@@ -771,11 +771,11 @@ int Assign()
 	}
 	// __ = __
 	if (token->type != type_operator) {
-		printf("ERROR: Wrong symbol where assignment was expected\n");
+		fprintf(stderr,"ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.operator_value != op_assign) {
-		printf("ERROR: Wrong symbol where assignment was expected\n");
+		fprintf(stderr,"ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	// <<<<<<<<<<<<<<<< call <expr> 
@@ -1214,7 +1214,7 @@ int ExprPrint(eQueue* exprs)
 int Tyype()
 {
 	if (token->type != type_keyword) {
-		printf("ERROR: Data type does not exist\n");
+		fprintf(stderr,"ERROR: Data type does not exist\n");
 		return SYNTAX_ERROR;
 	}
 	switch (token->atribute.int_value)
@@ -1224,7 +1224,7 @@ int Tyype()
 		case kw_string:
 			return OK;
 		default:
-			printf("ERROR: Data type does not exist\n");
+			fprintf(stderr,"ERROR: Data type does not exist\n");
 			return SYNTAX_ERROR;
 	}
 }
@@ -1351,29 +1351,29 @@ int main()
 	int return_value;
 
 	return_value = parse();
-	printf("\n");
+	fprintf(stderr,"\n");
 	switch (return_value)
 	{
 		case OK:
-			printf("Everything is OK\n");
+			fprintf(stderr,"Everything is OK\n");
 			break;
 		case LEXICAL_ERROR:
-			printf("LEXICAL_ERROR\n");
+			fprintf(stderr,"LEXICAL_ERROR\n");
 			break;
 		case SYNTAX_ERROR:
-			printf("SYNTAX_ERROR\n");
+			fprintf(stderr,"SYNTAX_ERROR\n");
 			break;
 		case SEMANTIC_ERROR:
-			printf("SEMANTIC_ERROR\n");
+			fprintf(stderr,"SEMANTIC_ERROR\n");
 			break;
 		case SEMANTIC_TYPE_ERROR:
-			printf("SEMANTIC_TYPE_ERROR\n");
+			fprintf(stderr,"SEMANTIC_TYPE_ERROR\n");
 			break;
 		case OTHER_ERROR:
-			printf("OTHER_ERROR\n");
+			fprintf(stderr,"OTHER_ERROR\n");
 			break;
 		case COMPILER_ERROR:
-			printf("COMPILER_ERROR\n");
+			fprintf(stderr,"COMPILER_ERROR\n");
 			break;
 	}
 	return 0;
