@@ -8,6 +8,7 @@
 #include "error.h"
 #include <stdbool.h>
 #include "string_storage.h"
+#include "destructor.h"
 
 extern Tsymtab * symtab;
 
@@ -32,8 +33,8 @@ static int precedence_table[][15] = {
 PrecendentOutput * precedence_analysis(Token* last_token){
     PrecendentOutput * out = malloc(sizeof(PrecendentOutput));
     if(out == NULL){
-        fprintf(stderr,"ERROR: Internal error\n");
-        exit(COMPILER_ERROR);
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
 
     out->Tree = NULL;
@@ -43,8 +44,8 @@ PrecendentOutput * precedence_analysis(Token* last_token){
     bool readNextToken = true;
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
-        fprintf(stderr,"ERROR: Internal error\n");
-        exit(COMPILER_ERROR);
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
     }
     stackInit(s);
     Token * current = last_token;
@@ -71,8 +72,8 @@ PrecendentOutput * precedence_analysis(Token* last_token){
         else if(operation == 0){
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                fprintf(stderr,"ERROR: Internal error\n");
-                exit(COMPILER_ERROR);
+                fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                dispose_global();
             }
             data->Type = type_token;
             data->Atr.Token = current;
@@ -82,8 +83,8 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             addHandler(s,termData);
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
-                fprintf(stderr,"ERROR: Internal error\n");
-                exit(COMPILER_ERROR);
+                fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                dispose_global();
             }
             data->Type = type_token;
             data->Atr.Token = current;
@@ -356,8 +357,8 @@ int findRule(tStack * s){
                 if(data->Type == type_handler){
                     SData * newData = malloc(sizeof(SData));
                     if(newData == NULL){
-                        fprintf(stderr,"ERROR: Internal error\n");
-                        exit(COMPILER_ERROR);
+                        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                        dispose_global();
                     }
                     newData->Type = type_nonterm;
                     
