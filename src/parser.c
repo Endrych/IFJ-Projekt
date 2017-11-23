@@ -59,7 +59,7 @@ int Prog()
 				get_non_eol_token();
 
 				return_value = Func();
-				generate_start(qstackTop(qstack));
+	//			generate_start(qstackTop(qstack));
 				return return_value;
 
 			}
@@ -72,7 +72,7 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
-				generate_start(qstackTop(qstack));
+	//			generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
@@ -881,7 +881,7 @@ int Func()
 					// vytvorime frontu pro instrukce funkce a pushneme ji na vrchol zasobniku
 					ATQueue* func_queue;
 					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
-					if (func_queue)
+					if (func_queue == NULL)
 					{
 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         				dispose_global();
