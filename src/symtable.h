@@ -11,6 +11,7 @@
 #define SYMTAB_H
 
 struct symtable;
+struct symtab_item;
 
 
 // pro ulozeni inicializacni hodnoty
@@ -56,7 +57,7 @@ typedef struct fc_item{
 	bool defined;
 	Tvariable_type return_type;
 	int arg_count;
-	Tfunction_argument *arguments;
+	struct symtab_item *arguments;
 	struct symtable *sym_table;
 	//char *key;
 } Tfunction_item;
@@ -72,17 +73,6 @@ typedef struct symtab_item {
 	Telement_type type;
 } Tsymtab_item;
 
-/*
-typedef struct symtab_item {
-	Token *token;
-	struct symtab_item *next;
-	char *key;
-	bool declared;
-	bool used;
-	Tvalue value;
-	Tsymtab_item *param_list;
-} Tsymtab_item;
-*/
 
 typedef struct symtable {
 	unsigned int size;

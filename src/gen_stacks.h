@@ -1,7 +1,7 @@
 #include "abstract_tree.h"
 
-#ifndef STACK_H
-#define STACK_H
+#ifndef GEN_STACK_H
+#define GEN_STACK_H
 
 // xxxxxxxx PTR STACK xxxxxxxxx
 
