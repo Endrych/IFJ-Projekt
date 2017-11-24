@@ -1,0 +1,19 @@
+Declare printvar(s as string) as integer
+
+Function returninput() As string
+dim x as string
+input x
+print !"In function returninput ";x;
+x = printvar(x);
+End Function
+
+Function printvar(s as string) as integer
+print !"In function printvar ";s;
+end function
+
+
+scope
+dim a as string
+a = returninput()
+print !"In main";a;
+end scope

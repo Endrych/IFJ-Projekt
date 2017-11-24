@@ -1,0 +1,32 @@
+Function correct(x as integer) as integer
+if x >= 42 then
+        if x = 42 then
+            return 0
+        else
+            return 1
+        end if
+    else
+        return 2 
+end if
+end Function
+
+scope
+dim x as integer
+dim y as integer
+do while x <> 0
+    print !"Hadej Smrckovo cislo";
+    print !"\013\010";
+    input y
+    x = correct(y) 
+    if(x = 0) then 
+        print !"Spravne";
+    else
+        if x=1 then
+            print !="Smrckovo cislo je mensi";
+        else
+            print !="Smrckovo cislo je vetsi";
+        end if
+    end if
+    print !"\013\010";
+loop
+end scope
