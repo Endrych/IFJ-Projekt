@@ -11,16 +11,15 @@
 #include "parser.h"
 #include "destructor.h"
 #include "generator.h"
+#include "built_in.h"
 
 extern QStack* qstack;
+extern Tsymtab * symtab;
 
 int main(){
     int return_value;
-    void insert_length();
-    void insert_substr();
-    void insert_asc();
-    void insert_chr();
-    void insert_built_in();
+	symtab = symtab_init(42);
+    insert_built_in();
 	return_value = parse();
 	fprintf(stderr,"\n");
 	switch (return_value)

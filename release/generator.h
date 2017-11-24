@@ -17,7 +17,12 @@ typedef enum{
 }GType;
 
 char * generate_name(GType type);
-
+// built-in funkce 
+void generate_Asc();
+void generate_Length();
+void generate_SubStr();
+void generate_Chr();
+void generate_built_in();
 
 void generate_main(ATQueue * queue);
 void generate_start(ATQueue *queue);

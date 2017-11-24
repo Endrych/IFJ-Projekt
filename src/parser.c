@@ -1723,15 +1723,7 @@ int parse()
 int main()
 {
 	symtab = symtab_init(42);
-	void insert_length();
-
-	void insert_substr();
-
-	void insert_asc();
-
-	void insert_chr();
-
-	void insert_built_in();
+	insert_built_in();
 	int return_value;
 	return_value = parse();
 	fprintf(stderr,"\n");

@@ -104,95 +104,111 @@ MOVE LF@tmp string@
 INT2CHAR LF@%retval LF@i
 POPFRAME
 RETURN
-LABEL $factorial
-PUSHFRAME
-DEFVAR LF@%retval
-MOVE LF@%retval int@0
-DEFVAR LF@temp_result
-MOVE LF@temp_result int@0
-DEFVAR LF@decremented_n
-MOVE LF@decremented_n int@0
-DEFVAR LF@result
-MOVE LF@result int@0
-DEFVAR LF@&a
-MOVE LF@&a LF@n
-PUSHS LF@&a
-MOVE LF@&a int@2
-PUSHS LF@&a
-LTS
-POPS LF@&a
-JUMPIFNEQ $a bool@true LF@&a
-DEFVAR LF@&b
-MOVE LF@&b int@1
-MOVE LF@result LF@&b
-JUMP $b
-LABEL $a
-DEFVAR LF@&c
-MOVE LF@&c LF@n
-PUSHS LF@&c
-MOVE LF@&c int@1
-PUSHS LF@&c
-SUBS
-POPS LF@&c
-MOVE LF@decremented_n LF@&c
-CREATEFRAME
-DEFVAR TF@n
-MOVE TF@n LF@decremented_n
-CALL $factorial
-MOVE LF@temp_result TF@%retval
-DEFVAR LF@&d
-MOVE LF@&d LF@n
-PUSHS LF@&d
-MOVE LF@&d LF@temp_result
-PUSHS LF@&d
-MULS
-POPS LF@&d
-MOVE LF@result LF@&d
-LABEL $b
-DEFVAR LF@&e
-MOVE LF@&e LF@result
-MOVE LF@%retval LF@&e
-JUMP $factorial$epilog
-LABEL $factorial$epilog
-POPFRAME
-RETURN
 LABEL $$main
 CREATEFRAME
 PUSHFRAME
-DEFVAR LF@a
-MOVE LF@a int@0
-DEFVAR LF@vysl
-MOVE LF@vysl int@0
-DEFVAR LF@&f
-MOVE LF@&f string@Zadejte\032cislo\032pro\032vypocet\032faktorialu
-WRITE LF@&f
-READ LF@a int
-DEFVAR LF@&g
-MOVE LF@&g LF@a
-PUSHS LF@&g
-MOVE LF@&g int@0
-PUSHS LF@&g
+DEFVAR LF@x
+DEFVAR LF@&a
+MOVE LF@&a int@1
+MOVE LF@x LF@&a
+DEFVAR LF@y
+DEFVAR LF@&b
+MOVE LF@&b int@1
+MOVE LF@y LF@&b
+LABEL $a
+CREATEFRAME
+DEFVAR TF@x
+MOVE TF@x LF@x
+DEFVAR TF@y
+MOVE TF@y LF@y
+PUSHFRAME
+DEFVAR LF@&c
+MOVE LF@&c LF@x
+PUSHS LF@&c
+MOVE LF@&c int@10
+PUSHS LF@&c
+DEFVAR LF@&d
+DEFVAR LF@&e
+POPS LF@&d
+POPS LF@&e
+PUSHS LF@&e
+PUSHS LF@&d
+PUSHS LF@&e
+PUSHS LF@&d
 LTS
-POPS LF@&g
-JUMPIFNEQ $c bool@true LF@&g
-DEFVAR LF@&h
-MOVE LF@&h string@\010Faktorial\032nelze\032spocitat\010
-WRITE LF@&h
-JUMP $d
+POPS LF@&d
+EQS
+PUSHS LF@&d
+ORS
+POPS LF@&c
+JUMPIFNEQ $b bool@true LF@&c
+DEFVAR LF@&f
+MOVE LF@&f int@1
+MOVE LF@y LF@&f
 LABEL $c
 CREATEFRAME
-DEFVAR TF@n
-MOVE TF@n LF@a
-CALL $factorial
-MOVE LF@vysl TF@%retval
+DEFVAR TF@x
+MOVE TF@x LF@x
+DEFVAR TF@y
+MOVE TF@y LF@y
+PUSHFRAME
+DEFVAR LF@&g
+MOVE LF@&g LF@y
+PUSHS LF@&g
+MOVE LF@&g int@10
+PUSHS LF@&g
+DEFVAR LF@&h
 DEFVAR LF@&i
-MOVE LF@&i string@\010Vysledek\032je:
-WRITE LF@&i
+POPS LF@&h
+POPS LF@&i
+PUSHS LF@&i
+PUSHS LF@&h
+PUSHS LF@&i
+PUSHS LF@&h
+LTS
+POPS LF@&h
+EQS
+PUSHS LF@&h
+ORS
+POPS LF@&g
+JUMPIFNEQ $d bool@true LF@&g
 DEFVAR LF@&j
-MOVE LF@&j LF@vysl
+MOVE LF@&j LF@x
+PUSHS LF@&j
+MOVE LF@&j LF@y
+PUSHS LF@&j
+MULS
+POPS LF@&j
 WRITE LF@&j
 DEFVAR LF@&k
-MOVE LF@&k string@\010
-WRITE LF@&k
+MOVE LF@&k LF@y
+PUSHS LF@&k
+MOVE LF@&k int@1
+PUSHS LF@&k
+ADDS
+POPS LF@&k
+MOVE LF@y LF@&k
+POPFRAME
+MOVE LF@x TF@x
+MOVE LF@y TF@y
+JUMP $c
 LABEL $d
+POPFRAME
+DEFVAR LF@&l
+MOVE LF@&l string@\010
+WRITE LF@&l
+DEFVAR LF@&m
+MOVE LF@&m LF@x
+PUSHS LF@&m
+MOVE LF@&m int@1
+PUSHS LF@&m
+ADDS
+POPS LF@&m
+MOVE LF@x LF@&m
+POPFRAME
+MOVE LF@x TF@x
+MOVE LF@y TF@y
+JUMP $a
+LABEL $b
+POPFRAME
 POPFRAME
