@@ -770,10 +770,19 @@ int Stat()
 
 					qitem->GenType = gt_call_func;
 					qitem->GenValue.call_func_input = (CallFuncInput*) malloc(sizeof(CallFuncInput));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.call_func_input->id = symtab_item_left;
 					qitem->GenValue.call_func_input->sym_item = symtab_item;
 					qitem->GenValue.call_func_input->param = (eQueue*) malloc(sizeof(eQueue));
-
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					equeInit(qitem->GenValue.call_func_input->param);
 
 					// ___<args_list>__
@@ -888,6 +897,11 @@ int Arg(Tfunction_item* function, int* args_iter, eQueue* eque)
 	}
 
 	eitem = (eQItem*) malloc(sizeof(eQItem));
+	if (qitem == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+    	dispose_global();
+	}
 	eitem->Next = NULL;
 	switch (token->type)
 	{
