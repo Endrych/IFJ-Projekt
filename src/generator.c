@@ -577,7 +577,7 @@ void generate_Length()
    // create_frame();
    // pop_frame(frame_stack)
     fprintf(stdout, "LABEL $Length$epilog\n");
-    fprintf(stdout, "POPFRAME\nRETURN");
+    fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 
@@ -643,6 +643,7 @@ void generate_SubStr()
     fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
     fprintf(stdout, "JUMP $SubStr$epilog\n");
+    
     fprintf(stdout, "LABEL $SubStrReturn0\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
     fprintf(stdout, "JUMP $SubStr$epilog\n");
@@ -669,7 +670,7 @@ void generate_Asc()
     fprintf(stdout, "MOVE LF@result bool@false\n");
 
     fprintf(stdout, "DEFVAR LF@tmp\nDEFVAR LF@tmp2\n");
-    fprintf(stdout, "MOVE LF@tmp string@\nMOVE LF@tmp2 int@0");
+    fprintf(stdout, "MOVE LF@tmp string@\nMOVE LF@tmp2 int@0\n");
 
     fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
