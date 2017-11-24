@@ -22,12 +22,13 @@ void generate_while(ATLeaf * condition, ATQueue * state);
 void generate_function(Tsymtab_item * item, ATQueue * state);
 
 // built-in funkce 
-void generate_Asc(Tsymtab_item *item);
+void generate_Asc();
 
-void generate_Length(Tsymtab_item *item);
+void generate_Length();
 
-void generate_SubStr(Tsymtab_item *item);
+void generate_SubStr();
 
-void generate_Chr(Tsymtab_item *item);
+void generate_Chr();
 
+void generate_built_in();
 #endif

@@ -29,6 +29,7 @@ void generate_start(ATQueue *queue){
     push_frame(frame_stack,NULL,0);
     fprintf(stdout,".IFJcode17\nJUMP $$main\n");
     open_output();
+    generate_built_in();
     generate_program(queue);
     create_frame();
     pop_frame(frame_stack);
@@ -547,9 +548,9 @@ char * generate_expression(ATLeaf *tree){
     // fprintf(stdout, "WRITE LF@%s\n",id);
 }
 
-void generate_Length(Tsymtab_item *item)
+void generate_Length()
 {
-    fprintf(stdout, "LABEL $%s\n",item->key);
+    fprintf(stdout, "LABEL $Length\n");
 
     /*create_frame();
 
@@ -570,21 +571,19 @@ void generate_Length(Tsymtab_item *item)
     push_frame(frame_stack,NULL,0);*/
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
 
-    Tfunction_item *function = item->type_strct.function;
-
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
-    fprintf(stdout, "STRLEN LF@%%retval LF@%s\n", function->arguments[0].key);
+    fprintf(stdout, "STRLEN LF@%%retval LF@s\n");
 
    // create_frame();
    // pop_frame(frame_stack)
-    fprintf(stdout, "LABEL $%s$epilog\n", item->key);
+    fprintf(stdout, "LABEL $Length$epilog\n");
     fprintf(stdout, "POPFRAME\nRETURN");
 }
 
 
-void generate_SubStr(Tsymtab_item *item)
+void generate_SubStr()
 {
-    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "LABEL $SubStr\n");
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
 
@@ -597,13 +596,11 @@ void generate_SubStr(Tsymtab_item *item)
     fprintf(stdout, "DEFVAR LF@result\n");
     fprintf(stdout, "MOVE LF@result bool@false\n");
 
-    Tfunction_item *function = item->type_strct.function;
-
-    fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@%s LF@tmp2\n", function->arguments[0]);
+    fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
     
-    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
-    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
 
     fprintf(stdout, "EQS\n");
@@ -615,17 +612,17 @@ void generate_SubStr(Tsymtab_item *item)
 
     fprintf(stdout, "JUMPIFNEQ $SubStrReturn0 bool@true LF@result\n");
 
-    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[2].key);
+    fprintf(stdout, "PUSHS LF@n\n");
     fprintf(stdout, "PUSHS int@0\n");
     fprintf(stdout, "GTS\n");
     fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
 
-    fprintf(stdout, "STRLEN LF@tmp1 LF@%s\n", function->arguments[0].key);
-    fprintf(stdout, "SUB LF@tmp1 LF@tmp1 LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "STRLEN LF@tmp1 LF@s\n");
+    fprintf(stdout, "SUB LF@tmp1 LF@tmp1 LF@i\n");
 
     fprintf(stdout, "PUSHS LF@tmp1\n");
-    fprintf(stdout, "PUSHS LF@%s\n", function-.arguments[2].key);
+    fprintf(stdout, "PUSHS LF@n\n");
     fprintf(stdout, "GTS\n");
     fprintf(stdout, "POPS LF@result\n");
 
@@ -634,36 +631,36 @@ void generate_SubStr(Tsymtab_item *item)
     fprintf(stdout, "DEFVAR LF@tmplen\n");
     fprintf(stdout, "MOVE LF@tmplen int@0\n");
 
-    fprintf(stdout, "STRLEN LF@tmplen LF@%s\n", function->arguments[0].key);
-    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
-    fprintf(stdout, "SUB LF@tmp1 LF@%s int@1\n", function->arguments[1].key);
+    fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
 
     fprintf(stdout, "LABEL $SubStrFor\n");
-    fprintf(stdout, "GETCHAR LF@tmp2 LF@%s LF@tmp1\n", function->arguments[0]);
+    fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
     fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
     fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
-    fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@%s\n", function->arguments[2].key);
-    fprintf(stdout, "JUMP $%s$epilog\n", item->key);
+    fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
+    fprintf(stdout, "JUMP $SubStr$epilog\n");
     fprintf(stdout, "LABEL $SubStrReturn0\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
-    fprintf(stdout, "JUMP $%s$epilog\n", item->key);
+    fprintf(stdout, "JUMP $SubStr$epilog\n");
     fprintf(stdout, "LABEL $SubStrReturnRest\n");
-    fprintf(stdout, "GETCHAR LF@tmp2 LF@%s LF@tmp1\n", function->arguments[0].key);
+    fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
     fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
     fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length\n");
 
-    fprintf(stdout, "LABEL $%S$epilog\n", item->key);
+    fprintf(stdout, "LABEL $SubStr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
-void generate_Asc(Tsymtab_item *item)
+void generate_Asc()
 {
-    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "LABEL $Asc\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
@@ -674,12 +671,10 @@ void generate_Asc(Tsymtab_item *item)
     fprintf(stdout, "DEFVAR LF@tmp\nDEFVAR LF@tmp2\n");
     fprintf(stdout, "MOVE LF@tmp string@\nMOVE LF@tmp2 int@0");
 
-    Tfunction_item *function = item->type_strct.function;
-
-    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
-    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
-    fprintf(stdout, "STRLEN LF@tmp2 LF@%s\n", function->arguments[0],key);
+    fprintf(stdout, "PUSHS LF@i\n");
+    fprintf(stdout, "STRLEN LF@tmp2 LF@s\n");
     fprintf(stdout, "PUSHS LF@tmp2\n");
     fprintf(stdout, "LTS\n");
     fprintf(stdout, "POPS LF@result\n");
@@ -687,18 +682,18 @@ void generate_Asc(Tsymtab_item *item)
     fprintf(stdout, "PUSHS LF@result\n");
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
-    fprintf(stdout, "JUMPIFNEQ $%s$epilog bool@true LF@result\n", item->key);
+    fprintf(stdout, "JUMPIFNEQ $Asc$epilog bool@true LF@result\n");
 
-    fprintf(stdout, "GETCHAR LF@tmp LF@%s LF@%s\n", function->arguments[0].key, function->arguments[1].key);
+    fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
-    fprintf(stdout, "LABEL $%s$epilog\n", item->key);
+    fprintf(stdout, "LABEL $Asc$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
-void generate_Chr(Tsymtab_item *item)
+void generate_Chr()
 {
-    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "LABEL $Chr\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
@@ -706,13 +701,19 @@ void generate_Chr(Tsymtab_item *item)
     fprintf(stdout, "DEFVAR LF@tmp\n");
     fprintf(stdout, "MOVE LF@tmp string@\n");
 
-    Tfunction_item *function = item->type_strct.function;
-
-    fprintf(stdout, "INT2CHAR LF@%%retval LF@%s\n", function->arguments[0].key);
+    fprintf(stdout, "INT2CHAR LF@%%retval LF@i\n");
 
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 
 
 
+}
+
+void generate_built_in()
+{
+    generate_Length();
+    generate_SubStr();
+    generate_Asc();
+    generate_Chr();
 }
