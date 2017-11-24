@@ -27,6 +27,7 @@ void generate_start(ATQueue *queue){
     FS_init(frame_stack);
     create_frame();
     push_frame(frame_stack,NULL,0);
+    fprintf(stdout,".IFJcode17\nJUMP $$main\n");
     open_output();
     generate_program(queue);
     create_frame();
@@ -215,7 +216,7 @@ void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr){
 }
 
 void open_output(){
-    fprintf(stdout,".IFJcode17\nJUMP $$main\n");
+    
 }
 
 void generate_function(Tsymtab_item * item, ATQueue * state){
