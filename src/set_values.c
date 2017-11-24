@@ -30,6 +30,7 @@ void set_args_function(Tfunction_item *item, char *key, Tvariable_type type, Tva
 			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         	dispose_global();
 		}
+		item->arguments[(item->arg_count)-1].type = type_variable;
 		(item->arguments[(item->arg_count)-1]).type_strct.variable = (struct var_item *) malloc(sizeof(struct var_item));
 		
 		if ((item->arguments[(item->arg_count)-1]).type_strct.variable == NULL)
