@@ -11,8 +11,10 @@ end if
 end Function
 
 scope
-dim x as integer
+dim x as integer = 3
 dim y as integer
+dim z as integer
+dim s as double
 do while x <> 0
     print !"Hadej Smrckovo cislo";
     print !"\013\010";
