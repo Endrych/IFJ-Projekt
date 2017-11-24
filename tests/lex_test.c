@@ -9,5 +9,6 @@ int main(){
         token = get_token();
         str = get_string(token->atribute.int_value);
         fprintf(stdout,"%s\n",str);
+        destruct_token(token);
     }
 }

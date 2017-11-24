@@ -462,7 +462,7 @@ Token* get_token(){
 							}
 						}
 						if((str_to_int >= 0 && str_to_int <= 32) || 
-						str_to_int == 35 || str_to_int == 92){
+						str_to_int == 35){
 							last_char = current_char;
 							esc_seq_iter = 0;
 						}
@@ -480,8 +480,10 @@ Token* get_token(){
 							length++;
 							esc_seq_iter = 0;
 						}else{
-							escape_seq[0] = current_char;
-							esc_seq_iter = 1;
+							// escape_seq[0] = current_char;
+							// esc_seq_iter = 1;
+							esc_seq_iter = 0;
+
 						}
 						is_not_esc = false;
 						esc_active = false;
@@ -550,6 +552,15 @@ Token* get_token(){
 						if(esc_seq_iter == 3 && esc_active){
 							int i = 0;
 							while(i <= esc_seq_iter){
+								if((length + 3) >= size){
+            						size += 10;
+            						str = (char *)realloc(str, size*sizeof(char));
+									if (str == NULL)
+									{
+										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       									dispose_global();
+									}		
+								}
 								str[length] = escape_seq[i];
 								length++;
 								i++;
