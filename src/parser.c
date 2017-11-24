@@ -1695,7 +1695,7 @@ int parse()
 	qstackInit(qstack);
 	qstackPush (qstack, global_queue);
 
-	symtab = symtab_init(42);
+	
 	insert_built_in();
 	global_symtab = symtab;
 	return Prog();
@@ -1707,6 +1707,16 @@ int parse()
 
 int main()
 {
+	symtab = symtab_init(42);
+	void insert_length();
+
+	void insert_substr();
+
+	void insert_asc();
+
+	void insert_chr();
+
+	void insert_built_in();
 	int return_value;
 	return_value = parse();
 	fprintf(stderr,"\n");
