@@ -22,6 +22,7 @@ void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *f
  * napr. pri spatne alokaci pameti
  * uvolni pamet globalnich promennych a da exit(99)
  */
+void dispose();
 void dispose_global();
 
 

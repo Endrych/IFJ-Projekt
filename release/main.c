@@ -47,6 +47,6 @@ int main(){
 			break;
 	}
 	generate_start(qstackTop(qstack));
-	dispose_global();
+	dispose();
 	return 0;
 }
