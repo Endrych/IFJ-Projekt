@@ -45,6 +45,7 @@ Token* get_token(){
         dispose_global();
 	}
 	static char last_char;
+	static char last_string_char;
 	char prev_char;
 	char int_to_str_1[1]; // pro escape sekvence vzdycky dostanu jedno cislo!	
 	char int_to_str_2[2]; // pro escape sekvence vzdycky dostanu dve cisla!
@@ -62,6 +63,11 @@ Token* get_token(){
 	bool first_is_2 = false;
 	bool second_is_5 = false;
 	bool string_end = false;
+	bool _tab = false;
+	bool _new_line =false;
+	bool _quotation_mark = false;
+	bool _last_backslash = false;
+	// bool _
 	while(isIntToken){
     	if(last_char != '\0'){
     	  	current_char = last_char;
@@ -172,6 +178,7 @@ Token* get_token(){
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
 					state = _START;
+					last_char = current_char;
 				}
 				else if(current_char == EOF){
 					state = _EOF;
@@ -336,9 +343,15 @@ Token* get_token(){
 					return token;
 				}	
 			case _START_STRING:
-				if(current_char != '\"' || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
+				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
-					if(current_char == '\"'){
+					if(last_string_char == '\\'){
+						_last_backslash = true;
+					}else{
+						_last_backslash = false;
+					}
+					last_string_char = current_char;
+					if(current_char == '\"' && !_last_backslash){
 						string_end = true;
 						state = _END_STRING;
 						last_char = current_char;
@@ -449,7 +462,7 @@ Token* get_token(){
 							}
 						}
 						if((str_to_int >= 0 && str_to_int <= 32) || 
-						str_to_int == 35 || str_to_int == 92){
+						str_to_int == 35){
 							last_char = current_char;
 							esc_seq_iter = 0;
 						}
@@ -467,8 +480,10 @@ Token* get_token(){
 							length++;
 							esc_seq_iter = 0;
 						}else{
-							escape_seq[0] = current_char;
-							esc_seq_iter = 1;
+							// escape_seq[0] = current_char;
+							// esc_seq_iter = 1;
+							esc_seq_iter = 0;
+
 						}
 						is_not_esc = false;
 						esc_active = false;
@@ -491,7 +506,16 @@ Token* get_token(){
 							if(str_to_int == 50){
 								first_is_2 = true;
 							}
-							if(str_to_int < 48 || str_to_int > 50){
+							else if(str_to_int == 110){
+								_new_line = true;
+							}
+							else if(str_to_int == 34){
+								_quotation_mark = true;
+							}
+							else if(str_to_int == 116){
+								_tab = true;
+							}
+							else if(str_to_int < 48 || str_to_int > 50){
 								esc_active = false;
 								is_not_esc = true;								
 							}
@@ -528,6 +552,15 @@ Token* get_token(){
 						if(esc_seq_iter == 3 && esc_active){
 							int i = 0;
 							while(i <= esc_seq_iter){
+								if((length + 3) >= size){
+            						size += 10;
+            						str = (char *)realloc(str, size*sizeof(char));
+									if (str == NULL)
+									{
+										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       									dispose_global();
+									}		
+								}
 								str[length] = escape_seq[i];
 								length++;
 								i++;
@@ -536,6 +569,43 @@ Token* get_token(){
 							esc_active = false;		
 							first_is_2 = false;
 							second_is_5 = false;					
+						}
+						else if(_new_line == true || _tab == true || _quotation_mark == true){
+							if(_new_line == true){
+								str[length] = '\\';
+								length++;
+								str[length] = '0';
+								length++;
+								str[length] = '1';
+								length++;
+								str[length] = '0';
+								length++;
+							}else if (_tab == true){
+								str[length] = '\\';
+								length++;
+								str[length] = '0';
+								length++;
+								str[length] = '0';
+								length++;
+								str[length] = '9';
+								length++;
+							}else if(_quotation_mark == true){
+								str[length] = '\\';
+								length++;
+								str[length] = '0';
+								length++;
+								str[length] = '3';
+								length++;
+								str[length] = '4';
+								length++;
+							}
+							_quotation_mark = false;
+							_new_line = false;
+							_tab = false;
+							esc_seq_iter = 0;
+							esc_active = false;		
+							first_is_2 = false;
+							second_is_5 = false;	
 						}
 						if(esc_active){
 							esc_seq_iter++;
