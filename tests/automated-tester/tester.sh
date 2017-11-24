@@ -6,9 +6,11 @@ ITERATE=$(( $NUMBER / 2 ))
 TOITERATE=1
 TODELETE=1
 printf "Results of automated-tester\n" > results.txt
-if [ $1 = "-d" ]; then
-    find . -name '*.out' -print0 | xargs -0 rm
-    find . -name '*.ifj' -print0 | xargs -0 rm
+if [ "$1" = "-d" ]; then
+    find ./tests -name '*.out' -print0 | xargs -0 rm
+    find ./tests -name '*.ifj' -print0 | xargs -0 rm
+    find ./tests -name '*.dif' -print0 | xargs -0 rm
+    
 else
     while [ $TOITERATE -le $ITERATE ]
     do
@@ -21,6 +23,7 @@ else
             rm ./tests/$TOITERATE.out
         else
             printf "$TOITERATE\342\234\227\n" >> results.txt
+            diff ./tests/$TOITERATE.out ./tests/$TOITERATE.correct > ./tests/$TOITERATE.dif 
         fi
         TOITERATE=$(($TOITERATE + 1))
     done
