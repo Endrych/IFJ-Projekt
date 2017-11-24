@@ -103,7 +103,8 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
     }
     item->id = id->key;
     item->type = id->type_strct.variable->type;
-    add_var_to_frame(FS_top(frame_stack),item);
+    Tframe *tmp = FS_top(frame_stack);
+    add_var_to_frame(tmp,item);
 }
 
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
