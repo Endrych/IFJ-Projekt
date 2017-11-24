@@ -179,7 +179,7 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 
 		*local_frame = *temp_frame;
 
-		//def_return_value(local_frame, var);
+		def_return_value(local_frame, var);
 
 		local_frame->next_instr = next_instr;
 
@@ -221,12 +221,14 @@ void pop_frame(TFstack *stack)
 
 		if (test != NULL)
 		{
+			//Haze segmentetaion
 			//get_return_value(temp_frame, FS_top(stack));
 		}
 
 		if (local_frame->var_count != 0)
 		{
-			free(local_frame->vars);
+			// Haze error ???
+			//free(local_frame->vars);
 			
 		}
 
@@ -244,30 +246,3 @@ void get_return_value(Tframe *end_frame, Tframe *frame)
 {
 	add_var_to_frame(frame, end_frame->return_value);
 }
-
-/*void destruct_frame(TFstack *stack, Tframe *frame)
-{
-
-}*/
-/*
-int main()
-{
-	TFstack *stack = (TFstack *) malloc(sizeof(TFstack));
-	FS_init(stack);
-	create_frame();
-	Tvariable *var = malloc(sizeof(Tvariable));
-	var->value.value_int = 10;
-	var->defined = true;
-	var->id = "ahoj";
-	var->type = type_int;
-	unsigned instr = 0;
-	push_frame(stack, var, instr);
-	Tframe *frame = FS_top(stack);
-	printf("%s %d %d %d \n", frame->return_value->id, frame->return_value->value.value_int,\
-								frame->next_instr, frame->var_count);
-	create_frame();
-	pop_frame(stack);
-	//free(temp_frame);
-	FS_destruct(stack);
-}
-*/

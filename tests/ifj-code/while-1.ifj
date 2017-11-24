@@ -7,7 +7,7 @@ do while y <=10
 print x * y;
 y = y+1
 loop
-print !"\013\010";
+print !"\010";
 x = x + 1
 loop
 end scope

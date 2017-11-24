@@ -62,7 +62,6 @@ int Prog()
 					fprintf(stderr, "ERROR: No code can be after end of Scope\n");
 					return SYNTAX_ERROR;
 				}
-	//			generate_start(qstackTop(qstack));
 
 				// proverime, ze kazda funkce vlozena do tabulky symbolu
 				// byla definovana
@@ -83,7 +82,6 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
-	//			generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
@@ -1735,5 +1733,7 @@ int main()
 			fprintf(stderr,"COMPILER_ERROR\n");
 			break;
 	}
+	generate_start(qstackTop(qstack));
+	dispose_global();
 	return 0;
 }
