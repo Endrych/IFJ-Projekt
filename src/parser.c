@@ -365,7 +365,7 @@ int Stat()
 						}
 						
 						token = out->ReturnToken;
-						if ((return_value = check_type(symtab_item->type_strct.variable->type, out)) != OK) {
+						if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 							return return_value;
 						}
 						declar_input->expr = out->Tree;
@@ -433,11 +433,11 @@ int Stat()
 					//__while__
 					token = get_token();
 					if (token->type != type_keyword) {
-						fprintf(stderr, "ERROR: Invalide syntax 'do', did you mean 'do while' ?\n");
+						fprintf(stderr, "ERROR: Invalid syntax 'do', did you mean 'do while' ?\n");
 						return SYNTAX_ERROR;
 					}
 					if (token->atribute.int_value != kw_while) {
-						fprintf(stderr, "ERROR: Invalide syntax 'do', did you mean 'do while' ?\n");
+						fprintf(stderr, "ERROR: Invalid syntax 'do', did you mean 'do while' ?\n");
 						return SYNTAX_ERROR;	
 					}
 					//__<expr>__
@@ -646,7 +646,7 @@ int Stat()
 						return COMPILER_ERROR;
 					}
 					// zkontrolujeme navratovy typ
-					if ((return_value = check_type(func_symtab_item->type_strct.function->return_type, out)) != OK) {
+					if ((return_value = check_type(func_symtab_item->type_strct.function->return_type, out->Type)) != OK) {
 						return return_value;
 					}
 					// naplnime qitem
@@ -703,7 +703,14 @@ int Stat()
 				}
 				if (symtab_item->type == type_function) {
 					// __VOLANI_FUNKCE__
-					// __ ( __
+
+					if ((return_value = check_type(symtab_item_left->type_strct.variable->type, 
+													symtab_item->type_strct.function->return_type)) != OK)
+					{
+						fprintf(stderr, "Return type of function %s and type of identifier %s differ\n", symtab_item->key, symtab_item_left->key);
+						return SEMANTIC_TYPE_ERROR;
+					}
+					// __(__
 					token = get_token();
 					if (token->type != type_operator) {
 						fprintf(stderr, "ERROR: Unexpected symbol after function identifier, did you mean to call the function like: f_id(params)?\n");
@@ -714,12 +721,19 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 
+					qitem->GenType = gt_call_func;
+					qitem->GenValue.call_func_input = (CallFuncInput*) malloc(sizeof(CallFuncInput));
+					qitem->GenValue.call_func_input->id = symtab_item_left;
+					qitem->GenValue.call_func_input->sym_item = symtab_item;
+					qitem->GenValue.call_func_input->param = (eQueue*) malloc(sizeof(eQueue));
+
+					equeInit(qitem->GenValue.call_func_input->param);
+
 					// ___<args_list>__
-					
-				//	token = get_token();
-				//	if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
-				//		return return_value;
-				//	}
+					token = get_token();
+					if ((return_value = Args_list(symtab_item, qitem->GenValue.call_func_input->param)) != OK) {
+						return return_value;
+					}
 					// __)__
 					if (token->type != type_operator) {
 						fprintf(stderr, "ERROR: Missing closing bracket\n");
@@ -729,6 +743,8 @@ int Stat()
 						fprintf(stderr, "ERROR: Missing closing bracket\n");
 						return SYNTAX_ERROR;
 					}
+					top_queue = qstackTop(qstack);
+					queUp(top_queue, qitem);
 					
 					return OK;
 				}
@@ -749,7 +765,7 @@ int Stat()
 				return COMPILER_ERROR;
 			}
 			token = out->ReturnToken;
-			if ((return_value = check_type(symtab_item->type_strct.variable->type, out)) != OK) {
+			if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 				return return_value;
 			}
 			qitem->GenValue.assign_input->expr = out->Tree;
@@ -765,6 +781,154 @@ int Stat()
 	return OK;
 }
 
+int Args_list(Tsymtab_item* symtab_item, eQueue* eque)
+{
+	int args_iter = 0;
+	int return_value;
+
+	switch (token->type)
+	{
+		case type_operator:
+			// EPSILON
+			if (token->atribute.int_value == op_bracket_end)
+				break;
+			else {
+				fprintf(stderr, "ERROR: Invalid argument in function %s\n", symtab_item->key);
+				return SYNTAX_ERROR;
+			}
+		break;
+		case type_id:
+		case type_integer:
+		case type_double:
+		case type_string:
+			// __<Arg>__
+			if ((return_value = Arg(symtab_item->type_strct.function, &args_iter, eque)) != OK) {
+				return return_value;
+			}
+			// ___<Next_arg>__
+			token = get_token();
+			if ((return_value = Next_arg(symtab_item->type_strct.function, &args_iter, eque)) != OK) {
+				return return_value;
+			}
+		break;
+		
+		default:
+			fprintf(stderr, "ERROR: Invalid argument in function %s\n", symtab_item->key);
+			return SYNTAX_ERROR;
+		}
+
+	if (args_iter != symtab_item->type_strct.function->arg_count) {
+		fprintf(stderr, "ERROR: Too few arguments in function %s call\n", symtab_item->key);
+	}
+	return OK;
+}
+
+int Arg(Tfunction_item* function, int* args_iter, eQueue* eque)
+{
+	int return_value;
+	Tsymtab_item* symtab_item;
+	eQItem* eitem;
+
+	if (*args_iter >= function->arg_count) {
+		fprintf(stderr, "ERROR: Too many arguments in function call\n");
+		return SEMANTIC_TYPE_ERROR;
+	}
+
+	eitem = (eQItem*) malloc(sizeof(eQItem));
+	eitem->Next = NULL;
+	switch (token->type)
+	{
+		case type_integer:
+			// musime porovnat parametry
+			if ((return_value = check_type(function->arguments[*args_iter].type_strct.variable->type, type_int)) != OK) {
+				fprintf(stderr, "ERROR: Wrong type of argument in function call\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+			eitem->etype = eq_token;
+			eitem->eValue.token_value = token;
+
+		break;
+
+		case type_double:
+			if ((return_value = check_type(function->arguments[*args_iter].type_strct.variable->type, type_doub)) != OK) {
+				fprintf(stderr, "ERROR: Wrong type of argument in function call\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+			eitem->etype = eq_token;
+			eitem->eValue.token_value = token;
+		break;
+
+		case type_string:
+			if (function->arguments[*args_iter].type_strct.variable->type != type_str) {
+				fprintf(stderr, "ERROR: Wrong type of argument in function call\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+			eitem->etype = eq_token;
+			eitem->eValue.token_value = token;
+		break;
+
+		case type_id:
+			if ((symtab_item = symtab_search(symtab, token)) == NULL) {
+				fprintf(stderr, "ERROR: Undeclared variable as function argument\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+			if ((return_value = check_type(function->arguments[*args_iter].type_strct.variable->type, 
+											symtab_item->type_strct.variable->type)) != OK)
+			{
+				fprintf(stderr, "ERROR: Wrong type of argument in function call\n");
+				return SEMANTIC_TYPE_ERROR;
+			}
+			eitem->etype = eq_id;
+			eitem->eValue.id_value = symtab_item;
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: Compiler error, nobody is perfect...\n");
+			return COMPILER_ERROR;
+	}
+
+	equeUp(eque, eitem);
+	(*args_iter)++;
+	return OK;
+
+}
+
+int Next_arg(Tfunction_item* function, int* args_iter, eQueue* eque)
+{
+	int return_value;
+
+	switch (token->type)
+	{
+		case type_operator:
+			// EPSILON
+			if (token->atribute.int_value == op_bracket_end)
+				return OK;
+			else {
+				fprintf(stderr, "ERROR: Unexpected token in function call arguments\n");
+				return SYNTAX_ERROR;
+			}
+		break;
+
+		case type_comma:
+			// __ , <Arg> <Next_arg>__
+			// __<Arg>__
+			token = get_token();
+			if ((return_value = Arg(function, args_iter, eque)) != OK) {
+				return return_value;
+			}
+			// __<Next_arg>__
+			token = get_token();
+			if ((return_value = Next_arg(function, args_iter, eque)) != OK) {
+				return return_value;
+			}
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: Unexpected token in function call arguments\n");
+			return SYNTAX_ERROR;
+	}
+	return OK;
+}
 
 int Assign()
 {
@@ -1153,7 +1317,7 @@ int Param(Tfunction_item *function)
 	int return_value;
 
 	if (token->type != type_id) {
-		fprintf(stderr, "ERROR: Invalide parameter in function\n");
+		fprintf(stderr, "ERROR: Invalid parameter in function\n");
 		return SYNTAX_ERROR;
 	}
 	// ulozime si token na identifikator
@@ -1309,18 +1473,18 @@ int set_type_variable(Tsymtab_item* symtab_item)
 	return OK;
 }
 
-int check_type(Tvariable_type type, PrecendentOutput* out)
+int check_type(Tvariable_type type1, Tvariable_type type2)
 {
-	if (out->Type != type) {
-		switch (type) {
+	if (type2 != type1) {
+		switch (type1) {
 			case type_int:
-				if (out->Type == type_doub) {
+				if (type2 == type_doub) {
 					break;// upozornit generator aby to pretypoval
 				}
 				
 			
 			case type_doub:
-				if (out->Type == type_int) {
+				if (type2 == type_int) {
 					break; // upozornit generator
 				}
 				

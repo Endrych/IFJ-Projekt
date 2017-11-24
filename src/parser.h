@@ -21,7 +21,10 @@ int ExprPrint(eQueue* exprs);
 int Tyype();
 int set_return(Tfunction_item *function);
 int set_type_variable(Tsymtab_item* symtab_item);
-int check_type(Tvariable_type type, PrecendentOutput* out);
+int check_type(Tvariable_type type1, Tvariable_type type2);
 int check_param_type(Tvariable_type type);
+int Args_list(Tsymtab_item* symtab_item, eQueue* eque);
+int Arg(Tfunction_item* function, int* args_iter, eQueue* eque);
+int Next_arg(Tfunction_item* function, int* args_iter, eQueue* eque);
 
 #endif
