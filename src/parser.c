@@ -1734,5 +1734,6 @@ int main()
 			break;
 	}
 	generate_start(qstackTop(qstack));
+	dispose_global();
 	return 0;
 }

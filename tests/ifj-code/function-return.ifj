@@ -22,9 +22,9 @@ do while x <> 0
         print !"Spravne";
     else
         if x=1 then
-            print !="Smrckovo cislo je mensi";
+            print !"Smrckovo cislo je mensi";
         else
-            print !="Smrckovo cislo je vetsi";
+            print !"Smrckovo cislo je vetsi";
         end if
     end if
     print !"\013\010";
