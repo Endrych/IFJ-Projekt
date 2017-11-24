@@ -30,8 +30,9 @@ Token* token;
 extern Tsymtab * symtab;
 Tsymtab_item* func_symtab_item = NULL;
 QStack* qstack;
-Tsymtab** local_tab;
-
+Tsymtab * global_symtab = NULL;
+unsigned functions_inserted = 0;
+unsigned functions_defined = 0;
 
 void get_non_eol_token()
 {
@@ -57,10 +58,20 @@ int Prog()
 					return return_value;
 				}
 				get_non_eol_token();
-
-				return_value = Func();
+				if (token->type != type_eof) {
+					fprintf(stderr, "ERROR: No code can be after end of Scope\n");
+					return SYNTAX_ERROR;
+				}
 	//			generate_start(qstackTop(qstack));
-				return return_value;
+
+				// proverime, ze kazda funkce vlozena do tabulky symbolu
+				// byla definovana
+				if (functions_inserted != functions_defined) {
+					fprintf(stderr, "ERROR: All functions have to be defined\n");
+					return SEMANTIC_ERROR;
+				}
+
+				return OK;
 
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -301,6 +312,14 @@ int Stat()
 					}
 
 					// ___Uloz identifikator do symtable___
+					// nejdrive se podivame do globalni tabulky symbolu
+					if ((symtab_item = symtab_search(global_symtab, token)) != NULL) {
+						if (symtab_item->type == type_function) {
+							fprintf(stderr,"ERROR: Redefinition of variable %s used as function identifier\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
+					}
+
 					if ((symtab_item = symtab_search(symtab, token)) != NULL) {
 						fprintf(stderr,"ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
@@ -363,11 +382,17 @@ int Stat()
 						if (out == NULL) {
 							return COMPILER_ERROR;
 						}
-						
+
 						token = out->ReturnToken;
+						if (token->type != type_eol) {
+							fprintf(stderr, "ERROR: Unexpected token at the end of dim statement\n");
+							return SYNTAX_ERROR;
+						}
+
 						if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 							return return_value;
 						}
+
 						declar_input->expr = out->Tree;
 						
 					}
@@ -621,8 +646,8 @@ int Stat()
 				case kw_return:
 					// zkontrolujeme jestli zname adresu funkce v tabulce symbolu
 					if (func_symtab_item == NULL) {
-						fprintf(stderr, "ERROR: fatal af\n");
-						return SYNTAX_ERROR; // ???????????????????????????
+						fprintf(stderr, "ERROR: Return can only be used in functions\n");
+						return SYNTAX_ERROR;
 					}
 
 					// __<Expr>__ 
@@ -645,8 +670,15 @@ int Stat()
 					if (out == NULL) {
 						return COMPILER_ERROR;
 					}
+					token = out->ReturnToken;
+
+					if (token->type != type_eol) {
+						fprintf(stderr, "ERROR: Unexpected token at the end of a return statement\n");
+						return SYNTAX_ERROR;
+					}
 					// zkontrolujeme navratovy typ
 					if ((return_value = check_type(func_symtab_item->type_strct.function->return_type, out->Type)) != OK) {
+						fprintf(stderr, "ERROR: Wrong return value\n");
 						return return_value;
 					}
 					// naplnime qitem
@@ -696,11 +728,27 @@ int Stat()
 			token = get_token();
 			if (token->type == type_id) {
 				
-				symtab_item = symtab_search(symtab, token);
-				if (symtab_item == NULL) {
-					fprintf(stderr, "ERROR: Use of undeclared variable\n");
-					return SEMANTIC_ERROR; // ?????????????????????????????
+				// nejdrive zkusime najit funkci v globalni tabulce symbolu
+				symtab_item = symtab_search(global_symtab, token);
+				if (symtab_item != NULL) {
+					if (symtab_item->type != type_function) {
+						// hledam v lokalni
+						symtab_item = symtab_search(symtab, token);
+						if (symtab_item == NULL) {
+							fprintf(stderr, "ERROR: Use of undeclared variable\n");
+							return SEMANTIC_ERROR; // ?????????????????????????????
+						}
+					}
 				}
+				else {
+					// hledam v lokalni
+					symtab_item = symtab_search(symtab, token);
+					if (symtab_item == NULL) {
+						fprintf(stderr, "ERROR: Use of undeclared variable\n");
+						return SEMANTIC_ERROR; // ?????????????????????????????
+					}
+				}
+
 				if (symtab_item->type == type_function) {
 					// __VOLANI_FUNKCE__
 
@@ -768,6 +816,11 @@ int Stat()
 			if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 				return return_value;
 			}
+
+			if (token->type != type_eol) {
+				fprintf(stderr, "ERROR: Unexpected token at the end of assignment\n");
+				return SYNTAX_ERROR;
+			}
 			qitem->GenValue.assign_input->expr = out->Tree;
 			top_queue = qstackTop(qstack);
 			queUp(top_queue, qitem);
@@ -818,7 +871,8 @@ int Args_list(Tsymtab_item* symtab_item, eQueue* eque)
 		}
 
 	if (args_iter != symtab_item->type_strct.function->arg_count) {
-		fprintf(stderr, "ERROR: Too few arguments in function %s call\n", symtab_item->key);
+		fprintf(stderr, "ERROR: Too few arguments when calling function '%s'\n", symtab_item->key);
+		return SEMANTIC_TYPE_ERROR;
 	}
 	return OK;
 }
@@ -960,6 +1014,7 @@ int Func()
 	ATQItem* qitem = NULL;
 	ATQueue* top_queue;
 	Tsymtab* temp;
+	int param_count = 0;
 
 	switch (token->type) {
 		case type_eof:
@@ -985,7 +1040,7 @@ int Func()
 					if (symtab_item == NULL) {
 						// id v tabulce jeste neni
 						symtab_item = symtab_insert(symtab, token, type_function); // vlozime do tabulky
-						symtab_item->type_strct.function->defined = true; // defined = definice funkce
+						functions_inserted++;
 
 						// GENEROVANI
 						qitem = (ATQItem*) malloc(sizeof(ATQItem));
@@ -1018,9 +1073,6 @@ int Func()
 							fprintf(stderr, "ERROR: Redefinition of function %s\n", symtab_item->key);
 							return SEMANTIC_ERROR;
 						}
-
-						// byla pouze deklarovana, uloz do defined = true
-						symtab_item->type_strct.function->defined = true;
 
 						// jelikoz uz byla funkce deklarovana, ma jiz vygenerovany qitem
 						// a proto jej zkusime najit ve fronte na vrcholu zasobniku (coz je globalni fronta definic funkci a Scope)
@@ -1072,10 +1124,11 @@ int Func()
 					// budeme pouzivat lokalni tabulku symbolu
 					temp = symtab;
 					symtab = symtab_item->type_strct.function->sym_table;
+					param_count = 0;
 
 					// __<param_list>__
 					token = get_token();
-					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
+					if ((return_value = Param_list(symtab_item, &param_count)) != OK) {
 						return return_value;
 					}
 
@@ -1104,9 +1157,21 @@ int Func()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-					// nastavime navratovou hodnotu funkce
-					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
-						return return_value;
+					// pokud jeste nebyla deklarovana
+					if (!symtab_item->type_strct.function->declared) {
+						// nastavime navratovou hodnotu funkce
+						if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
+							return return_value;
+						}
+						// ulozime pocet parametru
+						symtab_item->type_strct.function->arg_count = param_count;
+					}
+					else {
+						// zkontrolujeme navratovou hodnotu
+						if ((return_value = check_param_type(symtab_item->type_strct.function->return_type)) != OK) {
+							fprintf(stderr, "ERROR: Different return types in '%s' function definition and declaration\n", symtab_item->key);
+							return SEMANTIC_TYPE_ERROR;
+						}
 					}
 
 					// __EOL__
@@ -1143,8 +1208,13 @@ int Func()
 						fprintf(stderr, "ERROR: Missing 'End Function' at the end of function definition\n");
 						return SYNTAX_ERROR;
 					}
+
 					// nakonec popneme frontu funkce ze zasobniku
 					qstackPop(qstack);
+
+					// nastavime funkci na defined
+					symtab_item->type_strct.function->defined = true;
+					functions_defined++;
 
 					// a do globalni promenne misto adresy funkce v tabulce symbolu ulozime NULL
 					func_symtab_item = NULL;
@@ -1180,10 +1250,15 @@ int Func()
 							fprintf(stderr, "ERROR: Function %s was declared more than once\n", symtab_item->key);
 							return SEMANTIC_ERROR;
 						}
+						if (symtab_item->type_strct.function->defined) {
+							fprintf(stderr, "ERROR: Function %s defined before its declaration\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
 					}
 					else {
 						// jinak vlozime id do tabulky symbolu
 						symtab_item = symtab_insert(symtab, token, type_function);
+						functions_inserted++;
 					}
 					
 					// __(__
@@ -1200,11 +1275,11 @@ int Func()
 					// budeme pouzivat lokalni tabulku symbolu
 					temp = symtab;
 					symtab = symtab_item->type_strct.function->sym_table;
-					local_tab = &(symtab_item->type_strct.function->sym_table);
+					param_count = 0;
 
 					// __<param_list>__
 					token = get_token();
-					if ((return_value = Param_list(symtab_item->type_strct.function)) != OK) {
+					if ((return_value = Param_list(symtab_item, &param_count)) != OK) {
 						return return_value;
 					}
 
@@ -1239,6 +1314,8 @@ int Func()
 					if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
 						return return_value;
 					}
+					// nastavime pocet parametru
+					symtab_item->type_strct.function->arg_count = param_count;
 					// nastavime, ze funkce jiz byla deklarovana
 					symtab_item->type_strct.function->declared = true;
 
@@ -1280,44 +1357,62 @@ int Func()
 	return OK;
 }
 
-int Param_list(Tfunction_item *function)
+int Param_list(Tsymtab_item *symtab_item, int* params_iter)
 {
 	int return_value;
+	bool declared = symtab_item->type_strct.function->declared;
+
 	switch (token->type)
 	{
 		case type_operator:
 			if (token->atribute.int_value == op_bracket_end) {
-				return OK;
+				// EPSILON
+				break;
 			}
 		break;
 
 		case type_id:
 			// __<Param>__
-			if ((return_value = Param(function)) != OK) {
+			if ((return_value = Param(symtab_item, params_iter)) != OK) {
 				return return_value;
 			}
 			// __<Next_par>__
 			token = get_token();
-			if ((return_value = Next_par()) != OK) {
+			if ((return_value = Next_par(symtab_item, params_iter)) != OK) {
 				return return_value;
 			}
 		break;
 
 		default:
-			fprintf(stderr, "ERROR: Unexpected symbol in function parameters list\n");
+			fprintf(stderr, "ERROR: Unexpected symbol in function '%s' parameters\n", symtab_item->key);
 			return SYNTAX_ERROR;
+	}
+	if (declared) {
+		if (symtab_item->type_strct.function->arg_count != *params_iter) {
+			fprintf(stderr, "ERROR: Wrong number of parameters in function %s\n", symtab_item->key);
+			return SEMANTIC_TYPE_ERROR;
+		}
 	}
 	return OK;
 }
 
-int Param(Tfunction_item *function)
+int Param(Tsymtab_item *symtab_item, int* params_iter)
 {
-	Tsymtab_item* symtab_item;
+	bool declared = symtab_item->type_strct.function->declared;
+	Tfunction_item* function = symtab_item->type_strct.function;
+	Tsymtab_item* symtab_param;
 	Token* param_token;
 	int return_value;
 
+	if (declared) {
+		if (*params_iter >= symtab_item->type_strct.function->arg_count) {
+			fprintf(stderr, "ERROR: Number of parameters in definition of function '%s' is bigger than in its declaration\n", symtab_item->key);
+			return SEMANTIC_TYPE_ERROR;
+		}
+	}
+
 	if (token->type != type_id) {
-		fprintf(stderr, "ERROR: Invalid parameter in function\n");
+		fprintf(stderr, "ERROR: Invalid parameter in function '%s' \n", symtab_item->key);
 		return SYNTAX_ERROR;
 	}
 	// ulozime si token na identifikator
@@ -1338,30 +1433,74 @@ int Param(Tfunction_item *function)
 	if ((return_value = Tyype()) != OK) {
 		return return_value;
 	}
-	if (function->declared) {
-		if ((return_value = check_param_type(function->arguments[0].type_strct.variable->type)) != OK)
-			return return_value;
-	}
-	else {
-		// ulozime identifikator do tabulky symbolu
-		symtab_item = symtab_insert(symtab, param_token, type_variable);
-		// nastavime typ identifikatoru
-		if ((return_value = set_type_variable(symtab_item)) != OK) {
+	// pokud je jiz funkce deklarovana, pouze zkontrolujeme spravnost typu
+	if (declared) {
+		if ((return_value = check_param_type(function->arguments[*params_iter].type_strct.variable->type)) != OK) {
+			fprintf(stderr, "ERROR: Parameter in function '%s' definition differs from its declaration\n", symtab_item->key);
 			return return_value;
 		}
-		symtab_item->type = type_variable;
+
+	}
+	else {
+		// pokud jiz id je v tabulce symbolu pak dva parametry maji stejne jmeno
+		if ((symtab_param = symtab_search(symtab, param_token)) != NULL) {
+			fprintf(stderr, "ERROR: Function parameters cannot have same names, in function '%s' \n", symtab_item->key);
+			return SEMANTIC_ERROR;
+		}
+		// jinak ulozime identifikator do tabulky symbolu
+		symtab_param = symtab_insert(symtab, param_token, type_variable);
+		// nastavime typ identifikatoru
+		if ((return_value = set_type_variable(symtab_param)) != OK) {
+			return return_value;
+		}
+		symtab_param->type = type_variable;
 		// void init_item_variable(Tvariable_item *item) ???
 
 		// nastavime parametr funkce
 		Tvalue value;
-		set_args_function(function, symtab_item->key, symtab_item->type_strct.variable->type, value);
-	} 
+		set_args_function(function, symtab_param->key, symtab_param->type_strct.variable->type, value);
+	}
+
+	// zvysime pocet zpracovanych parametru 
+	(*params_iter)++;
 	return OK;
 
 }
 
-int Next_par()
+int Next_par(Tsymtab_item* symtab_item, int* params_iter)
 {
+	int return_value;
+	switch (token->type)
+	{
+		case type_operator:
+			if (token->atribute.int_value == op_bracket_end) {
+				// __EPSILON__
+				return OK;
+			}
+			else {
+				fprintf(stderr, "ERROR: Unexpected token in function '%s' definition\n", symtab_item->key);
+				return SYNTAX_ERROR;
+			}
+		break;
+
+		case type_comma:
+			// , <param> <Next_par>
+			token = get_token();
+			if ((return_value = Param(symtab_item, params_iter)) != OK) {
+				return return_value;
+			}
+			// __<Next_par>__
+			token = get_token();
+			if ((return_value = Next_par(symtab_item, params_iter)) != OK) {
+				return return_value;
+			}
+		break;
+
+		default:
+			fprintf(stderr, "ERROR: Unexpected token in function '%s' definition/declaration\n", symtab_item->key);
+			return SYNTAX_ERROR;
+
+	}
 	return OK;
 }
 int ExprPrint(eQueue* exprs)
@@ -1501,6 +1640,11 @@ int check_type(Tvariable_type type1, Tvariable_type type2)
 
 int check_param_type(Tvariable_type type)
 {
+	if (token->type != type_keyword) {
+		fprintf(stderr, "ERROR: Unexpected type token\n");
+		return SYNTAX_ERROR;
+	}
+
 	switch (token->atribute.int_value) 
 	{
 		case kw_integer:
@@ -1552,7 +1696,8 @@ int parse()
 	qstackInit(qstack);
 	qstackPush (qstack, global_queue);
 
-	symtab = symtab_init(42); 
+	symtab = symtab_init(42);
+	global_symtab = symtab;
 	return Prog();
 	symtab_free(symtab); 
 }
