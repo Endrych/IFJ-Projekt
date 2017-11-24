@@ -343,7 +343,7 @@ Token* get_token(){
 					return token;
 				}	
 			case _START_STRING:
-				if(current_char != '\"' || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
+				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
 					if(last_string_char == '\\'){
 						_last_backslash = true;
