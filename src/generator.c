@@ -545,3 +545,173 @@ char * generate_expression(ATLeaf *tree){
     return id;
     // fprintf(stdout, "WRITE LF@%s\n",id);
 }
+
+void generate_Length(Tsymtab_item *item)
+{
+    fprintf(stdout, "LABEL $%s\n",item->key);
+
+    /*create_frame();
+
+    for(int i = 0; i < item->type_strct.function->arg_count;i++){
+        Tvariable * item1 = (Tvariable *) malloc(sizeof(Tvariable));
+        if (item1 == NULL)
+        {
+            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+            dispose_global();
+        }
+
+        item1->id = item->type_strct.function->arguments[i].key;
+        item1->type = item->type_strct.function->arguments[i].type;
+
+        add_var_to_frame(temp_frame,item1);
+    }
+
+    push_frame(frame_stack,NULL,0);*/
+    fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
+
+    Tfunction_item *function = item->type_strct.function;
+
+    fprintf(stdout, "MOVE LF@%%retval int@0\n");
+    fprintf(stdout, "STRLEN LF@%%retval LF@%s\n", function->arguments[0].key);
+
+   // create_frame();
+   // pop_frame(frame_stack)
+    fprintf(stdout, "LABEL $%s$epilog\n", item->key);
+    fprintf(stdout, "POPFRAME\nRETURN");
+}
+
+
+void generate_SubStr(Tsymtab_item *item)
+{
+    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
+    fprintf(stdout, "MOVE LF@%%retval string@\n");
+
+    fprintf(stdout, "DEFVAR LF@tmp1\nDEFVAR LF@tmp2\n");
+    fprintf(stdout, "MOVE LF@tmp1 int@0\nMOVE LF@tmp2 string@\n");
+    
+    fprintf(stdout, "DEFVAR LF@length\n");
+    fprintf(stdout, "MOVE LF@length int@0\n");
+    
+    fprintf(stdout, "DEFVAR LF@result\n");
+    fprintf(stdout, "MOVE LF@result bool@false\n");
+
+    Tfunction_item *function = item->type_strct.function;
+
+    fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@%s LF@tmp2\n", function->arguments[0]);
+    
+    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS int@0\n");
+    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS int@0\n");
+
+    fprintf(stdout, "EQS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "GTS\n");
+    fprintf(stdout, "PUSHS LF@result\n");
+    fprintf(stdout, "ORS\n");
+    fprintf(stdout, "POPS LF@result\n");
+
+    fprintf(stdout, "JUMPIFNEQ $SubStrReturn0 bool@true LF@result\n");
+
+    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[2].key);
+    fprintf(stdout, "PUSHS int@0\n");
+    fprintf(stdout, "GTS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
+
+    fprintf(stdout, "STRLEN LF@tmp1 LF@%s\n", function->arguments[0].key);
+    fprintf(stdout, "SUB LF@tmp1 LF@tmp1 LF@%s\n", function->arguments[1].key);
+
+    fprintf(stdout, "PUSHS LF@tmp1\n");
+    fprintf(stdout, "PUSHS LF@%s\n", function-.arguments[2].key);
+    fprintf(stdout, "GTS\n");
+    fprintf(stdout, "POPS LF@result\n");
+
+    fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
+
+    fprintf(stdout, "DEFVAR LF@tmplen\n");
+    fprintf(stdout, "MOVE LF@tmplen int@0\n");
+
+    fprintf(stdout, "STRLEN LF@tmplen LF@%s\n", function->arguments[0].key);
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@%s\n", function->arguments[1].key);
+
+    fprintf(stdout, "SUB LF@tmp1 LF@%s int@1\n", function->arguments[1].key);
+
+    fprintf(stdout, "LABEL $SubStrFor\n");
+    fprintf(stdout, "GETCHAR LF@tmp2 LF@%s LF@tmp1\n", function->arguments[0]);
+    fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
+    fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
+    fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
+    fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@%s\n", function->arguments[2].key);
+    fprintf(stdout, "JUMP $%s$epilog\n", item->key);
+    fprintf(stdout, "LABEL $SubStrReturn0\n");
+    fprintf(stdout, "MOVE LF@%%retval string@\n");
+    fprintf(stdout, "JUMP $%s$epilog\n", item->key);
+    fprintf(stdout, "LABEL $SubStrReturnRest\n");
+    fprintf(stdout, "GETCHAR LF@tmp2 LF@%s LF@tmp1\n", function->arguments[0].key);
+    fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
+    fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
+    fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
+    fprintf(stdout, "JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length\n");
+
+    fprintf(stdout, "LABEL $%S$epilog\n", item->key);
+    fprintf(stdout, "POPFRAME\n");
+    fprintf(stdout, "RETURN\n");
+}
+
+void generate_Asc(Tsymtab_item *item)
+{
+    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "PUSHFRAME\n");
+    fprintf(stdout, "DEFVAR LF@%%retval\n");
+    fprintf(stdout, "MOVE LF@%%retval int@0\n");
+
+    fprintf(stdout, "DEFVAR LF@result\n");
+    fprintf(stdout, "MOVE LF@result bool@false\n");
+
+    fprintf(stdout, "DEFVAR LF@tmp\nDEFVAR LF@tmp2\n");
+    fprintf(stdout, "MOVE LF@tmp string@\nMOVE LF@tmp2 int@0");
+
+    Tfunction_item *function = item->type_strct.function;
+
+    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "PUSHS int@0\n");
+    fprintf(stdout, "PUSHS LF@%s\n", function->arguments[1].key);
+    fprintf(stdout, "STRLEN LF@tmp2 LF@%s\n", function->arguments[0],key);
+    fprintf(stdout, "PUSHS LF@tmp2\n");
+    fprintf(stdout, "LTS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "GTS\n");
+    fprintf(stdout, "PUSHS LF@result\n");
+    fprintf(stdout, "ORS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "JUMPIFNEQ $%s$epilog bool@true LF@result\n", item->key);
+
+    fprintf(stdout, "GETCHAR LF@tmp LF@%s LF@%s\n", function->arguments[0].key, function->arguments[1].key);
+    fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
+    fprintf(stdout, "LABEL $%s$epilog\n", item->key);
+    fprintf(stdout, "POPFRAME\n");
+    fprintf(stdout, "RETURN\n");
+}
+
+void generate_Chr(Tsymtab_item *item)
+{
+    fprintf(stdout, "LABEL $%s\n", item->key);
+    fprintf(stdout, "PUSHFRAME\n");
+    fprintf(stdout, "DEFVAR LF@%%retval\n");
+    fprintf(stdout, "MOVE LF@%%retval string@\n");
+
+    fprintf(stdout, "DEFVAR LF@tmp\n");
+    fprintf(stdout, "MOVE LF@tmp string@\n");
+
+    Tfunction_item *function = item->type_strct.function;
+
+    fprintf(stdout, "INT2CHAR LF@%%retval LF@%s\n", function->arguments[0].key);
+
+    fprintf(stdout, "POPFRAME\n");
+    fprintf(stdout, "RETURN\n");
+
+
+
+}
