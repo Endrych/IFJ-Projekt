@@ -31,7 +31,8 @@ extern Tsymtab * symtab;
 Tsymtab_item* func_symtab_item = NULL;
 QStack* qstack;
 Tsymtab * global_symtab = NULL;
-
+unsigned functions_inserted = 0;
+unsigned functions_defined = 0;
 
 void get_non_eol_token()
 {
@@ -57,10 +58,20 @@ int Prog()
 					return return_value;
 				}
 				get_non_eol_token();
-
-				return_value = Func();
+				if (token->type != type_eof) {
+					fprintf(stderr, "ERROR: No code can be after end of Scope\n");
+					return SYNTAX_ERROR;
+				}
 	//			generate_start(qstackTop(qstack));
-				return return_value;
+
+				// proverime, ze kazda funkce vlozena do tabulky symbolu
+				// byla definovana
+				if (functions_inserted != functions_defined) {
+					fprintf(stderr, "ERROR: All functions have to be defined\n");
+					return SEMANTIC_ERROR;
+				}
+
+				return OK;
 
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -1029,6 +1040,7 @@ int Func()
 					if (symtab_item == NULL) {
 						// id v tabulce jeste neni
 						symtab_item = symtab_insert(symtab, token, type_function); // vlozime do tabulky
+						functions_inserted++;
 
 						// GENEROVANI
 						qitem = (ATQItem*) malloc(sizeof(ATQItem));
@@ -1145,7 +1157,7 @@ int Func()
 					if ((return_value = Tyype()) != OK) {
 						return return_value;
 					}
-					// pokud jiz nebyla deklarovana
+					// pokud jeste nebyla deklarovana
 					if (!symtab_item->type_strct.function->declared) {
 						// nastavime navratovou hodnotu funkce
 						if ((return_value = set_return(symtab_item->type_strct.function)) != OK) {
@@ -1153,6 +1165,13 @@ int Func()
 						}
 						// ulozime pocet parametru
 						symtab_item->type_strct.function->arg_count = param_count;
+					}
+					else {
+						// zkontrolujeme navratovou hodnotu
+						if ((return_value = check_param_type(symtab_item->type_strct.function->return_type)) != OK) {
+							fprintf(stderr, "ERROR: Different return types in '%s' function definition and declaration\n", symtab_item->key);
+							return SEMANTIC_TYPE_ERROR;
+						}
 					}
 
 					// __EOL__
@@ -1195,6 +1214,7 @@ int Func()
 
 					// nastavime funkci na defined
 					symtab_item->type_strct.function->defined = true;
+					functions_defined++;
 
 					// a do globalni promenne misto adresy funkce v tabulce symbolu ulozime NULL
 					func_symtab_item = NULL;
@@ -1230,10 +1250,15 @@ int Func()
 							fprintf(stderr, "ERROR: Function %s was declared more than once\n", symtab_item->key);
 							return SEMANTIC_ERROR;
 						}
+						if (symtab_item->type_strct.function->defined) {
+							fprintf(stderr, "ERROR: Function %s defined before its declaration\n", symtab_item->key);
+							return SEMANTIC_ERROR;
+						}
 					}
 					else {
 						// jinak vlozime id do tabulky symbolu
 						symtab_item = symtab_insert(symtab, token, type_function);
+						functions_inserted++;
 					}
 					
 					// __(__
