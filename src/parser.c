@@ -20,6 +20,7 @@
 #include "set_values.h"
 #include "at_que.h"
 #include "generator.h"
+#include "destructor.h"
 
 
 // tabulka symbolu
@@ -56,7 +57,7 @@ int Prog()
 				}
 				get_non_eol_token();
 				return_value = Func();
-				//generate_start(qstackTop(qstack));
+				generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else if (token->atribute.int_value == kw_declare ||
@@ -68,17 +69,17 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
-				//generate_start(qstackTop(qstack));
+				generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
 			{
-				printf("ERROR: Missing Scope or function definition/declaration at the begining of program\n");
+				fprintf(stderr,"ERROR: Missing Scope or function definition/declaration at the begining of program\n");
 				return SYNTAX_ERROR;
 			}
 			break;
 		default:
-			printf("ERROR: Missing Scope or function definition/declaration at the begining of program\n");
+			fprintf(stderr,"ERROR: Missing Scope or function definition/declaration at the begining of program\n");
 			return SYNTAX_ERROR;
 	}
 }
@@ -87,10 +88,20 @@ int Scope()
 {
 	// vytvorime qitem a novou frontu pro scope
 	ATQItem* qitem = (ATQItem*) malloc(sizeof(ATQItem));
+	if (qitem == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 	struct ATQueue* scope_queue;
 	ATQueue* top_queue;
 
 	scope_queue = (struct ATQueue*)malloc(sizeof(ATQueue));
+	if (scope_queue == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 	queInit((ATQueue*)scope_queue);
 	qitem->GenType = gt_main;
 	qitem->GenValue.at_queue = scope_queue;
@@ -104,13 +115,13 @@ int Scope()
 	// __SCOPE__
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'Scope' definition\n");
+		fprintf(stderr,"ERROR: Missing 'Scope' definition\n");
 		return SYNTAX_ERROR;
 	}
 
 	if (token->atribute.int_value != kw_scope)
 	{
-		printf("ERROR: Missing 'Scope' definition\n");
+		fprintf(stderr,"ERROR: Missing 'Scope' definition\n");
 		return SYNTAX_ERROR;
 	}
 	
@@ -118,7 +129,7 @@ int Scope()
 	token = get_token();
 	if (token->type != type_eol)
 	{
-		printf("ERROR: Missing end of line after Scope keyword\n");
+		fprintf(stderr,"ERROR: Missing end of line after Scope keyword\n");
 		return SYNTAX_ERROR;
 	}
 
@@ -131,12 +142,12 @@ int Scope()
 	// __End__ (token mne pripravil <st-list>)
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.int_value != kw_end)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 
@@ -144,12 +155,12 @@ int Scope()
 	token = get_token();
 	if (token->type != type_keyword)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.int_value != kw_scope)
 	{
-		printf("ERROR: Missing 'End Scope' at the end of Scope definition\n");
+		fprintf(stderr,"ERROR: Missing 'End Scope' at the end of Scope definition\n");
 		return SYNTAX_ERROR;
 	}
 	// popneme frontu ze zasobniku
@@ -181,7 +192,7 @@ int St_list()
 						token = get_token();
 					}
 					if (token->type != type_eol) {
-						printf("ERROR: Missing end of line after statement\n");
+						fprintf(stderr,"ERROR: Missing end of line after statement\n");
 						return SYNTAX_ERROR;
 					}
 					// __<st-list>__
@@ -209,7 +220,7 @@ int St_list()
 				token = get_token();
 			}
 			if (token->type != type_eol) {
-				printf("ERROR: Missing end of line after statement\n");
+				fprintf(stderr,"ERROR: Missing end of line after statement\n");
 				return SYNTAX_ERROR;
 			}
 			// __<st-list>__
@@ -218,7 +229,7 @@ int St_list()
 		break;
 
 		default:
-			printf("ERROR: Wrong statement\n");
+			fprintf(stderr,"ERROR: Wrong statement\n");
 			return SYNTAX_ERROR;
 	}
 	return OK;
@@ -245,7 +256,7 @@ int Stat()
 					token = get_token();
 					if (token->type != type_id)
 					{
-						printf("ERROR: Missing identifier after Intup statement\n");
+						fprintf(stderr,"ERROR: Missing identifier after Intup statement\n");
 						return SYNTAX_ERROR;
 					}
 					symtab_item = symtab_search(symtab, token);
@@ -260,6 +271,11 @@ int Stat()
 					// generuj kod
 					// qitem
 					qitem = (ATQItem *) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+     				    dispose_global();
+					}
 					qitem->GenType = gt_input;
 					qitem->GenValue.id = symtab_item;
 					qitem->Next = NULL;
@@ -276,13 +292,13 @@ int Stat()
 					token = get_token();
 					if (token->type != type_id)
 					{
-						printf("ERROR: Missing identifier after 'Dim' keyword\n");
+						fprintf(stderr,"ERROR: Missing identifier after 'Dim' keyword\n");
 						return SYNTAX_ERROR;
 					}
 
 					// ___Uloz identifikator do symtable___
 					if ((symtab_item = symtab_search(symtab, token)) != NULL) {
-						printf("ERROR: Redefinition of variable %s\n", symtab_item->key);
+						fprintf(stderr,"ERROR: Redefinition of variable %s\n", symtab_item->key);
 						return SEMANTIC_ERROR;
 					}
 
@@ -291,11 +307,11 @@ int Stat()
 					//__As__
 					token = get_token();
 					if (token->type != type_keyword) {
-						printf("ERROR: Missing 'As' in variable declaration\n");
+						fprintf(stderr,"ERROR: Missing 'As' in variable declaration\n");
 						return SYNTAX_ERROR;
 					}
 					if (token->atribute.int_value != kw_as) {
-						printf("ERROR: Missing 'As' in variable declaration\n");
+						fprintf(stderr,"ERROR: Missing 'As' in variable declaration\n");
 						return SYNTAX_ERROR;
 					}
 					// __<type>__
@@ -311,10 +327,20 @@ int Stat()
 					ATQItem* qitem;
 					VarDeclarInput* declar_input;
 					declar_input = (VarDeclarInput*) malloc(sizeof(VarDeclarInput));
+					if (declar_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					declar_input->id = symtab_item;
 					declar_input->expr = NULL;
 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_var_declar;
 					qitem->GenValue.var_declar_input = declar_input;
 
@@ -350,9 +376,19 @@ int Stat()
 					// __<expr>__
 					// vyrazy nemuzou byt bool
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenType = gt_print;
 					qitem->GenValue.exprs = (eQueue *) malloc(sizeof(eQueue));
+					if (qitem->GenValue.exprs == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					} 
 					qitem->Next = NULL; // ??????????????????????
 
 					equeInit(qitem->GenValue.exprs);
@@ -364,11 +400,16 @@ int Stat()
 					}
 					token = out->ReturnToken;
 					if (token->type != type_semicolon) {
-						printf("ERROR: Missing semicolon in 'print' function\n");
+						fprintf(stderr,"ERROR: Missing semicolon in 'print' function\n");
 						return SYNTAX_ERROR;
 					}
 					eQItem * eItem;
 					eItem = (eQItem*) malloc(sizeof(eQItem));
+					if (eItem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					eItem->Next = NULL;
 					eItem->etype = eq_tree;
 					eItem->eValue.tree_value = out->Tree;
@@ -413,12 +454,27 @@ int Stat()
 					}
 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_while;
 					qitem->GenValue.while_input = (WhileInput*) malloc(sizeof(WhileInput));
+					if (qitem->GenValue.while_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenValue.while_input->cond_expr = out->Tree;
 					// fronta
 					struct ATQueue* while_queue = (struct ATQueue*) malloc(sizeof(ATQueue));
+					if (while_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					queInit((ATQueue*)while_queue);
 					qitem->GenValue.while_input->queue = while_queue;
 
@@ -471,13 +527,33 @@ int Stat()
 						return SYNTAX_ERROR;
 					}
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+     				    dispose_global();
+					}
 					ATQueue* true_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (true_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					ATQueue* false_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (false_queue == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					queInit(true_queue);
 					queInit(false_queue);
 					
 					qitem->GenType = gt_if;
 					qitem->GenValue.if_input = (IfInput*) malloc(sizeof(IfInput));
+					if (qitem->GenValue.if_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.if_input->cond_expr = out->Tree;
 					qitem->GenValue.if_input->true_queue = (struct ATQueue*) true_queue;
 					qitem->GenValue.if_input->false_queue = (struct ATQueue*) false_queue;
@@ -547,8 +623,18 @@ int Stat()
 
 					// __<Expr>__ 
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenType = gt_return;
 					qitem->GenValue.return_input = (ReturnInput*) malloc(sizeof(ReturnInput));
+					if (qitem->GenValue.return_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					token = get_token();
 					out = precedence_analysis(token);
@@ -596,6 +682,11 @@ int Stat()
 
 			ATQItem* qitem;
 			qitem = (ATQItem*) malloc(sizeof(ATQItem));
+			if (qitem == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 
 			// <expr> / volani funkce
 			token = get_token();
@@ -641,6 +732,11 @@ int Stat()
 			}
 			qitem->GenType = gt_assign;
 			qitem->GenValue.assign_input = (AssignInput *) malloc(sizeof(AssignInput));
+			if (qitem->GenValue.assign_input == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 			qitem->GenValue.assign_input->id = symtab_item_left;
 
 			// __<Expr>__
@@ -659,7 +755,7 @@ int Stat()
 		break;
 
 		default:
-			printf("ERROR: Wrong statement\n");
+			fprintf(stderr,"ERROR: Wrong statement\n");
 			return SYNTAX_ERROR;
 	}
 	return OK;
@@ -675,11 +771,11 @@ int Assign()
 	}
 	// __ = __
 	if (token->type != type_operator) {
-		printf("ERROR: Wrong symbol where assignment was expected\n");
+		fprintf(stderr,"ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	if (token->atribute.operator_value != op_assign) {
-		printf("ERROR: Wrong symbol where assignment was expected\n");
+		fprintf(stderr,"ERROR: Wrong symbol where assignment was expected\n");
 		return SYNTAX_ERROR;
 	}
 	// <<<<<<<<<<<<<<<< call <expr> 
@@ -725,10 +821,20 @@ int Func()
 
 						// GENEROVANI
 						qitem = (ATQItem*) malloc(sizeof(ATQItem));
+						if (qitem == NULL)
+						{
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
+						}
 
 						//input->queue = NULL;
 						qitem->GenType = gt_func_declar;
 						qitem->GenValue.func_declar_input = (FuncDeclarInput *) malloc(sizeof(FuncDeclarInput));
+						if (qitem->GenValue.func_declar_input == NULL)
+						{
+							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        					dispose_global();
+						}
 						qitem->GenValue.func_declar_input->sym_item = symtab_item;
 						queUp(top_queue, qitem);
 					}
@@ -771,6 +877,11 @@ int Func()
 					// vytvorime frontu pro instrukce funkce a pushneme ji na vrchol zasobniku
 					ATQueue* func_queue;
 					func_queue = (ATQueue*) malloc(sizeof(ATQueue));
+					if (func_queue)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.func_declar_input->queue = (struct ATQueue *)func_queue;
 					queInit(func_queue);
 					qstackPush (qstack, func_queue);
@@ -962,9 +1073,19 @@ int Func()
 					// _______GENERATOR________
 					// nastavime qitem
 					qitem = (ATQItem*) malloc(sizeof(ATQItem));
+					if (qitem == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 
 					qitem->GenType = gt_func_declar;
 					qitem->GenValue.func_declar_input = (FuncDeclarInput*) malloc(sizeof(FuncDeclarInput));
+					if (qitem->GenValue.func_declar_input == NULL)
+					{
+						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        				dispose_global();
+					}
 					qitem->GenValue.func_declar_input->sym_item = symtab_item;
 					qitem->GenValue.func_declar_input->queue = NULL;
 					// pushneme qitem na vrchol zasobniku
@@ -1072,6 +1193,11 @@ int ExprPrint(eQueue* exprs)
 			}
 			eQItem * eItem;
 			eItem = (eQItem*) malloc(sizeof(eQItem));
+			if (eItem == NULL)
+			{
+				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        		dispose_global();
+			}
 			eItem->Next = NULL;
 			eItem->etype = eq_tree;
 			eItem->eValue.tree_value = out->Tree;
@@ -1088,7 +1214,7 @@ int ExprPrint(eQueue* exprs)
 int Tyype()
 {
 	if (token->type != type_keyword) {
-		printf("ERROR: Data type does not exist\n");
+		fprintf(stderr,"ERROR: Data type does not exist\n");
 		return SYNTAX_ERROR;
 	}
 	switch (token->atribute.int_value)
@@ -1098,7 +1224,7 @@ int Tyype()
 		case kw_string:
 			return OK;
 		default:
-			printf("ERROR: Data type does not exist\n");
+			fprintf(stderr,"ERROR: Data type does not exist\n");
 			return SYNTAX_ERROR;
 	}
 }
@@ -1195,7 +1321,18 @@ int parse()
 {
 	ATQueue* global_queue;
 	global_queue = (ATQueue*) malloc(sizeof(ATQueue));	
+	if (global_queue == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
+
 	qstack = (QStack*) malloc(sizeof(QStack));
+	if (qstack == NULL)
+	{
+		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+	}
 
 	queInit (global_queue);
 	qstackInit(qstack);
@@ -1214,29 +1351,29 @@ int main()
 	int return_value;
 
 	return_value = parse();
-	printf("\n");
+	fprintf(stderr,"\n");
 	switch (return_value)
 	{
 		case OK:
-			printf("Everything is OK\n");
+			fprintf(stderr,"Everything is OK\n");
 			break;
 		case LEXICAL_ERROR:
-			printf("LEXICAL_ERROR\n");
+			fprintf(stderr,"LEXICAL_ERROR\n");
 			break;
 		case SYNTAX_ERROR:
-			printf("SYNTAX_ERROR\n");
+			fprintf(stderr,"SYNTAX_ERROR\n");
 			break;
 		case SEMANTIC_ERROR:
-			printf("SEMANTIC_ERROR\n");
+			fprintf(stderr,"SEMANTIC_ERROR\n");
 			break;
 		case SEMANTIC_TYPE_ERROR:
-			printf("SEMANTIC_TYPE_ERROR\n");
+			fprintf(stderr,"SEMANTIC_TYPE_ERROR\n");
 			break;
 		case OTHER_ERROR:
-			printf("OTHER_ERROR\n");
+			fprintf(stderr,"OTHER_ERROR\n");
 			break;
 		case COMPILER_ERROR:
-			printf("COMPILER_ERROR\n");
+			fprintf(stderr,"COMPILER_ERROR\n");
 			break;
 	}
 	return 0;

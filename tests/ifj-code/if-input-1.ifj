@@ -1,0 +1,10 @@
+scope
+Dim x as integer
+print !"Zadejte x";
+input x
+if x > 5 then
+print !"x je vetsi nez 5";
+else
+print !"x je mensi nebo = 5";
+end if
+end scope
