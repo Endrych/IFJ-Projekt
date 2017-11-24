@@ -21,6 +21,7 @@
 #include "at_que.h"
 #include "generator.h"
 #include "destructor.h"
+#include "built_in.h"
 
 
 // tabulka symbolu
@@ -1695,6 +1696,7 @@ int parse()
 	qstackPush (qstack, global_queue);
 
 	symtab = symtab_init(42);
+	insert_built_in();
 	global_symtab = symtab;
 	return Prog();
 	symtab_free(symtab); 
@@ -1706,7 +1708,6 @@ int parse()
 int main()
 {
 	int return_value;
-
 	return_value = parse();
 	fprintf(stderr,"\n");
 	switch (return_value)

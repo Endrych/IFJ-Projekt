@@ -20,4 +20,15 @@ void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false
 void generate_condition(ATLeaf *leaf, char* label);
 void generate_while(ATLeaf * condition, ATQueue * state);
 void generate_function(Tsymtab_item * item, ATQueue * state);
+
+// built-in funkce 
+void generate_Asc();
+
+void generate_Length();
+
+void generate_SubStr();
+
+void generate_Chr();
+
+void generate_built_in();
 #endif
