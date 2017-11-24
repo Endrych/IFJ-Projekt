@@ -1,10 +1,12 @@
-Declare printvar(s as string) as integer
+Declare function printvar(s as string) as integer
 
 Function returninput() As string
 dim x as string
 input x
-print !"In function returninput ";x;
-x = printvar(x);
+print !"In function returninput ";x;!"\010";
+x = x + !"ahoj"
+x = returninput()
+print x;!"\010";
 End Function
 
 Function printvar(s as string) as integer

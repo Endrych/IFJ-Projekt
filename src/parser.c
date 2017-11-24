@@ -57,9 +57,7 @@ int Prog()
 					return return_value;
 				}
 				get_non_eol_token();
-
 				return_value = Func();
-	//			generate_start(qstackTop(qstack));
 				return return_value;
 
 			}
@@ -72,7 +70,6 @@ int Prog()
 					return return_value;
 				}
 				return_value = Prog();
-	//			generate_start(qstackTop(qstack));
 				return return_value;
 			}
 			else
@@ -1590,5 +1587,6 @@ int main()
 			fprintf(stderr,"COMPILER_ERROR\n");
 			break;
 	}
+	generate_start(qstackTop(qstack));
 	return 0;
 }
