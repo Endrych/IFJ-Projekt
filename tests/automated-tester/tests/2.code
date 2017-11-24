@@ -1,0 +1,5 @@
+Scope
+Dim x as integer = 12
+x = x + 5;
+print x;
+End Scope
