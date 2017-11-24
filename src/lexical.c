@@ -172,6 +172,8 @@ Token* get_token(){
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
 					state = _START;
+					last_char = current_char;
+
 				}
 				else if(current_char == EOF){
 					state = _EOF;
