@@ -314,7 +314,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->data.Atr.token->type == type_double){//double
                         current->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->data.Atr.token->atribute.double_value);
                         return id;                
                     }
                     else if(current->data.Atr.token->type == type_string){
@@ -341,7 +341,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->left->data.Atr.token->type == type_double){//double
                         current->left->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->left->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->left->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
                     else if(current->left->data.Atr.token->type == type_string){
@@ -376,7 +376,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->right->data.Atr.token->type == type_double){//double
                         current->right->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->right->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->right->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
                     else if(current->right->data.Atr.token->type == type_string){
