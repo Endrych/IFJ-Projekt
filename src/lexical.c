@@ -37,6 +37,8 @@ typedef enum{
 
 Token* get_token(){
 	bool isIntToken = true;
+	bool is_not_esc = false;
+	bool esc_active = false;
 	Token* token = create_token();
 	if(token == NULL){
 		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
@@ -46,6 +48,8 @@ Token* get_token(){
 	char prev_char;
 	char int_to_str_1[1]; // pro escape sekvence vzdycky dostanu jedno cislo!	
 	char int_to_str_2[2]; // pro escape sekvence vzdycky dostanu dve cisla!
+	char escape_seq[4];
+	int esc_seq_iter = 0;
 	int str_to_int;
 	int state = _START;
 	int length = 0;
@@ -55,6 +59,9 @@ Token* get_token(){
 	char lowering;					
 	bool e_present,dot_present = false;
 	bool e_last_char = false;
+	bool first_is_2 = false;
+	bool second_is_5 = false;
+	bool string_end = false;
 	while(isIntToken){
     	if(last_char != '\0'){
     	  	current_char = last_char;
@@ -329,8 +336,13 @@ Token* get_token(){
 					return token;
 				}	
 			case _START_STRING:
-				if(current_char != '\"'){
+				if(current_char != '\"' || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
+					if(current_char == '\"'){
+						string_end = true;
+						state = _END_STRING;
+						last_char = current_char;
+					}
 					if((length + 3) >= size){
             			size += 10;
             			str = (char *)realloc(str, size*sizeof(char));
@@ -341,8 +353,197 @@ Token* get_token(){
 						}		
 					}
 					str_to_int = (int)current_char;
-					if((str_to_int >= 10 && str_to_int <= 32) || 
-					str_to_int == 35 || str_to_int == 92){
+					if(string_end && esc_seq_iter > 0){
+						int i = 0;
+						if(esc_seq_iter == 1){
+							str[length] = '\\';
+							length++;
+							str[length] = '0';
+							length++;
+							str[length] = '9';
+							length++;
+							str[length] = '2';
+							length++;
+							i++;
+						}else{
+							while(i <= esc_seq_iter){
+								if((length + 3) >= size){
+									size += 10;
+									str = (char *)realloc(str, size*sizeof(char));
+									if (str == NULL)
+									{
+										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+										dispose_global();
+									}		
+								}
+								if(i == 0){
+									str[length] = '\\';
+									length++;
+									str[length] = '0';
+									length++;
+									str[length] = '9';
+									length++;
+									str[length] = '2';
+									length++;
+									i++;								
+								}else{
+									str[length] = escape_seq[i];
+									length++;
+									i++;
+								}
+							}
+						}
+						break;
+					}
+					else if((str_to_int == 92 && (is_not_esc == false && esc_active == true)) || is_not_esc == true){
+						int i = 0;
+						first_is_2 = false;
+						second_is_5 = false;
+						if(((str_to_int >= 0 && str_to_int <= 32) || 
+						str_to_int == 35 || str_to_int == 92) && esc_seq_iter == 1){
+							if((length + 3) >= size){
+								size += 10;
+								str = (char *)realloc(str, size*sizeof(char));
+								if (str == NULL)
+								{
+									fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+									dispose_global();
+								}		
+							}
+							str[length] = '\\';
+							length++;
+							str[length] = '0';
+							length++;
+							str[length] = '9';
+							length++;
+							str[length] = '2';
+							length++;
+						}
+						else{
+							while(i <= esc_seq_iter){
+								if((length + 3) >= size){
+									size += 10;
+									str = (char *)realloc(str, size*sizeof(char));
+									if (str == NULL)
+									{
+										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+										dispose_global();
+									}		
+								}
+								str_to_int=(int)escape_seq[i];
+								if(i == 0){
+									str[length] = '\\';
+									length++;
+									str[length] = '0';
+									length++;
+									str[length] = '9';
+									length++;
+									str[length] = '2';
+									length++;
+									i++;								
+								}else{
+									str[length] = escape_seq[i];
+									length++;
+									i++;
+								}
+							}
+						}
+						if((str_to_int >= 0 && str_to_int <= 32) || 
+						str_to_int == 35 || str_to_int == 92){
+							last_char = current_char;
+							esc_seq_iter = 0;
+						}
+						else if(current_char != '\\'){
+							if((length + 3) >= size){
+            					size += 10;
+            					str = (char *)realloc(str, size*sizeof(char));
+								if (str == NULL)
+								{
+									fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+       								dispose_global();
+								}		
+							}
+							str[length] = current_char;
+							length++;
+							esc_seq_iter = 0;
+						}else{
+							escape_seq[0] = current_char;
+							esc_seq_iter = 1;
+						}
+						is_not_esc = false;
+						esc_active = false;
+						break;
+					}
+					else if(str_to_int == 92 || esc_active){
+						esc_active = true;
+						if((str_to_int >= 0 && str_to_int <= 32) || 
+						str_to_int == 35){
+							esc_active = false;
+							is_not_esc = true;
+							last_char = current_char;
+							break;
+						}
+						else if(esc_seq_iter == 0){
+							escape_seq[0] = current_char;
+						}
+						else if(esc_seq_iter == 1){
+							escape_seq[1] = current_char;
+							if(str_to_int == 50){
+								first_is_2 = true;
+							}
+							if(str_to_int < 48 || str_to_int > 50){
+								esc_active = false;
+								is_not_esc = true;								
+							}
+						}
+						else if(esc_seq_iter == 2){
+							escape_seq[2] = current_char;
+							if(first_is_2){
+								if(str_to_int == 53){
+									second_is_5 = true;
+								}
+								if(str_to_int < 48 || str_to_int > 53){
+									esc_active = false;
+									is_not_esc = true;								
+								}
+							}
+							else if(str_to_int < 48 || str_to_int > 57){
+								esc_active = false;
+								is_not_esc = true;								
+							}
+						}
+						else if(esc_seq_iter == 3){
+							escape_seq[3] = current_char;
+							if(first_is_2 && second_is_5){
+								if(str_to_int < 48 || str_to_int > 53){
+								esc_active = false;
+								is_not_esc = true;
+								}
+							}
+							else if(str_to_int < 48 || str_to_int > 57){
+								esc_active = false;
+								is_not_esc = true;
+							}
+						}
+						if(esc_seq_iter == 3 && esc_active){
+							int i = 0;
+							while(i <= esc_seq_iter){
+								str[length] = escape_seq[i];
+								length++;
+								i++;
+							}
+							esc_seq_iter = 0;
+							esc_active = false;		
+							first_is_2 = false;
+							second_is_5 = false;					
+						}
+						if(esc_active){
+							esc_seq_iter++;
+						}
+						break;
+					}
+					else if((str_to_int >= 10 && str_to_int <= 32) || 
+					str_to_int == 35){
 						sprintf(int_to_str_2, "%d", str_to_int);						
 						str[length] = '\\';
 						length++;
