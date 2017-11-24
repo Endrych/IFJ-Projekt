@@ -11,7 +11,7 @@ STD_C99 = -std=c99
 CFLAGS = -Wall -Wextra -pedantic -g
 
 all:
-	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)parser.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)destructor.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)frame.c  -g -o parser
+	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)parser.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)generator.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)destructor.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)built_in.c  -g -o parser
 
 string_storage_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)error.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)destructor.c $(TEST_FOLDER)string_storage_test.c -o string_storage_test
