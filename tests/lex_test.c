@@ -9,6 +9,7 @@ int main(){
         token = get_token();
         str = get_string(token->atribute.int_value);
         fprintf(stdout,"%s\n",str);
+        fprintf(stdout,"%d\n", token->atribute.int_value);
         destruct_token(token);
     }
 }
