@@ -154,7 +154,7 @@ void add_var_to_frame(Tframe *frame, Tvariable *var)
 
 	} else 
 	{
-		frame->vars = (Tvariable *) realloc(frame->vars, sizeof(Tvariable) * frame->var_count);
+		frame->vars = (Tvariable *) realloc(NULL, sizeof(Tvariable) * frame->var_count);
 		if (frame->vars == NULL)
 		{
 			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
@@ -238,7 +238,7 @@ void pop_frame(TFstack *stack)
 		}
 
 		free(local_frame);
-		free(temp_frame);
+		//free(temp_frame);
 	}	
 }
 
