@@ -45,3 +45,6 @@
 build/*
 !build/Makefile
 !build/README.md
+!build/ic17int
+!build/code.ifj
+!build/run.sh
