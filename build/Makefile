@@ -35,8 +35,7 @@ stack_test_coverage:
 
 lex_test:
 	$(CC) $(STD_C99) $(CFLAGS) $(SRC_FOLDER)token.c $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)set_values.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)at_que.c $(SRC_FOLDER)error.c $(SRC_FOLDER)frame.c $(SRC_FOLDER)gen_stacks.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)name_generator.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)destructor.c $(TEST_FOLDER)lex_test.c -o lex_test
-	./lex_test
-	rm lexan_test
+	
 
 precedence_test_coverage:
 	$(CC) $(STD_C99) $(CFLAGS) --coverage $(SRC_FOLDER)string_storage.c $(SRC_FOLDER)destructor.c $(SRC_FOLDER)lexical.c $(SRC_FOLDER)token.c $(SRC_FOLDER)abstract_tree.c $(SRC_FOLDER)stack.c $(SRC_FOLDER)symtable.c $(SRC_FOLDER)precedence_sa.c $(SRC_FOLDER)at_que.c $(TEST_FOLDER)precedence_sa_test.c -o precedence_test
