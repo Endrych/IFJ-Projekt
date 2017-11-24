@@ -371,11 +371,17 @@ int Stat()
 						if (out == NULL) {
 							return COMPILER_ERROR;
 						}
-						
+
 						token = out->ReturnToken;
+						if (token->type != type_eol) {
+							fprintf(stderr, "ERROR: Unexpected token at the end of dim statement\n");
+							return SYNTAX_ERROR;
+						}
+
 						if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 							return return_value;
 						}
+
 						declar_input->expr = out->Tree;
 						
 					}
@@ -629,8 +635,8 @@ int Stat()
 				case kw_return:
 					// zkontrolujeme jestli zname adresu funkce v tabulce symbolu
 					if (func_symtab_item == NULL) {
-						fprintf(stderr, "ERROR: fatal af\n");
-						return SYNTAX_ERROR; // ???????????????????????????
+						fprintf(stderr, "ERROR: Return can only be used in functions\n");
+						return SYNTAX_ERROR;
 					}
 
 					// __<Expr>__ 
@@ -653,8 +659,15 @@ int Stat()
 					if (out == NULL) {
 						return COMPILER_ERROR;
 					}
+					token = out->ReturnToken;
+
+					if (token->type != type_eol) {
+						fprintf(stderr, "ERROR: Unexpected token at the end of a return statement\n");
+						return SYNTAX_ERROR;
+					}
 					// zkontrolujeme navratovy typ
 					if ((return_value = check_type(func_symtab_item->type_strct.function->return_type, out->Type)) != OK) {
+						fprintf(stderr, "ERROR: Wrong return value\n");
 						return return_value;
 					}
 					// naplnime qitem
@@ -791,6 +804,11 @@ int Stat()
 			token = out->ReturnToken;
 			if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
 				return return_value;
+			}
+
+			if (token->type != type_eol) {
+				fprintf(stderr, "ERROR: Unexpected token at the end of assignment\n");
+				return SYNTAX_ERROR;
 			}
 			qitem->GenValue.assign_input->expr = out->Tree;
 			top_queue = qstackTop(qstack);
@@ -1396,6 +1414,7 @@ int Param(Tsymtab_item *symtab_item, int* params_iter)
 			fprintf(stderr, "ERROR: Parameter in function '%s' definition differs from its declaration\n", symtab_item->key);
 			return return_value;
 		}
+
 	}
 	else {
 		// pokud jiz id je v tabulce symbolu pak dva parametry maji stejne jmeno
