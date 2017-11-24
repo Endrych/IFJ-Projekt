@@ -48,3 +48,5 @@ build/*
 !build/ic17int
 !build/code.ifj
 !build/run.sh
+release/run.sh
+release/main
