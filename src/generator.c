@@ -551,7 +551,7 @@ char * generate_expression(ATLeaf *tree){
 
 void generate_Length()
 {
-    fprintf(stdout, "LABEL $Length\n");
+    fprintf(stdout, "LABEL $length\n");
 
     /*create_frame();
 
@@ -577,14 +577,14 @@ void generate_Length()
 
    // create_frame();
    // pop_frame(frame_stack)
-    fprintf(stdout, "LABEL $Length$epilog\n");
+    fprintf(stdout, "LABEL $length$epilog\n");
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 
 void generate_SubStr()
 {
-    fprintf(stdout, "LABEL $SubStr\n");
+    fprintf(stdout, "LABEL $substr\n");
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
 
@@ -655,14 +655,14 @@ void generate_SubStr()
     fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length\n");
 
-    fprintf(stdout, "LABEL $SubStr$epilog\n");
+    fprintf(stdout, "LABEL $substr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Asc()
 {
-    fprintf(stdout, "LABEL $Asc\n");
+    fprintf(stdout, "LABEL $asc\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
@@ -688,14 +688,14 @@ void generate_Asc()
 
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
-    fprintf(stdout, "LABEL $Asc$epilog\n");
+    fprintf(stdout, "LABEL $asc$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Chr()
 {
-    fprintf(stdout, "LABEL $Chr\n");
+    fprintf(stdout, "LABEL $chr\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
@@ -704,7 +704,7 @@ void generate_Chr()
     fprintf(stdout, "MOVE LF@tmp string@\n");
 
     fprintf(stdout, "INT2CHAR LF@%%retval LF@i\n");
-
+    fprintf(stdout, "LABEL $chr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 

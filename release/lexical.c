@@ -720,7 +720,7 @@ Token* get_token(){
 					length++;
 					int kw;
 					kw = is_keyword(str);
-					if(kw != -1 || kw == 2 || kw == 4 || kw == 20 || kw == 31){
+					if(kw != -1 && kw != 2 && kw != 4 && kw != 20 && kw != 31){
 						token->type=type_keyword;
 						token->atribute.keyword_value = kw;
 					}

@@ -13,7 +13,7 @@ extern Tsymtab *symtab;
 
 void insert_length()
 {	
-	int position = add_string_to_storage("Length");
+	int position = add_string_to_storage("length");
 
 	Tsymtab_item *temp_item;
 
@@ -58,7 +58,7 @@ void insert_length()
 
 void insert_substr()
 {
-	int position = add_string_to_storage("SubStr");
+	int position = add_string_to_storage("substr");
 	
 	Tsymtab_item *temp_item;
 
@@ -133,7 +133,7 @@ void insert_substr()
 
 void insert_asc()
 {
-	int position = add_string_to_storage("Asc");
+	int position = add_string_to_storage("asc");
 
 	Tsymtab_item *temp_item;
 
@@ -186,7 +186,7 @@ void insert_asc()
 
 void insert_chr()
 {
-	int position = add_string_to_storage("Chr");
+	int position = add_string_to_storage("chr");
 
 	Tsymtab_item *temp_item;
 

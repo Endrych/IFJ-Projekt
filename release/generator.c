@@ -603,40 +603,20 @@ char * generate_name(GType type){
 
 void generate_Length()
 {
-    fprintf(stdout, "LABEL $Length\n");
-
-    /*create_frame();
-
-    for(int i = 0; i < item->type_strct.function->arg_count;i++){
-        Tvariable * item1 = (Tvariable *) malloc(sizeof(Tvariable));
-        if (item1 == NULL)
-        {
-            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-            dispose_global();
-        }
-
-        item1->id = item->type_strct.function->arguments[i].key;
-        item1->type = item->type_strct.function->arguments[i].type;
-
-        add_var_to_frame(temp_frame,item1);
-    }
-
-    push_frame(frame_stack,NULL,0);*/
+    fprintf(stdout, "LABEL $length\n");
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
 
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
     fprintf(stdout, "STRLEN LF@%%retval LF@s\n");
 
-   // create_frame();
-   // pop_frame(frame_stack)
-    fprintf(stdout, "LABEL $Length$epilog\n");
+    fprintf(stdout, "LABEL $length$epilog\n");
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 
 void generate_SubStr()
 {
-    fprintf(stdout, "LABEL $SubStr\n");
+    fprintf(stdout, "LABEL $substr\n");
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
 
@@ -695,11 +675,11 @@ void generate_SubStr()
     fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
     fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
-    fprintf(stdout, "JUMP $SubStr$epilog\n");
+    fprintf(stdout, "JUMP $substr$epilog\n");
     
     fprintf(stdout, "LABEL $SubStrReturn0\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
-    fprintf(stdout, "JUMP $SubStr$epilog\n");
+    fprintf(stdout, "JUMP $substr$epilog\n");
     fprintf(stdout, "LABEL $SubStrReturnRest\n");
     fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
@@ -707,14 +687,14 @@ void generate_SubStr()
     fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length\n");
 
-    fprintf(stdout, "LABEL $SubStr$epilog\n");
+    fprintf(stdout, "LABEL $substr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Asc()
 {
-    fprintf(stdout, "LABEL $Asc\n");
+    fprintf(stdout, "LABEL asc\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
@@ -736,18 +716,18 @@ void generate_Asc()
     fprintf(stdout, "PUSHS LF@result\n");
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
-    fprintf(stdout, "JUMPIFNEQ $Asc$epilog bool@true LF@result\n");
+    fprintf(stdout, "JUMPIFNEQ $asc$epilog bool@true LF@result\n");
 
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
-    fprintf(stdout, "LABEL $Asc$epilog\n");
+    fprintf(stdout, "LABEL $asc$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Chr()
 {
-    fprintf(stdout, "LABEL $Chr\n");
+    fprintf(stdout, "LABEL $chr\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
@@ -756,7 +736,6 @@ void generate_Chr()
     fprintf(stdout, "MOVE LF@tmp string@\n");
 
     fprintf(stdout, "INT2CHAR LF@%%retval LF@i\n");
-
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 
