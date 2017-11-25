@@ -1,1 +1,8 @@
 Results of automated-tester
+____________
+Folder 1-basic:
+1✔ - Return code: 0
+2✗ - Return code: 1
+____________
+Folder 2-harder:
+1✔ - Return code: 0
