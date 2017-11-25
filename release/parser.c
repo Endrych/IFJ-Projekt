@@ -214,7 +214,6 @@ int St_list()
 
 				case kw_end:
 				case kw_loop:
-				case kw_then:
 				case kw_else:
 					// __EPSILON__
 					return OK;

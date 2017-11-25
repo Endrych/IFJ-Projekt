@@ -68,7 +68,7 @@ JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length
 LABEL $substr$epilog
 POPFRAME
 RETURN
-LABEL asc
+LABEL $asc
 PUSHFRAME
 DEFVAR LF@%retval
 MOVE LF@%retval int@0
@@ -107,109 +107,56 @@ RETURN
 LABEL $$main
 CREATEFRAME
 PUSHFRAME
-DEFVAR LF@s1
-MOVE LF@s1 string@
-DEFVAR LF@s2
-MOVE LF@s2 string@
-DEFVAR LF@s1len
-MOVE LF@s1len int@0
+DEFVAR LF@x
+MOVE LF@x int@0
+DEFVAR LF@str
+MOVE LF@str string@
+DEFVAR LF@ord
+MOVE LF@ord int@0
+DEFVAR LF@ascii
+MOVE LF@ascii string@
 DEFVAR LF@&a
-MOVE LF@&a string@Toto\032je\032nejaky\032text
-MOVE LF@s1 LF@&a
+MOVE LF@&a string@Zadejte\032retezec\010
+WRITE LF@&a
+READ LF@str string
 DEFVAR LF@&b
-MOVE LF@&b LF@s1
-PUSHS LF@&b
-MOVE LF@&b string@,\032ktery\032jeste\032trochu\032obohatime
-PUSHS LF@&b
-DEFVAR LF@&c
-DEFVAR LF@&d
-POPS LF@&c
-POPS LF@&d
-CONCAT LF@&b LF@&d LF@&c
-MOVE LF@s2 LF@&b
-DEFVAR LF@&e
-MOVE LF@&e LF@s1
-WRITE LF@&e
-DEFVAR LF@&f
-MOVE LF@&f string@\010
-WRITE LF@&f
-DEFVAR LF@&g
-MOVE LF@&g LF@s2
-WRITE LF@&g
-DEFVAR LF@&h
-MOVE LF@&h string@\010
-WRITE LF@&h
+MOVE LF@&b string@Zadejte\032index\010
+WRITE LF@&b
+READ LF@x int
 CREATEFRAME
 DEFVAR TF@s
-MOVE TF@s LF@s1
-CALL $length
-MOVE LF@s1len TF@%retval
-DEFVAR LF@&i
-MOVE LF@&i LF@s1len
-PUSHS LF@&i
-MOVE LF@&i int@4
-PUSHS LF@&i
-SUBS
-MOVE LF@&i int@1
-PUSHS LF@&i
-ADDS
-POPS LF@&i
-MOVE LF@s1len LF@&i
-DEFVAR LF@&j
-MOVE LF@&j string@4\032znaky\032od\032
-WRITE LF@&j
-DEFVAR LF@&k
-MOVE LF@&k LF@s1len
-WRITE LF@&k
-DEFVAR LF@&l
-MOVE LF@&l string@.\032znaku\032v\032\034
-WRITE LF@&l
-DEFVAR LF@&m
-MOVE LF@&m LF@s2
-WRITE LF@&m
-DEFVAR LF@&n
-MOVE LF@&n string@\034:
-WRITE LF@&n
-DEFVAR LF@&o
-MOVE LF@&o LF@s1
-WRITE LF@&o
-DEFVAR LF@&p
-MOVE LF@&p string@\010
-WRITE LF@&p
-DEFVAR LF@&q
-MOVE LF@&q string@Zadejte\032serazenou\032posloupnost\032vsech\032malych\032pismen\032a-h,\032
-WRITE LF@&q
-DEFVAR LF@&r
-MOVE LF@&r string@pricemz\032se\032pismena\032nesmeji\032v\032posloupnosti\032opakovat
-WRITE LF@&r
-READ LF@s1 string
-LABEL $a
+MOVE TF@s LF@str
+DEFVAR TF@i
+MOVE TF@i LF@x
+CALL $asc
+MOVE LF@ord TF@%retval
+DEFVAR LF@&c
+MOVE LF@&c string@\010Zadejte\032ordinalni\032hodnotu\032pro\032prevod\032na\032znak\032
+WRITE LF@&c
+DEFVAR LF@prev
+MOVE LF@prev int@0
+READ LF@prev int
 CREATEFRAME
-DEFVAR TF@s1
-MOVE TF@s1 LF@s1
-DEFVAR TF@s2
-MOVE TF@s2 LF@s2
-DEFVAR TF@s1len
-MOVE TF@s1len LF@s1len
-PUSHFRAME
-DEFVAR LF@&s
-MOVE LF@&s LF@s1
-PUSHS LF@&s
-MOVE LF@&s string@abcdefgh
-PUSHS LF@&s
-EQS
-NOTS
-POPS LF@&s
-JUMPIFNEQ $b bool@true LF@&s
-DEFVAR LF@&t
-MOVE LF@&t string@\010Spatne\032zadana\032posloupnost,\032zkuste\032znovu
-WRITE LF@&t
-READ LF@s1 string
-POPFRAME
-MOVE LF@s1 TF@s1
-MOVE LF@s2 TF@s2
-MOVE LF@s1len TF@s1len
-JUMP $a
-LABEL $b
-POPFRAME
+DEFVAR TF@i
+MOVE TF@i LF@prev
+CALL $chr
+MOVE LF@ascii TF@%retval
+DEFVAR LF@&d
+MOVE LF@&d string@Znak\032v\032retezci\032ma\032hodnoutu\032
+WRITE LF@&d
+DEFVAR LF@&e
+MOVE LF@&e LF@ord
+WRITE LF@&e
+DEFVAR LF@&f
+MOVE LF@&f string@\010Znak\032s\032hodnotou\032
+WRITE LF@&f
+DEFVAR LF@&g
+MOVE LF@&g LF@prev
+WRITE LF@&g
+DEFVAR LF@&h
+MOVE LF@&h string@je
+WRITE LF@&h
+DEFVAR LF@&i
+MOVE LF@&i LF@ascii
+WRITE LF@&i
 POPFRAME

@@ -168,10 +168,10 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
             }
             else if(par->etype == eq_token){
                 if(par->eValue.token_value->type == type_integer){
-                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.int_value);
+                    fprintf(stdout,"MOVE TF@%s int@%d\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.int_value);
                 }
                 else if(par->eValue.token_value->type == type_double){
-                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,(int)par->eValue.token_value->atribute.double_value);
+                    fprintf(stdout,"MOVE TF@%s int@%d\n",sym_item->type_strct.function->arguments[i].key,(int)par->eValue.token_value->atribute.double_value);
                 }
             }
         }
@@ -694,7 +694,7 @@ void generate_SubStr()
 
 void generate_Asc()
 {
-    fprintf(stdout, "LABEL asc\n");
+    fprintf(stdout, "LABEL $asc\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval int@0\n");

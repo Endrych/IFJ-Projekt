@@ -277,7 +277,7 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
-				e_last_char) || current_char == '<' || 
+				!e_last_char) || current_char == '<' || 
 				current_char == '>' || current_char == '=' || 
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
@@ -327,7 +327,9 @@ Token* get_token(){
 					}
 					str[length] = current_char;
 					length++;
-					if(e_last_char){
+					if(current_char == 'e' || current_char == 'E'){
+						e_last_char = true;
+					}else{
 						e_last_char = false;
 					}
 					break;
