@@ -628,6 +628,10 @@ void generate_SubStr()
     
     fprintf(stdout, "DEFVAR LF@result\n");
     fprintf(stdout, "MOVE LF@result bool@false\n");
+    fprintf(stdout, "DEFVAR LF@tmplen\n");
+    fprintf(stdout, "MOVE LF@tmplen int@0\n");
+    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
     fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
     
@@ -661,7 +665,6 @@ void generate_SubStr()
 
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
 
-    fprintf(stdout, "DEFVAR LF@tmplen\n");
     fprintf(stdout, "MOVE LF@tmplen int@0\n");
 
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
