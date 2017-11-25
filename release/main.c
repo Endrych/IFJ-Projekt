@@ -26,6 +26,7 @@ int main(){
 	{
 		case OK:
 			fprintf(stderr,"Everything is OK\n");
+			generate_start(qstackTop(qstack));
 			break;
 		case LEXICAL_ERROR:
 			fprintf(stderr,"LEXICAL_ERROR\n");
@@ -46,7 +47,7 @@ int main(){
 			fprintf(stderr,"COMPILER_ERROR\n");
 			break;
 	}
-	generate_start(qstackTop(qstack));
+	
 	dispose();
-	return 0;
+	return return_value;
 }
