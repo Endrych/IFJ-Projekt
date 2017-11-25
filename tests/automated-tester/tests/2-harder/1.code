@@ -1,5 +1,6 @@
 Scope
-Dim x as integer = 12
-x = x + 5
+Dim x as integer
+x = 15
+x = x + 2
 print !"Vysledek je";x;
 End Scope

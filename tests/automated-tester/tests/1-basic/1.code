@@ -1,0 +1,5 @@
+Scope
+Dim x as string
+x = !"Ahoj"
+print x;!" kamo\n. Jak je? Jeho prezdivka je \"Borec\"";
+End Scope
