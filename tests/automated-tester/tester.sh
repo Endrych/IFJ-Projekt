@@ -1,18 +1,19 @@
 #!/bin/bash
 
-RUNER="parser"
+ARGUMENT=$1
 NUMBER_OF_FOLDERS=$(ls ./tests| wc -l)
 TOITERATE=1
 FOLDER_TOITERATE=1
 TODELETE=1
 printf "Results of automated-tester\n" > results.txt
-if [ "$1" = "-d" ]; then
+if [ $ARGUMENT = "-d" ]; then
     find ./tests -name '*.out' -print0 | xargs -0 rm
     find ./tests -name '*.ifj' -print0 | xargs -0 rm
     find ./tests -name '*.dif' -print0 | xargs -0 rm
-    
-else
-while [ $FOLDER_TOITERATE -le $NUMBER_OF_FOLDERS ]
+elif [ $ARGUMENT = "-h" ]; then
+    printf "Navod:\n"
+elif [ "$#" -eq 1 ]; then
+    while [ $FOLDER_TOITERATE -le $NUMBER_OF_FOLDERS ]
     do
         FOLDER_NAME=$(ls ./tests | grep $FOLDER_TOITERATE-)
         printf "____________\n" >> results.txt
@@ -21,7 +22,7 @@ while [ $FOLDER_TOITERATE -le $NUMBER_OF_FOLDERS ]
         ITERATE=$(( $NUMBER / 2 ))
         while [ $TOITERATE -le $ITERATE ]
         do
-            ./$RUNER < ./tests/$FOLDER_NAME/$TOITERATE.code > ./tests/$FOLDER_NAME/$TOITERATE.ifj
+            ./$ARGUMENT < ./tests/$FOLDER_NAME/$TOITERATE.code > ./tests/$FOLDER_NAME/$TOITERATE.ifj
             RETURN_CODE=$?
             ./ic17int ./tests/$FOLDER_NAME/$TOITERATE.ifj > ./tests/$FOLDER_NAME/$TOITERATE.out
             if diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct; then
@@ -38,4 +39,12 @@ while [ $FOLDER_TOITERATE -le $NUMBER_OF_FOLDERS ]
         TOITERATE=1
         FOLDER_TOITERATE=$(($FOLDER_TOITERATE + 1))
     done
+else
+    printf "_______________________________________________\n"
+    printf "|Je vyzadovan pouze jeden argument!|           |\n"
+    printf "|Pro napovedu zadejte -h                       |\n"
+    printf "|Pro smazani vysledku testu -d                 |\n"
+    printf "|Pro spusteni programu zadejte pozici kompileru|\n"
+    printf "¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n"
+    
 fi
