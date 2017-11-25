@@ -1,0 +1,16 @@
+scope 
+ Dim x as integer
+ Dim str as string
+ Dim ord as integer
+ Dim ascii as string
+ print !"Zadejte retezec\n";
+ input str
+ print !"Zadejte index\n";
+ input x
+ ord = asc(str,x)
+ print !"\nZadejte ordinalni hodnotu pro prevod na znak ";
+ dim prev as integer
+ input prev
+ ascii = chr(prev)
+ print !"Znak v retezci ma hodnoutu ";ord;!"\nZnak s hodnotou ";prev;!"je";ascii;
+end scope

@@ -270,7 +270,7 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
-				e_last_char) || current_char == '<' || 
+				!e_last_char) || current_char == '<' || 
 				current_char == '>' || current_char == '=' || 
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
@@ -320,7 +320,9 @@ Token* get_token(){
 					}
 					str[length] = current_char;
 					length++;
-					if(e_last_char){
+					if(current_char == 'e' || current_char == 'E'){
+						e_last_char = true;
+					}else{
 						e_last_char = false;
 					}
 					break;
@@ -713,7 +715,7 @@ Token* get_token(){
 					length++;
 					int kw;
 					kw = is_keyword(str);
-					if(kw != -1){
+					if(kw != -1 && kw != 2 && kw != 4 && kw != 20 && kw != 31){
 						token->type=type_keyword;
 						token->atribute.keyword_value = kw;
 					}

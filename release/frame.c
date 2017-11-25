@@ -185,6 +185,7 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 		}
 
 		*local_frame = *temp_frame;
+		//temp_frame->vars = local_frame->vars;
 
 		def_return_value(local_frame, var);
 
@@ -194,7 +195,7 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 
 		if (temp_frame->var_count != 0)
 		{
-			free(temp_frame->vars);
+			//free(temp_frame->vars);
 			
 		}
 		if (temp_frame->return_value != NULL)
@@ -245,7 +246,7 @@ void pop_frame(TFstack *stack)
 		}
 
 		free(local_frame);
-		free(temp_frame);
+		//free(temp_frame);
 	}	
 }
 

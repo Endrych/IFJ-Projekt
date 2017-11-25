@@ -33,13 +33,16 @@ void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *f
 
 }
 
-void dispose_global()
-{
+void dispose(){
 	destruct_storage();
 
 	destruct_token_storage();
 
 	symtab_free(symtab);
+}
 
+void dispose_global()
+{
+	dispose();
 	exit(COMPILER_ERROR);
 }

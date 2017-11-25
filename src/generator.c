@@ -103,7 +103,8 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
     }
     item->id = id->key;
     item->type = id->type_strct.variable->type;
-    add_var_to_frame(FS_top(frame_stack),item);
+    Tframe *tmp = FS_top(frame_stack);
+    add_var_to_frame(tmp,item);
 }
 
 void generate_assign(Tsymtab_item* id, ATLeaf * expr){
@@ -161,10 +162,10 @@ void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue *
             }
             else if(par->etype == eq_token){
                 if(par->eValue.token_value->type == type_integer){
-                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.int_value);
+                    fprintf(stdout,"MOVE TF@%s int@%d\n",sym_item->type_strct.function->arguments[i].key,par->eValue.token_value->atribute.int_value);
                 }
                 else if(par->eValue.token_value->type == type_double){
-                    fprintf(stdout,"MOVE TF@%s integer@%d\n",sym_item->type_strct.function->arguments[i].key,(int)par->eValue.token_value->atribute.double_value);
+                    fprintf(stdout,"MOVE TF@%s int@%d\n",sym_item->type_strct.function->arguments[i].key,(int)par->eValue.token_value->atribute.double_value);
                 }
             }
         }
@@ -313,7 +314,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->data.Atr.token->type == type_double){//double
                         current->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->data.Atr.token->atribute.double_value);
                         return id;                
                     }
                     else if(current->data.Atr.token->type == type_string){
@@ -340,7 +341,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->left->data.Atr.token->type == type_double){//double
                         current->left->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->left->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->left->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
                     else if(current->left->data.Atr.token->type == type_string){
@@ -375,7 +376,7 @@ char * generate_expression(ATLeaf *tree){
                     }
                     else if(current->right->data.Atr.token->type == type_double){//double
                         current->right->processed = true;
-                        fprintf(stdout, "MOVE LF@%s float@%f\n", id, current->right->data.Atr.token->atribute.double_value);
+                        fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->right->data.Atr.token->atribute.double_value);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
                     else if(current->right->data.Atr.token->type == type_string){
@@ -550,7 +551,7 @@ char * generate_expression(ATLeaf *tree){
 
 void generate_Length()
 {
-    fprintf(stdout, "LABEL $Length\n");
+    fprintf(stdout, "LABEL $length\n");
 
     /*create_frame();
 
@@ -576,14 +577,14 @@ void generate_Length()
 
    // create_frame();
    // pop_frame(frame_stack)
-    fprintf(stdout, "LABEL $Length$epilog\n");
+    fprintf(stdout, "LABEL $length$epilog\n");
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
 
 
 void generate_SubStr()
 {
-    fprintf(stdout, "LABEL $SubStr\n");
+    fprintf(stdout, "LABEL $substr\n");
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
 
@@ -595,6 +596,12 @@ void generate_SubStr()
     
     fprintf(stdout, "DEFVAR LF@result\n");
     fprintf(stdout, "MOVE LF@result bool@false\n");
+
+    fprintf(stdout, "DEFVAR LF@tmplen\n");
+    fprintf(stdout, "MOVE LF@tmplen int@0\n");
+
+    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
     fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
     
@@ -628,12 +635,6 @@ void generate_SubStr()
 
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
 
-    fprintf(stdout, "DEFVAR LF@tmplen\n");
-    fprintf(stdout, "MOVE LF@tmplen int@0\n");
-
-    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
-    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
-
     fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
 
     fprintf(stdout, "LABEL $SubStrFor\n");
@@ -654,14 +655,14 @@ void generate_SubStr()
     fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length\n");
 
-    fprintf(stdout, "LABEL $SubStr$epilog\n");
+    fprintf(stdout, "LABEL $substr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Asc()
 {
-    fprintf(stdout, "LABEL $Asc\n");
+    fprintf(stdout, "LABEL $asc\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
@@ -687,14 +688,14 @@ void generate_Asc()
 
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
-    fprintf(stdout, "LABEL $Asc$epilog\n");
+    fprintf(stdout, "LABEL $asc$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 }
 
 void generate_Chr()
 {
-    fprintf(stdout, "LABEL $Chr\n");
+    fprintf(stdout, "LABEL $chr\n");
     fprintf(stdout, "PUSHFRAME\n");
     fprintf(stdout, "DEFVAR LF@%%retval\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
@@ -703,7 +704,7 @@ void generate_Chr()
     fprintf(stdout, "MOVE LF@tmp string@\n");
 
     fprintf(stdout, "INT2CHAR LF@%%retval LF@i\n");
-
+    fprintf(stdout, "LABEL $chr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 

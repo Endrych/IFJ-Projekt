@@ -50,3 +50,4 @@ build/*
 !build/run.sh
 release/run.sh
 release/main
+release/log

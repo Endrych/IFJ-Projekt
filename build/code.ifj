@@ -1,85 +1,226 @@
 .IFJcode17
 JUMP $$main
+LABEL $length
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval int@0
+STRLEN LF@%retval LF@s
+LABEL $length$epilog
+POPFRAME
+RETURN
+LABEL $substr
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval string@
+DEFVAR LF@tmp1
+DEFVAR LF@tmp2
+MOVE LF@tmp1 int@0
+MOVE LF@tmp2 string@
+DEFVAR LF@length
+MOVE LF@length int@0
+DEFVAR LF@result
+MOVE LF@result bool@false
+DEFVAR LF@tmplen
+MOVE LF@tmplen int@0
+STRLEN LF@tmplen LF@s
+SUB LF@tmplen LF@tmplen LF@i
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2
+PUSHS LF@i
+PUSHS int@0
+PUSHS LF@i
+PUSHS int@0
+EQS
+POPS LF@result
+GTS
+PUSHS LF@result
+ORS
+POPS LF@result
+JUMPIFNEQ $SubStrReturn0 bool@true LF@result
+PUSHS LF@n
+PUSHS int@0
+GTS
+POPS LF@result
+JUMPIFEQ $SubStrReturnRest bool@true LF@result
+STRLEN LF@tmp1 LF@s
+SUB LF@tmp1 LF@tmp1 LF@i
+PUSHS LF@tmp1
+PUSHS LF@n
+GTS
+POPS LF@result
+JUMPIFEQ $SubStrReturnRest bool@true LF@result
+MOVE LF@tmplen int@0
+STRLEN LF@tmplen LF@s
+SUB LF@tmplen LF@tmplen LF@i
+SUB LF@tmp1 LF@i int@1
+LABEL $SubStrFor
+GETCHAR LF@tmp2 LF@s LF@tmp1
+CONCAT LF@%retval LF@%retval LF@tmp2
+ADD LF@tmp1 LF@tmp1 int@1
+STRLEN LF@length LF@tmp2
+JUMPIFNEQ $SubStrFor LF@length LF@n
+JUMP $substr$epilog
+LABEL $SubStrReturn0
+MOVE LF@%retval string@
+JUMP $substr$epilog
+LABEL $SubStrReturnRest
+GETCHAR LF@tmp2 LF@s LF@tmp1
+CONCAT LF@%retval LF@%retval LF@tmp2
+ADD LF@tmp1 LF@tmp1 int@1
+STRLEN LF@length LF@%retval
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length
+LABEL $substr$epilog
+POPFRAME
+RETURN
+LABEL $asc
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval int@0
+DEFVAR LF@result
+MOVE LF@result bool@false
+DEFVAR LF@tmp
+DEFVAR LF@tmp2
+MOVE LF@tmp string@
+MOVE LF@tmp2 int@0
+PUSHS LF@i
+PUSHS int@0
+PUSHS LF@i
+STRLEN LF@tmp2 LF@s
+PUSHS LF@tmp2
+LTS
+POPS LF@result
+GTS
+PUSHS LF@result
+ORS
+POPS LF@result
+JUMPIFNEQ $asc$epilog bool@true LF@result
+GETCHAR LF@tmp LF@s LF@i
+STRI2INT LF@%retval LF@tmp int@0
+LABEL $asc$epilog
+POPFRAME
+RETURN
+LABEL $chr
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval string@
+DEFVAR LF@tmp
+MOVE LF@tmp string@
+INT2CHAR LF@%retval LF@i
+POPFRAME
+RETURN
 LABEL $$main
 CREATEFRAME
 PUSHFRAME
-DEFVAR LF@x
-MOVE LF@x int@0
-LABEL $a
-CREATEFRAME
-DEFVAR TF@x
-MOVE TF@x LF@x
-PUSHFRAME
+DEFVAR LF@s1
+MOVE LF@s1 string@
+DEFVAR LF@s2
+MOVE LF@s2 string@
+DEFVAR LF@s1len
+MOVE LF@s1len int@0
 DEFVAR LF@&a
-MOVE LF@&a LF@x
-PUSHS LF@&a
-MOVE LF@&a int@42
-PUSHS LF@&a
-EQS
-NOTS
-POPS LF@&a
-JUMPIFNEQ $b bool@true LF@&a
+MOVE LF@&a string@Toto\032je\032nejaky\032text
+MOVE LF@s1 LF@&a
 DEFVAR LF@&b
-MOVE LF@&b string@Hadej\032Smrckovo\032cislo
-WRITE LF@&b
+MOVE LF@&b LF@s1
+PUSHS LF@&b
+MOVE LF@&b string@,\032ktery\032jeste\032trochu\032obohatime
+PUSHS LF@&b
 DEFVAR LF@&c
-MOVE LF@&c string@\013\010
-WRITE LF@&c
-READ LF@x int
 DEFVAR LF@&d
-MOVE LF@&d LF@x
-PUSHS LF@&d
-MOVE LF@&d int@42
-PUSHS LF@&d
-DEFVAR LF@&e
-DEFVAR LF@&f
-POPS LF@&e
-POPS LF@&f
-PUSHS LF@&f
-PUSHS LF@&e
-PUSHS LF@&f
-PUSHS LF@&e
-GTS
-POPS LF@&e
-EQS
-PUSHS LF@&e
-ORS
+POPS LF@&c
 POPS LF@&d
-JUMPIFNEQ $c bool@true LF@&d
+CONCAT LF@&b LF@&d LF@&c
+MOVE LF@s2 LF@&b
+DEFVAR LF@&e
+MOVE LF@&e LF@s1
+WRITE LF@&e
+DEFVAR LF@&f
+MOVE LF@&f string@\010
+WRITE LF@&f
 DEFVAR LF@&g
-MOVE LF@&g LF@x
-PUSHS LF@&g
-MOVE LF@&g int@42
-PUSHS LF@&g
-EQS
-POPS LF@&g
-JUMPIFNEQ $e bool@true LF@&g
+MOVE LF@&g LF@s2
+WRITE LF@&g
 DEFVAR LF@&h
-MOVE LF@&h string@Uhodl\032jsi
+MOVE LF@&h string@\010
 WRITE LF@&h
-JUMP $f
-LABEL $e
+CREATEFRAME
+DEFVAR TF@s
+MOVE TF@s LF@s1
+CALL $length
+MOVE LF@s1len TF@%retval
 DEFVAR LF@&i
-MOVE LF@&i string@Smrckovo\032cislo\032je\032mensi\032nez
-WRITE LF@&i
+MOVE LF@&i LF@s1len
+PUSHS LF@&i
+MOVE LF@&i int@4
+PUSHS LF@&i
+SUBS
+MOVE LF@&i int@1
+PUSHS LF@&i
+ADDS
+POPS LF@&i
+MOVE LF@s1len LF@&i
+CREATEFRAME
+DEFVAR TF@s
+MOVE TF@s LF@s2
+DEFVAR TF@i
+MOVE TF@i LF@s1len
+DEFVAR TF@n
+MOVE TF@n int@4
+CALL $substr
+MOVE LF@s1 TF@%retval
 DEFVAR LF@&j
-MOVE LF@&j LF@x
+MOVE LF@&j string@4\032znaky\032od\032
 WRITE LF@&j
-LABEL $f
-JUMP $d
-LABEL $c
 DEFVAR LF@&k
-MOVE LF@&k string@Smrckovo\032cislo\032je\032vetsi\032nez
+MOVE LF@&k LF@s1len
 WRITE LF@&k
 DEFVAR LF@&l
-MOVE LF@&l LF@x
+MOVE LF@&l string@.\032znaku\032v\032\034
 WRITE LF@&l
-LABEL $d
 DEFVAR LF@&m
-MOVE LF@&m string@\013\010
+MOVE LF@&m LF@s2
 WRITE LF@&m
+DEFVAR LF@&n
+MOVE LF@&n string@\034:
+WRITE LF@&n
+DEFVAR LF@&o
+MOVE LF@&o LF@s1
+WRITE LF@&o
+DEFVAR LF@&p
+MOVE LF@&p string@\010
+WRITE LF@&p
+DEFVAR LF@&q
+MOVE LF@&q string@Zadejte\032serazenou\032posloupnost\032vsech\032malych\032pismen\032a-h,\032
+WRITE LF@&q
+DEFVAR LF@&r
+MOVE LF@&r string@pricemz\032se\032pismena\032nesmeji\032v\032posloupnosti\032opakovat
+WRITE LF@&r
+READ LF@s1 string
+LABEL $a
+CREATEFRAME
+DEFVAR TF@s1
+MOVE TF@s1 LF@s1
+DEFVAR TF@s2
+MOVE TF@s2 LF@s2
+DEFVAR TF@s1len
+MOVE TF@s1len LF@s1len
+PUSHFRAME
+DEFVAR LF@&s
+MOVE LF@&s LF@s1
+PUSHS LF@&s
+MOVE LF@&s string@abcdefgh
+PUSHS LF@&s
+EQS
+NOTS
+POPS LF@&s
+JUMPIFNEQ $b bool@true LF@&s
+DEFVAR LF@&t
+MOVE LF@&t string@\010Spatne\032zadana\032posloupnost,\032zkuste\032znovu
+WRITE LF@&t
+READ LF@s1 string
 POPFRAME
-MOVE LF@x TF@x
+MOVE LF@s1 TF@s1
+MOVE LF@s2 TF@s2
+MOVE LF@s1len TF@s1len
 JUMP $a
 LABEL $b
 POPFRAME

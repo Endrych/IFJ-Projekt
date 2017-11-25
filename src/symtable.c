@@ -84,7 +84,7 @@ void symtab_free(Tsymtab *sym_table)
 			{	
 				for (int i = 0; i < current_item->type_strct.function->arg_count; i++)
 				{	
-					free(current_item->type_strct.function->arguments[i].key);
+					//free(current_item->type_strct.function->arguments[i].key);
 					free(current_item->type_strct.function->arguments[i].type_strct.variable);
 				}
 				free(current_item->type_strct.function->arguments);

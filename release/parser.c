@@ -19,6 +19,7 @@
 #include "at_que.h"
 #include "generator.h"
 #include "destructor.h"
+#include "built_in.h"
 
 
 // tabulka symbolu
@@ -213,7 +214,6 @@ int St_list()
 
 				case kw_end:
 				case kw_loop:
-				case kw_then:
 				case kw_else:
 					// __EPSILON__
 					return OK;
@@ -767,9 +767,19 @@ int Stat()
 
 					qitem->GenType = gt_call_func;
 					qitem->GenValue.call_func_input = (CallFuncInput*) malloc(sizeof(CallFuncInput));
+					if (qitem->GenValue.call_func_input == NULL)
+ 					{
+ 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+         				dispose_global();
+ 					}
 					qitem->GenValue.call_func_input->id = symtab_item_left;
 					qitem->GenValue.call_func_input->sym_item = symtab_item;
 					qitem->GenValue.call_func_input->param = (eQueue*) malloc(sizeof(eQueue));
+					if (qitem->GenValue.call_func_input->param == NULL)
+ 					{
+ 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+         				dispose_global();
+ 					}
 
 					equeInit(qitem->GenValue.call_func_input->param);
 
@@ -885,6 +895,11 @@ int Arg(Tfunction_item* function, int* args_iter, eQueue* eque)
 	}
 
 	eitem = (eQItem*) malloc(sizeof(eQItem));
+	if (eitem == NULL)
+ 	{
+ 		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+ 	}
 	eitem->Next = NULL;
 	switch (token->type)
 	{
@@ -1692,7 +1707,6 @@ int parse()
 	qstackInit(qstack);
 	qstackPush (qstack, global_queue);
 
-	symtab = symtab_init(42);
 	global_symtab = symtab;
 	return Prog();
 	symtab_free(symtab); 
