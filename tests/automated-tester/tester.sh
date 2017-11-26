@@ -5,8 +5,8 @@ NUMBER_OF_FOLDERS=$(ls ./tests| wc -l)
 TOITERATE=1
 FOLDER_TOITERATE=1
 TODELETE=1
-printf "Results of automated-tester\n" > results.txt
 restoreBack () {
+    printf "Results of automated-tester\n" > results.txt
     OUT_NUM=$(find ./tests -name '*.out' | wc -l)
     IFJ_NUM=$(find ./tests -name '*.ifj' | wc -l)
     DIF_NUM=$(find ./tests -name '*.dif' | wc -l)
