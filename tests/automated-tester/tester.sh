@@ -20,9 +20,9 @@ restoreBack () {
         find ./tests -name '*.dif' -print0 | xargs -0 rm
     fi
 }
-if [ $ARGUMENT = "-d" ]; then
+if [ "$ARGUMENT" = "-d" ]; then
     restoreBack
-elif [ $ARGUMENT = "-h" ]; then
+elif [ "$ARGUMENT" = "-h" ]; then
     printf "______\n"
     printf "Navod\n"
     printf "Spousteni: tester se spousti prikazem sh tester.sh arg1, kde arg1\n"
@@ -38,7 +38,9 @@ elif [ $ARGUMENT = "-h" ]; then
     printf "poradove_cislo.correct zase plati stejna zasada cisla musi jit za seboun\n"
     printf "V pripade ze vystup z interpretu nebude odpovidat souboru .correct zustanou\n"
     printf "zachovany soubory .dif kde najdete diff .out a .correct, .ifj kde nejdete prepis\n"
-    printf "do instrukci IFJcode17 a .out kde najdete vystup z interpretu\n"
+    printf "do instrukci IFJcode17 a .out kde najdete vystup z interpretu. V souboru result.txt\n"
+    printf "naleznete jestli test probehl uspesne + navratove kody C je navratovy kod kompileru\n"
+    printf "a I je navratovy kod interpretu\n"
 elif [ "$#" -eq 1 ]; then
     if [ ! -f $ARGUMENT ]; then
         printf "Vami zadany argument \"$ARGUMENT\" neni pozice souboru\n"
@@ -54,15 +56,16 @@ elif [ "$#" -eq 1 ]; then
             while [ $TOITERATE -le $ITERATE ]
             do
                 ./$ARGUMENT < ./tests/$FOLDER_NAME/$TOITERATE.code > ./tests/$FOLDER_NAME/$TOITERATE.ifj
-                RETURN_CODE=$?
+                COMPILER_RETURN_CODE=$?
                 ./ic17int ./tests/$FOLDER_NAME/$TOITERATE.ifj > ./tests/$FOLDER_NAME/$TOITERATE.out
+                INTERPRET_RETURN_CODE=$?
                 if diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct; then
-                    printf "$TOITERATE\342\234\224 - Return code: $RETURN_CODE\n" >> results.txt
+                    printf "$TOITERATE\342\234\224 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
 
                     rm ./tests/$FOLDER_NAME/$TOITERATE.ifj
                     rm ./tests/$FOLDER_NAME/$TOITERATE.out
                 else
-                    printf "$TOITERATE\342\234\227 - Return code: $?\n" >> results.txt
+                    printf "$TOITERATE\342\234\227 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
                     diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct > ./tests/$FOLDER_NAME/$TOITERATE.dif 
                 fi
                 TOITERATE=$(($TOITERATE + 1))
