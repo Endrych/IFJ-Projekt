@@ -23,24 +23,7 @@ restoreBack () {
 if [ "$ARGUMENT" = "-d" ]; then
     restoreBack
 elif [ "$ARGUMENT" = "-h" ]; then
-    printf "______\n"
-    printf "Navod\n"
-    printf "Spousteni: tester se spousti prikazem sh tester.sh arg1, kde arg1\n"
-    printf "odpovida jednomu z prepinacu, zatim mame 3 prepinace\n"
-    printf '-'
-    printf "h vypise help, -d uvede slozku a jednotlive soubory do puvodniho stavu\n"
-    printf "a cesta_ke_kompileru spusti vsechny testy a vypise results + vygeneruje error soubory\n"
-    printf "Tvorba testu\n"
-    printf "Testy si ukladejte do jednotlivych slozek, slozka musi byt vzdy pojmenovana \n"
-    printf "poradove_cislo-* a za pomlckou muze byt popis to je na vas ale cisla musi jit\n"
-    printf "za sebou 1 2 3 ... zavisi na tom postupne spousteni testu a testovany soubor \n"
-    printf "pojmenovavenjte poradove_cislo.code a vysledek proti kteremu se to ma porovnat\n"
-    printf "poradove_cislo.correct zase plati stejna zasada cisla musi jit za seboun\n"
-    printf "V pripade ze vystup z interpretu nebude odpovidat souboru .correct zustanou\n"
-    printf "zachovany soubory .dif kde najdete diff .out a .correct, .ifj kde nejdete prepis\n"
-    printf "do instrukci IFJcode17 a .out kde najdete vystup z interpretu. V souboru result.txt\n"
-    printf "naleznete jestli test probehl uspesne + navratove kody C je navratovy kod kompileru\n"
-    printf "a I je navratovy kod interpretu\n"
+    cat ./help_print
 elif [ "$#" -eq 1 ]; then
     if [ ! -f $ARGUMENT ]; then
         printf "Vami zadany argument \"$ARGUMENT\" neni pozice souboru\n"
