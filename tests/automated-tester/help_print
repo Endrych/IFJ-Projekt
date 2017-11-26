@@ -1,0 +1,22 @@
+   Navod
+ _________
+ Spousteni
+ ¯¯¯¯¯¯¯¯¯
+tester se spousti prikazem sh tester.sh arg1, kde arg1
+odpovida jednomu z prepinacu, zatim mame 3 prepinace
+-h vypise help
+-d uvede slozku a jednotlive soubory do puvodniho stavu
+-cesta_ke_kompileru spusti vsechny testy a vypise results + vygeneruje error soubory
+ ____________
+ Tvorba testu
+ ¯¯¯¯¯¯¯¯¯¯¯¯
+Testy si ukladejte do jednotlivych slozek, slozka musi byt vzdy pojmenovana 
+poradove_cislo-* a za pomlckou muze byt popis to je na vas ale cisla musi jit
+za sebou 1 2 3 ... zavisi na tom postupne spousteni testu a testovany soubor 
+pojmenovavenjte poradove_cislo.code a vysledek proti kteremu se to ma porovnat
+poradove_cislo.correct zase plati stejna zasada cisla musi jit za seboun
+V pripade ze vystup z interpretu nebude odpovidat souboru .correct zustanou
+zachovany soubory .dif kde najdete diff .out a .correct, .ifj kde nejdete prepis
+do instrukci IFJcode17 a .out kde najdete vystup z interpretu. V souboru result.txt
+naleznete jestli test probehl uspesne + navratove kody C je navratovy kod kompileru
+a I je navratovy kod interpretu

@@ -1,0 +1,7 @@
+Scope
+
+Dim x as integer
+x = 4 / 0
+print x;
+
+End Scope
