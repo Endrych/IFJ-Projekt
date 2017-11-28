@@ -38,18 +38,18 @@ elif [ "$#" -eq 1 ]; then
             ITERATE=$(( $NUMBER / 2 ))
             while [ $TOITERATE -le $ITERATE ]
             do
-                ./$ARGUMENT < ./tests/$FOLDER_NAME/$TOITERATE.code > ./tests/$FOLDER_NAME/$TOITERATE.ifj
+                ./$ARGUMENT < ./tests/$FOLDER_NAME/$TOITERATE.code 2>/dev/null > ./tests/$FOLDER_NAME/$TOITERATE.ifj
                 COMPILER_RETURN_CODE=$?
-                ./ic17int ./tests/$FOLDER_NAME/$TOITERATE.ifj > ./tests/$FOLDER_NAME/$TOITERATE.out
+                ./ic17int ./tests/$FOLDER_NAME/$TOITERATE.ifj 2>/dev/null > ./tests/$FOLDER_NAME/$TOITERATE.out
                 INTERPRET_RETURN_CODE=$?
-                if diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct; then
+                if diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct;  then
                     printf "$TOITERATE\342\234\224 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
 
                     rm ./tests/$FOLDER_NAME/$TOITERATE.ifj
                     rm ./tests/$FOLDER_NAME/$TOITERATE.out
                 else
                     printf "$TOITERATE\342\234\227 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
-                    diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct > ./tests/$FOLDER_NAME/$TOITERATE.dif 
+                    diff ./tests/$FOLDER_NAME/$TOITERATE.out ./tests/$FOLDER_NAME/$TOITERATE.correct  > ./tests/$FOLDER_NAME/$TOITERATE.dif 
                 fi
                 TOITERATE=$(($TOITERATE + 1))
             done
