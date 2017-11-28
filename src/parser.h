@@ -1,3 +1,9 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
 
 #include <stdbool.h>
 #include "precedence_sa.h"
@@ -7,6 +13,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+int parse();
 int Prog();
 int Scope();
 int St_list();

@@ -1,3 +1,10 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
 #include "symtable.h"
 #include "string_storage.h"
 #include "set_values.h"
@@ -218,118 +225,3 @@ unsigned int hash_func( char *key)
 	// return final hash
 	return hash;
 }
-/***************************************
-
- MAIN - POUZE NA ZKOUSKU FUNKCNOSTI
-
-*/
-/*
-int main()
-{	
-	Telement_type type = type_variable;
-	Telement_type type2 = type_function;
-	Token *token_a;
-	token_a = malloc(sizeof(Token));
-	Token *token_b;
-	token_b = malloc(sizeof(Token));
-	Token *token_c;
-	token_c = malloc(sizeof(Token));
-	Token *token_d;
-	token_d = malloc(sizeof(Token));
-	Token *token_n;
-	token_n = malloc(sizeof(Token));
-	Token *token_o;
-	token_o = malloc(sizeof(Token));
-	Token *token_p;
-	token_p = malloc(sizeof(Token));
-	Token *token_q;
-	token_q = malloc(sizeof(Token));
-	Tsymtab *tab = symtab_init(10);
-
-	int a = add_string_to_storage("aaoj");
-	token_a->type = type_string;
-	(token_a->atribute).int_value = a; 
-
-	int b = add_string_to_storage("aaoj");
-	token_b->type = type_string;
-	token_b->atribute.int_value = b;
-
-	int c = add_string_to_storage("aaoj");
-	token_c->type = type_string;
-	token_c->atribute.int_value = c;
-
-	int d = add_string_to_storage("adoj");
-	token_d->type = type_string;
-	token_d->atribute.int_value = d;
-
-	int n = add_string_to_storage("anoj");
-	token_n->type = type_string;
-	token_n->atribute.int_value = n;
-
-	int o = add_string_to_storage("aooj");
-	token_o->type = type_string;
-	token_o->atribute.int_value = o;
-
-	int p = add_string_to_storage("zdar");
-	token_p->type = type_string;
-	token_p->atribute.int_value = p;
-
-	int q = add_string_to_storage("aqoj");
-	token_q->type = type_string;
-	token_q->atribute.int_value = q;
-
-	symtab_insert(tab, token_a, type);
-	symtab_insert(tab, token_b, type);
-	symtab_insert(tab, token_c, type);
-	symtab_insert(tab, token_d, type);
-	symtab_insert(tab, token_n, type2);
-	symtab_insert(tab, token_o, type2);
-	symtab_insert(tab, token_p, type2);
-	symtab_insert(tab, token_q, type2);
-
-	Tvalue value;
-	value.value_int = 10;
-	Tvariable_type type3;
-	type3 = type_int;
-	Tsymtab_item *temp = tab->symtab_list[1];
-
-	set_item_variable(temp->type_strct.variable, value, type3);
-	printf("%s  %d  %d\n", temp->key, temp->type_strct.variable->value.value_int, temp->type_strct.variable->type);
-
-	Tsymtab_item *temp2 = tab->symtab_list[3];
-	Tsymtab *table = symtab_init(101);
-	init_item_function(temp2->type_strct.function);
-	set_item_function(temp2->type_strct.function, type3, table);
-	set_args_function(temp2->type_strct.function, "cus", type_int, value);
-	set_args_function(temp2->type_strct.function, "cau", type_int, value);
-	printf("%s->%s->%s\n", temp2->key, temp2->type_strct.function->arguments[0].key,\
-								 temp2->type_strct.function->arguments->key);
-	free_args_function(temp2->type_strct.function);
-	for (unsigned int i = 0; i < tab->size; i++)
-	{
-		Tsymtab_item *temp = tab->symtab_list[i];
-		if (temp == NULL)
-		{
-				printf("NULL");
-		}
-		while(temp != NULL)
-		{
-	
-			printf("%s ", temp->key);
-			temp = temp->next;
-		}
-		printf("\n");
-	}
-	destruct_storage();
-	symtab_free(table);
-	symtab_free(tab);
-	free(token_a);
-	free(token_b);
-	free(token_c);
-	free(token_d);
-	free(token_n);
-	free(token_o);
-	free(token_p);
-	free(token_q);
-	return 0;
-}*/
