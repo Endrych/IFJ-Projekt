@@ -4,6 +4,13 @@
 #include "token.h"
 #include "at_que.h"
 #include "frame.h"
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
 #include "gen_stacks.h"
 #include "error.h"
 #include <stdlib.h>
@@ -26,33 +33,16 @@ void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *f
 
 }
 
-void dispose_global()
-{
+void dispose(){
 	destruct_storage();
 
 	destruct_token_storage();
 
 	symtab_free(symtab);
-
-	exit(COMPILER_ERROR);
 }
 
-/*
-int main()
+void dispose_global()
 {
-	add_string_to_storage("ahoj");
-	Token *token = create_token();
-	symtab = symtab_init(11);
-	tStack *stack = malloc(sizeof(tStack));
-	ATLeaf *leaf = malloc(sizeof(ATLeaf));
-	eQueue *s2 = malloc(sizeof(eQueue));
-	ATQueue *s1 = malloc(sizeof(ATQueue));
-	TFstack *frame_stack = malloc(sizeof(TFstack));
-	FS_init(frame_stack);
-	GPStack *s3 = malloc(sizeof(GPStack));
-	dispose_all(stack, leaf, s1, s2, frame_stack, s3);
-	//dispose_global();
-	print_error(LEXICAL_ERROR);
-
-	return 0;
-}*/
+	dispose();
+	exit(COMPILER_ERROR);
+}

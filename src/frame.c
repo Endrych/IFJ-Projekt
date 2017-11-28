@@ -1,8 +1,14 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
 #include "frame.h"
 #include "destructor.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
 Tframe *temp_frame = NULL; // docasny ramec 
 
@@ -155,7 +161,6 @@ void add_var_to_frame(Tframe *frame, Tvariable *var)
 
 	} else 
 	{
-
 		frame->vars = (Tvariable *) realloc(frame->vars, sizeof(Tvariable) * frame->var_count);
 		if (frame->vars == NULL)
 		{
@@ -180,7 +185,6 @@ void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr)
 		}
 
 		*local_frame = *temp_frame;
-
 		//temp_frame->vars = local_frame->vars;
 
 		def_return_value(local_frame, var);

@@ -1,3 +1,11 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -9,7 +17,6 @@
 #include "generator.h"
 #include "destructor.h"
 #include "error.h"
-#include "name_generator.h"
 #include "gen_stacks.h"
 #include "at_que.h"
 #include "string_storage.h"
@@ -134,7 +141,6 @@ void generate_print(eQueue * exprs){
 }
 
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param){
-    param = param;
     fprintf(stdout,"CREATEFRAME\n");
     for(int i = 0; i < sym_item->type_strct.function->arg_count;i++){
         eQItem * par = equeFront(param);
@@ -549,34 +555,60 @@ char * generate_expression(ATLeaf *tree){
     // fprintf(stdout, "WRITE LF@%s\n",id);
 }
 
+char * generate_name(GType type){
+    int length = 1;
+    int index = 0;
+    int i = 0;
+    if(type == gt_variable){
+        static int variable_index;
+        index = variable_index;
+        variable_index++;
+    }
+    else{
+        static int label_index;
+        index = label_index;
+        label_index++;
+    }
+
+    length += index / 62;
+    length = length + 1;
+    char * name = malloc(sizeof(char) * length);
+    if(name == NULL){
+        fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        dispose_global();
+    }
+    if(type == gt_label)
+        name[0] = '$';
+    else
+        name[0] = '&';
+    i++;
+    do{
+        int curr = index % 62;
+        if(curr >= 0 && curr <= 25){
+            name[i] = 'a' + curr;
+        }   
+        else if(curr >= 26 && curr <= 51){
+            name[i] = 'A' + (curr - 26);
+        }   
+        else{
+            name[i] = '0' + (curr - 52);
+        }  
+        index = (int) index / 62;
+        i++;
+    }while(index > 0);
+    name[i] = '\0';
+
+    return name;
+}
+
 void generate_Length()
 {
     fprintf(stdout, "LABEL $length\n");
-
-    /*create_frame();
-
-    for(int i = 0; i < item->type_strct.function->arg_count;i++){
-        Tvariable * item1 = (Tvariable *) malloc(sizeof(Tvariable));
-        if (item1 == NULL)
-        {
-            fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-            dispose_global();
-        }
-
-        item1->id = item->type_strct.function->arguments[i].key;
-        item1->type = item->type_strct.function->arguments[i].type;
-
-        add_var_to_frame(temp_frame,item1);
-    }
-
-    push_frame(frame_stack,NULL,0);*/
     fprintf(stdout, "PUSHFRAME\nDEFVAR LF@%%retval\n");
 
     fprintf(stdout, "MOVE LF@%%retval int@0\n");
     fprintf(stdout, "STRLEN LF@%%retval LF@s\n");
 
-   // create_frame();
-   // pop_frame(frame_stack)
     fprintf(stdout, "LABEL $length$epilog\n");
     fprintf(stdout, "POPFRAME\nRETURN\n");
 }
@@ -596,10 +628,8 @@ void generate_SubStr()
     
     fprintf(stdout, "DEFVAR LF@result\n");
     fprintf(stdout, "MOVE LF@result bool@false\n");
-
     fprintf(stdout, "DEFVAR LF@tmplen\n");
     fprintf(stdout, "MOVE LF@tmplen int@0\n");
-
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
     fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
@@ -635,6 +665,11 @@ void generate_SubStr()
 
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
 
+    fprintf(stdout, "MOVE LF@tmplen int@0\n");
+
+    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
+
     fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
 
     fprintf(stdout, "LABEL $SubStrFor\n");
@@ -643,11 +678,11 @@ void generate_SubStr()
     fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
     fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
-    fprintf(stdout, "JUMP $SubStr$epilog\n");
+    fprintf(stdout, "JUMP $substr$epilog\n");
     
     fprintf(stdout, "LABEL $SubStrReturn0\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
-    fprintf(stdout, "JUMP $SubStr$epilog\n");
+    fprintf(stdout, "JUMP $substr$epilog\n");
     fprintf(stdout, "LABEL $SubStrReturnRest\n");
     fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
@@ -684,7 +719,7 @@ void generate_Asc()
     fprintf(stdout, "PUSHS LF@result\n");
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
-    fprintf(stdout, "JUMPIFNEQ $Asc$epilog bool@true LF@result\n");
+    fprintf(stdout, "JUMPIFNEQ $asc$epilog bool@true LF@result\n");
 
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
@@ -704,7 +739,6 @@ void generate_Chr()
     fprintf(stdout, "MOVE LF@tmp string@\n");
 
     fprintf(stdout, "INT2CHAR LF@%%retval LF@i\n");
-    fprintf(stdout, "LABEL $chr$epilog\n");
     fprintf(stdout, "POPFRAME\n");
     fprintf(stdout, "RETURN\n");
 

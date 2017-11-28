@@ -1,14 +1,13 @@
-/* error.h
-
-*/
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
 
 
 #ifndef ERROR_H
 #define ERROR_H
-
-#include "destructor.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 #define OK 0
 
@@ -31,7 +30,5 @@
 #define COMPILER_MESSAGE "Compiler error: inner error of the compiler (probably fail of memory allocation)."
 
 void print_error(int error_code);
-
-
 
 #endif // ERROR_H

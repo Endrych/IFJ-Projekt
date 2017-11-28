@@ -1,14 +1,12 @@
-/* IFJ project
- * @authors:
- * @date:
- * @brief:
- * 
- TODO: 
- 	- error.h 
-*/
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
 
 #include <stdbool.h>
-#include <stdlib.h> // exit
+#include <stdlib.h> 
 #include <stdio.h>
 #include "parser.h"
 #include "lexical.h"
@@ -770,18 +768,18 @@ int Stat()
 					qitem->GenType = gt_call_func;
 					qitem->GenValue.call_func_input = (CallFuncInput*) malloc(sizeof(CallFuncInput));
 					if (qitem->GenValue.call_func_input == NULL)
-					{
-						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-        				dispose_global();
-					}
+ 					{
+ 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+         				dispose_global();
+ 					}
 					qitem->GenValue.call_func_input->id = symtab_item_left;
 					qitem->GenValue.call_func_input->sym_item = symtab_item;
 					qitem->GenValue.call_func_input->param = (eQueue*) malloc(sizeof(eQueue));
 					if (qitem->GenValue.call_func_input->param == NULL)
-					{
-						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-        				dispose_global();
-					}
+ 					{
+ 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+         				dispose_global();
+ 					}
 
 					equeInit(qitem->GenValue.call_func_input->param);
 
@@ -898,10 +896,10 @@ int Arg(Tfunction_item* function, int* args_iter, eQueue* eque)
 
 	eitem = (eQItem*) malloc(sizeof(eQItem));
 	if (eitem == NULL)
-	{
-		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+ 	{
+ 		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         dispose_global();
-	}
+ 	}
 	eitem->Next = NULL;
 	switch (token->type)
 	{
@@ -1709,48 +1707,7 @@ int parse()
 	qstackInit(qstack);
 	qstackPush (qstack, global_queue);
 
-	
-	insert_built_in();
 	global_symtab = symtab;
 	return Prog();
 	symtab_free(symtab); 
-}
-
-
-
-
-int main()
-{
-	symtab = symtab_init(42);
-	insert_built_in();
-	int return_value;
-	return_value = parse();
-	fprintf(stderr,"\n");
-	switch (return_value)
-	{
-		case OK:
-			fprintf(stderr,"Everything is OK\n");
-			break;
-		case LEXICAL_ERROR:
-			fprintf(stderr,"LEXICAL_ERROR\n");
-			break;
-		case SYNTAX_ERROR:
-			fprintf(stderr,"SYNTAX_ERROR\n");
-			break;
-		case SEMANTIC_ERROR:
-			fprintf(stderr,"SEMANTIC_ERROR\n");
-			break;
-		case SEMANTIC_TYPE_ERROR:
-			fprintf(stderr,"SEMANTIC_TYPE_ERROR\n");
-			break;
-		case OTHER_ERROR:
-			fprintf(stderr,"OTHER_ERROR\n");
-			break;
-		case COMPILER_ERROR:
-			fprintf(stderr,"COMPILER_ERROR\n");
-			break;
-	}
-	generate_start(qstackTop(qstack));
-	dispose_global();
-	return 0;
 }

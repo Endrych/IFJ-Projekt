@@ -1,3 +1,10 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
 #include "error.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +38,5 @@ void print_error(int error_code)
 			fprintf(stderr, "%s\n", COMPILER_MESSAGE);
 			break;
 	}
-
 	exit(error_code);
-
 }

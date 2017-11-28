@@ -1,3 +1,10 @@
+/* Nazev - Implementace prekladace imperativniho jazyka IFJ17
+ * Petr Zubalik - xzubal04
+ * Marek Kukucka - xkukuc04
+ * Jan Koci - xkocij01
+ * David Endrych - xendry02
+ */
+
 #include "string_storage.h"
 #include "stack.h"
 #include "at_que.h"
@@ -15,6 +22,7 @@ void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *f
  * napr. pri spatne alokaci pameti
  * uvolni pamet globalnich promennych a da exit(99)
  */
+void dispose();
 void dispose_global();
 
 
