@@ -1139,7 +1139,7 @@ int Func()
 
 					// __<param_list>__
 					token = get_token();
-					if ((return_value = Param_list(symtab_item, &param_count)) != OK) {
+					if ((return_value = Param_list(symtab_item, &param_count, false)) != OK) {
 						return return_value;
 					}
 
@@ -1290,7 +1290,7 @@ int Func()
 
 					// __<param_list>__
 					token = get_token();
-					if ((return_value = Param_list(symtab_item, &param_count)) != OK) {
+					if ((return_value = Param_list(symtab_item, &param_count, true)) != OK) {
 						return return_value;
 					}
 
@@ -1368,7 +1368,7 @@ int Func()
 	return OK;
 }
 
-int Param_list(Tsymtab_item *symtab_item, int* params_iter)
+int Param_list(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 {
 	int return_value;
 	bool declared = symtab_item->type_strct.function->declared;
@@ -1384,12 +1384,12 @@ int Param_list(Tsymtab_item *symtab_item, int* params_iter)
 
 		case type_id:
 			// __<Param>__
-			if ((return_value = Param(symtab_item, params_iter)) != OK) {
+			if ((return_value = Param(symtab_item, params_iter, declaration)) != OK) {
 				return return_value;
 			}
 			// __<Next_par>__
 			token = get_token();
-			if ((return_value = Next_par(symtab_item, params_iter)) != OK) {
+			if ((return_value = Next_par(symtab_item, params_iter, declaration)) != OK) {
 				return return_value;
 			}
 		break;
@@ -1407,13 +1407,14 @@ int Param_list(Tsymtab_item *symtab_item, int* params_iter)
 	return OK;
 }
 
-int Param(Tsymtab_item *symtab_item, int* params_iter)
+int Param(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 {
 	bool declared = symtab_item->type_strct.function->declared;
 	Tfunction_item* function = symtab_item->type_strct.function;
 	Tsymtab_item* symtab_param;
 	Token* param_token;
 	int return_value;
+	Tvalue value;
 
 	if (declared) {
 		if (*params_iter >= symtab_item->type_strct.function->arg_count) {
@@ -1452,7 +1453,8 @@ int Param(Tsymtab_item *symtab_item, int* params_iter)
 		}
 
 	}
-	else {
+	// pokud se jedna o definici
+	if (!declaration){
 		// pokud jiz id je v tabulce symbolu pak dva parametry maji stejne jmeno
 		if ((symtab_param = symtab_search(symtab, param_token)) != NULL) {
 			fprintf(stderr, "ERROR: Function parameters cannot have same names, in function '%s' \n", symtab_item->key);
@@ -1467,9 +1469,28 @@ int Param(Tsymtab_item *symtab_item, int* params_iter)
 		symtab_param->type = type_variable;
 		// void init_item_variable(Tvariable_item *item) ???
 
-		// nastavime parametr funkce
-		Tvalue value;
-		set_args_function(function, symtab_param->key, symtab_param->type_strct.variable->type, value);
+		// pokud funkce jeste nebyla deklarovana, nastavime parametr funkce
+		if (!declared) {
+			set_args_function(function, symtab_param->key, symtab_param->type_strct.variable->type, value);
+		}
+	}
+	// jedna se o deklaraci
+	else {
+		Tvariable_type type;
+		int position = param_token->atribute.int_value;
+		char *key = get_string(position);
+		switch (token->atribute.int_value) {
+			case kw_integer:
+				type = type_int;
+			break;
+			case kw_double:
+				type = type_doub;
+			break;
+			case kw_string:
+				type = type_str;
+			break;
+		}
+		set_args_function(function, key, type, value);
 	}
 
 	// zvysime pocet zpracovanych parametru 
@@ -1478,7 +1499,7 @@ int Param(Tsymtab_item *symtab_item, int* params_iter)
 
 }
 
-int Next_par(Tsymtab_item* symtab_item, int* params_iter)
+int Next_par(Tsymtab_item* symtab_item, int* params_iter, bool declaration)
 {
 	int return_value;
 	switch (token->type)
@@ -1497,12 +1518,12 @@ int Next_par(Tsymtab_item* symtab_item, int* params_iter)
 		case type_comma:
 			// , <param> <Next_par>
 			token = get_token();
-			if ((return_value = Param(symtab_item, params_iter)) != OK) {
+			if ((return_value = Param(symtab_item, params_iter, declaration)) != OK) {
 				return return_value;
 			}
 			// __<Next_par>__
 			token = get_token();
-			if ((return_value = Next_par(symtab_item, params_iter)) != OK) {
+			if ((return_value = Next_par(symtab_item, params_iter, declaration)) != OK) {
 				return return_value;
 			}
 		break;
