@@ -12,6 +12,7 @@
 #include "token.h"
 #include "string_storage.h"
 #include "destructor.h"
+#include "error.h"
 
 //TODO: TESTS
 
@@ -44,8 +45,6 @@ typedef enum{
 
 Token* get_token(){
 	bool isIntToken = true;
-	bool is_not_esc = false;
-	bool esc_active = false;
 	Token* token = create_token();
 	if(token == NULL){
 		fprintf(stderr, "%s\n", COMPILER_MESSAGE);
@@ -54,8 +53,6 @@ Token* get_token(){
 	static char last_char;
 	static char last_string_char;
 	char prev_char;
-	char int_to_str_1[1]; // pro escape sekvence vzdycky dostanu jedno cislo!	
-	char int_to_str_2[2]; // pro escape sekvence vzdycky dostanu dve cisla!
 	char escape_seq[4];
 	int esc_seq_iter = 0;
 	int str_to_int;
@@ -67,6 +64,9 @@ Token* get_token(){
 	char lowering;					
 	bool e_present,dot_present = false;
 	bool e_last_char = false;
+	bool esc_active = false;
+	bool first_is_0 = false;
+	bool second_is_0 = false;
 	bool first_is_2 = false;
 	bool second_is_5 = false;
 	bool string_end = false;
@@ -74,6 +74,7 @@ Token* get_token(){
 	bool _new_line =false;
 	bool _quotation_mark = false;
 	bool _last_backslash = false;
+	bool _backslash = false;
 	// bool _
 	while(isIntToken){
     	if(last_char != '\0'){
@@ -178,8 +179,8 @@ Token* get_token(){
 				}
 				else{
 					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
-					token->type=type_wrong;
-					return token;
+					free(token);
+					print_error(LEXICAL_ERROR);
 				}
 				break;
 			case _LINE_COMMENT:
@@ -230,10 +231,10 @@ Token* get_token(){
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E')){
-					token->type = type_wrong;
 					fprintf(stderr, "Error: not a number\n");
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}
 				else if(current_char == '.' || 
 				current_char == 'e' ||
@@ -294,27 +295,27 @@ Token* get_token(){
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E') && current_char != '+' &&
 				current_char != '-'){
-					token->type = type_wrong;
 					fprintf(stderr, "Error1: not a number\n");
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}else{
 					if((current_char == 'E' || current_char == 'e')&&
 					e_present){
 						fprintf(stderr, "Error2: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}else if (current_char == '.' && dot_present){
 						fprintf(stderr, "Error3: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}else if(current_char == '.' && e_present){
 						fprintf(stderr, "Error4: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}
 					if(length == size){
            				size += 10;
@@ -346,10 +347,11 @@ Token* get_token(){
 					break;
 				}			
 				else{
-					token->type = type_wrong;
 					fprintf(stderr, "Problem with string inicialization\n");
+					free(token);
+					free(str);
+					print_error(LEXICAL_ERROR);
 					// free(str);
-					return token;
 				}	
 			case _START_STRING:
 				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
@@ -375,135 +377,11 @@ Token* get_token(){
 						}		
 					}
 					str_to_int = (int)current_char;
-					if(string_end && esc_seq_iter > 0){
-						int i = 0;
-						if(esc_seq_iter == 1){
-							str[length] = '\\';
-							length++;
-							str[length] = '0';
-							length++;
-							str[length] = '9';
-							length++;
-							str[length] = '2';
-							length++;
-							i++;
-						}else{
-							while(i <= esc_seq_iter){
-								if((length + 3) >= size){
-									size += 10;
-									str = (char *)realloc(str, size*sizeof(char));
-									if (str == NULL)
-									{
-										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-										dispose_global();
-									}		
-								}
-								if(i == 0){
-									str[length] = '\\';
-									length++;
-									str[length] = '0';
-									length++;
-									str[length] = '9';
-									length++;
-									str[length] = '2';
-									length++;
-									i++;								
-								}else{
-									str[length] = escape_seq[i];
-									length++;
-									i++;
-								}
-							}
-						}
-						break;
-					}
-					else if((str_to_int == 92 && (is_not_esc == false && esc_active == true)) || is_not_esc == true){
-						int i = 0;
-						first_is_2 = false;
-						second_is_5 = false;
-						if(((str_to_int >= 0 && str_to_int <= 32) || 
-						str_to_int == 35 || str_to_int == 92) && esc_seq_iter == 1){
-							if((length + 3) >= size){
-								size += 10;
-								str = (char *)realloc(str, size*sizeof(char));
-								if (str == NULL)
-								{
-									fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-									dispose_global();
-								}		
-							}
-							str[length] = '\\';
-							length++;
-							str[length] = '0';
-							length++;
-							str[length] = '9';
-							length++;
-							str[length] = '2';
-							length++;
-						}
-						else{
-							while(i <= esc_seq_iter){
-								if((length + 3) >= size){
-									size += 10;
-									str = (char *)realloc(str, size*sizeof(char));
-									if (str == NULL)
-									{
-										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-										dispose_global();
-									}		
-								}
-								str_to_int=(int)escape_seq[i];
-								if(i == 0){
-									str[length] = '\\';
-									length++;
-									str[length] = '0';
-									length++;
-									str[length] = '9';
-									length++;
-									str[length] = '2';
-									length++;
-									i++;								
-								}else{
-									str[length] = escape_seq[i];
-									length++;
-									i++;
-								}
-							}
-						}
-						if((str_to_int >= 0 && str_to_int <= 32) || 
-						str_to_int == 35){
-							last_char = current_char;
-							esc_seq_iter = 0;
-						}
-						else if(current_char != '\\'){
-							if((length + 3) >= size){
-            					size += 10;
-            					str = (char *)realloc(str, size*sizeof(char));
-								if (str == NULL)
-								{
-									fprintf(stderr, "%s\n", COMPILER_MESSAGE);
-       								dispose_global();
-								}		
-							}
-							str[length] = current_char;
-							length++;
-							esc_seq_iter = 0;
-						}else{
-							// escape_seq[0] = current_char;
-							// esc_seq_iter = 1;
-							esc_seq_iter = 0;
-
-						}
-						is_not_esc = false;
-						esc_active = false;
-						break;
-					}
-					else if(str_to_int == 92 || esc_active){
+					if(str_to_int == 92 || esc_active){
 						esc_active = true;
 						if((str_to_int >= 0 && str_to_int <= 32) || 
 						str_to_int == 35){
 							esc_active = false;
-							is_not_esc = true;
 							last_char = current_char;
 							break;
 						}
@@ -515,6 +393,9 @@ Token* get_token(){
 							if(str_to_int == 50){
 								first_is_2 = true;
 							}
+							else if(str_to_int == 48){
+								first_is_0 = true;
+							}
 							else if(str_to_int == 110){
 								_new_line = true;
 							}
@@ -524,9 +405,11 @@ Token* get_token(){
 							else if(str_to_int == 116){
 								_tab = true;
 							}
+							else if(str_to_int == 92){
+								_backslash = true;
+							}
 							else if(str_to_int < 48 || str_to_int > 50){
 								esc_active = false;
-								is_not_esc = true;								
 							}
 						}
 						else if(esc_seq_iter == 2){
@@ -537,12 +420,14 @@ Token* get_token(){
 								}
 								if(str_to_int < 48 || str_to_int > 53){
 									esc_active = false;
-									is_not_esc = true;								
 								}
+								
 							}
 							else if(str_to_int < 48 || str_to_int > 57){
 								esc_active = false;
-								is_not_esc = true;								
+							}
+							else if(str_to_int == 48){
+								second_is_0 = true;
 							}
 						}
 						else if(esc_seq_iter == 3){
@@ -550,12 +435,16 @@ Token* get_token(){
 							if(first_is_2 && second_is_5){
 								if(str_to_int < 48 || str_to_int > 53){
 								esc_active = false;
-								is_not_esc = true;
 								}
 							}
 							else if(str_to_int < 48 || str_to_int > 57){
 								esc_active = false;
-								is_not_esc = true;
+							}
+							else if(first_is_0 && second_is_0 && (str_to_int == 48)){
+								fprintf(stderr,"Error: Unrecognized escape sequence \\000\n");
+								free(token);
+								free(str);
+								print_error(LEXICAL_ERROR);
 							}
 						}
 						if(esc_seq_iter == 3 && esc_active){
@@ -579,7 +468,7 @@ Token* get_token(){
 							first_is_2 = false;
 							second_is_5 = false;					
 						}
-						else if(_new_line == true || _tab == true || _quotation_mark == true){
+						else if(_new_line == true || _tab == true || _quotation_mark == true || _backslash == true){
 							if(_new_line == true){
 								str[length] = '\\';
 								length++;
@@ -607,43 +496,51 @@ Token* get_token(){
 								length++;
 								str[length] = '4';
 								length++;
+							}else if(_backslash == true){
+								str[length] = '\\';
+								length++;
+								str[length] = '0';
+								length++;
+								str[length] = '9';
+								length++;
+								str[length] = '2';
+								length++;
 							}
 							_quotation_mark = false;
 							_new_line = false;
 							_tab = false;
+							_backslash = false;
 							esc_seq_iter = 0;
 							esc_active = false;		
 							first_is_2 = false;
 							second_is_5 = false;	
+						}
+						else if(esc_active == false){
+							fprintf(stderr,"Error: Unrecognized escape sequence\n");
+							free(token);
+							free(str);
+							print_error(LEXICAL_ERROR);
 						}
 						if(esc_active){
 							esc_seq_iter++;
 						}
 						break;
 					}
-					else if((str_to_int >= 10 && str_to_int <= 32) || 
-					str_to_int == 35){
-						sprintf(int_to_str_2, "%d", str_to_int);						
+					else if( str_to_int == 32) {
 						str[length] = '\\';
 						length++;
 						str[length] = '0';
 						length++;
-						str[length] = int_to_str_2[0];
+						str[length] = '3';
 						length++;
-						str[length] = int_to_str_2[1];
-						length++;
-						break;
-					}else if(str_to_int >= 0 && str_to_int <= 9){
-						sprintf(int_to_str_1, "%d", str_to_int);						
-						str[length] = '\\';
-						length++;
-						str[length] = '0';
-						length++;
-						str[length] = '0';
-						length++;
-						str[length] = int_to_str_1[0];
+						str[length] = '2';
 						length++;
 						break;
+					}else if(str_to_int >= 0 && str_to_int <= 31){
+						fprintf(stderr,"Error: Forbidden element!\n");
+						free(token);
+						free(str);
+						print_error(LEXICAL_ERROR);
 					}
 					else{
 						str[length] = current_char;
@@ -653,9 +550,9 @@ Token* get_token(){
 					
 				}else if(current_char == '\n'){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
+					free(token);
 					free(str);
-					token->type = type_wrong;
-					return token;
+					print_error(LEXICAL_ERROR);
 				}else{
 					last_char = current_char;
 					state = _END_STRING;
@@ -735,10 +632,10 @@ Token* get_token(){
 					free(str);
 					return token;
 				}else{
-					token->type = type_wrong;
 					fprintf(stderr, "Identifier obtains character which is not allowed: %c", current_char);
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}
 			case _LESSER:
 				if(current_char == '='){
@@ -786,6 +683,8 @@ Token* get_token(){
 		}
 	}
 	fprintf(stderr, "Something went wrong during lexical analyzation");
-	token->type = type_wrong;
-	return token; //mozna neco jinyho sem dat uvidime
+	free(token);
+	free(str);
+	print_error(LEXICAL_ERROR);
+	return NULL;
 }

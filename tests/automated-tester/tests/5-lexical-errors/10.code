@@ -1,0 +1,7 @@
+Scope
+
+Dim x as integer
+
+x = 45 + 89 - 4$
+
+End Scope
