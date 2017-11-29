@@ -8,12 +8,14 @@
 #include "error.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "destructor.h"
 
 
 void print_error(int error_code)
 {
 	switch (error_code)
 	{
+		dispose();
 		case LEXICAL_ERROR:
 			fprintf(stderr, "%s\n", LEXICAL_MESSAGE);
 			break;
