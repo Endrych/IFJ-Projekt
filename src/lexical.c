@@ -223,7 +223,8 @@ Token* get_token(){
 				current_char == '-' || current_char == '/' ||
 				current_char == '\\' || current_char == '*' ||
 				current_char == ';' || current_char == ','||
-				current_char == ')' || current_char == '('){
+				current_char == ')' || current_char == '(' || 
+				current_char == '\''){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -288,7 +289,7 @@ Token* get_token(){
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
-				current_char == '('){
+				current_char == '(' || current_char == '\''){
 					if(is_dot_last || e_last_char || is_last_minus || is_last_plus){
 						fprintf(stderr, "Error: Fractional-part is empty\n");
 						free(token);
@@ -345,6 +346,7 @@ Token* get_token(){
 							free(str);
 							print_error(LEXICAL_ERROR);
 						}
+						e_present = true;
 						e_last_char = true;
 					}else{
 						e_last_char = false;
@@ -579,7 +581,7 @@ Token* get_token(){
 						break;
 					}
 					
-				}else if(current_char == '\n'){
+				}else if(current_char == '\n' || current_char == EOF){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
 					free(token);
 					free(str);
@@ -631,7 +633,8 @@ Token* get_token(){
 				current_char == '\\' || current_char == '*' ||
 				current_char == '+' || current_char == '-' ||
 				current_char == ')' || current_char == '(' ||
-				current_char == ';' || current_char == ','){
+				current_char == ';' || current_char == ',' ||
+				current_char == '\''){
 					if(current_char == '\n'){
 						last_char = '\n';
 					}else if(current_char == EOF){
