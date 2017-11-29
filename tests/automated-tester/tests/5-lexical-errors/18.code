@@ -1,2 +1,6 @@
 Scope
+
+Dim x as Integer = 99999999999.99999999e+99i99
+print x;
+
 End Scope

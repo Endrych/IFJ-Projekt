@@ -61,7 +61,8 @@ Token* get_token(){
 	int size = 10;  //udelat konstantu
 	char *str;
 	char current_char = '\0';
-	char lowering;					
+	char lowering;			
+	bool is_dot_last = false;		
 	bool e_present = false;
 	bool dot_present = false;
 	bool e_last_char = false;
@@ -242,6 +243,7 @@ Token* get_token(){
 				current_char == 'E'){
 					if(current_char == '.'){
 						dot_present = true;
+						is_dot_last = true;
 					}else if(current_char == 'e' || current_char == 'E'){
 						e_present = true;
 						e_last_char = true;
@@ -285,6 +287,12 @@ Token* get_token(){
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
 				current_char == '('){
+					if(is_dot_last || e_last_char){
+						fprintf(stderr, "Error: Fractional-part is empty\n");
+						free(token);
+						free(str);
+						print_error(LEXICAL_ERROR);
+					}
 					double convert;
 					convert = strtof(str, NULL);  // Zkusit strtof
 					token->type = type_double;
@@ -301,8 +309,7 @@ Token* get_token(){
 					free(str);
 					print_error(LEXICAL_ERROR);
 				}else{
-					if((current_char == 'E' || current_char == 'e')&&
-					e_present){
+					if((current_char == 'E' || current_char == 'e')&& e_present){
 						fprintf(stderr, "Error2: Not a number\n");
 						free(token);
 						free(str);
@@ -333,6 +340,11 @@ Token* get_token(){
 						e_last_char = true;
 					}else{
 						e_last_char = false;
+					}
+					if(current_char == '.'){
+						is_dot_last = true;
+					}else{
+						is_dot_last = false;
 					}
 					break;
 				}

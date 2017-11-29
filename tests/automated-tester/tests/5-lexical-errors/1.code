@@ -1,5 +1,3 @@
 Scope
-Dim x as integer
-|"\sda'\d|"|"SDA|"SD\as 
-x = 123
+
 End Scope
