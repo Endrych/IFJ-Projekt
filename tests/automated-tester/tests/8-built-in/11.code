@@ -1,0 +1,10 @@
+'Chr, i mimo meze, nedefinovane chovani
+
+Scope
+	Dim i As Integer
+	Dim result As String
+
+	i = 256
+	result = Chr(i)
+	print result;
+End Scope

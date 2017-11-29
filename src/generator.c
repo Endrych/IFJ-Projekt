@@ -622,6 +622,8 @@ void generate_SubStr()
 
     fprintf(stdout, "DEFVAR LF@tmp1\nDEFVAR LF@tmp2\n");
     fprintf(stdout, "MOVE LF@tmp1 int@0\nMOVE LF@tmp2 string@\n");
+
+    fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
     
     fprintf(stdout, "DEFVAR LF@length\n");
     fprintf(stdout, "MOVE LF@length int@0\n");
@@ -632,57 +634,52 @@ void generate_SubStr()
     fprintf(stdout, "MOVE LF@tmplen int@0\n");
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
     fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
-
     fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
     
     fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
     fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "PUSHS int@0\n");
-
     fprintf(stdout, "EQS\n");
     fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "GTS\n");
     fprintf(stdout, "PUSHS LF@result\n");
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
-
     fprintf(stdout, "JUMPIFNEQ $SubStrReturn0 bool@true LF@result\n");
 
     fprintf(stdout, "PUSHS LF@n\n");
     fprintf(stdout, "PUSHS int@0\n");
-    fprintf(stdout, "GTS\n");
+    fprintf(stdout, "LTS\n");
     fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
-
-    fprintf(stdout, "STRLEN LF@tmp1 LF@s\n");
-    fprintf(stdout, "SUB LF@tmp1 LF@tmp1 LF@i\n");
-
-    fprintf(stdout, "PUSHS LF@tmp1\n");
-    fprintf(stdout, "PUSHS LF@n\n");
-    fprintf(stdout, "GTS\n");
-    fprintf(stdout, "POPS LF@result\n");
-
-    fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
-
-    fprintf(stdout, "MOVE LF@tmplen int@0\n");
 
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
     fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
-    fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
+    fprintf(stdout, "PUSHS LF@tmplen\n");
+    fprintf(stdout, "PUSHS LF@n\n");
+    fprintf(stdout, "LTS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
+
+    fprintf(stdout, "MOVE LF@tmplen int@0\n");
+    fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
+    fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
 
     fprintf(stdout, "LABEL $SubStrFor\n");
     fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
     fprintf(stdout, "ADD LF@tmp1 LF@tmp1 int@1\n");
-    fprintf(stdout, "STRLEN LF@length LF@tmp2\n");
+
+    fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
     fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
     fprintf(stdout, "JUMP $substr$epilog\n");
     
     fprintf(stdout, "LABEL $SubStrReturn0\n");
     fprintf(stdout, "MOVE LF@%%retval string@\n");
     fprintf(stdout, "JUMP $substr$epilog\n");
+
     fprintf(stdout, "LABEL $SubStrReturnRest\n");
     fprintf(stdout, "GETCHAR LF@tmp2 LF@s LF@tmp1\n");
     fprintf(stdout, "CONCAT LF@%%retval LF@%%retval LF@tmp2\n");
@@ -713,14 +710,13 @@ void generate_Asc()
     fprintf(stdout, "PUSHS LF@i\n");
     fprintf(stdout, "STRLEN LF@tmp2 LF@s\n");
     fprintf(stdout, "PUSHS LF@tmp2\n");
-    fprintf(stdout, "LTS\n");
-    fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "GTS\n");
+    fprintf(stdout, "POPS LF@result\n");
+    fprintf(stdout, "LTS\n");
     fprintf(stdout, "PUSHS LF@result\n");
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
-    fprintf(stdout, "JUMPIFNEQ $asc$epilog bool@true LF@result\n");
-
+    fprintf(stdout, "JUMPIFEQ $asc$epilog bool@true LF@result\n");
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
     fprintf(stdout, "LABEL $asc$epilog\n");
