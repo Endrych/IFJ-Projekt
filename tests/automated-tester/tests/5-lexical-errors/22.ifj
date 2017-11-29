@@ -1,0 +1,116 @@
+.IFJcode17
+JUMP $$main
+LABEL $length
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval int@0
+STRLEN LF@%retval LF@s
+LABEL $length$epilog
+POPFRAME
+RETURN
+LABEL $substr
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval string@
+DEFVAR LF@tmp1
+DEFVAR LF@tmp2
+MOVE LF@tmp1 int@0
+MOVE LF@tmp2 string@
+SUB LF@tmp1 LF@i int@1
+DEFVAR LF@length
+MOVE LF@length int@0
+DEFVAR LF@result
+MOVE LF@result bool@false
+DEFVAR LF@tmplen
+MOVE LF@tmplen int@0
+STRLEN LF@tmplen LF@s
+SUB LF@tmplen LF@tmplen LF@i
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2
+PUSHS LF@i
+PUSHS int@0
+PUSHS LF@i
+PUSHS int@0
+EQS
+POPS LF@result
+GTS
+PUSHS LF@result
+ORS
+POPS LF@result
+JUMPIFNEQ $SubStrReturn0 bool@true LF@result
+PUSHS LF@n
+PUSHS int@0
+LTS
+POPS LF@result
+JUMPIFEQ $SubStrReturnRest bool@true LF@result
+STRLEN LF@tmplen LF@s
+SUB LF@tmplen LF@tmplen LF@i
+PUSHS LF@tmplen
+PUSHS LF@n
+LTS
+POPS LF@result
+JUMPIFEQ $SubStrReturnRest bool@true LF@result
+MOVE LF@tmplen int@0
+STRLEN LF@tmplen LF@s
+SUB LF@tmplen LF@tmplen LF@i
+LABEL $SubStrFor
+GETCHAR LF@tmp2 LF@s LF@tmp1
+CONCAT LF@%retval LF@%retval LF@tmp2
+ADD LF@tmp1 LF@tmp1 int@1
+STRLEN LF@length LF@%retval
+JUMPIFNEQ $SubStrFor LF@length LF@n
+JUMP $substr$epilog
+LABEL $SubStrReturn0
+MOVE LF@%retval string@
+JUMP $substr$epilog
+LABEL $SubStrReturnRest
+GETCHAR LF@tmp2 LF@s LF@tmp1
+CONCAT LF@%retval LF@%retval LF@tmp2
+ADD LF@tmp1 LF@tmp1 int@1
+STRLEN LF@length LF@%retval
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length
+LABEL $substr$epilog
+POPFRAME
+RETURN
+LABEL $asc
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval int@0
+DEFVAR LF@result
+MOVE LF@result bool@false
+DEFVAR LF@tmp
+DEFVAR LF@tmp2
+MOVE LF@tmp string@
+MOVE LF@tmp2 int@0
+PUSHS LF@i
+PUSHS int@0
+PUSHS LF@i
+STRLEN LF@tmp2 LF@s
+PUSHS LF@tmp2
+GTS
+POPS LF@result
+LTS
+PUSHS LF@result
+ORS
+POPS LF@result
+JUMPIFEQ $asc$epilog bool@true LF@result
+GETCHAR LF@tmp LF@s LF@i
+STRI2INT LF@%retval LF@tmp int@0
+LABEL $asc$epilog
+POPFRAME
+RETURN
+LABEL $chr
+PUSHFRAME
+DEFVAR LF@%retval
+MOVE LF@%retval string@
+DEFVAR LF@tmp
+MOVE LF@tmp string@
+INT2CHAR LF@%retval LF@i
+POPFRAME
+RETURN
+LABEL $$main
+CREATEFRAME
+PUSHFRAME
+DEFVAR LF@&a
+MOVE LF@&a string@FGGHGHHghjhhjhj\032\056\032\009\032ahoj\032\010\032iloilailaeiii
+WRITE LF@&a
+POPFRAME
