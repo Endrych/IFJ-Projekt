@@ -1473,6 +1473,10 @@ int Param(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 		if (!declared) {
 			set_args_function(function, symtab_param->key, symtab_param->type_strct.variable->type, value);
 		}
+		// jinak pouze prepiseme klic parametru
+		else {
+			function->arguments[*params_iter].key = symtab_param->key;
+		}
 	}
 	// jedna se o deklaraci
 	else {

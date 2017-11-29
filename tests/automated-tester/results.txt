@@ -1,14 +1,17 @@
 Results of automated-tester
 ____________
-Folder 1-basic:
+1-basic:
+¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 0 I: 0
 2✔ - Return codes- C: 0 I: 0
 3✔ - Return codes- C: 0 I: 57
 ____________
-Folder 2-harder:
+2-harder:
+¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 0 I: 0
 ____________
-Folder 3-precedence-syntax-detection-errors:
+3-precedence-syntax-detection-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 2 I: 51
 2✔ - Return codes- C: 2 I: 51
 3✔ - Return codes- C: 2 I: 51
@@ -16,12 +19,14 @@ Folder 3-precedence-syntax-detection-errors:
 5✔ - Return codes- C: 2 I: 51
 6✔ - Return codes- C: 2 I: 51
 ____________
-Folder 4-precedence-semantic-detection-errors:
+4-precedence-semantic-detection-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 4 I: 51
 2✔ - Return codes- C: 4 I: 51
 3✔ - Return codes- C: 3 I: 51
 ____________
-Folder 5-lexical-errors:
+5-lexical-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 1 I: 51
 2✔ - Return codes- C: 1 I: 51
 3✔ - Return codes- C: 1 I: 51
