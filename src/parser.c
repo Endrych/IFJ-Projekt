@@ -819,7 +819,7 @@ int Stat()
 				return COMPILER_ERROR;
 			}
 			token = out->ReturnToken;
-			if ((return_value = check_type(symtab_item->type_strct.variable->type, out->Type)) != OK) {
+			if ((return_value = check_type(symtab_item_left->type_strct.variable->type, out->Type)) != OK) {
 				return return_value;
 			}
 
