@@ -1,4 +1,5 @@
 Scope
 Dim x as integer
-* x = 123
+|"\sda'\d|"|"SDA|"SD\as 
+x = 123
 End Scope

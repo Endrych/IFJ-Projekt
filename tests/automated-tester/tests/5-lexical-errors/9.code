@@ -1,4 +1,5 @@
 Scope
+Dim x as integer
 
 If x < ] Then
  print !"BLACK PINK RULES";

@@ -17,20 +17,21 @@ Folder 3-precedence-syntax-detection-errors:
 6✔ - Return codes- C: 2 I: 51
 ____________
 Folder 4-precedence-semantic-detection-errors:
-1✔ - Return codes- C: 3 I: 51
-2✔ - Return codes- C: 3 I: 51
+1✔ - Return codes- C: 4 I: 51
+2✔ - Return codes- C: 4 I: 51
+3✔ - Return codes- C: 3 I: 51
 ____________
 Folder 5-lexical-errors:
-1✔ - Return codes- C: 2 I: 51
-2✔ - Return codes- C: 2 I: 51
-3✔ - Return codes- C: 2 I: 51
-4✔ - Return codes- C: 2 I: 51
-5✔ - Return codes- C: 2 I: 51
-6✔ - Return codes- C: 2 I: 51
-7✔ - Return codes- C: 2 I: 51
-8✔ - Return codes- C: 2 I: 51
-9✔ - Return codes- C: 3 I: 51
-10✔ - Return codes- C: 2 I: 51
+1✔ - Return codes- C: 1 I: 51
+2✔ - Return codes- C: 1 I: 51
+3✔ - Return codes- C: 1 I: 51
+4✔ - Return codes- C: 1 I: 51
+5✔ - Return codes- C: 1 I: 51
+6✔ - Return codes- C: 1 I: 51
+7✔ - Return codes- C: 1 I: 51
+8✔ - Return codes- C: 1 I: 51
+9✔ - Return codes- C: 1 I: 51
+10✔ - Return codes- C: 1 I: 51
 11✔ - Return codes- C: 0 I: 0
 12✔ - Return codes- C: 0 I: 0
 13✔ - Return codes- C: 0 I: 0

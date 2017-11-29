@@ -12,6 +12,7 @@
 #include "token.h"
 #include "string_storage.h"
 #include "destructor.h"
+#include "error.h"
 
 //TODO: TESTS
 
@@ -178,8 +179,8 @@ Token* get_token(){
 				}
 				else{
 					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
-					token->type=type_wrong;
-					return token;
+					free(token);
+					print_error(LEXICAL_ERROR);
 				}
 				break;
 			case _LINE_COMMENT:
@@ -230,10 +231,10 @@ Token* get_token(){
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E')){
-					token->type = type_wrong;
 					fprintf(stderr, "Error: not a number\n");
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}
 				else if(current_char == '.' || 
 				current_char == 'e' ||
@@ -294,27 +295,27 @@ Token* get_token(){
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E') && current_char != '+' &&
 				current_char != '-'){
-					token->type = type_wrong;
 					fprintf(stderr, "Error1: not a number\n");
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}else{
 					if((current_char == 'E' || current_char == 'e')&&
 					e_present){
 						fprintf(stderr, "Error2: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}else if (current_char == '.' && dot_present){
 						fprintf(stderr, "Error3: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}else if(current_char == '.' && e_present){
 						fprintf(stderr, "Error4: Not a number\n");
-						token->type = type_wrong;
+						free(token);
 						free(str);
-						return token;
+						print_error(LEXICAL_ERROR);
 					}
 					if(length == size){
            				size += 10;
@@ -346,10 +347,11 @@ Token* get_token(){
 					break;
 				}			
 				else{
-					token->type = type_wrong;
 					fprintf(stderr, "Problem with string inicialization\n");
+					free(token);
+					free(str);
+					print_error(LEXICAL_ERROR);
 					// free(str);
-					return token;
 				}	
 			case _START_STRING:
 				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
@@ -440,9 +442,9 @@ Token* get_token(){
 							}
 							else if(first_is_0 && second_is_0 && (str_to_int == 48)){
 								fprintf(stderr,"Error: Unrecognized escape sequence \\000\n");
+								free(token);
 								free(str);
-								token->type = type_wrong;
-								return token;
+								print_error(LEXICAL_ERROR);
 							}
 						}
 						if(esc_seq_iter == 3 && esc_active){
@@ -515,9 +517,9 @@ Token* get_token(){
 						}
 						else if(esc_active == false){
 							fprintf(stderr,"Error: Unrecognized escape sequence\n");
+							free(token);
 							free(str);
-							token->type = type_wrong;
-							return token;
+							print_error(LEXICAL_ERROR);
 						}
 						if(esc_active){
 							esc_seq_iter++;
@@ -536,10 +538,9 @@ Token* get_token(){
 						break;
 					}else if(str_to_int >= 0 && str_to_int <= 31){
 						fprintf(stderr,"Error: Forbidden element!\n");
+						free(token);
 						free(str);
-						token->type = type_wrong;
-						return token;
-						break;
+						print_error(LEXICAL_ERROR);
 					}
 					else{
 						str[length] = current_char;
@@ -549,9 +550,9 @@ Token* get_token(){
 					
 				}else if(current_char == '\n'){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
+					free(token);
 					free(str);
-					token->type = type_wrong;
-					return token;
+					print_error(LEXICAL_ERROR);
 				}else{
 					last_char = current_char;
 					state = _END_STRING;
@@ -631,10 +632,10 @@ Token* get_token(){
 					free(str);
 					return token;
 				}else{
-					token->type = type_wrong;
 					fprintf(stderr, "Identifier obtains character which is not allowed: %c", current_char);
+					free(token);
 					free(str);
-					return token;
+					print_error(LEXICAL_ERROR);
 				}
 			case _LESSER:
 				if(current_char == '='){
@@ -682,6 +683,8 @@ Token* get_token(){
 		}
 	}
 	fprintf(stderr, "Something went wrong during lexical analyzation");
-	token->type = type_wrong;
-	return token; //mozna neco jinyho sem dat uvidime
+	free(token);
+	free(str);
+	print_error(LEXICAL_ERROR);
+	return NULL;
 }
