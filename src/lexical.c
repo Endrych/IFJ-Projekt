@@ -236,10 +236,13 @@ Token* get_token(){
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E')){
-					fprintf(stderr, "Error: not a number\n");
-					free(token);
+					double convert;
+					convert = strtof(str, NULL);  // Zkusit strtof
+					token->type = type_double;
+					token->atribute.double_value = convert; //add check for max
+					last_char = current_char;
 					free(str);
-					print_error(LEXICAL_ERROR);
+					return token;
 				}
 				else if(current_char == '.' || 
 				current_char == 'e' ||
@@ -307,10 +310,13 @@ Token* get_token(){
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E') && current_char != '+' &&
 				current_char != '-'){
-					fprintf(stderr, "Error1: not a number\n");
-					free(token);
+					double convert;
+					convert = strtof(str, NULL);  // Zkusit strtof
+					token->type = type_double;
+					token->atribute.double_value = convert; //add check for max
+					last_char = current_char;
 					free(str);
-					print_error(LEXICAL_ERROR);
+					return token;
 				}else{
 					if((current_char == 'E' || current_char == 'e')&& e_present){
 						fprintf(stderr, "Error2: Not a number\n");
