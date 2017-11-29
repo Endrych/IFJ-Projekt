@@ -1,10 +1,11 @@
 Results of automated-tester
 ____________
-1-basic:
+1-basic
+11-parser_type_errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
-1✔ - Return codes- C: 0 I: 0
-2✔ - Return codes- C: 0 I: 0
-3✔ - Return codes- C: 0 I: 57
+1✗ - Return codes- C: 1 I: 1
+2✗ - Return codes- C: 1 I: 1
+3✗ - Return codes- C: 1 I: 1
 ____________
 2-harder:
 ¯¯¯¯¯¯¯¯¯¯¯¯
@@ -18,6 +19,10 @@ ____________
 4✔ - Return codes- C: 2 I: 51
 5✔ - Return codes- C: 2 I: 51
 6✔ - Return codes- C: 2 I: 51
+7✔ - Return codes- C: 2 I: 51
+8✔ - Return codes- C: 2 I: 51
+9✔ - Return codes- C: 2 I: 51
+10✔ - Return codes- C: 2 I: 51
 ____________
 4-precedence-semantic-detection-errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
@@ -72,13 +77,27 @@ ____________
 9✔ - Return codes- C: 3 I: 51
 10✔ - Return codes- C: 0 I: 0
 ____________
-8-parser_syntax_errors:
+8-built-in:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 0 I: 0
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 0 I: 0
+8✔ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 0 I: 0
+10✔ - Return codes- C: 0 I: 0
+11✔ - Return codes- C: 0 I: 58
+____________
+9-parser_syntax_errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 2 I: 51
 2✔ - Return codes- C: 2 I: 51
 3✔ - Return codes- C: 2 I: 51
 ____________
-9-parser_semantic_errors:
+10-parser_semantic_errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 3 I: 51
 2✔ - Return codes- C: 3 I: 51
@@ -90,7 +109,7 @@ ____________
 8✔ - Return codes- C: 3 I: 51
 9✔ - Return codes- C: 3 I: 51
 ____________
-10-parser_type_errors:
+11-parser_type_errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 4 I: 51
 2✔ - Return codes- C: 4 I: 51
