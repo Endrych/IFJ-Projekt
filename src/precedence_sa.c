@@ -427,6 +427,28 @@ int findRule(tStack * s){
                                     aData = cData;
                                     newData->DataType = type_int;
                             }
+                            else if(dataType == type_doub && dataType1 == type_int){
+                                ATData cData;
+                                cData.type = at_type_cast;
+                                cData.Atr.type_cast = Integer2Double;
+                                leaf2 = make_tree(leaf2,NULL,cData);
+                                leaf2 = make_tree(leaf2,leaf1,aData);
+                                cData.Atr.type_cast = Double2Integer;
+                                leaf1 = NULL;
+                                aData = cData;
+                                newData->DataType = type_int;
+                            }
+                            else if(dataType == type_int && dataType1 == type_doub){
+                                ATData cData;
+                                cData.type = at_type_cast;
+                                cData.Atr.type_cast = Integer2Double;
+                                leaf1 = make_tree(leaf1,NULL,cData);
+                                leaf2 = make_tree(leaf2,leaf1,aData);
+                                cData.Atr.type_cast = Double2Integer;
+                                leaf1 = NULL;
+                                aData = cData;
+                                newData->DataType = type_int;
+                            }
                             else{
                                  print_error(SEMANTIC_TYPE_ERROR);
                             }
