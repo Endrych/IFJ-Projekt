@@ -1,0 +1,4 @@
+scope
+dim x as string
+print b;
+end scope
