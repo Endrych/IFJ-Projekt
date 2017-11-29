@@ -2,7 +2,7 @@
  _________
  Spousteni
  ¯¯¯¯¯¯¯¯¯
-tester se spousti prikazem sh tester.sh arg1, kde arg1
+tester se spousti prikazem ./tester.sh arg1, kde arg1
 odpovida jednomu z prepinacu, zatim mame 3 prepinace
 -h vypise help
 -d uvede slozku a jednotlive soubory do puvodniho stavu

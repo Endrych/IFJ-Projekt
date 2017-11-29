@@ -1,0 +1,4 @@
+Scope
+Dim x as integer
+* x = 123
+End Scope

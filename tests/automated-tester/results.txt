@@ -19,3 +19,30 @@ ____________
 Folder 4-precedence-semantic-detection-errors:
 1✔ - Return codes- C: 3 I: 51
 2✔ - Return codes- C: 3 I: 51
+____________
+Folder 5-lexical-errors:
+1✔ - Return codes- C: 2 I: 51
+2✔ - Return codes- C: 2 I: 51
+3✔ - Return codes- C: 2 I: 51
+4✔ - Return codes- C: 2 I: 51
+5✔ - Return codes- C: 2 I: 51
+6✔ - Return codes- C: 2 I: 51
+7✔ - Return codes- C: 2 I: 51
+8✔ - Return codes- C: 2 I: 51
+9✔ - Return codes- C: 3 I: 51
+10✔ - Return codes- C: 2 I: 51
+11✔ - Return codes- C: 0 I: 0
+12✔ - Return codes- C: 0 I: 0
+13✔ - Return codes- C: 0 I: 0
+14✔ - Return codes- C: 0 I: 0
+15✔ - Return codes- C: 0 I: 0
+16✔ - Return codes- C: 0 I: 0
+17✔ - Return codes- C: 0 I: 0
+18✔ - Return codes- C: 0 I: 0
+19✔ - Return codes- C: 0 I: 0
+20✔ - Return codes- C: 0 I: 0
+21✔ - Return codes- C: 0 I: 0
+22✔ - Return codes- C: 0 I: 0
+23✔ - Return codes- C: 0 I: 0
+24✔ - Return codes- C: 0 I: 0
+25✔ - Return codes- C: 0 I: 0
