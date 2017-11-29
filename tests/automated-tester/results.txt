@@ -23,12 +23,15 @@ ____________
 8✔ - Return codes- C: 2 I: 51
 9✔ - Return codes- C: 2 I: 51
 10✔ - Return codes- C: 2 I: 51
+11✔ - Return codes- C: 2 I: 51
 ____________
 4-precedence-semantic-detection-errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 4 I: 51
 2✔ - Return codes- C: 4 I: 51
 3✔ - Return codes- C: 3 I: 51
+4✔ - Return codes- C: 3 I: 51
+5✔ - Return codes- C: 4 I: 51
 ____________
 5-lexical-errors:
 ¯¯¯¯¯¯¯¯¯¯¯¯

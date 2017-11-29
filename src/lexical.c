@@ -62,7 +62,8 @@ Token* get_token(){
 	char *str;
 	char current_char = '\0';
 	char lowering;					
-	bool e_present,dot_present = false;
+	bool e_present = false;
+	bool dot_present = false;
 	bool e_last_char = false;
 	bool esc_active = false;
 	bool first_is_0 = false;

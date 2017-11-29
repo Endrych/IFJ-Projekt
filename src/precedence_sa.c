@@ -255,11 +255,14 @@ int findRule(tStack * s){
                     else if(data->Atr.Token->type == type_id){
                         Tsymtab_item * item = symtab_search(symtab,data->Atr.Token);
                         if(item != NULL){
+                            if(item->type == type_function){
+                                print_error(SYNTAX_ERROR);
+                            }
                             dataType = item->type_strct.variable->type;
                         }
                         else{
                             fprintf(stderr,"SEMANTIC ERROR: Variable %s is not declared\n", get_string(data->Atr.Token->atribute.int_value));
-                            exit(SEMANTIC_ERROR);
+                            print_error(SEMANTIC_ERROR);
                         }
                         aData.type = at_tsitem;
                         aData.Atr.tsItem = item;
