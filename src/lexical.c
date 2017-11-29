@@ -62,6 +62,8 @@ Token* get_token(){
 	char *str;
 	char current_char = '\0';
 	char lowering;			
+	bool is_last_minus = false;
+	bool is_last_plus = false;
 	bool is_dot_last = false;		
 	bool e_present = false;
 	bool dot_present = false;
@@ -287,7 +289,7 @@ Token* get_token(){
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
 				current_char == '('){
-					if(is_dot_last || e_last_char){
+					if(is_dot_last || e_last_char || is_last_minus || is_last_plus){
 						fprintf(stderr, "Error: Fractional-part is empty\n");
 						free(token);
 						free(str);
@@ -337,6 +339,12 @@ Token* get_token(){
 					str[length] = current_char;
 					length++;
 					if(current_char == 'e' || current_char == 'E'){
+						if(is_dot_last){
+							fprintf(stderr, "Error: Exponent immediately afer dot\n");
+							free(token);
+							free(str);
+							print_error(LEXICAL_ERROR);
+						}
 						e_last_char = true;
 					}else{
 						e_last_char = false;
@@ -345,6 +353,16 @@ Token* get_token(){
 						is_dot_last = true;
 					}else{
 						is_dot_last = false;
+					}
+					if(current_char == '-'){
+						is_last_minus = true;
+					}else{
+						is_last_minus = false;
+					}
+					if(current_char == '+'){
+						is_last_plus = true;
+					}else{
+						is_last_plus = false;
 					}
 					break;
 				}
