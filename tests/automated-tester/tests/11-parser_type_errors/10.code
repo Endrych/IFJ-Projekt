@@ -1,0 +1,12 @@
+'Nepravdivostni hodnota v do while -> SEMANTIC_TYPE_ERROR (4) 
+
+scope
+dim scope_var as double
+
+do while (!"True") 
+    scope_var = scope_var+1
+loop
+
+end scope
+
+

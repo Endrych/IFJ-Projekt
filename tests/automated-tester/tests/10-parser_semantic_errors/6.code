@@ -1,0 +1,7 @@
+' Pouziti nedefinovane promenne -> SEMANTIC_ERROR (3)
+
+scope
+print scope_var; !"\n";
+end scope
+
+
