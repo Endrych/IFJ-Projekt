@@ -1,0 +1,13 @@
+'Asc 
+
+Scope
+	Dim s As String
+	Dim i As Integer
+	Dim ascii As Integer
+	
+	s = !"Hello World!"
+	i = 6
+	ascii = Asc(s, i)
+	print ascii;
+End Scope
+
