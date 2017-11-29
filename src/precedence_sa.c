@@ -53,6 +53,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
     tStack *s = (tStack*) malloc(sizeof(struct Stack));
     if(s == NULL){
         fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+        stackDestruct(s);
         dispose_global();
     }
     stackInit(s);
@@ -72,15 +73,11 @@ PrecendentOutput * precedence_analysis(Token* last_token){
         }
         
         int operation = precedence_operation(token,current);
-        if(operation == -1){
-            out->ReturnToken = current;
-            out->StatusCode = SEMANTIC_ERROR;
-            return out;
-        }
-        else if(operation == 0){
+        if(operation == 0){
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
                 fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                stackDestruct(s);
                 dispose_global();
             }
             data->Type = type_token;
@@ -92,6 +89,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
             SData *data = malloc(sizeof(SData));
             if(data == NULL){
                 fprintf(stderr, "%s\n", COMPILER_MESSAGE);
+                stackDestruct(s);
                 dispose_global();
             }
             data->Type = type_token;
@@ -100,12 +98,7 @@ PrecendentOutput * precedence_analysis(Token* last_token){
         }
         else if(operation == 2){
             int rule = findRule(s);
-            if( rule == -1){
-                out->ReturnToken = current;
-                out->StatusCode = SEMANTIC_ERROR;
-                return out;
-            }
-            else if(rule >= 7 && rule <= 12){
+            if(rule >= 7 && rule <= 12){
                 logical = true;
             }
             continue;
@@ -201,13 +194,11 @@ int precedence_operation(Token* stack_token,Token* lexical_token){
     }
     
     if(index0 == -1 || index1 == -1){
-        fprintf(stderr,"SYNTAX ERROR\n");
-        exit(SYNTAX_ERROR);
+        print_error(SYNTAX_ERROR);
     }
     int oper = precedence_table[index0][index1];
     if(oper == -1){
-        fprintf(stderr,"SYNTAX ERROR\n");
-        exit(SYNTAX_ERROR);
+        print_error(SYNTAX_ERROR);
     }
     return oper;
 }
@@ -277,13 +268,11 @@ int findRule(tStack * s){
                         state = 3;
                     }
                     else{
-                        fprintf(stderr,"SYNTAX ERROR\n");
-                        exit(SYNTAX_ERROR);
+                        print_error(SYNTAX_ERROR);
                     }
                 }
                 else{
-                    fprintf(stderr,"SYNTAX ERROR\n");
-                    exit(SYNTAX_ERROR);
+                    print_error(SYNTAX_ERROR);
                 }
                 break;
             case 1:
@@ -334,13 +323,13 @@ int findRule(tStack * s){
                     }
                     else{
                         fprintf(stderr,"SYNTAX ERROR: Wrong operator\n");
-                        exit(SYNTAX_ERROR);
+                        print_error(SYNTAX_ERROR);
                     }
                     oper = data->Atr.Token->atribute.operator_value;
                 }
                 else{
                     fprintf(stderr,"SYNTAX ERROR: Missing operator\n");
-                    exit(SYNTAX_ERROR);
+                    print_error(SYNTAX_ERROR);
                 }
                 break;
             case 2:
@@ -357,8 +346,7 @@ int findRule(tStack * s){
                     }
                 }
                 else{
-                    fprintf(stderr,"SYNTAX ERROR\n");
-                    exit(SYNTAX_ERROR);
+                    print_error(SYNTAX_ERROR);
                 }
                 break;
             case 3:
@@ -419,13 +407,11 @@ int findRule(tStack * s){
                                 if(oper == op_add || oper == op_lesser || oper == op_greater || oper == op_lesser_equal || oper == op_greater_equal || oper == op_assign || oper == op_not_equal )
                                     newData->DataType = type_str;
                                 else{
-                                    fprintf(stderr,"SEMANTIC ERROR\n");
-                                    exit(SEMANTIC_ERROR);
+                                    print_error(SEMANTIC_TYPE_ERROR);
                                 }
                             }
                             else{
-                                fprintf(stderr,"SEMANTIC ERROR\n");
-                                exit(SEMANTIC_ERROR);
+                                 print_error(SEMANTIC_TYPE_ERROR);
                             }
                         }
                         else if(oper == op_division_int){
@@ -442,13 +428,11 @@ int findRule(tStack * s){
                                     newData->DataType = type_int;
                             }
                             else{
-                                fprintf(stderr,"SEMANTIC ERROR\n");
-                                exit(SEMANTIC_ERROR);
+                                 print_error(SEMANTIC_TYPE_ERROR);
                             }
                         }
                         else{
-                            fprintf(stderr,"SEMANTIC ERROR\n");
-                            exit(SEMANTIC_ERROR);
+                             print_error(SYNTAX_ERROR);
                         }
                         newData->Atr.Leaf = make_tree(leaf2,leaf1,aData);
                     }
@@ -459,17 +443,15 @@ int findRule(tStack * s){
                     continue;
                 }
                 else{
-                    fprintf(stderr,"SEMANTIC ERROR\n");
-                    exit(SEMANTIC_ERROR);
+                   print_error(SYNTAX_ERROR);
                 }
                 break;
             case 4:
                 if(data->Atr.Token->type == type_operator && data->Atr.Token->atribute.operator_value == op_bracket){
-                       state = 3;
+                    state = 3;
                 }
                 else{
-                    fprintf(stderr,"SYNTAX ERROR\n");
-                    exit(SYNTAX_ERROR);
+                    print_error(SYNTAX_ERROR);
                 }
                 break;
         }
