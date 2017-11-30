@@ -1,2 +1,12 @@
 Scope
+
+Dim a as double = 100.1e+4
+dim b as double = 100.1e-4
+
+if (a + b - a*b) > a*b then
+    print !"1";
+else
+    print !"2";
+end if
+
 End Scope

@@ -1,2 +1,10 @@
 Scope
+
+dim a as integer = 1
+
+do While (1 + a)*a < 1000
+    print a;
+    a = a + 1
+loop 
+
 End Scope
