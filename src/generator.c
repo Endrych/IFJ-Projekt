@@ -334,6 +334,7 @@ char * generate_expression(ATLeaf *tree){
                 else if(current->data.type == at_tsitem){
                     current->processed = true;
                     item_ts = current->data.Atr.tsItem->key;
+                   
                     fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                     return id;
                 }             
@@ -415,6 +416,14 @@ char * generate_expression(ATLeaf *tree){
                         fprintf(stdout, "EQS\n");
                     }
                     else if(current->data.Atr.op_value == op_add){
+                        if(current->left->data.Atr.tsItem->type == type_variable &&
+                        current->right->data.Atr.tsItem->type == type_variable){
+                            if(current->left->data.Atr.tsItem->type_strct.variable->type == type_str &&
+                            current->right->data.Atr.tsItem->type_strct.variable->type == type_str){
+                                isString = true;
+                            }
+                        }
+
                         if(isString){
                             char * help1 = generate_name(gt_variable);
                             char * help2 = generate_name(gt_variable);
