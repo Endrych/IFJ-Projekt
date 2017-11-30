@@ -691,6 +691,15 @@ int Stat()
 		case type_id:
 			
 			symtab_item = symtab_search(symtab, token);
+			// id musi byt deklarovan
+			if (symtab_item == NULL) {
+				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
+				return SEMANTIC_ERROR;
+			}
+			if (symtab_item->type == type_function) {
+				fprintf(stderr, "ERROR: Use of function identifier where variable was expected\n");
+				return SEMANTIC_ERROR;
+			}
 			
 			symtab_item_left = symtab_item;
 			// __ = __
@@ -702,15 +711,6 @@ int Stat()
 			if (token->atribute.int_value != op_assign) {
 				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
 				return SYNTAX_ERROR;
-			}
-			// id musi byt deklarovan
-			if (symtab_item == NULL) {
-				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
-				return SEMANTIC_ERROR;
-			}
-			if (symtab_item->type == type_function) {
-				fprintf(stderr, "ERROR: Use of function identifier where variable was expected\n");
-				return SEMANTIC_ERROR;
 			}
 
 			ATQItem* qitem;
