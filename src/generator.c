@@ -68,8 +68,7 @@ void generate_program(ATQueue *queue){
         else if(type == gt_main)
             generate_main((ATQueue*)value.at_queue);
         else{
-            printf("COMPILER ERROR\n");
-            exit(COMPILER_ERROR);
+            dispose_global();
         }
         queRemove(queue);
     }
@@ -120,6 +119,7 @@ void generate_assign(Tsymtab_item* id, ATLeaf * expr){
 }
 
 void generate_input(Tsymtab_item * id){
+    fprintf(stdout,"WRITE string@?\\032\n");
     if(id->type_strct.variable->type == type_int){
         fprintf(stdout, "READ LF@%s int\n",id->key);  
     }
@@ -634,6 +634,7 @@ void generate_SubStr()
     fprintf(stdout, "MOVE LF@tmplen int@0\n");
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
     fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
+    fprintf(stdout,"ADD LF@tmplen LF@tmplen int@1\n");
     fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
     
     fprintf(stdout, "PUSHS LF@i\n");
@@ -653,10 +654,10 @@ void generate_SubStr()
     fprintf(stdout, "LTS\n");
     fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "JUMPIFEQ $SubStrReturnRest bool@true LF@result\n");
-
+/*
     fprintf(stdout, "STRLEN LF@tmplen LF@s\n");
     fprintf(stdout, "SUB LF@tmplen LF@tmplen LF@i\n");
-
+*/
     fprintf(stdout, "PUSHS LF@tmplen\n");
     fprintf(stdout, "PUSHS LF@n\n");
     fprintf(stdout, "LTS\n");
@@ -717,6 +718,7 @@ void generate_Asc()
     fprintf(stdout, "ORS\n");
     fprintf(stdout, "POPS LF@result\n");
     fprintf(stdout, "JUMPIFEQ $asc$epilog bool@true LF@result\n");
+    fprintf(stdout, "SUB LF@i LF@i int@1\n");
     fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
     fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
     fprintf(stdout, "LABEL $asc$epilog\n");
