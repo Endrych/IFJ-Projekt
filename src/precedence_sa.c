@@ -25,7 +25,7 @@ static int precedence_table[][15] = {
                                         {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                         {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
                                         {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
-                                        {2,2,2,2,2,2,2,2,2,2,2,1,2,1,2},
+                                        {2,2,1,1,1,2,2,2,2,2,2,1,2,1,2},
                                         {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
                                         {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
                                         {1,1,1,1,1,-1,-1,-1,-1,-1,-1,1,2,1,2},
@@ -255,11 +255,14 @@ int findRule(tStack * s){
                     else if(data->Atr.Token->type == type_id){
                         Tsymtab_item * item = symtab_search(symtab,data->Atr.Token);
                         if(item != NULL){
+                            if(item->type == type_function){
+                                print_error(SYNTAX_ERROR);
+                            }
                             dataType = item->type_strct.variable->type;
                         }
                         else{
                             fprintf(stderr,"SEMANTIC ERROR: Variable %s is not declared\n", get_string(data->Atr.Token->atribute.int_value));
-                            exit(SEMANTIC_ERROR);
+                            print_error(SEMANTIC_ERROR);
                         }
                         aData.type = at_tsitem;
                         aData.Atr.tsItem = item;
@@ -422,7 +425,7 @@ int findRule(tStack * s){
                                     leaf2 = make_tree(leaf2,NULL,cData);
                                     leaf1 = make_tree(leaf1,NULL,cData);
                                     leaf2 = make_tree(leaf2,leaf1,aData);
-                                    cData.Atr.type_cast = Double2Integer;
+                                    cData.Atr.type_cast = Double2Integer1;
                                     leaf1 = NULL;
                                     aData = cData;
                                     newData->DataType = type_int;
@@ -433,7 +436,7 @@ int findRule(tStack * s){
                                 cData.Atr.type_cast = Integer2Double;
                                 leaf2 = make_tree(leaf2,NULL,cData);
                                 leaf2 = make_tree(leaf2,leaf1,aData);
-                                cData.Atr.type_cast = Double2Integer;
+                                cData.Atr.type_cast = Double2Integer1;
                                 leaf1 = NULL;
                                 aData = cData;
                                 newData->DataType = type_int;
@@ -444,7 +447,7 @@ int findRule(tStack * s){
                                 cData.Atr.type_cast = Integer2Double;
                                 leaf1 = make_tree(leaf1,NULL,cData);
                                 leaf2 = make_tree(leaf2,leaf1,aData);
-                                cData.Atr.type_cast = Double2Integer;
+                                cData.Atr.type_cast = Double2Integer1;
                                 leaf1 = NULL;
                                 aData = cData;
                                 newData->DataType = type_int;

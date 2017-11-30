@@ -61,8 +61,12 @@ Token* get_token(){
 	int size = 10;  //udelat konstantu
 	char *str;
 	char current_char = '\0';
-	char lowering;					
-	bool e_present,dot_present = false;
+	char lowering;			
+	bool is_last_minus = false;
+	bool is_last_plus = false;
+	bool is_dot_last = false;		
+	bool e_present = false;
+	bool dot_present = false;
 	bool e_last_char = false;
 	bool esc_active = false;
 	bool first_is_0 = false;
@@ -208,6 +212,9 @@ Token* get_token(){
 					state = _START;
 					prev_char = '\0';
 					break;
+				}else if(current_char == EOF){
+					free(token);
+					print_error(LEXICAL_ERROR);
 				}
 				prev_char = current_char;				
 				break;
@@ -219,7 +226,8 @@ Token* get_token(){
 				current_char == '-' || current_char == '/' ||
 				current_char == '\\' || current_char == '*' ||
 				current_char == ';' || current_char == ','||
-				current_char == ')' || current_char == '('){
+				current_char == ')' || current_char == '(' || 
+				current_char == '\''){
 					int convert;
 					convert = atoi(str);
 					state = _START;
@@ -231,8 +239,8 @@ Token* get_token(){
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
 				(current_char != '.' && current_char != 'e' && 
 				current_char != 'E')){
-					fprintf(stderr, "Error: not a number\n");
-					free(token);
+					fprintf(stderr, "Error1: not a number\n");
+ 					free(token);
 					free(str);
 					print_error(LEXICAL_ERROR);
 				}
@@ -241,6 +249,7 @@ Token* get_token(){
 				current_char == 'E'){
 					if(current_char == '.'){
 						dot_present = true;
+						is_dot_last = true;
 					}else if(current_char == 'e' || current_char == 'E'){
 						e_present = true;
 						e_last_char = true;
@@ -283,7 +292,13 @@ Token* get_token(){
 				current_char == '/' || current_char == '\\' 
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
-				current_char == '('){
+				current_char == '(' || current_char == '\''){
+					if(is_dot_last || e_last_char || is_last_minus || is_last_plus){
+						fprintf(stderr, "Error: Fractional-part is empty\n");
+						free(token);
+						free(str);
+						print_error(LEXICAL_ERROR);
+					}
 					double convert;
 					convert = strtof(str, NULL);  // Zkusit strtof
 					token->type = type_double;
@@ -300,8 +315,7 @@ Token* get_token(){
 					free(str);
 					print_error(LEXICAL_ERROR);
 				}else{
-					if((current_char == 'E' || current_char == 'e')&&
-					e_present){
+					if((current_char == 'E' || current_char == 'e')&& e_present){
 						fprintf(stderr, "Error2: Not a number\n");
 						free(token);
 						free(str);
@@ -329,9 +343,31 @@ Token* get_token(){
 					str[length] = current_char;
 					length++;
 					if(current_char == 'e' || current_char == 'E'){
+						if(is_dot_last){
+							fprintf(stderr, "Error: Exponent immediately afer dot\n");
+							free(token);
+							free(str);
+							print_error(LEXICAL_ERROR);
+						}
+						e_present = true;
 						e_last_char = true;
 					}else{
 						e_last_char = false;
+					}
+					if(current_char == '.'){
+						is_dot_last = true;
+					}else{
+						is_dot_last = false;
+					}
+					if(current_char == '-'){
+						is_last_minus = true;
+					}else{
+						is_last_minus = false;
+					}
+					if(current_char == '+'){
+						is_last_plus = true;
+					}else{
+						is_last_plus = false;
 					}
 					break;
 				}
@@ -354,7 +390,7 @@ Token* get_token(){
 					// free(str);
 				}	
 			case _START_STRING:
-				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
+				if((current_char != '\"' && current_char != '\n' && current_char != EOF) || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
 					if(last_string_char == '\\'){
 						_last_backslash = true;
@@ -548,7 +584,7 @@ Token* get_token(){
 						break;
 					}
 					
-				}else if(current_char == '\n'){
+				}else if(current_char == '\n' || current_char == EOF){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
 					free(token);
 					free(str);
@@ -600,7 +636,8 @@ Token* get_token(){
 				current_char == '\\' || current_char == '*' ||
 				current_char == '+' || current_char == '-' ||
 				current_char == ')' || current_char == '(' ||
-				current_char == ';' || current_char == ','){
+				current_char == ';' || current_char == ',' ||
+				current_char == '\''){
 					if(current_char == '\n'){
 						last_char = '\n';
 					}else if(current_char == EOF){
