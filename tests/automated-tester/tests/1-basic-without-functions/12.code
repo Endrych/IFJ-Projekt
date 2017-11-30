@@ -1,0 +1,7 @@
+Scope
+
+dim x as string
+x = !"Funguje dobre"
+print x;
+
+End Scope
