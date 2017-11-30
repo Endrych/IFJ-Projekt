@@ -118,7 +118,33 @@ RETURN
 LABEL $$main
 CREATEFRAME
 PUSHFRAME
+DEFVAR LF@s
+MOVE LF@s string@
+DEFVAR LF@i
+MOVE LF@i int@0
+DEFVAR LF@n
+MOVE LF@n int@0
+DEFVAR LF@result
+MOVE LF@result string@
 DEFVAR LF@&a
-MOVE LF@&a string@FGGHGHHghjhhjhj\032\056\032\009\032ahoj\032\010\032iloilailaeiii
-WRITE LF@&a
+MOVE LF@&a string@Ahoj\032kamo\010Jak\032to\032jde?\010
+MOVE LF@s LF@&a
+DEFVAR LF@&b
+MOVE LF@&b int@11
+MOVE LF@i LF@&b
+DEFVAR LF@&c
+MOVE LF@&c int@12
+MOVE LF@n LF@&c
+CREATEFRAME
+DEFVAR TF@s
+MOVE TF@s LF@s
+DEFVAR TF@i
+MOVE TF@i LF@i
+DEFVAR TF@n
+MOVE TF@n LF@n
+CALL $substr
+MOVE LF@result TF@%retval
+DEFVAR LF@&d
+MOVE LF@&d LF@result
+WRITE LF@&d
 POPFRAME
