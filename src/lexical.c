@@ -212,6 +212,9 @@ Token* get_token(){
 					state = _START;
 					prev_char = '\0';
 					break;
+				}else if(current_char == EOF){
+					free(token);
+					print_error(LEXICAL_ERROR);
 				}
 				prev_char = current_char;				
 				break;
@@ -387,7 +390,7 @@ Token* get_token(){
 					// free(str);
 				}	
 			case _START_STRING:
-				if((current_char != '\"' && current_char != '\n') || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
+				if((current_char != '\"' && current_char != '\n' && current_char != EOF) || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
 					if(last_string_char == '\\'){
 						_last_backslash = true;
