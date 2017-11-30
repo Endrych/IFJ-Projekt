@@ -1,0 +1,43 @@
+# 2017-11-30 22:57:00.120320
+# SECTION: 66_errors
+# TEST: 276
+# INFO: Function with keyword
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Missing identifier in function declaration
+# 
+# SYNTAX_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: declare function scope() as integer
+#   2:  function scope() as integer 
+#   3:  end function
+#   4: scope
+#   5: end scope
+
+########################################
+
+# ---
+

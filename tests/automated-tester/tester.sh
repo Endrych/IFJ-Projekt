@@ -30,7 +30,7 @@ elif [ $# -eq 2 ];then
         printf "Vami zadany argument \"$ARGUMENT\" neni pozice souboru\n"
     else
         restoreBack
-        FOLDER_NAME=$(ls ./tests | grep $FOLDER_NUMBER-)
+        FOLDER_NAME=$(ls ./tests | grep $FOLDER_NUMBER- | sort -n | head -n 1)
         printf "____________\n" >> results.txt
         printf "$FOLDER_NAME:\n" >> results.txt
         printf "¯¯¯¯¯¯¯¯¯¯¯¯\n" >> results.txt
@@ -64,7 +64,7 @@ elif [ "$#" -eq 1 ]; then
         restoreBack
         while [ $FOLDER_TOITERATE -le $NUMBER_OF_FOLDERS ]
         do
-            FOLDER_NAME=$(ls ./tests | grep $FOLDER_TOITERATE-)
+            FOLDER_NAME=$(ls ./tests | grep $FOLDER_TOITERATE- | sort -n |  head -n 1)
             printf "____________\n" >> results.txt
             printf "$FOLDER_NAME:\n" >> results.txt
             printf "¯¯¯¯¯¯¯¯¯¯¯¯\n" >> results.txt

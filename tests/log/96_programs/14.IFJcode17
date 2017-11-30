@@ -1,0 +1,645 @@
+# 2017-11-30 22:57:02.231768
+# SECTION: 96_programs
+# TEST: 14
+# INFO: Reverse string function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 210 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 211 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 212 with following arguments:
+# Executing instruction: IDEFVAR at line: 213 with following arguments:
+# Dest: LF@s
+# Executing instruction: IMOVE at line: 214 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@s()
+# Executing instruction: IWRITE at line: 215 with following arguments:
+# Arg1: Const@=? (string)
+# Executing instruction: IREAD at line: 216 with following arguments:
+# Dest: LF@s=(string)
+# Executing instruction: ICREATEFRAME at line: 217 with following arguments:
+# Executing instruction: IDEFVAR at line: 218 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 219 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: TF@s()
+# Executing instruction: ICALL at line: 220 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 119 with following arguments:
+# Executing instruction: IDEFVAR at line: 120 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 121 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 122 with following arguments:
+# Dest: LF@str_len
+# Executing instruction: IMOVE at line: 123 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@str_len()
+# Executing instruction: ICREATEFRAME at line: 124 with following arguments:
+# Executing instruction: IDEFVAR at line: 125 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: TF@s()
+# Executing instruction: ICALL at line: 127 with following arguments:
+# Executing instruction: ILABEL at line: 3 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: ISTRLEN at line: 7 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 8 with following arguments:
+# Executing instruction: IPOPFRAME at line: 9 with following arguments:
+# Executing instruction: IRETURN at line: 10 with following arguments:
+# Executing instruction: IMOVE at line: 128 with following arguments:
+# Arg1: TF@%retval=19(int)
+# Dest: LF@str_len=0(int)
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: LF@reversed
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@reversed()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: LF@substr_res
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@substr_res()
+# Executing instruction: IDEFVAR at line: 133 with following arguments:
+# Dest: LF@str_len_i
+# Executing instruction: IMOVE at line: 134 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@str_len_i()
+# Executing instruction: IDEFVAR at line: 135 with following arguments:
+# Dest: LF@i
+# Executing instruction: IMOVE at line: 136 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@i()
+# Executing instruction: ILABEL at line: 137 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 138 with following arguments:
+# Executing instruction: IDEFVAR at line: 139 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 140 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 141 with following arguments:
+# Dest: TF@str_len
+# Executing instruction: IMOVE at line: 142 with following arguments:
+# Arg1: LF@str_len=19(int)
+# Dest: TF@str_len()
+# Executing instruction: IDEFVAR at line: 143 with following arguments:
+# Dest: TF@reversed
+# Executing instruction: IMOVE at line: 144 with following arguments:
+# Arg1: LF@reversed=(string)
+# Dest: TF@reversed()
+# Executing instruction: IDEFVAR at line: 145 with following arguments:
+# Dest: TF@substr_res
+# Executing instruction: IMOVE at line: 146 with following arguments:
+# Arg1: LF@substr_res=(string)
+# Dest: TF@substr_res()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: TF@str_len_i
+# Executing instruction: IMOVE at line: 148 with following arguments:
+# Arg1: LF@str_len_i=0(int)
+# Dest: TF@str_len_i()
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@i=0(int)
+# Dest: TF@i()
+# Executing instruction: IPUSHFRAME at line: 151 with following arguments:
+# Executing instruction: IDEFVAR at line: 152 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 153 with following arguments:
+# Arg1: LF@i=0(int)
+# Dest: LF@&a()
+# Executing instruction: IPUSHS at line: 154 with following arguments:
+# Arg1: LF@&a=0(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 155 with following arguments:
+# Arg1: LF@str_len=19(int)
+# Dest: LF@&a=0(int)
+# Executing instruction: IPUSHS at line: 156 with following arguments:
+# Arg1: LF@&a=19(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 157 with following arguments:
+# Arg1: Stack@=0(int)
+# Arg2: Stack@=19(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 158 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&a=19(int)
+# Executing instruction: IJUMPIFNEQ at line: 159 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&a=true(bool)
+# Executing instruction: IDEFVAR at line: 160 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 161 with following arguments:
+# Arg1: LF@str_len=19(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 162 with following arguments:
+# Arg1: LF@&b=19(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@i=0(int)
+# Dest: LF@&b=19(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 165 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 166 with following arguments:
+# Arg1: Stack@=19(int)
+# Dest: LF@&b=0(int)
+# Executing instruction: IMOVE at line: 167 with following arguments:
+# Arg1: LF@&b=19(int)
+# Dest: LF@str_len_i=0(int)
+# Executing instruction: ICREATEFRAME at line: 168 with following arguments:
+# Executing instruction: IDEFVAR at line: 169 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 170 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 171 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 172 with following arguments:
+# Arg1: LF@str_len_i=19(int)
+# Dest: TF@i()
+# Executing instruction: IDEFVAR at line: 173 with following arguments:
+# Dest: TF@n
+# Executing instruction: IMOVE at line: 174 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@n()
+# Executing instruction: ICALL at line: 175 with following arguments:
+# Executing instruction: ILABEL at line: 11 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 12 with following arguments:
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 15 with following arguments:
+# Dest: LF@tmp1
+# Executing instruction: IDEFVAR at line: 16 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 17 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp1()
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp2()
+# Executing instruction: ISUB at line: 19 with following arguments:
+# Arg1: LF@i=19(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=0(int)
+# Executing instruction: IDEFVAR at line: 20 with following arguments:
+# Dest: LF@length
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@length()
+# Executing instruction: IDEFVAR at line: 22 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 24 with following arguments:
+# Dest: LF@tmplen
+# Executing instruction: IMOVE at line: 25 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmplen()
+# Executing instruction: ISTRLEN at line: 26 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: ISUB at line: 27 with following arguments:
+# Arg1: LF@tmplen=19(int)
+# Arg2: LF@i=19(int)
+# Dest: LF@tmplen=19(int)
+# Executing instruction: IADD at line: 28 with following arguments:
+# Arg1: LF@tmplen=0(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: IJUMPIFEQ at line: 29 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Arg2: LF@tmp2=(string)
+# Executing instruction: IPUSHS at line: 30 with following arguments:
+# Arg1: LF@i=19(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 31 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 32 with following arguments:
+# Arg1: LF@i=19(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 33 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 34 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 35 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 36 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 37 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 38 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 39 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 40 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 41 with following arguments:
+# Arg1: LF@n=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 42 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 43 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 44 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 45 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISTRLEN at line: 46 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: LF@tmplen=1(int)
+# Executing instruction: ISUB at line: 47 with following arguments:
+# Arg1: LF@tmplen=19(int)
+# Arg2: LF@i=19(int)
+# Dest: LF@tmplen=19(int)
+# Executing instruction: IADD at line: 48 with following arguments:
+# Arg1: LF@tmplen=0(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: IPUSHS at line: 49 with following arguments:
+# Arg1: LF@tmplen=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 50 with following arguments:
+# Arg1: LF@n=1(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 51 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 52 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 53 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IMOVE at line: 54 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmplen=1(int)
+# Executing instruction: ISTRLEN at line: 55 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: ISUB at line: 56 with following arguments:
+# Arg1: LF@tmplen=19(int)
+# Arg2: LF@i=19(int)
+# Dest: LF@tmplen=19(int)
+# Executing instruction: ILABEL at line: 57 with following arguments:
+# Executing instruction: IGETCHAR at line: 58 with following arguments:
+# Arg1: LF@s=whatareversedstring(string)
+# Arg2: LF@tmp1=18(int)
+# Dest: LF@tmp2=(string)
+# Executing instruction: ICONCAT at line: 59 with following arguments:
+# Arg1: LF@%retval=(string)
+# Arg2: LF@tmp2=g(string)
+# Dest: LF@%retval=(string)
+# Executing instruction: IADD at line: 60 with following arguments:
+# Arg1: LF@tmp1=18(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=18(int)
+# Executing instruction: ISTRLEN at line: 61 with following arguments:
+# Arg1: LF@%retval=g(string)
+# Dest: LF@length=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 62 with following arguments:
+# Arg1: LF@length=1(int)
+# Arg2: LF@n=1(int)
+# Executing instruction: IJUMP at line: 63 with following arguments:
+# Executing instruction: ILABEL at line: 73 with following arguments:
+# Executing instruction: IPOPFRAME at line: 74 with following arguments:
+# Executing instruction: IRETURN at line: 75 with following arguments:
+# Executing instruction: IMOVE at line: 176 with following arguments:
+# Arg1: TF@%retval=g(string)
+# Dest: LF@substr_res=(string)
+# Executing instruction: IDEFVAR at line: 177 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 178 with following arguments:
+# Arg1: LF@reversed=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 179 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 180 with following arguments:
+# Arg1: LF@substr_res=g(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 181 with following arguments:
+# Arg1: LF@&c=g(string)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 182 with following arguments:
+# Arg1: Stack@=(string)
+# Arg2: Stack@=g(string)
+# Dest: Stack@()
+# Error at line: 182
+# Wrong operand type!
+# 
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
+
+# -? gnirtsdesreveratahw
+# +? 
+
+# INTERPRETER STDIN: 
+# whatareversedstring
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 53
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: 'Reverse string function
+#   2: 
+#   3: function Reverse_str(s as string) as string
+#   4: 	dim str_len as integer
+#   5: 	str_len = length(s)
+#   6: 	dim reversed as string
+#   7: 	dim substr_res as string
+#   8: 	dim str_len_i as integer
+#   9: 
+#  10: 	dim i as integer
+#  11: 	do while i < str_len
+#  12: 		str_len_i = str_len - i
+#  13: 		substr_res = substr(s, str_len_i, 1)
+#  14: 	   	reversed = reversed + substr_res
+#  15: 	   	i = i + 1
+#  16: 	loop
+#  17: 	
+#  18: 	return reversed
+#  19: end function
+#  20: 
+#  21: scope
+#  22:     dim s as string
+#  23:     input s
+#  24:     s = reverse_str(s)
+#  25:     print s;
+#  26: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/225
+JUMP $$main                                                                     #     2/225
+LABEL $length                                                                   #     3/225
+PUSHFRAME                                                                       #     4/225
+DEFVAR LF@%retval                                                               #     5/225
+MOVE LF@%retval int@0                                                           #     6/225
+STRLEN LF@%retval LF@s                                                          #     7/225
+LABEL $length$epilog                                                            #     8/225
+POPFRAME                                                                        #     9/225
+RETURN                                                                          #    10/225
+LABEL $substr                                                                   #    11/225
+PUSHFRAME                                                                       #    12/225
+DEFVAR LF@%retval                                                               #    13/225
+MOVE LF@%retval string@                                                         #    14/225
+DEFVAR LF@tmp1                                                                  #    15/225
+DEFVAR LF@tmp2                                                                  #    16/225
+MOVE LF@tmp1 int@0                                                              #    17/225
+MOVE LF@tmp2 string@                                                            #    18/225
+SUB LF@tmp1 LF@i int@1                                                          #    19/225
+DEFVAR LF@length                                                                #    20/225
+MOVE LF@length int@0                                                            #    21/225
+DEFVAR LF@result                                                                #    22/225
+MOVE LF@result bool@false                                                       #    23/225
+DEFVAR LF@tmplen                                                                #    24/225
+MOVE LF@tmplen int@0                                                            #    25/225
+STRLEN LF@tmplen LF@s                                                           #    26/225
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/225
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/225
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/225
+PUSHS LF@i                                                                      #    30/225
+PUSHS int@0                                                                     #    31/225
+PUSHS LF@i                                                                      #    32/225
+PUSHS int@0                                                                     #    33/225
+EQS                                                                             #    34/225
+POPS LF@result                                                                  #    35/225
+LTS                                                                             #    36/225
+PUSHS LF@result                                                                 #    37/225
+ORS                                                                             #    38/225
+POPS LF@result                                                                  #    39/225
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/225
+PUSHS LF@n                                                                      #    41/225
+PUSHS int@0                                                                     #    42/225
+LTS                                                                             #    43/225
+POPS LF@result                                                                  #    44/225
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/225
+STRLEN LF@tmplen LF@s                                                           #    46/225
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/225
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/225
+PUSHS LF@tmplen                                                                 #    49/225
+PUSHS LF@n                                                                      #    50/225
+LTS                                                                             #    51/225
+POPS LF@result                                                                  #    52/225
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/225
+MOVE LF@tmplen int@0                                                            #    54/225
+STRLEN LF@tmplen LF@s                                                           #    55/225
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/225
+LABEL $SubStrFor                                                                #    57/225
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/225
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/225
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/225
+STRLEN LF@length LF@%retval                                                     #    61/225
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/225
+JUMP $substr$epilog                                                             #    63/225
+LABEL $SubStrReturn0                                                            #    64/225
+MOVE LF@%retval string@                                                         #    65/225
+JUMP $substr$epilog                                                             #    66/225
+LABEL $SubStrReturnRest                                                         #    67/225
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/225
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/225
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/225
+STRLEN LF@length LF@%retval                                                     #    71/225
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/225
+LABEL $substr$epilog                                                            #    73/225
+POPFRAME                                                                        #    74/225
+RETURN                                                                          #    75/225
+LABEL $asc                                                                      #    76/225
+PUSHFRAME                                                                       #    77/225
+DEFVAR LF@%retval                                                               #    78/225
+MOVE LF@%retval int@0                                                           #    79/225
+DEFVAR LF@result                                                                #    80/225
+MOVE LF@result bool@false                                                       #    81/225
+DEFVAR LF@tmp                                                                   #    82/225
+DEFVAR LF@tmp2                                                                  #    83/225
+MOVE LF@tmp string@                                                             #    84/225
+MOVE LF@tmp2 int@0                                                              #    85/225
+PUSHS LF@i                                                                      #    86/225
+PUSHS int@0                                                                     #    87/225
+PUSHS LF@i                                                                      #    88/225
+PUSHS int@0                                                                     #    89/225
+EQS                                                                             #    90/225
+POPS LF@result                                                                  #    91/225
+LTS                                                                             #    92/225
+PUSHS LF@result                                                                 #    93/225
+ORS                                                                             #    94/225
+POPS LF@result                                                                  #    95/225
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/225
+PUSHS LF@i                                                                      #    97/225
+STRLEN LF@tmp2 LF@s                                                             #    98/225
+PUSHS LF@tmp2                                                                   #    99/225
+GTS                                                                             #   100/225
+POPS LF@result                                                                  #   101/225
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/225
+SUB LF@i LF@i int@1                                                             #   103/225
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/225
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/225
+LABEL $asc$epilog                                                               #   106/225
+POPFRAME                                                                        #   107/225
+RETURN                                                                          #   108/225
+LABEL $chr                                                                      #   109/225
+PUSHFRAME                                                                       #   110/225
+DEFVAR LF@%retval                                                               #   111/225
+MOVE LF@%retval string@                                                         #   112/225
+DEFVAR LF@tmp                                                                   #   113/225
+MOVE LF@tmp string@                                                             #   114/225
+INT2CHAR LF@%retval LF@i                                                        #   115/225
+POPFRAME                                                                        #   116/225
+RETURN                                                                          #   117/225
+LABEL $reverse_str                                                              #   118/225
+PUSHFRAME                                                                       #   119/225
+DEFVAR LF@%retval                                                               #   120/225
+MOVE LF@%retval string@                                                         #   121/225
+DEFVAR LF@str_len                                                               #   122/225
+MOVE LF@str_len int@0                                                           #   123/225
+CREATEFRAME                                                                     #   124/225
+DEFVAR TF@s                                                                     #   125/225
+MOVE TF@s LF@s                                                                  #   126/225
+CALL $length                                                                    #   127/225
+MOVE LF@str_len TF@%retval                                                      #   128/225
+DEFVAR LF@reversed                                                              #   129/225
+MOVE LF@reversed string@                                                        #   130/225
+DEFVAR LF@substr_res                                                            #   131/225
+MOVE LF@substr_res string@                                                      #   132/225
+DEFVAR LF@str_len_i                                                             #   133/225
+MOVE LF@str_len_i int@0                                                         #   134/225
+DEFVAR LF@i                                                                     #   135/225
+MOVE LF@i int@0                                                                 #   136/225
+LABEL $a                                                                        #   137/225
+CREATEFRAME                                                                     #   138/225
+DEFVAR TF@s                                                                     #   139/225
+MOVE TF@s LF@s                                                                  #   140/225
+DEFVAR TF@str_len                                                               #   141/225
+MOVE TF@str_len LF@str_len                                                      #   142/225
+DEFVAR TF@reversed                                                              #   143/225
+MOVE TF@reversed LF@reversed                                                    #   144/225
+DEFVAR TF@substr_res                                                            #   145/225
+MOVE TF@substr_res LF@substr_res                                                #   146/225
+DEFVAR TF@str_len_i                                                             #   147/225
+MOVE TF@str_len_i LF@str_len_i                                                  #   148/225
+DEFVAR TF@i                                                                     #   149/225
+MOVE TF@i LF@i                                                                  #   150/225
+PUSHFRAME                                                                       #   151/225
+DEFVAR LF@&a                                                                    #   152/225
+MOVE LF@&a LF@i                                                                 #   153/225
+PUSHS LF@&a                                                                     #   154/225
+MOVE LF@&a LF@str_len                                                           #   155/225
+PUSHS LF@&a                                                                     #   156/225
+LTS                                                                             #   157/225
+POPS LF@&a                                                                      #   158/225
+JUMPIFNEQ $b bool@true LF@&a                                                    #   159/225
+DEFVAR LF@&b                                                                    #   160/225
+MOVE LF@&b LF@str_len                                                           #   161/225
+PUSHS LF@&b                                                                     #   162/225
+MOVE LF@&b LF@i                                                                 #   163/225
+PUSHS LF@&b                                                                     #   164/225
+SUBS                                                                            #   165/225
+POPS LF@&b                                                                      #   166/225
+MOVE LF@str_len_i LF@&b                                                         #   167/225
+CREATEFRAME                                                                     #   168/225
+DEFVAR TF@s                                                                     #   169/225
+MOVE TF@s LF@s                                                                  #   170/225
+DEFVAR TF@i                                                                     #   171/225
+MOVE TF@i LF@str_len_i                                                          #   172/225
+DEFVAR TF@n                                                                     #   173/225
+MOVE TF@n int@1                                                                 #   174/225
+CALL $substr                                                                    #   175/225
+MOVE LF@substr_res TF@%retval                                                   #   176/225
+DEFVAR LF@&c                                                                    #   177/225
+MOVE LF@&c LF@reversed                                                          #   178/225
+PUSHS LF@&c                                                                     #   179/225
+MOVE LF@&c LF@substr_res                                                        #   180/225
+PUSHS LF@&c                                                                     #   181/225
+ADDS                                                                            #   182/225
+POPS LF@&c                                                                      #   183/225
+MOVE LF@reversed LF@&c                                                          #   184/225
+DEFVAR LF@&d                                                                    #   185/225
+MOVE LF@&d LF@i                                                                 #   186/225
+PUSHS LF@&d                                                                     #   187/225
+MOVE LF@&d int@1                                                                #   188/225
+PUSHS LF@&d                                                                     #   189/225
+ADDS                                                                            #   190/225
+POPS LF@&d                                                                      #   191/225
+MOVE LF@i LF@&d                                                                 #   192/225
+POPFRAME                                                                        #   193/225
+MOVE LF@s TF@s                                                                  #   194/225
+MOVE LF@str_len TF@str_len                                                      #   195/225
+MOVE LF@reversed TF@reversed                                                    #   196/225
+MOVE LF@substr_res TF@substr_res                                                #   197/225
+MOVE LF@str_len_i TF@str_len_i                                                  #   198/225
+MOVE LF@i TF@i                                                                  #   199/225
+JUMP $a                                                                         #   200/225
+LABEL $b                                                                        #   201/225
+POPFRAME                                                                        #   202/225
+DEFVAR LF@&e                                                                    #   203/225
+MOVE LF@&e LF@reversed                                                          #   204/225
+MOVE LF@%retval LF@&e                                                           #   205/225
+JUMP $reverse_str$epilog                                                        #   206/225
+LABEL $reverse_str$epilog                                                       #   207/225
+POPFRAME                                                                        #   208/225
+RETURN                                                                          #   209/225
+LABEL $$main                                                                    #   210/225
+CREATEFRAME                                                                     #   211/225
+PUSHFRAME                                                                       #   212/225
+DEFVAR LF@s                                                                     #   213/225
+MOVE LF@s string@                                                               #   214/225
+WRITE string@?\032                                                              #   215/225
+READ LF@s string                                                                #   216/225
+CREATEFRAME                                                                     #   217/225
+DEFVAR TF@s                                                                     #   218/225
+MOVE TF@s LF@s                                                                  #   219/225
+CALL $reverse_str                                                               #   220/225
+MOVE LF@s TF@%retval                                                            #   221/225
+DEFVAR LF@&f                                                                    #   222/225
+MOVE LF@&f LF@s                                                                 #   223/225
+WRITE LF@&f                                                                     #   224/225
+POPFRAME                                                                        #   225/225
+

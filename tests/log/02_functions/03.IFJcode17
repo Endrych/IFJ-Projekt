@@ -1,0 +1,48 @@
+# 2017-11-30 22:56:36.480686
+# SECTION: 02_functions
+# TEST: 03
+# INFO: variable same name like function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Redefinition of variable bar used as function identifier
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' variable same name like function
+#   2: 
+#   3: function bar() as string
+#   4: end function 
+#   5: 
+#   6: scope
+#   7: 
+#   8: dim bar as integer
+#   9: 
+#  10: end scope
+
+########################################
+
+# ---
+

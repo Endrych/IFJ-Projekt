@@ -1,13 +1,11 @@
 'Asc 
 
 Scope
-	Dim s As String
-	Dim i As Integer
-	Dim ascii As Integer
-	
-	s = !"Hello World!"
-	i = 6
-	ascii = Asc(s, i)
-	print ascii;
+	Dim a As Double = 3.0
+	Dim i As Integer 
+	Dim j As Integer
+	i = asc(!"gzgfggffg", a)
+	j = asc(!"ERTZUG", 3.0)
+	print i; j;
 End Scope
 

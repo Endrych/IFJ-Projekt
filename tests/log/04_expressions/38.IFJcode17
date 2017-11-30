@@ -1,0 +1,921 @@
+# 2017-11-30 22:56:43.891302
+# SECTION: 04_expressions
+# TEST: 38
+# INFO: Variables, functions and too many integers and doubles and implicit conversion of return
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 143 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 144 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 145 with following arguments:
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: LF@ptaenhjwiyfaucgiijwvsaztwxdyes
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 148 with following arguments:
+# Arg1: Const@=23(int)
+# Dest: LF@&c()
+# Executing instruction: IMOVE at line: 149 with following arguments:
+# Arg1: LF@&c=23(int)
+# Dest: LF@ptaenhjwiyfaucgiijwvsaztwxdyes()
+# Executing instruction: IDEFVAR at line: 150 with following arguments:
+# Dest: LF@obqsdcoqqqfuejvttyynrogxrocasi
+# Executing instruction: IDEFVAR at line: 151 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&d()
+# Executing instruction: IMOVE at line: 153 with following arguments:
+# Arg1: LF@&d=2(int)
+# Dest: LF@obqsdcoqqqfuejvttyynrogxrocasi()
+# Executing instruction: IDEFVAR at line: 154 with following arguments:
+# Dest: LF@mlviooepzxvsgjmthaugywmmfmnfjd
+# Executing instruction: IDEFVAR at line: 155 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=55(int)
+# Dest: LF@&e()
+# Executing instruction: IMOVE at line: 157 with following arguments:
+# Arg1: LF@&e=55(int)
+# Dest: LF@mlviooepzxvsgjmthaugywmmfmnfjd()
+# Executing instruction: IDEFVAR at line: 158 with following arguments:
+# Dest: LF@aubkyyypgvstjpxmscurejjlisyesy
+# Executing instruction: IDEFVAR at line: 159 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: Const@=0.530949(double)
+# Dest: LF@&f()
+# Executing instruction: IMOVE at line: 161 with following arguments:
+# Arg1: LF@&f=0.530949(double)
+# Dest: LF@aubkyyypgvstjpxmscurejjlisyesy()
+# Executing instruction: IDEFVAR at line: 162 with following arguments:
+# Dest: LF@ibenbkevxltuupkbakucutnvywtvbh
+# Executing instruction: IDEFVAR at line: 163 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 164 with following arguments:
+# Arg1: Const@=6(int)
+# Dest: LF@&g()
+# Executing instruction: IMOVE at line: 165 with following arguments:
+# Arg1: LF@&g=6(int)
+# Dest: LF@ibenbkevxltuupkbakucutnvywtvbh()
+# Executing instruction: IDEFVAR at line: 166 with following arguments:
+# Dest: LF@zvlhaazerkuelpyqanvvzkxyhwmopo
+# Executing instruction: IDEFVAR at line: 167 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 168 with following arguments:
+# Arg1: Const@=0.411508(double)
+# Dest: LF@&h()
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&h=0.411508(double)
+# Dest: LF@zvlhaazerkuelpyqanvvzkxyhwmopo()
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@biwpjmqpzkuairjlyfkfdvumzpcwnk
+# Executing instruction: IDEFVAR at line: 171 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 172 with following arguments:
+# Arg1: Const@=0.577878(double)
+# Dest: LF@&i()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: LF@&i=0.577878(double)
+# Dest: LF@biwpjmqpzkuairjlyfkfdvumzpcwnk()
+# Executing instruction: IDEFVAR at line: 174 with following arguments:
+# Dest: LF@pvghbferyxnqklaztiygcllnylccff
+# Executing instruction: IDEFVAR at line: 175 with following arguments:
+# Dest: LF@&j
+# Executing instruction: IMOVE at line: 176 with following arguments:
+# Arg1: Const@=0.896043(double)
+# Dest: LF@&j()
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&j=0.896043(double)
+# Dest: LF@pvghbferyxnqklaztiygcllnylccff()
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@bjyhqvxmbabpvxuoxudghybtuebyoc
+# Executing instruction: IDEFVAR at line: 179 with following arguments:
+# Dest: LF@&k
+# Executing instruction: IMOVE at line: 180 with following arguments:
+# Arg1: Const@=5(int)
+# Dest: LF@&k()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@&k=5(int)
+# Dest: LF@bjyhqvxmbabpvxuoxudghybtuebyoc()
+# Executing instruction: IDEFVAR at line: 182 with following arguments:
+# Dest: LF@pzbdbfrixjxzkfwphncvinbequqxsr
+# Executing instruction: IDEFVAR at line: 183 with following arguments:
+# Dest: LF@&l
+# Executing instruction: IMOVE at line: 184 with following arguments:
+# Arg1: Const@=47(int)
+# Dest: LF@&l()
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&l=47(int)
+# Dest: LF@pzbdbfrixjxzkfwphncvinbequqxsr()
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@wjfsauimiiabbxhkzyzhjpgbspzrgj
+# Executing instruction: IDEFVAR at line: 187 with following arguments:
+# Dest: LF@&m
+# Executing instruction: IMOVE at line: 188 with following arguments:
+# Arg1: Const@=3(int)
+# Dest: LF@&m()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: LF@&m=3(int)
+# Dest: LF@wjfsauimiiabbxhkzyzhjpgbspzrgj()
+# Executing instruction: IDEFVAR at line: 190 with following arguments:
+# Dest: LF@qvzzzzzseesvnxnkthilenpahvsjtp
+# Executing instruction: IDEFVAR at line: 191 with following arguments:
+# Dest: LF@&n
+# Executing instruction: IMOVE at line: 192 with following arguments:
+# Arg1: Const@=32(int)
+# Dest: LF@&n()
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&n=32(int)
+# Dest: LF@qvzzzzzseesvnxnkthilenpahvsjtp()
+# Executing instruction: IDEFVAR at line: 194 with following arguments:
+# Dest: LF@vncjhdmisjpotqnogczyoobttsbewt
+# Executing instruction: IDEFVAR at line: 195 with following arguments:
+# Dest: LF@&o
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: Const@=0.932755(double)
+# Dest: LF@&o()
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: LF@&o=0.932755(double)
+# Dest: LF@vncjhdmisjpotqnogczyoobttsbewt()
+# Executing instruction: IDEFVAR at line: 198 with following arguments:
+# Dest: LF@jnwjncqojvrlaalbaxjgcaxbtxafeg
+# Executing instruction: IDEFVAR at line: 199 with following arguments:
+# Dest: LF@&p
+# Executing instruction: IMOVE at line: 200 with following arguments:
+# Arg1: Const@=73(int)
+# Dest: LF@&p()
+# Executing instruction: IMOVE at line: 201 with following arguments:
+# Arg1: LF@&p=73(int)
+# Dest: LF@jnwjncqojvrlaalbaxjgcaxbtxafeg()
+# Executing instruction: IDEFVAR at line: 202 with following arguments:
+# Dest: LF@hoejqyvxwdmogfszpatogrfcidlimy
+# Executing instruction: IDEFVAR at line: 203 with following arguments:
+# Dest: LF@&q
+# Executing instruction: IMOVE at line: 204 with following arguments:
+# Arg1: Const@=0.379901(double)
+# Dest: LF@&q()
+# Executing instruction: IMOVE at line: 205 with following arguments:
+# Arg1: LF@&q=0.379901(double)
+# Dest: LF@hoejqyvxwdmogfszpatogrfcidlimy()
+# Executing instruction: IDEFVAR at line: 206 with following arguments:
+# Dest: LF@letnwqfbglemlcgezncujohwubtjhq
+# Executing instruction: IDEFVAR at line: 207 with following arguments:
+# Dest: LF@&r
+# Executing instruction: IMOVE at line: 208 with following arguments:
+# Arg1: Const@=0.0544139(double)
+# Dest: LF@&r()
+# Executing instruction: IMOVE at line: 209 with following arguments:
+# Arg1: LF@&r=0.0544139(double)
+# Dest: LF@letnwqfbglemlcgezncujohwubtjhq()
+# Executing instruction: IDEFVAR at line: 210 with following arguments:
+# Dest: LF@fccjjqyzqgujlvmfcnrpzsykisawce
+# Executing instruction: IDEFVAR at line: 211 with following arguments:
+# Dest: LF@&s
+# Executing instruction: IMOVE at line: 212 with following arguments:
+# Arg1: Const@=0.0123402(double)
+# Dest: LF@&s()
+# Executing instruction: IMOVE at line: 213 with following arguments:
+# Arg1: LF@&s=0.0123402(double)
+# Dest: LF@fccjjqyzqgujlvmfcnrpzsykisawce()
+# Executing instruction: IDEFVAR at line: 214 with following arguments:
+# Dest: LF@phxtstqceplxwdpurunxxthbyhjibl
+# Executing instruction: IDEFVAR at line: 215 with following arguments:
+# Dest: LF@&t
+# Executing instruction: IMOVE at line: 216 with following arguments:
+# Arg1: Const@=94(int)
+# Dest: LF@&t()
+# Executing instruction: IMOVE at line: 217 with following arguments:
+# Arg1: LF@&t=94(int)
+# Dest: LF@phxtstqceplxwdpurunxxthbyhjibl()
+# Executing instruction: IDEFVAR at line: 218 with following arguments:
+# Dest: LF@xedeqtwaddfhbyftdzirmgmcxjpbpk
+# Executing instruction: IDEFVAR at line: 219 with following arguments:
+# Dest: LF@&u
+# Executing instruction: IMOVE at line: 220 with following arguments:
+# Arg1: Const@=58(int)
+# Dest: LF@&u()
+# Executing instruction: IMOVE at line: 221 with following arguments:
+# Arg1: LF@&u=58(int)
+# Dest: LF@xedeqtwaddfhbyftdzirmgmcxjpbpk()
+# Executing instruction: IDEFVAR at line: 222 with following arguments:
+# Dest: LF@ifvhyaajtnxlzqrsduvhjudaikvjtn
+# Executing instruction: IDEFVAR at line: 223 with following arguments:
+# Dest: LF@&v
+# Executing instruction: IMOVE at line: 224 with following arguments:
+# Arg1: Const@=0.45879(double)
+# Dest: LF@&v()
+# Executing instruction: IMOVE at line: 225 with following arguments:
+# Arg1: LF@&v=0.45879(double)
+# Dest: LF@ifvhyaajtnxlzqrsduvhjudaikvjtn()
+# Executing instruction: IDEFVAR at line: 226 with following arguments:
+# Dest: LF@result
+# Executing instruction: IDEFVAR at line: 227 with following arguments:
+# Dest: LF@&w
+# Executing instruction: IMOVE at line: 228 with following arguments:
+# Arg1: LF@xedeqtwaddfhbyftdzirmgmcxjpbpk=58(int)
+# Dest: LF@&w()
+# Executing instruction: IPUSHS at line: 229 with following arguments:
+# Arg1: LF@&w=58(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 230 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&w=58(int)
+# Executing instruction: IPUSHS at line: 231 with following arguments:
+# Arg1: LF@&w=0(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 232 with following arguments:
+# Arg1: Stack@=58(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 233 with following arguments:
+# Arg1: LF@phxtstqceplxwdpurunxxthbyhjibl=94(int)
+# Dest: LF@&w=0(int)
+# Executing instruction: IPUSHS at line: 234 with following arguments:
+# Arg1: LF@&w=94(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 235 with following arguments:
+# Arg1: Stack@=58(int)
+# Arg2: Stack@=94(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 236 with following arguments:
+# Arg1: Stack@=152(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 237 with following arguments:
+# Arg1: LF@biwpjmqpzkuairjlyfkfdvumzpcwnk=0.577878(double)
+# Dest: LF@&w=94(int)
+# Executing instruction: IPUSHS at line: 238 with following arguments:
+# Arg1: LF@&w=0.577878(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 239 with following arguments:
+# Arg1: Stack@=152(double)
+# Arg2: Stack@=0.577878(double)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 240 with following arguments:
+# Arg1: Stack@=151.422122(double)
+# Dest: Stack@()
+# Error at line: 240
+# Wrong operand type!
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  5299.58
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 53
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Variables, functions and too many integers and doubles and implicit conversion of return
+#   2: 
+#   3: function foo() as integer 
+#   4:     return 5667.00
+#   5: end function
+#   6: 
+#   7: function foooo() as double 
+#   8:     return 67.566776
+#   9: end function
+#  10: 
+#  11: 
+#  12: scope
+#  13: dim PTaEnHjwiYfAucgiijwvsAZtwxDyEs as integer = 23
+#  14: dim obqSDCoQqqFuEJvTtYYNrogXRocasi as integer = 2
+#  15: dim mLVIooEpzxvsGjmtHAuGywMmFMNFjD as integer = 55
+#  16: dim aUbkYyYpGVstJpXmscUREjjLIsYESy as double = 0.5309487541816
+#  17: dim IBEnbkEVXLtUuPkbAkUcUTnVyWtVbH as integer = 6
+#  18: dim ZvlhaaZeRKUElPYQanVvzkxYHwMoPO as double = 0.41150804814487
+#  19: dim BiWpJmqPZkuAIrJLYfkfDVumZpCwNk as double = 0.57787783377705
+#  20: dim PvGHbferYxNqKlAZTIYGclLNylCcfF as double = 0.89604342444616
+#  21: dim bJYhQvXMBAbpVxUOXudGhybtuEbYoc as integer = 5
+#  22: dim PzBdbfrIXJXzKfWpHnCvinbeQuqXSR as integer = 47
+#  23: dim wJfsaUIMiiaBbxhKzYZHjpGBsPzRgj as integer = 3
+#  24: dim qvzZzZZsEesvNXnktHILENpAhvSJtp as integer = 32
+#  25: dim vNCJHDMisjPOTQnoGczYoobtTsBEWt as double = 0.93275502088142
+#  26: dim jnwjNCQoJvRLAaLBaxJgcAxBtxAfeG as integer = 73
+#  27: dim hOEjqyvXwDMOGFsZpatOGrfCiDlImy as double = 0.3799013608973
+#  28: dim lEtnwQFBgLemlCgeZncujOHwuBtjhQ as double = 0.0544138499789
+#  29: dim fcCjJqyZqgUJlvmfcnRPZSYKiSAWcE as double = 0.012340153573239
+#  30: dim phxtStQcEpLXWdPuRuNxxThbyhjIbl as integer = 94
+#  31: dim XeDEQtwaDDFhBYfTdZiRmGMCXjPBpK as integer = 58
+#  32: dim IfVHYAaJTNXlzqRsdUvhjUDaIKvjtN as double = 0.4587897413684
+#  33: dim result as double =XeDEQtwaDDFhBYfTdZiRmGMCXjPBpK-0+phxtStQcEpLXWdPuRuNxxThbyhjIbl-BiWpJmqPZkuAIrJLYfkfDVumZpCwNk+13-hOEjqyvXwDMOGFsZpatOGrfCiDlImy-0.88512466982246+ZvlhaaZeRKUElPYQanVvzkxYHwMoPO-PzBdbfrIXJXzKfWpHnCvinbeQuqXSR-bJYhQvXMBAbpVxUOXudGhybtuEbYoc-0.71639653840866+13-mLVIooEpzxvsGjmtHAuGywMmFMNFjD+bJYhQvXMBAbpVxUOXudGhybtuEbYoc+bJYhQvXMBAbpVxUOXudGhybtuEbYoc-aUbkYyYpGVstJpXmscUREjjLIsYESy-qvzZzZZsEesvNXnktHILENpAhvSJtp+0.02817375679881+0.77133556491292+ZvlhaaZeRKUElPYQanVvzkxYHwMoPO+0.19621478728774-lEtnwQFBgLemlCgeZncujOHwuBtjhQ+0.24190424859612-0.3227290382249-0.19906102968336-0.9219118333058-53-lEtnwQFBgLemlCgeZncujOHwuBtjhQ-84-0.2926702337771-82+phxtStQcEpLXWdPuRuNxxThbyhjIbl+vNCJHDMisjPOTQnoGczYoobtTsBEWt+BiWpJmqPZkuAIrJLYfkfDVumZpCwNk+hOEjqyvXwDMOGFsZpatOGrfCiDlImy+0.020495357467092-0.23932499682499+0.75985083159052+0.41695280532211-hOEjqyvXwDMOGFsZpatOGrfCiDlImy-66+76+90+0.26061058010003-55-0.93188765641855+0.19030437394525-0.58900129822502+31-ZvlhaaZeRKUElPYQanVvzkxYHwMoPO-phxtStQcEpLXWdPuRuNxxThbyhjIbl-39-vNCJHDMisjPOTQnoGczYoobtTsBEWt-46+wJfsaUIMiiaBbxhKzYZHjpGBsPzRgj+89-PTaEnHjwiYfAucgiijwvsAZtwxDyEs-48-IBEnbkEVXLtUuPkbAkUcUTnVyWtVbH-phxtStQcEpLXWdPuRuNxxThbyhjIbl+0.19737349878874-0.18316600061169+fcCjJqyZqgUJlvmfcnRPZSYKiSAWcE-0.27928438702565+31-50-mLVIooEpzxvsGjmtHAuGywMmFMNFjD+0.46249797123601+24-bJYhQvXMBAbpVxUOXudGhybtuEbYoc-94+0.85175654471468+obqSDCoQqqFuEJvTtYYNrogXRocasi+0.20859484291104-0.67517176907285-0.70662763282034-0.3795841384584+0.6217488379319+74+69-vNCJHDMisjPOTQnoGczYoobtTsBEWt+0.87554967025088-56+95+14-19-0.076938805671846-0.91791010085396+3-mLVIooEpzxvsGjmtHAuGywMmFMNFjD+0.57785324127313-44-0.39703021682661+vNCJHDMisjPOTQnoGczYoobtTsBEWt-22+0.94567879659388+0.61017636191574+IBEnbkEVXLtUuPkbAkUcUTnVyWtVbH-IfVHYAaJTNXlzqRsdUvhjUDaIKvjtN+0.54465926929594-phxtStQcEpLXWdPuRuNxxThbyhjIbl
+#  34: 
+#  35: 
+#  36: dim funkce as double
+#  37: funkce = foo()
+#  38: dim funcke2 as double
+#  39: funcke2 = foooo()
+#  40: 
+#  41: 'result = result + funkce
+#  42: result = result + funkce
+#  43: result = result + funcke2
+#  44: 
+#  45: 
+#  46: print result;
+#  47: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/585
+JUMP $$main                                                                     #     2/585
+LABEL $length                                                                   #     3/585
+PUSHFRAME                                                                       #     4/585
+DEFVAR LF@%retval                                                               #     5/585
+MOVE LF@%retval int@0                                                           #     6/585
+STRLEN LF@%retval LF@s                                                          #     7/585
+LABEL $length$epilog                                                            #     8/585
+POPFRAME                                                                        #     9/585
+RETURN                                                                          #    10/585
+LABEL $substr                                                                   #    11/585
+PUSHFRAME                                                                       #    12/585
+DEFVAR LF@%retval                                                               #    13/585
+MOVE LF@%retval string@                                                         #    14/585
+DEFVAR LF@tmp1                                                                  #    15/585
+DEFVAR LF@tmp2                                                                  #    16/585
+MOVE LF@tmp1 int@0                                                              #    17/585
+MOVE LF@tmp2 string@                                                            #    18/585
+SUB LF@tmp1 LF@i int@1                                                          #    19/585
+DEFVAR LF@length                                                                #    20/585
+MOVE LF@length int@0                                                            #    21/585
+DEFVAR LF@result                                                                #    22/585
+MOVE LF@result bool@false                                                       #    23/585
+DEFVAR LF@tmplen                                                                #    24/585
+MOVE LF@tmplen int@0                                                            #    25/585
+STRLEN LF@tmplen LF@s                                                           #    26/585
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/585
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/585
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/585
+PUSHS LF@i                                                                      #    30/585
+PUSHS int@0                                                                     #    31/585
+PUSHS LF@i                                                                      #    32/585
+PUSHS int@0                                                                     #    33/585
+EQS                                                                             #    34/585
+POPS LF@result                                                                  #    35/585
+LTS                                                                             #    36/585
+PUSHS LF@result                                                                 #    37/585
+ORS                                                                             #    38/585
+POPS LF@result                                                                  #    39/585
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/585
+PUSHS LF@n                                                                      #    41/585
+PUSHS int@0                                                                     #    42/585
+LTS                                                                             #    43/585
+POPS LF@result                                                                  #    44/585
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/585
+STRLEN LF@tmplen LF@s                                                           #    46/585
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/585
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/585
+PUSHS LF@tmplen                                                                 #    49/585
+PUSHS LF@n                                                                      #    50/585
+LTS                                                                             #    51/585
+POPS LF@result                                                                  #    52/585
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/585
+MOVE LF@tmplen int@0                                                            #    54/585
+STRLEN LF@tmplen LF@s                                                           #    55/585
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/585
+LABEL $SubStrFor                                                                #    57/585
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/585
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/585
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/585
+STRLEN LF@length LF@%retval                                                     #    61/585
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/585
+JUMP $substr$epilog                                                             #    63/585
+LABEL $SubStrReturn0                                                            #    64/585
+MOVE LF@%retval string@                                                         #    65/585
+JUMP $substr$epilog                                                             #    66/585
+LABEL $SubStrReturnRest                                                         #    67/585
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/585
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/585
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/585
+STRLEN LF@length LF@%retval                                                     #    71/585
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/585
+LABEL $substr$epilog                                                            #    73/585
+POPFRAME                                                                        #    74/585
+RETURN                                                                          #    75/585
+LABEL $asc                                                                      #    76/585
+PUSHFRAME                                                                       #    77/585
+DEFVAR LF@%retval                                                               #    78/585
+MOVE LF@%retval int@0                                                           #    79/585
+DEFVAR LF@result                                                                #    80/585
+MOVE LF@result bool@false                                                       #    81/585
+DEFVAR LF@tmp                                                                   #    82/585
+DEFVAR LF@tmp2                                                                  #    83/585
+MOVE LF@tmp string@                                                             #    84/585
+MOVE LF@tmp2 int@0                                                              #    85/585
+PUSHS LF@i                                                                      #    86/585
+PUSHS int@0                                                                     #    87/585
+PUSHS LF@i                                                                      #    88/585
+PUSHS int@0                                                                     #    89/585
+EQS                                                                             #    90/585
+POPS LF@result                                                                  #    91/585
+LTS                                                                             #    92/585
+PUSHS LF@result                                                                 #    93/585
+ORS                                                                             #    94/585
+POPS LF@result                                                                  #    95/585
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/585
+PUSHS LF@i                                                                      #    97/585
+STRLEN LF@tmp2 LF@s                                                             #    98/585
+PUSHS LF@tmp2                                                                   #    99/585
+GTS                                                                             #   100/585
+POPS LF@result                                                                  #   101/585
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/585
+SUB LF@i LF@i int@1                                                             #   103/585
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/585
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/585
+LABEL $asc$epilog                                                               #   106/585
+POPFRAME                                                                        #   107/585
+RETURN                                                                          #   108/585
+LABEL $chr                                                                      #   109/585
+PUSHFRAME                                                                       #   110/585
+DEFVAR LF@%retval                                                               #   111/585
+MOVE LF@%retval string@                                                         #   112/585
+DEFVAR LF@tmp                                                                   #   113/585
+MOVE LF@tmp string@                                                             #   114/585
+INT2CHAR LF@%retval LF@i                                                        #   115/585
+POPFRAME                                                                        #   116/585
+RETURN                                                                          #   117/585
+LABEL $foo                                                                      #   118/585
+PUSHFRAME                                                                       #   119/585
+DEFVAR LF@%retval                                                               #   120/585
+MOVE LF@%retval int@0                                                           #   121/585
+DEFVAR LF@&a                                                                    #   122/585
+MOVE LF@&a float@5667                                                           #   123/585
+MOVE LF@%retval LF@&a                                                           #   124/585
+PUSHS LF@%retval                                                                #   125/585
+FLOAT2R2EINTS                                                                   #   126/585
+POPS LF@%retval                                                                 #   127/585
+JUMP $foo$epilog                                                                #   128/585
+LABEL $foo$epilog                                                               #   129/585
+POPFRAME                                                                        #   130/585
+RETURN                                                                          #   131/585
+LABEL $foooo                                                                    #   132/585
+PUSHFRAME                                                                       #   133/585
+DEFVAR LF@%retval                                                               #   134/585
+MOVE LF@%retval float@0.0                                                       #   135/585
+DEFVAR LF@&b                                                                    #   136/585
+MOVE LF@&b float@67.5668                                                        #   137/585
+MOVE LF@%retval LF@&b                                                           #   138/585
+JUMP $foooo$epilog                                                              #   139/585
+LABEL $foooo$epilog                                                             #   140/585
+POPFRAME                                                                        #   141/585
+RETURN                                                                          #   142/585
+LABEL $$main                                                                    #   143/585
+CREATEFRAME                                                                     #   144/585
+PUSHFRAME                                                                       #   145/585
+DEFVAR LF@ptaenhjwiyfaucgiijwvsaztwxdyes                                        #   146/585
+DEFVAR LF@&c                                                                    #   147/585
+MOVE LF@&c int@23                                                               #   148/585
+MOVE LF@ptaenhjwiyfaucgiijwvsaztwxdyes LF@&c                                    #   149/585
+DEFVAR LF@obqsdcoqqqfuejvttyynrogxrocasi                                        #   150/585
+DEFVAR LF@&d                                                                    #   151/585
+MOVE LF@&d int@2                                                                #   152/585
+MOVE LF@obqsdcoqqqfuejvttyynrogxrocasi LF@&d                                    #   153/585
+DEFVAR LF@mlviooepzxvsgjmthaugywmmfmnfjd                                        #   154/585
+DEFVAR LF@&e                                                                    #   155/585
+MOVE LF@&e int@55                                                               #   156/585
+MOVE LF@mlviooepzxvsgjmthaugywmmfmnfjd LF@&e                                    #   157/585
+DEFVAR LF@aubkyyypgvstjpxmscurejjlisyesy                                        #   158/585
+DEFVAR LF@&f                                                                    #   159/585
+MOVE LF@&f float@0.530949                                                       #   160/585
+MOVE LF@aubkyyypgvstjpxmscurejjlisyesy LF@&f                                    #   161/585
+DEFVAR LF@ibenbkevxltuupkbakucutnvywtvbh                                        #   162/585
+DEFVAR LF@&g                                                                    #   163/585
+MOVE LF@&g int@6                                                                #   164/585
+MOVE LF@ibenbkevxltuupkbakucutnvywtvbh LF@&g                                    #   165/585
+DEFVAR LF@zvlhaazerkuelpyqanvvzkxyhwmopo                                        #   166/585
+DEFVAR LF@&h                                                                    #   167/585
+MOVE LF@&h float@0.411508                                                       #   168/585
+MOVE LF@zvlhaazerkuelpyqanvvzkxyhwmopo LF@&h                                    #   169/585
+DEFVAR LF@biwpjmqpzkuairjlyfkfdvumzpcwnk                                        #   170/585
+DEFVAR LF@&i                                                                    #   171/585
+MOVE LF@&i float@0.577878                                                       #   172/585
+MOVE LF@biwpjmqpzkuairjlyfkfdvumzpcwnk LF@&i                                    #   173/585
+DEFVAR LF@pvghbferyxnqklaztiygcllnylccff                                        #   174/585
+DEFVAR LF@&j                                                                    #   175/585
+MOVE LF@&j float@0.896043                                                       #   176/585
+MOVE LF@pvghbferyxnqklaztiygcllnylccff LF@&j                                    #   177/585
+DEFVAR LF@bjyhqvxmbabpvxuoxudghybtuebyoc                                        #   178/585
+DEFVAR LF@&k                                                                    #   179/585
+MOVE LF@&k int@5                                                                #   180/585
+MOVE LF@bjyhqvxmbabpvxuoxudghybtuebyoc LF@&k                                    #   181/585
+DEFVAR LF@pzbdbfrixjxzkfwphncvinbequqxsr                                        #   182/585
+DEFVAR LF@&l                                                                    #   183/585
+MOVE LF@&l int@47                                                               #   184/585
+MOVE LF@pzbdbfrixjxzkfwphncvinbequqxsr LF@&l                                    #   185/585
+DEFVAR LF@wjfsauimiiabbxhkzyzhjpgbspzrgj                                        #   186/585
+DEFVAR LF@&m                                                                    #   187/585
+MOVE LF@&m int@3                                                                #   188/585
+MOVE LF@wjfsauimiiabbxhkzyzhjpgbspzrgj LF@&m                                    #   189/585
+DEFVAR LF@qvzzzzzseesvnxnkthilenpahvsjtp                                        #   190/585
+DEFVAR LF@&n                                                                    #   191/585
+MOVE LF@&n int@32                                                               #   192/585
+MOVE LF@qvzzzzzseesvnxnkthilenpahvsjtp LF@&n                                    #   193/585
+DEFVAR LF@vncjhdmisjpotqnogczyoobttsbewt                                        #   194/585
+DEFVAR LF@&o                                                                    #   195/585
+MOVE LF@&o float@0.932755                                                       #   196/585
+MOVE LF@vncjhdmisjpotqnogczyoobttsbewt LF@&o                                    #   197/585
+DEFVAR LF@jnwjncqojvrlaalbaxjgcaxbtxafeg                                        #   198/585
+DEFVAR LF@&p                                                                    #   199/585
+MOVE LF@&p int@73                                                               #   200/585
+MOVE LF@jnwjncqojvrlaalbaxjgcaxbtxafeg LF@&p                                    #   201/585
+DEFVAR LF@hoejqyvxwdmogfszpatogrfcidlimy                                        #   202/585
+DEFVAR LF@&q                                                                    #   203/585
+MOVE LF@&q float@0.379901                                                       #   204/585
+MOVE LF@hoejqyvxwdmogfszpatogrfcidlimy LF@&q                                    #   205/585
+DEFVAR LF@letnwqfbglemlcgezncujohwubtjhq                                        #   206/585
+DEFVAR LF@&r                                                                    #   207/585
+MOVE LF@&r float@0.0544139                                                      #   208/585
+MOVE LF@letnwqfbglemlcgezncujohwubtjhq LF@&r                                    #   209/585
+DEFVAR LF@fccjjqyzqgujlvmfcnrpzsykisawce                                        #   210/585
+DEFVAR LF@&s                                                                    #   211/585
+MOVE LF@&s float@0.0123402                                                      #   212/585
+MOVE LF@fccjjqyzqgujlvmfcnrpzsykisawce LF@&s                                    #   213/585
+DEFVAR LF@phxtstqceplxwdpurunxxthbyhjibl                                        #   214/585
+DEFVAR LF@&t                                                                    #   215/585
+MOVE LF@&t int@94                                                               #   216/585
+MOVE LF@phxtstqceplxwdpurunxxthbyhjibl LF@&t                                    #   217/585
+DEFVAR LF@xedeqtwaddfhbyftdzirmgmcxjpbpk                                        #   218/585
+DEFVAR LF@&u                                                                    #   219/585
+MOVE LF@&u int@58                                                               #   220/585
+MOVE LF@xedeqtwaddfhbyftdzirmgmcxjpbpk LF@&u                                    #   221/585
+DEFVAR LF@ifvhyaajtnxlzqrsduvhjudaikvjtn                                        #   222/585
+DEFVAR LF@&v                                                                    #   223/585
+MOVE LF@&v float@0.45879                                                        #   224/585
+MOVE LF@ifvhyaajtnxlzqrsduvhjudaikvjtn LF@&v                                    #   225/585
+DEFVAR LF@result                                                                #   226/585
+DEFVAR LF@&w                                                                    #   227/585
+MOVE LF@&w LF@xedeqtwaddfhbyftdzirmgmcxjpbpk                                    #   228/585
+PUSHS LF@&w                                                                     #   229/585
+MOVE LF@&w int@0                                                                #   230/585
+PUSHS LF@&w                                                                     #   231/585
+SUBS                                                                            #   232/585
+MOVE LF@&w LF@phxtstqceplxwdpurunxxthbyhjibl                                    #   233/585
+PUSHS LF@&w                                                                     #   234/585
+ADDS                                                                            #   235/585
+INT2FLOATS                                                                      #   236/585
+MOVE LF@&w LF@biwpjmqpzkuairjlyfkfdvumzpcwnk                                    #   237/585
+PUSHS LF@&w                                                                     #   238/585
+SUBS                                                                            #   239/585
+INT2FLOATS                                                                      #   240/585
+ADDS                                                                            #   241/585
+MOVE LF@&w LF@hoejqyvxwdmogfszpatogrfcidlimy                                    #   242/585
+PUSHS LF@&w                                                                     #   243/585
+SUBS                                                                            #   244/585
+MOVE LF@&w float@0.885125                                                       #   245/585
+PUSHS LF@&w                                                                     #   246/585
+SUBS                                                                            #   247/585
+MOVE LF@&w LF@zvlhaazerkuelpyqanvvzkxyhwmopo                                    #   248/585
+PUSHS LF@&w                                                                     #   249/585
+ADDS                                                                            #   250/585
+MOVE LF@&w LF@pzbdbfrixjxzkfwphncvinbequqxsr                                    #   251/585
+PUSHS LF@&w                                                                     #   252/585
+INT2FLOATS                                                                      #   253/585
+SUBS                                                                            #   254/585
+MOVE LF@&w LF@bjyhqvxmbabpvxuoxudghybtuebyoc                                    #   255/585
+PUSHS LF@&w                                                                     #   256/585
+INT2FLOATS                                                                      #   257/585
+SUBS                                                                            #   258/585
+MOVE LF@&w float@0.716397                                                       #   259/585
+PUSHS LF@&w                                                                     #   260/585
+SUBS                                                                            #   261/585
+INT2FLOATS                                                                      #   262/585
+ADDS                                                                            #   263/585
+MOVE LF@&w LF@mlviooepzxvsgjmthaugywmmfmnfjd                                    #   264/585
+PUSHS LF@&w                                                                     #   265/585
+INT2FLOATS                                                                      #   266/585
+SUBS                                                                            #   267/585
+MOVE LF@&w LF@bjyhqvxmbabpvxuoxudghybtuebyoc                                    #   268/585
+PUSHS LF@&w                                                                     #   269/585
+INT2FLOATS                                                                      #   270/585
+ADDS                                                                            #   271/585
+MOVE LF@&w LF@bjyhqvxmbabpvxuoxudghybtuebyoc                                    #   272/585
+PUSHS LF@&w                                                                     #   273/585
+INT2FLOATS                                                                      #   274/585
+ADDS                                                                            #   275/585
+MOVE LF@&w LF@aubkyyypgvstjpxmscurejjlisyesy                                    #   276/585
+PUSHS LF@&w                                                                     #   277/585
+SUBS                                                                            #   278/585
+MOVE LF@&w LF@qvzzzzzseesvnxnkthilenpahvsjtp                                    #   279/585
+PUSHS LF@&w                                                                     #   280/585
+INT2FLOATS                                                                      #   281/585
+SUBS                                                                            #   282/585
+MOVE LF@&w float@0.0281738                                                      #   283/585
+PUSHS LF@&w                                                                     #   284/585
+ADDS                                                                            #   285/585
+MOVE LF@&w float@0.771336                                                       #   286/585
+PUSHS LF@&w                                                                     #   287/585
+ADDS                                                                            #   288/585
+MOVE LF@&w LF@zvlhaazerkuelpyqanvvzkxyhwmopo                                    #   289/585
+PUSHS LF@&w                                                                     #   290/585
+ADDS                                                                            #   291/585
+MOVE LF@&w float@0.196215                                                       #   292/585
+PUSHS LF@&w                                                                     #   293/585
+ADDS                                                                            #   294/585
+MOVE LF@&w LF@letnwqfbglemlcgezncujohwubtjhq                                    #   295/585
+PUSHS LF@&w                                                                     #   296/585
+SUBS                                                                            #   297/585
+MOVE LF@&w float@0.241904                                                       #   298/585
+PUSHS LF@&w                                                                     #   299/585
+ADDS                                                                            #   300/585
+MOVE LF@&w float@0.322729                                                       #   301/585
+PUSHS LF@&w                                                                     #   302/585
+SUBS                                                                            #   303/585
+MOVE LF@&w float@0.199061                                                       #   304/585
+PUSHS LF@&w                                                                     #   305/585
+SUBS                                                                            #   306/585
+MOVE LF@&w float@0.921912                                                       #   307/585
+PUSHS LF@&w                                                                     #   308/585
+SUBS                                                                            #   309/585
+MOVE LF@&w int@53                                                               #   310/585
+PUSHS LF@&w                                                                     #   311/585
+INT2FLOATS                                                                      #   312/585
+SUBS                                                                            #   313/585
+MOVE LF@&w LF@letnwqfbglemlcgezncujohwubtjhq                                    #   314/585
+PUSHS LF@&w                                                                     #   315/585
+SUBS                                                                            #   316/585
+MOVE LF@&w int@84                                                               #   317/585
+PUSHS LF@&w                                                                     #   318/585
+INT2FLOATS                                                                      #   319/585
+SUBS                                                                            #   320/585
+MOVE LF@&w float@0.29267                                                        #   321/585
+PUSHS LF@&w                                                                     #   322/585
+SUBS                                                                            #   323/585
+MOVE LF@&w int@82                                                               #   324/585
+PUSHS LF@&w                                                                     #   325/585
+INT2FLOATS                                                                      #   326/585
+SUBS                                                                            #   327/585
+MOVE LF@&w LF@phxtstqceplxwdpurunxxthbyhjibl                                    #   328/585
+PUSHS LF@&w                                                                     #   329/585
+INT2FLOATS                                                                      #   330/585
+ADDS                                                                            #   331/585
+MOVE LF@&w LF@vncjhdmisjpotqnogczyoobttsbewt                                    #   332/585
+PUSHS LF@&w                                                                     #   333/585
+ADDS                                                                            #   334/585
+MOVE LF@&w LF@biwpjmqpzkuairjlyfkfdvumzpcwnk                                    #   335/585
+PUSHS LF@&w                                                                     #   336/585
+ADDS                                                                            #   337/585
+MOVE LF@&w LF@hoejqyvxwdmogfszpatogrfcidlimy                                    #   338/585
+PUSHS LF@&w                                                                     #   339/585
+ADDS                                                                            #   340/585
+MOVE LF@&w float@0.0204954                                                      #   341/585
+PUSHS LF@&w                                                                     #   342/585
+ADDS                                                                            #   343/585
+MOVE LF@&w float@0.239325                                                       #   344/585
+PUSHS LF@&w                                                                     #   345/585
+SUBS                                                                            #   346/585
+MOVE LF@&w float@0.759851                                                       #   347/585
+PUSHS LF@&w                                                                     #   348/585
+ADDS                                                                            #   349/585
+MOVE LF@&w float@0.416953                                                       #   350/585
+PUSHS LF@&w                                                                     #   351/585
+ADDS                                                                            #   352/585
+MOVE LF@&w LF@hoejqyvxwdmogfszpatogrfcidlimy                                    #   353/585
+PUSHS LF@&w                                                                     #   354/585
+SUBS                                                                            #   355/585
+INT2FLOATS                                                                      #   356/585
+SUBS                                                                            #   357/585
+INT2FLOATS                                                                      #   358/585
+ADDS                                                                            #   359/585
+INT2FLOATS                                                                      #   360/585
+ADDS                                                                            #   361/585
+MOVE LF@&w float@0.260611                                                       #   362/585
+PUSHS LF@&w                                                                     #   363/585
+ADDS                                                                            #   364/585
+MOVE LF@&w int@55                                                               #   365/585
+PUSHS LF@&w                                                                     #   366/585
+INT2FLOATS                                                                      #   367/585
+SUBS                                                                            #   368/585
+MOVE LF@&w float@0.931888                                                       #   369/585
+PUSHS LF@&w                                                                     #   370/585
+SUBS                                                                            #   371/585
+MOVE LF@&w float@0.190304                                                       #   372/585
+PUSHS LF@&w                                                                     #   373/585
+ADDS                                                                            #   374/585
+MOVE LF@&w float@0.589001                                                       #   375/585
+PUSHS LF@&w                                                                     #   376/585
+SUBS                                                                            #   377/585
+MOVE LF@&w int@31                                                               #   378/585
+PUSHS LF@&w                                                                     #   379/585
+INT2FLOATS                                                                      #   380/585
+ADDS                                                                            #   381/585
+MOVE LF@&w LF@zvlhaazerkuelpyqanvvzkxyhwmopo                                    #   382/585
+PUSHS LF@&w                                                                     #   383/585
+SUBS                                                                            #   384/585
+MOVE LF@&w LF@phxtstqceplxwdpurunxxthbyhjibl                                    #   385/585
+PUSHS LF@&w                                                                     #   386/585
+INT2FLOATS                                                                      #   387/585
+SUBS                                                                            #   388/585
+MOVE LF@&w int@39                                                               #   389/585
+PUSHS LF@&w                                                                     #   390/585
+INT2FLOATS                                                                      #   391/585
+SUBS                                                                            #   392/585
+MOVE LF@&w LF@vncjhdmisjpotqnogczyoobttsbewt                                    #   393/585
+PUSHS LF@&w                                                                     #   394/585
+SUBS                                                                            #   395/585
+MOVE LF@&w int@46                                                               #   396/585
+PUSHS LF@&w                                                                     #   397/585
+INT2FLOATS                                                                      #   398/585
+SUBS                                                                            #   399/585
+MOVE LF@&w LF@wjfsauimiiabbxhkzyzhjpgbspzrgj                                    #   400/585
+PUSHS LF@&w                                                                     #   401/585
+INT2FLOATS                                                                      #   402/585
+ADDS                                                                            #   403/585
+INT2FLOATS                                                                      #   404/585
+ADDS                                                                            #   405/585
+MOVE LF@&w LF@ptaenhjwiyfaucgiijwvsaztwxdyes                                    #   406/585
+PUSHS LF@&w                                                                     #   407/585
+INT2FLOATS                                                                      #   408/585
+SUBS                                                                            #   409/585
+INT2FLOATS                                                                      #   410/585
+SUBS                                                                            #   411/585
+MOVE LF@&w LF@ibenbkevxltuupkbakucutnvywtvbh                                    #   412/585
+PUSHS LF@&w                                                                     #   413/585
+INT2FLOATS                                                                      #   414/585
+SUBS                                                                            #   415/585
+MOVE LF@&w LF@phxtstqceplxwdpurunxxthbyhjibl                                    #   416/585
+PUSHS LF@&w                                                                     #   417/585
+INT2FLOATS                                                                      #   418/585
+SUBS                                                                            #   419/585
+MOVE LF@&w float@0.197373                                                       #   420/585
+PUSHS LF@&w                                                                     #   421/585
+ADDS                                                                            #   422/585
+MOVE LF@&w float@0.183166                                                       #   423/585
+PUSHS LF@&w                                                                     #   424/585
+SUBS                                                                            #   425/585
+MOVE LF@&w LF@fccjjqyzqgujlvmfcnrpzsykisawce                                    #   426/585
+PUSHS LF@&w                                                                     #   427/585
+ADDS                                                                            #   428/585
+MOVE LF@&w float@0.279284                                                       #   429/585
+PUSHS LF@&w                                                                     #   430/585
+SUBS                                                                            #   431/585
+INT2FLOATS                                                                      #   432/585
+ADDS                                                                            #   433/585
+INT2FLOATS                                                                      #   434/585
+SUBS                                                                            #   435/585
+MOVE LF@&w LF@mlviooepzxvsgjmthaugywmmfmnfjd                                    #   436/585
+PUSHS LF@&w                                                                     #   437/585
+INT2FLOATS                                                                      #   438/585
+SUBS                                                                            #   439/585
+MOVE LF@&w float@0.462498                                                       #   440/585
+PUSHS LF@&w                                                                     #   441/585
+ADDS                                                                            #   442/585
+MOVE LF@&w int@24                                                               #   443/585
+PUSHS LF@&w                                                                     #   444/585
+INT2FLOATS                                                                      #   445/585
+ADDS                                                                            #   446/585
+MOVE LF@&w LF@bjyhqvxmbabpvxuoxudghybtuebyoc                                    #   447/585
+PUSHS LF@&w                                                                     #   448/585
+INT2FLOATS                                                                      #   449/585
+SUBS                                                                            #   450/585
+MOVE LF@&w int@94                                                               #   451/585
+PUSHS LF@&w                                                                     #   452/585
+INT2FLOATS                                                                      #   453/585
+SUBS                                                                            #   454/585
+MOVE LF@&w float@0.851757                                                       #   455/585
+PUSHS LF@&w                                                                     #   456/585
+ADDS                                                                            #   457/585
+MOVE LF@&w LF@obqsdcoqqqfuejvttyynrogxrocasi                                    #   458/585
+PUSHS LF@&w                                                                     #   459/585
+INT2FLOATS                                                                      #   460/585
+ADDS                                                                            #   461/585
+MOVE LF@&w float@0.208595                                                       #   462/585
+PUSHS LF@&w                                                                     #   463/585
+ADDS                                                                            #   464/585
+MOVE LF@&w float@0.675172                                                       #   465/585
+PUSHS LF@&w                                                                     #   466/585
+SUBS                                                                            #   467/585
+MOVE LF@&w float@0.706628                                                       #   468/585
+PUSHS LF@&w                                                                     #   469/585
+SUBS                                                                            #   470/585
+MOVE LF@&w float@0.379584                                                       #   471/585
+PUSHS LF@&w                                                                     #   472/585
+SUBS                                                                            #   473/585
+MOVE LF@&w float@0.621749                                                       #   474/585
+PUSHS LF@&w                                                                     #   475/585
+ADDS                                                                            #   476/585
+MOVE LF@&w int@74                                                               #   477/585
+PUSHS LF@&w                                                                     #   478/585
+INT2FLOATS                                                                      #   479/585
+ADDS                                                                            #   480/585
+MOVE LF@&w int@69                                                               #   481/585
+PUSHS LF@&w                                                                     #   482/585
+INT2FLOATS                                                                      #   483/585
+ADDS                                                                            #   484/585
+MOVE LF@&w LF@vncjhdmisjpotqnogczyoobttsbewt                                    #   485/585
+PUSHS LF@&w                                                                     #   486/585
+SUBS                                                                            #   487/585
+MOVE LF@&w float@0.87555                                                        #   488/585
+PUSHS LF@&w                                                                     #   489/585
+ADDS                                                                            #   490/585
+MOVE LF@&w int@56                                                               #   491/585
+PUSHS LF@&w                                                                     #   492/585
+INT2FLOATS                                                                      #   493/585
+SUBS                                                                            #   494/585
+MOVE LF@&w int@95                                                               #   495/585
+PUSHS LF@&w                                                                     #   496/585
+INT2FLOATS                                                                      #   497/585
+ADDS                                                                            #   498/585
+MOVE LF@&w int@14                                                               #   499/585
+PUSHS LF@&w                                                                     #   500/585
+INT2FLOATS                                                                      #   501/585
+ADDS                                                                            #   502/585
+MOVE LF@&w int@19                                                               #   503/585
+PUSHS LF@&w                                                                     #   504/585
+INT2FLOATS                                                                      #   505/585
+SUBS                                                                            #   506/585
+MOVE LF@&w float@0.0769388                                                      #   507/585
+PUSHS LF@&w                                                                     #   508/585
+SUBS                                                                            #   509/585
+MOVE LF@&w float@0.91791                                                        #   510/585
+PUSHS LF@&w                                                                     #   511/585
+SUBS                                                                            #   512/585
+MOVE LF@&w int@3                                                                #   513/585
+PUSHS LF@&w                                                                     #   514/585
+INT2FLOATS                                                                      #   515/585
+ADDS                                                                            #   516/585
+MOVE LF@&w LF@mlviooepzxvsgjmthaugywmmfmnfjd                                    #   517/585
+PUSHS LF@&w                                                                     #   518/585
+INT2FLOATS                                                                      #   519/585
+SUBS                                                                            #   520/585
+MOVE LF@&w float@0.577853                                                       #   521/585
+PUSHS LF@&w                                                                     #   522/585
+ADDS                                                                            #   523/585
+INT2FLOATS                                                                      #   524/585
+SUBS                                                                            #   525/585
+MOVE LF@&w float@0.39703                                                        #   526/585
+PUSHS LF@&w                                                                     #   527/585
+SUBS                                                                            #   528/585
+MOVE LF@&w LF@vncjhdmisjpotqnogczyoobttsbewt                                    #   529/585
+PUSHS LF@&w                                                                     #   530/585
+ADDS                                                                            #   531/585
+INT2FLOATS                                                                      #   532/585
+SUBS                                                                            #   533/585
+MOVE LF@&w float@0.945679                                                       #   534/585
+PUSHS LF@&w                                                                     #   535/585
+ADDS                                                                            #   536/585
+MOVE LF@&w float@0.610176                                                       #   537/585
+PUSHS LF@&w                                                                     #   538/585
+ADDS                                                                            #   539/585
+MOVE LF@&w LF@ibenbkevxltuupkbakucutnvywtvbh                                    #   540/585
+PUSHS LF@&w                                                                     #   541/585
+INT2FLOATS                                                                      #   542/585
+ADDS                                                                            #   543/585
+MOVE LF@&w LF@ifvhyaajtnxlzqrsduvhjudaikvjtn                                    #   544/585
+PUSHS LF@&w                                                                     #   545/585
+SUBS                                                                            #   546/585
+MOVE LF@&w float@0.544659                                                       #   547/585
+PUSHS LF@&w                                                                     #   548/585
+ADDS                                                                            #   549/585
+MOVE LF@&w LF@phxtstqceplxwdpurunxxthbyhjibl                                    #   550/585
+PUSHS LF@&w                                                                     #   551/585
+INT2FLOATS                                                                      #   552/585
+SUBS                                                                            #   553/585
+POPS LF@&w                                                                      #   554/585
+MOVE LF@result LF@&w                                                            #   555/585
+DEFVAR LF@funkce                                                                #   556/585
+MOVE LF@funkce float@0.0                                                        #   557/585
+CREATEFRAME                                                                     #   558/585
+CALL $foo                                                                       #   559/585
+MOVE LF@funkce TF@%retval                                                       #   560/585
+DEFVAR LF@funcke2                                                               #   561/585
+MOVE LF@funcke2 float@0.0                                                       #   562/585
+CREATEFRAME                                                                     #   563/585
+CALL $foooo                                                                     #   564/585
+MOVE LF@funcke2 TF@%retval                                                      #   565/585
+DEFVAR LF@&x                                                                    #   566/585
+MOVE LF@&x LF@result                                                            #   567/585
+PUSHS LF@&x                                                                     #   568/585
+MOVE LF@&x LF@funkce                                                            #   569/585
+PUSHS LF@&x                                                                     #   570/585
+ADDS                                                                            #   571/585
+POPS LF@&x                                                                      #   572/585
+MOVE LF@result LF@&x                                                            #   573/585
+DEFVAR LF@&y                                                                    #   574/585
+MOVE LF@&y LF@result                                                            #   575/585
+PUSHS LF@&y                                                                     #   576/585
+MOVE LF@&y LF@funcke2                                                           #   577/585
+PUSHS LF@&y                                                                     #   578/585
+ADDS                                                                            #   579/585
+POPS LF@&y                                                                      #   580/585
+MOVE LF@result LF@&y                                                            #   581/585
+DEFVAR LF@&z                                                                    #   582/585
+MOVE LF@&z LF@result                                                            #   583/585
+WRITE LF@&z                                                                     #   584/585
+POPFRAME                                                                        #   585/585
+

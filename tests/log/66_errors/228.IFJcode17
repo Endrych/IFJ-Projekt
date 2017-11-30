@@ -1,0 +1,41 @@
+# 2017-11-30 22:56:58.878252
+# SECTION: 66_errors
+# TEST: 228
+# INFO: Keyword instead identifier
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Redefinition of variable length used as function identifier
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim length as integer
+#   3:  end scope
+
+########################################
+
+# ---
+

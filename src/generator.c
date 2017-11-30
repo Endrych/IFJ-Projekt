@@ -334,6 +334,7 @@ char * generate_expression(ATLeaf *tree){
                 else if(current->data.type == at_tsitem){
                     current->processed = true;
                     item_ts = current->data.Atr.tsItem->key;
+                   
                     fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                     return id;
                 }             
