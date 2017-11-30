@@ -1,0 +1,44 @@
+# 2017-11-30 22:37:15.717014
+# SECTION: 66_errors
+# TEST: 069
+# INFO: Undefined variable assignment in function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Identifier was not declared before assining to it
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: function foo() as integer 
+#   2:   dim a as integer
+#   3:  ab = 10 
+#   4:  end function 
+#   5:  scope 
+#   6:  end scope
+
+########################################
+
+# ---
+

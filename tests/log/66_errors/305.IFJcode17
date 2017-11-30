@@ -1,0 +1,39 @@
+# 2017-11-30 22:37:21.626988
+# SECTION: 66_errors
+# TEST: 305
+# INFO: Forum test 2
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# Identifier obtains character which is not allowed: @Lexical analysis error: wrong structure of actual lexem.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 1
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  di@m a as integer 
+#   3:  end scope
+
+########################################
+
+# ---
+

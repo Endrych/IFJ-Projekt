@@ -1,0 +1,72 @@
+# 2017-11-30 22:37:03.128141
+# SECTION: 02_functions
+# TEST: 35
+# INFO: 
+# REQUIRED EXTENSIONS: SCOPE, GLOBAL
+# ACTIVATED EXTENSIONS: 
+# STATE: FAIL
+# 
+# COMPILER STDERR:
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+#  780
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: None
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: dim shared a as integer
+#   2: 
+#   3: function foo(a as integer) as integer
+#   4:     static nova as integer 
+#   5:     dim ahoj as integer = 42
+#   6:     a = a + ahoj
+#   7:     nova = nova + ahoj
+#   8:     scope
+#   9:         dim ahoj as integer = 56
+#  10:         nova = nova + ahoj
+#  11:         a = a + ahoj
+#  12:         nova = nova + a
+#  13:     end scope
+#  14:     nova = nova + a
+#  15:     
+#  16:     return nova
+#  17: 
+#  18: end function
+#  19: 
+#  20: scope
+#  21:     
+#  22:     dim b as integer
+#  23:     b = foo(41)
+#  24:     b = foo(45)
+#  25:     scope
+#  26:         dim b as integer
+#  27:         b = 20
+#  28:         a = a + b
+#  29:     end scope
+#  30:     
+#  31:     b = b + a
+#  32:     
+#  33:     print b;
+#  34: 
+#  35: 
+#  36: end scope
+
+########################################
+
+# ---
+

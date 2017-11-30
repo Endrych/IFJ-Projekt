@@ -1,0 +1,1504 @@
+# 2017-11-30 22:37:07.218453
+# SECTION: 04_expressions
+# TEST: 36
+# INFO: Big number of float integers +-
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@a
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: LF@a()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: Const@=0.15392(double)
+# Dest: LF@&a()
+# Executing instruction: IPUSHS at line: 125 with following arguments:
+# Arg1: LF@&a=0.15392(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: Const@=0.450347(double)
+# Dest: LF@&a=0.15392(double)
+# Executing instruction: IPUSHS at line: 127 with following arguments:
+# Arg1: LF@&a=0.450347(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 128 with following arguments:
+# Arg1: Stack@=0.15392(double)
+# Arg2: Stack@=0.450347(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 129 with following arguments:
+# Arg1: Const@=0.228577(double)
+# Dest: LF@&a=0.450347(double)
+# Executing instruction: IPUSHS at line: 130 with following arguments:
+# Arg1: LF@&a=0.228577(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 131 with following arguments:
+# Arg1: Stack@=0.604267(double)
+# Arg2: Stack@=0.228577(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: Const@=0.103932(double)
+# Dest: LF@&a=0.228577(double)
+# Executing instruction: IPUSHS at line: 133 with following arguments:
+# Arg1: LF@&a=0.103932(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 134 with following arguments:
+# Arg1: Stack@=0.37569(double)
+# Arg2: Stack@=0.103932(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: Const@=0.577068(double)
+# Dest: LF@&a=0.103932(double)
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&a=0.577068(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 137 with following arguments:
+# Arg1: Stack@=0.2717579999999999(double)
+# Arg2: Stack@=0.577068(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 138 with following arguments:
+# Arg1: Const@=0.209374(double)
+# Dest: LF@&a=0.577068(double)
+# Executing instruction: IPUSHS at line: 139 with following arguments:
+# Arg1: LF@&a=0.209374(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 140 with following arguments:
+# Arg1: Stack@=0.848826(double)
+# Arg2: Stack@=0.209374(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: Const@=0.885005(double)
+# Dest: LF@&a=0.209374(double)
+# Executing instruction: IPUSHS at line: 142 with following arguments:
+# Arg1: LF@&a=0.885005(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 143 with following arguments:
+# Arg1: Stack@=0.6394519999999999(double)
+# Arg2: Stack@=0.885005(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 144 with following arguments:
+# Arg1: Const@=0.178639(double)
+# Dest: LF@&a=0.885005(double)
+# Executing instruction: IPUSHS at line: 145 with following arguments:
+# Arg1: LF@&a=0.178639(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 146 with following arguments:
+# Arg1: Stack@=1.524457(double)
+# Arg2: Stack@=0.178639(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: Const@=0.437159(double)
+# Dest: LF@&a=0.178639(double)
+# Executing instruction: IPUSHS at line: 148 with following arguments:
+# Arg1: LF@&a=0.437159(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 149 with following arguments:
+# Arg1: Stack@=1.345818(double)
+# Arg2: Stack@=0.437159(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: Const@=0.639813(double)
+# Dest: LF@&a=0.437159(double)
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&a=0.639813(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 152 with following arguments:
+# Arg1: Stack@=0.9086589999999999(double)
+# Arg2: Stack@=0.639813(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 153 with following arguments:
+# Arg1: Const@=0.802229(double)
+# Dest: LF@&a=0.639813(double)
+# Executing instruction: IPUSHS at line: 154 with following arguments:
+# Arg1: LF@&a=0.802229(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 155 with following arguments:
+# Arg1: Stack@=0.2688459999999999(double)
+# Arg2: Stack@=0.802229(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=0.903955(double)
+# Dest: LF@&a=0.802229(double)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&a=0.903955(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 158 with following arguments:
+# Arg1: Stack@=1.071075(double)
+# Arg2: Stack@=0.903955(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 159 with following arguments:
+# Arg1: Const@=0.224859(double)
+# Dest: LF@&a=0.903955(double)
+# Executing instruction: IPUSHS at line: 160 with following arguments:
+# Arg1: LF@&a=0.224859(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 161 with following arguments:
+# Arg1: Stack@=1.97503(double)
+# Arg2: Stack@=0.224859(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: Const@=0.806775(double)
+# Dest: LF@&a=0.224859(double)
+# Executing instruction: IPUSHS at line: 163 with following arguments:
+# Arg1: LF@&a=0.806775(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 164 with following arguments:
+# Arg1: Stack@=1.750171(double)
+# Arg2: Stack@=0.806775(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 165 with following arguments:
+# Arg1: Const@=0.33956(double)
+# Dest: LF@&a=0.806775(double)
+# Executing instruction: IPUSHS at line: 166 with following arguments:
+# Arg1: LF@&a=0.33956(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=2.556946(double)
+# Arg2: Stack@=0.33956(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 168 with following arguments:
+# Arg1: Const@=0.555466(double)
+# Dest: LF@&a=0.33956(double)
+# Executing instruction: IPUSHS at line: 169 with following arguments:
+# Arg1: LF@&a=0.555466(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 170 with following arguments:
+# Arg1: Stack@=2.896506(double)
+# Arg2: Stack@=0.555466(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: Const@=0.48637(double)
+# Dest: LF@&a=0.555466(double)
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&a=0.48637(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 173 with following arguments:
+# Arg1: Stack@=2.34104(double)
+# Arg2: Stack@=0.48637(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 174 with following arguments:
+# Arg1: Const@=0.242754(double)
+# Dest: LF@&a=0.48637(double)
+# Executing instruction: IPUSHS at line: 175 with following arguments:
+# Arg1: LF@&a=0.242754(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 176 with following arguments:
+# Arg1: Stack@=2.82741(double)
+# Arg2: Stack@=0.242754(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: Const@=0.717089(double)
+# Dest: LF@&a=0.242754(double)
+# Executing instruction: IPUSHS at line: 178 with following arguments:
+# Arg1: LF@&a=0.717089(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 179 with following arguments:
+# Arg1: Stack@=3.070164(double)
+# Arg2: Stack@=0.717089(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 180 with following arguments:
+# Arg1: Const@=0.345791(double)
+# Dest: LF@&a=0.717089(double)
+# Executing instruction: IPUSHS at line: 181 with following arguments:
+# Arg1: LF@&a=0.345791(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 182 with following arguments:
+# Arg1: Stack@=3.787253(double)
+# Arg2: Stack@=0.345791(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 183 with following arguments:
+# Arg1: Const@=0.724882(double)
+# Dest: LF@&a=0.345791(double)
+# Executing instruction: IPUSHS at line: 184 with following arguments:
+# Arg1: LF@&a=0.724882(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 185 with following arguments:
+# Arg1: Stack@=4.133044(double)
+# Arg2: Stack@=0.724882(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 186 with following arguments:
+# Arg1: Const@=0.954358(double)
+# Dest: LF@&a=0.724882(double)
+# Executing instruction: IPUSHS at line: 187 with following arguments:
+# Arg1: LF@&a=0.954358(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 188 with following arguments:
+# Arg1: Stack@=4.857926(double)
+# Arg2: Stack@=0.954358(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=0.0189038(double)
+# Dest: LF@&a=0.954358(double)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&a=0.0189038(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=5.812284(double)
+# Arg2: Stack@=0.0189038(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 192 with following arguments:
+# Arg1: Const@=0.804128(double)
+# Dest: LF@&a=0.0189038(double)
+# Executing instruction: IPUSHS at line: 193 with following arguments:
+# Arg1: LF@&a=0.804128(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 194 with following arguments:
+# Arg1: Stack@=5.8311878(double)
+# Arg2: Stack@=0.804128(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: Const@=0.0239468(double)
+# Dest: LF@&a=0.804128(double)
+# Executing instruction: IPUSHS at line: 196 with following arguments:
+# Arg1: LF@&a=0.0239468(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 197 with following arguments:
+# Arg1: Stack@=6.635315800000001(double)
+# Arg2: Stack@=0.0239468(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: Const@=0.776467(double)
+# Dest: LF@&a=0.0239468(double)
+# Executing instruction: IPUSHS at line: 199 with following arguments:
+# Arg1: LF@&a=0.776467(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 200 with following arguments:
+# Arg1: Stack@=6.659262600000001(double)
+# Arg2: Stack@=0.776467(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 201 with following arguments:
+# Arg1: Const@=0.23172(double)
+# Dest: LF@&a=0.776467(double)
+# Executing instruction: IPUSHS at line: 202 with following arguments:
+# Arg1: LF@&a=0.23172(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 203 with following arguments:
+# Arg1: Stack@=5.882795600000001(double)
+# Arg2: Stack@=0.23172(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 204 with following arguments:
+# Arg1: Const@=0.8411110000000001(double)
+# Dest: LF@&a=0.23172(double)
+# Executing instruction: IPUSHS at line: 205 with following arguments:
+# Arg1: LF@&a=0.8411110000000001(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 206 with following arguments:
+# Arg1: Stack@=5.6510756(double)
+# Arg2: Stack@=0.8411110000000001(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 207 with following arguments:
+# Arg1: Const@=0.459109(double)
+# Dest: LF@&a=0.8411110000000001(double)
+# Executing instruction: IPUSHS at line: 208 with following arguments:
+# Arg1: LF@&a=0.459109(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 209 with following arguments:
+# Arg1: Stack@=6.4921866(double)
+# Arg2: Stack@=0.459109(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 210 with following arguments:
+# Arg1: Const@=0.190417(double)
+# Dest: LF@&a=0.459109(double)
+# Executing instruction: IPUSHS at line: 211 with following arguments:
+# Arg1: LF@&a=0.190417(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 212 with following arguments:
+# Arg1: Stack@=6.9512956(double)
+# Arg2: Stack@=0.190417(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 213 with following arguments:
+# Arg1: Const@=0.982367(double)
+# Dest: LF@&a=0.190417(double)
+# Executing instruction: IPUSHS at line: 214 with following arguments:
+# Arg1: LF@&a=0.982367(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 215 with following arguments:
+# Arg1: Stack@=6.7608786(double)
+# Arg2: Stack@=0.982367(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 216 with following arguments:
+# Arg1: Const@=0.115673(double)
+# Dest: LF@&a=0.982367(double)
+# Executing instruction: IPUSHS at line: 217 with following arguments:
+# Arg1: LF@&a=0.115673(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 218 with following arguments:
+# Arg1: Stack@=7.7432456(double)
+# Arg2: Stack@=0.115673(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 219 with following arguments:
+# Arg1: Const@=0.566894(double)
+# Dest: LF@&a=0.115673(double)
+# Executing instruction: IPUSHS at line: 220 with following arguments:
+# Arg1: LF@&a=0.566894(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 221 with following arguments:
+# Arg1: Stack@=7.6275726(double)
+# Arg2: Stack@=0.566894(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 222 with following arguments:
+# Arg1: Const@=0.633087(double)
+# Dest: LF@&a=0.566894(double)
+# Executing instruction: IPUSHS at line: 223 with following arguments:
+# Arg1: LF@&a=0.633087(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 224 with following arguments:
+# Arg1: Stack@=7.060678599999999(double)
+# Arg2: Stack@=0.633087(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 225 with following arguments:
+# Arg1: Const@=0.541992(double)
+# Dest: LF@&a=0.633087(double)
+# Executing instruction: IPUSHS at line: 226 with following arguments:
+# Arg1: LF@&a=0.541992(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 227 with following arguments:
+# Arg1: Stack@=7.693765599999999(double)
+# Arg2: Stack@=0.541992(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 228 with following arguments:
+# Arg1: Const@=0.0422726(double)
+# Dest: LF@&a=0.541992(double)
+# Executing instruction: IPUSHS at line: 229 with following arguments:
+# Arg1: LF@&a=0.0422726(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 230 with following arguments:
+# Arg1: Stack@=8.235757599999999(double)
+# Arg2: Stack@=0.0422726(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 231 with following arguments:
+# Arg1: Const@=0.382954(double)
+# Dest: LF@&a=0.0422726(double)
+# Executing instruction: IPUSHS at line: 232 with following arguments:
+# Arg1: LF@&a=0.382954(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 233 with following arguments:
+# Arg1: Stack@=8.193484999999999(double)
+# Arg2: Stack@=0.382954(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 234 with following arguments:
+# Arg1: Const@=0.958005(double)
+# Dest: LF@&a=0.382954(double)
+# Executing instruction: IPUSHS at line: 235 with following arguments:
+# Arg1: LF@&a=0.958005(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 236 with following arguments:
+# Arg1: Stack@=8.576438999999999(double)
+# Arg2: Stack@=0.958005(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 237 with following arguments:
+# Arg1: Const@=0.0362904(double)
+# Dest: LF@&a=0.958005(double)
+# Executing instruction: IPUSHS at line: 238 with following arguments:
+# Arg1: LF@&a=0.0362904(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 239 with following arguments:
+# Arg1: Stack@=9.534443999999999(double)
+# Arg2: Stack@=0.0362904(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 240 with following arguments:
+# Arg1: Const@=0.6381(double)
+# Dest: LF@&a=0.0362904(double)
+# Executing instruction: IPUSHS at line: 241 with following arguments:
+# Arg1: LF@&a=0.6381(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 242 with following arguments:
+# Arg1: Stack@=9.570734399999999(double)
+# Arg2: Stack@=0.6381(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 243 with following arguments:
+# Arg1: Const@=0.848646(double)
+# Dest: LF@&a=0.6381(double)
+# Executing instruction: IPUSHS at line: 244 with following arguments:
+# Arg1: LF@&a=0.848646(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 245 with following arguments:
+# Arg1: Stack@=8.9326344(double)
+# Arg2: Stack@=0.848646(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 246 with following arguments:
+# Arg1: Const@=0.979479(double)
+# Dest: LF@&a=0.848646(double)
+# Executing instruction: IPUSHS at line: 247 with following arguments:
+# Arg1: LF@&a=0.979479(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 248 with following arguments:
+# Arg1: Stack@=8.083988399999999(double)
+# Arg2: Stack@=0.979479(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 249 with following arguments:
+# Arg1: Const@=0.827778(double)
+# Dest: LF@&a=0.979479(double)
+# Executing instruction: IPUSHS at line: 250 with following arguments:
+# Arg1: LF@&a=0.827778(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 251 with following arguments:
+# Arg1: Stack@=7.1045094(double)
+# Arg2: Stack@=0.827778(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 252 with following arguments:
+# Arg1: Const@=0.95212(double)
+# Dest: LF@&a=0.827778(double)
+# Executing instruction: IPUSHS at line: 253 with following arguments:
+# Arg1: LF@&a=0.95212(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 254 with following arguments:
+# Arg1: Stack@=7.9322874(double)
+# Arg2: Stack@=0.95212(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 255 with following arguments:
+# Arg1: Const@=0.399222(double)
+# Dest: LF@&a=0.95212(double)
+# Executing instruction: IPUSHS at line: 256 with following arguments:
+# Arg1: LF@&a=0.399222(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 257 with following arguments:
+# Arg1: Stack@=8.884407400000001(double)
+# Arg2: Stack@=0.399222(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 258 with following arguments:
+# Arg1: Const@=0.921411(double)
+# Dest: LF@&a=0.399222(double)
+# Executing instruction: IPUSHS at line: 259 with following arguments:
+# Arg1: LF@&a=0.921411(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 260 with following arguments:
+# Arg1: Stack@=8.485185400000001(double)
+# Arg2: Stack@=0.921411(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 261 with following arguments:
+# Arg1: Const@=0.194306(double)
+# Dest: LF@&a=0.921411(double)
+# Executing instruction: IPUSHS at line: 262 with following arguments:
+# Arg1: LF@&a=0.194306(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 263 with following arguments:
+# Arg1: Stack@=9.406596400000002(double)
+# Arg2: Stack@=0.194306(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 264 with following arguments:
+# Arg1: Const@=0.644446(double)
+# Dest: LF@&a=0.194306(double)
+# Executing instruction: IPUSHS at line: 265 with following arguments:
+# Arg1: LF@&a=0.644446(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 266 with following arguments:
+# Arg1: Stack@=9.212290400000002(double)
+# Arg2: Stack@=0.644446(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 267 with following arguments:
+# Arg1: Const@=0.32521(double)
+# Dest: LF@&a=0.644446(double)
+# Executing instruction: IPUSHS at line: 268 with following arguments:
+# Arg1: LF@&a=0.32521(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 269 with following arguments:
+# Arg1: Stack@=8.567844400000002(double)
+# Arg2: Stack@=0.32521(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 270 with following arguments:
+# Arg1: Const@=0.570759(double)
+# Dest: LF@&a=0.32521(double)
+# Executing instruction: IPUSHS at line: 271 with following arguments:
+# Arg1: LF@&a=0.570759(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 272 with following arguments:
+# Arg1: Stack@=8.242634400000002(double)
+# Arg2: Stack@=0.570759(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 273 with following arguments:
+# Arg1: Const@=0.7799739999999999(double)
+# Dest: LF@&a=0.570759(double)
+# Executing instruction: IPUSHS at line: 274 with following arguments:
+# Arg1: LF@&a=0.7799739999999999(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 275 with following arguments:
+# Arg1: Stack@=7.671875400000002(double)
+# Arg2: Stack@=0.7799739999999999(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 276 with following arguments:
+# Arg1: Const@=0.958238(double)
+# Dest: LF@&a=0.7799739999999999(double)
+# Executing instruction: IPUSHS at line: 277 with following arguments:
+# Arg1: LF@&a=0.958238(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 278 with following arguments:
+# Arg1: Stack@=6.891901400000002(double)
+# Arg2: Stack@=0.958238(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 279 with following arguments:
+# Arg1: Const@=0.116083(double)
+# Dest: LF@&a=0.958238(double)
+# Executing instruction: IPUSHS at line: 280 with following arguments:
+# Arg1: LF@&a=0.116083(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 281 with following arguments:
+# Arg1: Stack@=5.933663400000002(double)
+# Arg2: Stack@=0.116083(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 282 with following arguments:
+# Arg1: Const@=0.75942(double)
+# Dest: LF@&a=0.116083(double)
+# Executing instruction: IPUSHS at line: 283 with following arguments:
+# Arg1: LF@&a=0.75942(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 284 with following arguments:
+# Arg1: Stack@=5.817580400000002(double)
+# Arg2: Stack@=0.75942(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 285 with following arguments:
+# Arg1: Const@=0.82285(double)
+# Dest: LF@&a=0.75942(double)
+# Executing instruction: IPUSHS at line: 286 with following arguments:
+# Arg1: LF@&a=0.82285(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 287 with following arguments:
+# Arg1: Stack@=5.058160400000002(double)
+# Arg2: Stack@=0.82285(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 288 with following arguments:
+# Arg1: Const@=0.912261(double)
+# Dest: LF@&a=0.82285(double)
+# Executing instruction: IPUSHS at line: 289 with following arguments:
+# Arg1: LF@&a=0.912261(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 290 with following arguments:
+# Arg1: Stack@=4.235310400000002(double)
+# Arg2: Stack@=0.912261(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 291 with following arguments:
+# Arg1: Const@=0.933169(double)
+# Dest: LF@&a=0.912261(double)
+# Executing instruction: IPUSHS at line: 292 with following arguments:
+# Arg1: LF@&a=0.933169(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 293 with following arguments:
+# Arg1: Stack@=3.323049400000002(double)
+# Arg2: Stack@=0.933169(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 294 with following arguments:
+# Arg1: Const@=0.894632(double)
+# Dest: LF@&a=0.933169(double)
+# Executing instruction: IPUSHS at line: 295 with following arguments:
+# Arg1: LF@&a=0.894632(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 296 with following arguments:
+# Arg1: Stack@=2.389880400000002(double)
+# Arg2: Stack@=0.894632(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 297 with following arguments:
+# Arg1: Const@=0.343357(double)
+# Dest: LF@&a=0.894632(double)
+# Executing instruction: IPUSHS at line: 298 with following arguments:
+# Arg1: LF@&a=0.343357(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 299 with following arguments:
+# Arg1: Stack@=3.284512400000002(double)
+# Arg2: Stack@=0.343357(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 300 with following arguments:
+# Arg1: Const@=0.389294(double)
+# Dest: LF@&a=0.343357(double)
+# Executing instruction: IPUSHS at line: 301 with following arguments:
+# Arg1: LF@&a=0.389294(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 302 with following arguments:
+# Arg1: Stack@=3.627869400000002(double)
+# Arg2: Stack@=0.389294(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 303 with following arguments:
+# Arg1: Const@=0.829948(double)
+# Dest: LF@&a=0.389294(double)
+# Executing instruction: IPUSHS at line: 304 with following arguments:
+# Arg1: LF@&a=0.829948(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 305 with following arguments:
+# Arg1: Stack@=3.238575400000002(double)
+# Arg2: Stack@=0.829948(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 306 with following arguments:
+# Arg1: Const@=0.878884(double)
+# Dest: LF@&a=0.829948(double)
+# Executing instruction: IPUSHS at line: 307 with following arguments:
+# Arg1: LF@&a=0.878884(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 308 with following arguments:
+# Arg1: Stack@=4.068523400000003(double)
+# Arg2: Stack@=0.878884(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 309 with following arguments:
+# Arg1: Const@=0.356404(double)
+# Dest: LF@&a=0.878884(double)
+# Executing instruction: IPUSHS at line: 310 with following arguments:
+# Arg1: LF@&a=0.356404(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 311 with following arguments:
+# Arg1: Stack@=3.189639400000003(double)
+# Arg2: Stack@=0.356404(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 312 with following arguments:
+# Arg1: Const@=0.213512(double)
+# Dest: LF@&a=0.356404(double)
+# Executing instruction: IPUSHS at line: 313 with following arguments:
+# Arg1: LF@&a=0.213512(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 314 with following arguments:
+# Arg1: Stack@=2.833235400000003(double)
+# Arg2: Stack@=0.213512(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 315 with following arguments:
+# Arg1: Const@=0.237478(double)
+# Dest: LF@&a=0.213512(double)
+# Executing instruction: IPUSHS at line: 316 with following arguments:
+# Arg1: LF@&a=0.237478(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 317 with following arguments:
+# Arg1: Stack@=2.619723400000002(double)
+# Arg2: Stack@=0.237478(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 318 with following arguments:
+# Arg1: Const@=0.414429(double)
+# Dest: LF@&a=0.237478(double)
+# Executing instruction: IPUSHS at line: 319 with following arguments:
+# Arg1: LF@&a=0.414429(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 320 with following arguments:
+# Arg1: Stack@=2.857201400000002(double)
+# Arg2: Stack@=0.414429(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 321 with following arguments:
+# Arg1: Const@=0.651156(double)
+# Dest: LF@&a=0.414429(double)
+# Executing instruction: IPUSHS at line: 322 with following arguments:
+# Arg1: LF@&a=0.651156(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 323 with following arguments:
+# Arg1: Stack@=3.271630400000002(double)
+# Arg2: Stack@=0.651156(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 324 with following arguments:
+# Arg1: Const@=0.435601(double)
+# Dest: LF@&a=0.651156(double)
+# Executing instruction: IPUSHS at line: 325 with following arguments:
+# Arg1: LF@&a=0.435601(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 326 with following arguments:
+# Arg1: Stack@=3.922786400000002(double)
+# Arg2: Stack@=0.435601(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 327 with following arguments:
+# Arg1: Const@=0.169134(double)
+# Dest: LF@&a=0.435601(double)
+# Executing instruction: IPUSHS at line: 328 with following arguments:
+# Arg1: LF@&a=0.169134(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 329 with following arguments:
+# Arg1: Stack@=3.487185400000002(double)
+# Arg2: Stack@=0.169134(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 330 with following arguments:
+# Arg1: Const@=0.399233(double)
+# Dest: LF@&a=0.169134(double)
+# Executing instruction: IPUSHS at line: 331 with following arguments:
+# Arg1: LF@&a=0.399233(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 332 with following arguments:
+# Arg1: Stack@=3.656319400000002(double)
+# Arg2: Stack@=0.399233(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 333 with following arguments:
+# Arg1: Const@=0.739337(double)
+# Dest: LF@&a=0.399233(double)
+# Executing instruction: IPUSHS at line: 334 with following arguments:
+# Arg1: LF@&a=0.739337(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 335 with following arguments:
+# Arg1: Stack@=4.055552400000002(double)
+# Arg2: Stack@=0.739337(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 336 with following arguments:
+# Arg1: Const@=0.888049(double)
+# Dest: LF@&a=0.739337(double)
+# Executing instruction: IPUSHS at line: 337 with following arguments:
+# Arg1: LF@&a=0.888049(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 338 with following arguments:
+# Arg1: Stack@=4.794889400000002(double)
+# Arg2: Stack@=0.888049(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 339 with following arguments:
+# Arg1: Const@=0.977753(double)
+# Dest: LF@&a=0.888049(double)
+# Executing instruction: IPUSHS at line: 340 with following arguments:
+# Arg1: LF@&a=0.977753(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 341 with following arguments:
+# Arg1: Stack@=5.682938400000002(double)
+# Arg2: Stack@=0.977753(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 342 with following arguments:
+# Arg1: Const@=0.932396(double)
+# Dest: LF@&a=0.977753(double)
+# Executing instruction: IPUSHS at line: 343 with following arguments:
+# Arg1: LF@&a=0.932396(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 344 with following arguments:
+# Arg1: Stack@=4.705185400000002(double)
+# Arg2: Stack@=0.932396(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 345 with following arguments:
+# Arg1: Const@=0.861422(double)
+# Dest: LF@&a=0.932396(double)
+# Executing instruction: IPUSHS at line: 346 with following arguments:
+# Arg1: LF@&a=0.861422(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 347 with following arguments:
+# Arg1: Stack@=3.772789400000002(double)
+# Arg2: Stack@=0.861422(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 348 with following arguments:
+# Arg1: Const@=0.245443(double)
+# Dest: LF@&a=0.861422(double)
+# Executing instruction: IPUSHS at line: 349 with following arguments:
+# Arg1: LF@&a=0.245443(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 350 with following arguments:
+# Arg1: Stack@=4.634211400000003(double)
+# Arg2: Stack@=0.245443(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 351 with following arguments:
+# Arg1: Const@=0.7228869999999999(double)
+# Dest: LF@&a=0.245443(double)
+# Executing instruction: IPUSHS at line: 352 with following arguments:
+# Arg1: LF@&a=0.7228869999999999(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 353 with following arguments:
+# Arg1: Stack@=4.879654400000002(double)
+# Arg2: Stack@=0.7228869999999999(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 354 with following arguments:
+# Arg1: Const@=0.503123(double)
+# Dest: LF@&a=0.7228869999999999(double)
+# Executing instruction: IPUSHS at line: 355 with following arguments:
+# Arg1: LF@&a=0.503123(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 356 with following arguments:
+# Arg1: Stack@=4.156767400000002(double)
+# Arg2: Stack@=0.503123(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 357 with following arguments:
+# Arg1: Const@=0.37359(double)
+# Dest: LF@&a=0.503123(double)
+# Executing instruction: IPUSHS at line: 358 with following arguments:
+# Arg1: LF@&a=0.37359(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 359 with following arguments:
+# Arg1: Stack@=4.659890400000002(double)
+# Arg2: Stack@=0.37359(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 360 with following arguments:
+# Arg1: Const@=0.345391(double)
+# Dest: LF@&a=0.37359(double)
+# Executing instruction: IPUSHS at line: 361 with following arguments:
+# Arg1: LF@&a=0.345391(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 362 with following arguments:
+# Arg1: Stack@=5.033480400000002(double)
+# Arg2: Stack@=0.345391(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 363 with following arguments:
+# Arg1: Const@=0.244501(double)
+# Dest: LF@&a=0.345391(double)
+# Executing instruction: IPUSHS at line: 364 with following arguments:
+# Arg1: LF@&a=0.244501(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 365 with following arguments:
+# Arg1: Stack@=4.688089400000002(double)
+# Arg2: Stack@=0.244501(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 366 with following arguments:
+# Arg1: Const@=0.224346(double)
+# Dest: LF@&a=0.244501(double)
+# Executing instruction: IPUSHS at line: 367 with following arguments:
+# Arg1: LF@&a=0.224346(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 368 with following arguments:
+# Arg1: Stack@=4.443588400000002(double)
+# Arg2: Stack@=0.224346(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 369 with following arguments:
+# Arg1: Const@=0.40581(double)
+# Dest: LF@&a=0.224346(double)
+# Executing instruction: IPUSHS at line: 370 with following arguments:
+# Arg1: LF@&a=0.40581(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 371 with following arguments:
+# Arg1: Stack@=4.219242400000002(double)
+# Arg2: Stack@=0.40581(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 372 with following arguments:
+# Arg1: Const@=0.541166(double)
+# Dest: LF@&a=0.40581(double)
+# Executing instruction: IPUSHS at line: 373 with following arguments:
+# Arg1: LF@&a=0.541166(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 374 with following arguments:
+# Arg1: Stack@=4.625052400000002(double)
+# Arg2: Stack@=0.541166(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 375 with following arguments:
+# Arg1: Const@=0.717316(double)
+# Dest: LF@&a=0.541166(double)
+# Executing instruction: IPUSHS at line: 376 with following arguments:
+# Arg1: LF@&a=0.717316(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 377 with following arguments:
+# Arg1: Stack@=4.083886400000003(double)
+# Arg2: Stack@=0.717316(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 378 with following arguments:
+# Arg1: Const@=0.908282(double)
+# Dest: LF@&a=0.717316(double)
+# Executing instruction: IPUSHS at line: 379 with following arguments:
+# Arg1: LF@&a=0.908282(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 380 with following arguments:
+# Arg1: Stack@=3.366570400000003(double)
+# Arg2: Stack@=0.908282(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 381 with following arguments:
+# Arg1: Const@=0.485787(double)
+# Dest: LF@&a=0.908282(double)
+# Executing instruction: IPUSHS at line: 382 with following arguments:
+# Arg1: LF@&a=0.485787(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 383 with following arguments:
+# Arg1: Stack@=4.274852400000003(double)
+# Arg2: Stack@=0.485787(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 384 with following arguments:
+# Arg1: Const@=0.890551(double)
+# Dest: LF@&a=0.485787(double)
+# Executing instruction: IPUSHS at line: 385 with following arguments:
+# Arg1: LF@&a=0.890551(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 386 with following arguments:
+# Arg1: Stack@=4.760639400000003(double)
+# Arg2: Stack@=0.890551(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 387 with following arguments:
+# Arg1: Const@=0.701569(double)
+# Dest: LF@&a=0.890551(double)
+# Executing instruction: IPUSHS at line: 388 with following arguments:
+# Arg1: LF@&a=0.701569(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 389 with following arguments:
+# Arg1: Stack@=3.870088400000003(double)
+# Arg2: Stack@=0.701569(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 390 with following arguments:
+# Arg1: Const@=0.0522724(double)
+# Dest: LF@&a=0.701569(double)
+# Executing instruction: IPUSHS at line: 391 with following arguments:
+# Arg1: LF@&a=0.0522724(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 392 with following arguments:
+# Arg1: Stack@=3.168519400000003(double)
+# Arg2: Stack@=0.0522724(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 393 with following arguments:
+# Arg1: Const@=0.672145(double)
+# Dest: LF@&a=0.0522724(double)
+# Executing instruction: IPUSHS at line: 394 with following arguments:
+# Arg1: LF@&a=0.672145(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 395 with following arguments:
+# Arg1: Stack@=3.116247000000003(double)
+# Arg2: Stack@=0.672145(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 396 with following arguments:
+# Arg1: Const@=0.75836(double)
+# Dest: LF@&a=0.672145(double)
+# Executing instruction: IPUSHS at line: 397 with following arguments:
+# Arg1: LF@&a=0.75836(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 398 with following arguments:
+# Arg1: Stack@=2.444102000000003(double)
+# Arg2: Stack@=0.75836(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 399 with following arguments:
+# Arg1: Const@=0.575973(double)
+# Dest: LF@&a=0.75836(double)
+# Executing instruction: IPUSHS at line: 400 with following arguments:
+# Arg1: LF@&a=0.575973(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 401 with following arguments:
+# Arg1: Stack@=1.685742000000003(double)
+# Arg2: Stack@=0.575973(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 402 with following arguments:
+# Arg1: Const@=0.280938(double)
+# Dest: LF@&a=0.575973(double)
+# Executing instruction: IPUSHS at line: 403 with following arguments:
+# Arg1: LF@&a=0.280938(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 404 with following arguments:
+# Arg1: Stack@=1.109769000000003(double)
+# Arg2: Stack@=0.280938(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 405 with following arguments:
+# Arg1: Const@=0.948901(double)
+# Dest: LF@&a=0.280938(double)
+# Executing instruction: IPUSHS at line: 406 with following arguments:
+# Arg1: LF@&a=0.948901(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 407 with following arguments:
+# Arg1: Stack@=1.390707000000003(double)
+# Arg2: Stack@=0.948901(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 408 with following arguments:
+# Arg1: Const@=0.150017(double)
+# Dest: LF@&a=0.948901(double)
+# Executing instruction: IPUSHS at line: 409 with following arguments:
+# Arg1: LF@&a=0.150017(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 410 with following arguments:
+# Arg1: Stack@=0.441806000000003(double)
+# Arg2: Stack@=0.150017(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 411 with following arguments:
+# Arg1: Const@=0.781783(double)
+# Dest: LF@&a=0.150017(double)
+# Executing instruction: IPUSHS at line: 412 with following arguments:
+# Arg1: LF@&a=0.781783(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 413 with following arguments:
+# Arg1: Stack@=0.291789000000003(double)
+# Arg2: Stack@=0.781783(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 414 with following arguments:
+# Arg1: Const@=0.467345(double)
+# Dest: LF@&a=0.781783(double)
+# Executing instruction: IPUSHS at line: 415 with following arguments:
+# Arg1: LF@&a=0.467345(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 416 with following arguments:
+# Arg1: Stack@=1.073572000000003(double)
+# Arg2: Stack@=0.467345(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 417 with following arguments:
+# Arg1: Const@=0.604492(double)
+# Dest: LF@&a=0.467345(double)
+# Executing instruction: IPUSHS at line: 418 with following arguments:
+# Arg1: LF@&a=0.604492(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 419 with following arguments:
+# Arg1: Stack@=0.6062270000000031(double)
+# Arg2: Stack@=0.604492(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 420 with following arguments:
+# Arg1: Const@=0.312415(double)
+# Dest: LF@&a=0.604492(double)
+# Executing instruction: IPUSHS at line: 421 with following arguments:
+# Arg1: LF@&a=0.312415(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 422 with following arguments:
+# Arg1: Stack@=0.00173500000000304(double)
+# Arg2: Stack@=0.312415(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 423 with following arguments:
+# Arg1: Const@=0.703921(double)
+# Dest: LF@&a=0.312415(double)
+# Executing instruction: IPUSHS at line: 424 with following arguments:
+# Arg1: LF@&a=0.703921(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 425 with following arguments:
+# Arg1: Stack@=-0.310679999999997(double)
+# Arg2: Stack@=0.703921(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 426 with following arguments:
+# Arg1: Stack@=-1.014600999999997(double)
+# Dest: LF@&a=0.703921(double)
+# Executing instruction: IMOVE at line: 427 with following arguments:
+# Arg1: LF@&a=-1.014600999999997(double)
+# Dest: LF@a=0(double)
+# Executing instruction: IDEFVAR at line: 428 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 429 with following arguments:
+# Arg1: LF@a=-1.014600999999997(double)
+# Dest: LF@&b()
+# Executing instruction: IWRITE at line: 430 with following arguments:
+# Arg1: LF@&b=-1.014600999999997(double)
+# Executing instruction: IPOPFRAME at line: 431 with following arguments:
+# Executing instruction: IGROOT at line: 433 with following arguments:
+# I am Groot at 433 (2275).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 2275 (521+1754)
+# GROOT: 2275
+# 
+#   1: ' Big number of float integers +-
+#   2: scope
+#   3:     dim a as double
+#   4:     a =  0.15392032971323+0.45034736183022-0.22857732755531-0.10393178095293+0.5770683007208-0.20937356036593+0.88500488311285-0.17863870280731-0.43715851168947-0.63981254568315+0.80222906768426+0.90395464929936-0.22485914231504+0.80677499659675+0.33955973030047-0.55546566357625+0.48636960121168+0.24275394354144+0.71708868617056+0.34579125714758+0.72488219091896+0.95435832857823+0.018903809608381+0.8041277959962+0.023946794226741-0.77646734974183-0.23172008769201+0.84111053582333+0.4591088306434-0.19041681903899+0.98236713138519-0.11567312298141-0.56689354989999+0.63308663090369+0.54199194281455-0.042272554730192+0.38295422977905+0.95800455378276+0.036290351783992-0.63809956313954-0.84864554081515-0.97947909262938+0.82777797096771+0.95212024215242-0.39922194946521+0.92141141552544-0.19430580697689-0.64444554347752-0.32520966060702-0.57075888131315-0.77997415549121-0.95823753343813-0.11608309443858-0.75942019408542-0.82284970247319-0.91226126948011-0.93316854859384+0.89463229332801+0.34335702999651-0.38929377560937+0.82994798562953-0.87888436013781-0.35640355262738-0.21351195416111+0.23747843654709+0.41442929227577+0.6511562115751-0.43560120204259+0.16913385045209+0.39923315606976+0.73933730774528+0.88804860873523-0.97775317215256-0.93239587169718+0.86142201389252+0.24544257309541-0.72288686815784+0.5031232561465+0.37358963553495-0.34539146877145-0.24450102273584-0.22434624341519+0.4058097044033-0.54116594024988-0.7173163135151+0.90828158841854+0.48578712832452-0.89055054443448-0.70156869138664-0.052272440889977-0.67214471924684-0.7583599895045-0.57597289447485+0.28093752231493-0.9489006981947-0.15001685784665+0.78178339720787-0.46734504702843-0.6044920913896-0.31241466911156-0.70392135889452
+#   5:     
+#   6:     print a;
+#   7:     
+#   8: 
+#   9: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/431
+JUMP $$main                                                                     #     2/431
+LABEL $length                                                                   #     3/431
+PUSHFRAME                                                                       #     4/431
+DEFVAR LF@%retval                                                               #     5/431
+MOVE LF@%retval int@0                                                           #     6/431
+STRLEN LF@%retval LF@s                                                          #     7/431
+LABEL $length$epilog                                                            #     8/431
+POPFRAME                                                                        #     9/431
+RETURN                                                                          #    10/431
+LABEL $substr                                                                   #    11/431
+PUSHFRAME                                                                       #    12/431
+DEFVAR LF@%retval                                                               #    13/431
+MOVE LF@%retval string@                                                         #    14/431
+DEFVAR LF@tmp1                                                                  #    15/431
+DEFVAR LF@tmp2                                                                  #    16/431
+MOVE LF@tmp1 int@0                                                              #    17/431
+MOVE LF@tmp2 string@                                                            #    18/431
+SUB LF@tmp1 LF@i int@1                                                          #    19/431
+DEFVAR LF@length                                                                #    20/431
+MOVE LF@length int@0                                                            #    21/431
+DEFVAR LF@result                                                                #    22/431
+MOVE LF@result bool@false                                                       #    23/431
+DEFVAR LF@tmplen                                                                #    24/431
+MOVE LF@tmplen int@0                                                            #    25/431
+STRLEN LF@tmplen LF@s                                                           #    26/431
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/431
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/431
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/431
+PUSHS LF@i                                                                      #    30/431
+PUSHS int@0                                                                     #    31/431
+PUSHS LF@i                                                                      #    32/431
+PUSHS int@0                                                                     #    33/431
+EQS                                                                             #    34/431
+POPS LF@result                                                                  #    35/431
+LTS                                                                             #    36/431
+PUSHS LF@result                                                                 #    37/431
+ORS                                                                             #    38/431
+POPS LF@result                                                                  #    39/431
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/431
+PUSHS LF@n                                                                      #    41/431
+PUSHS int@0                                                                     #    42/431
+LTS                                                                             #    43/431
+POPS LF@result                                                                  #    44/431
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/431
+STRLEN LF@tmplen LF@s                                                           #    46/431
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/431
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/431
+PUSHS LF@tmplen                                                                 #    49/431
+PUSHS LF@n                                                                      #    50/431
+LTS                                                                             #    51/431
+POPS LF@result                                                                  #    52/431
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/431
+MOVE LF@tmplen int@0                                                            #    54/431
+STRLEN LF@tmplen LF@s                                                           #    55/431
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/431
+LABEL $SubStrFor                                                                #    57/431
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/431
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/431
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/431
+STRLEN LF@length LF@%retval                                                     #    61/431
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/431
+JUMP $substr$epilog                                                             #    63/431
+LABEL $SubStrReturn0                                                            #    64/431
+MOVE LF@%retval string@                                                         #    65/431
+JUMP $substr$epilog                                                             #    66/431
+LABEL $SubStrReturnRest                                                         #    67/431
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/431
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/431
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/431
+STRLEN LF@length LF@%retval                                                     #    71/431
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/431
+LABEL $substr$epilog                                                            #    73/431
+POPFRAME                                                                        #    74/431
+RETURN                                                                          #    75/431
+LABEL $asc                                                                      #    76/431
+PUSHFRAME                                                                       #    77/431
+DEFVAR LF@%retval                                                               #    78/431
+MOVE LF@%retval int@0                                                           #    79/431
+DEFVAR LF@result                                                                #    80/431
+MOVE LF@result bool@false                                                       #    81/431
+DEFVAR LF@tmp                                                                   #    82/431
+DEFVAR LF@tmp2                                                                  #    83/431
+MOVE LF@tmp string@                                                             #    84/431
+MOVE LF@tmp2 int@0                                                              #    85/431
+PUSHS LF@i                                                                      #    86/431
+PUSHS int@0                                                                     #    87/431
+PUSHS LF@i                                                                      #    88/431
+PUSHS int@0                                                                     #    89/431
+EQS                                                                             #    90/431
+POPS LF@result                                                                  #    91/431
+LTS                                                                             #    92/431
+PUSHS LF@result                                                                 #    93/431
+ORS                                                                             #    94/431
+POPS LF@result                                                                  #    95/431
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/431
+PUSHS LF@i                                                                      #    97/431
+STRLEN LF@tmp2 LF@s                                                             #    98/431
+PUSHS LF@tmp2                                                                   #    99/431
+GTS                                                                             #   100/431
+POPS LF@result                                                                  #   101/431
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/431
+SUB LF@i LF@i int@1                                                             #   103/431
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/431
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/431
+LABEL $asc$epilog                                                               #   106/431
+POPFRAME                                                                        #   107/431
+RETURN                                                                          #   108/431
+LABEL $chr                                                                      #   109/431
+PUSHFRAME                                                                       #   110/431
+DEFVAR LF@%retval                                                               #   111/431
+MOVE LF@%retval string@                                                         #   112/431
+DEFVAR LF@tmp                                                                   #   113/431
+MOVE LF@tmp string@                                                             #   114/431
+INT2CHAR LF@%retval LF@i                                                        #   115/431
+POPFRAME                                                                        #   116/431
+RETURN                                                                          #   117/431
+LABEL $$main                                                                    #   118/431
+CREATEFRAME                                                                     #   119/431
+PUSHFRAME                                                                       #   120/431
+DEFVAR LF@a                                                                     #   121/431
+MOVE LF@a float@0.0                                                             #   122/431
+DEFVAR LF@&a                                                                    #   123/431
+MOVE LF@&a float@0.15392                                                        #   124/431
+PUSHS LF@&a                                                                     #   125/431
+MOVE LF@&a float@0.450347                                                       #   126/431
+PUSHS LF@&a                                                                     #   127/431
+ADDS                                                                            #   128/431
+MOVE LF@&a float@0.228577                                                       #   129/431
+PUSHS LF@&a                                                                     #   130/431
+SUBS                                                                            #   131/431
+MOVE LF@&a float@0.103932                                                       #   132/431
+PUSHS LF@&a                                                                     #   133/431
+SUBS                                                                            #   134/431
+MOVE LF@&a float@0.577068                                                       #   135/431
+PUSHS LF@&a                                                                     #   136/431
+ADDS                                                                            #   137/431
+MOVE LF@&a float@0.209374                                                       #   138/431
+PUSHS LF@&a                                                                     #   139/431
+SUBS                                                                            #   140/431
+MOVE LF@&a float@0.885005                                                       #   141/431
+PUSHS LF@&a                                                                     #   142/431
+ADDS                                                                            #   143/431
+MOVE LF@&a float@0.178639                                                       #   144/431
+PUSHS LF@&a                                                                     #   145/431
+SUBS                                                                            #   146/431
+MOVE LF@&a float@0.437159                                                       #   147/431
+PUSHS LF@&a                                                                     #   148/431
+SUBS                                                                            #   149/431
+MOVE LF@&a float@0.639813                                                       #   150/431
+PUSHS LF@&a                                                                     #   151/431
+SUBS                                                                            #   152/431
+MOVE LF@&a float@0.802229                                                       #   153/431
+PUSHS LF@&a                                                                     #   154/431
+ADDS                                                                            #   155/431
+MOVE LF@&a float@0.903955                                                       #   156/431
+PUSHS LF@&a                                                                     #   157/431
+ADDS                                                                            #   158/431
+MOVE LF@&a float@0.224859                                                       #   159/431
+PUSHS LF@&a                                                                     #   160/431
+SUBS                                                                            #   161/431
+MOVE LF@&a float@0.806775                                                       #   162/431
+PUSHS LF@&a                                                                     #   163/431
+ADDS                                                                            #   164/431
+MOVE LF@&a float@0.33956                                                        #   165/431
+PUSHS LF@&a                                                                     #   166/431
+ADDS                                                                            #   167/431
+MOVE LF@&a float@0.555466                                                       #   168/431
+PUSHS LF@&a                                                                     #   169/431
+SUBS                                                                            #   170/431
+MOVE LF@&a float@0.48637                                                        #   171/431
+PUSHS LF@&a                                                                     #   172/431
+ADDS                                                                            #   173/431
+MOVE LF@&a float@0.242754                                                       #   174/431
+PUSHS LF@&a                                                                     #   175/431
+ADDS                                                                            #   176/431
+MOVE LF@&a float@0.717089                                                       #   177/431
+PUSHS LF@&a                                                                     #   178/431
+ADDS                                                                            #   179/431
+MOVE LF@&a float@0.345791                                                       #   180/431
+PUSHS LF@&a                                                                     #   181/431
+ADDS                                                                            #   182/431
+MOVE LF@&a float@0.724882                                                       #   183/431
+PUSHS LF@&a                                                                     #   184/431
+ADDS                                                                            #   185/431
+MOVE LF@&a float@0.954358                                                       #   186/431
+PUSHS LF@&a                                                                     #   187/431
+ADDS                                                                            #   188/431
+MOVE LF@&a float@0.0189038                                                      #   189/431
+PUSHS LF@&a                                                                     #   190/431
+ADDS                                                                            #   191/431
+MOVE LF@&a float@0.804128                                                       #   192/431
+PUSHS LF@&a                                                                     #   193/431
+ADDS                                                                            #   194/431
+MOVE LF@&a float@0.0239468                                                      #   195/431
+PUSHS LF@&a                                                                     #   196/431
+ADDS                                                                            #   197/431
+MOVE LF@&a float@0.776467                                                       #   198/431
+PUSHS LF@&a                                                                     #   199/431
+SUBS                                                                            #   200/431
+MOVE LF@&a float@0.23172                                                        #   201/431
+PUSHS LF@&a                                                                     #   202/431
+SUBS                                                                            #   203/431
+MOVE LF@&a float@0.841111                                                       #   204/431
+PUSHS LF@&a                                                                     #   205/431
+ADDS                                                                            #   206/431
+MOVE LF@&a float@0.459109                                                       #   207/431
+PUSHS LF@&a                                                                     #   208/431
+ADDS                                                                            #   209/431
+MOVE LF@&a float@0.190417                                                       #   210/431
+PUSHS LF@&a                                                                     #   211/431
+SUBS                                                                            #   212/431
+MOVE LF@&a float@0.982367                                                       #   213/431
+PUSHS LF@&a                                                                     #   214/431
+ADDS                                                                            #   215/431
+MOVE LF@&a float@0.115673                                                       #   216/431
+PUSHS LF@&a                                                                     #   217/431
+SUBS                                                                            #   218/431
+MOVE LF@&a float@0.566894                                                       #   219/431
+PUSHS LF@&a                                                                     #   220/431
+SUBS                                                                            #   221/431
+MOVE LF@&a float@0.633087                                                       #   222/431
+PUSHS LF@&a                                                                     #   223/431
+ADDS                                                                            #   224/431
+MOVE LF@&a float@0.541992                                                       #   225/431
+PUSHS LF@&a                                                                     #   226/431
+ADDS                                                                            #   227/431
+MOVE LF@&a float@0.0422726                                                      #   228/431
+PUSHS LF@&a                                                                     #   229/431
+SUBS                                                                            #   230/431
+MOVE LF@&a float@0.382954                                                       #   231/431
+PUSHS LF@&a                                                                     #   232/431
+ADDS                                                                            #   233/431
+MOVE LF@&a float@0.958005                                                       #   234/431
+PUSHS LF@&a                                                                     #   235/431
+ADDS                                                                            #   236/431
+MOVE LF@&a float@0.0362904                                                      #   237/431
+PUSHS LF@&a                                                                     #   238/431
+ADDS                                                                            #   239/431
+MOVE LF@&a float@0.6381                                                         #   240/431
+PUSHS LF@&a                                                                     #   241/431
+SUBS                                                                            #   242/431
+MOVE LF@&a float@0.848646                                                       #   243/431
+PUSHS LF@&a                                                                     #   244/431
+SUBS                                                                            #   245/431
+MOVE LF@&a float@0.979479                                                       #   246/431
+PUSHS LF@&a                                                                     #   247/431
+SUBS                                                                            #   248/431
+MOVE LF@&a float@0.827778                                                       #   249/431
+PUSHS LF@&a                                                                     #   250/431
+ADDS                                                                            #   251/431
+MOVE LF@&a float@0.95212                                                        #   252/431
+PUSHS LF@&a                                                                     #   253/431
+ADDS                                                                            #   254/431
+MOVE LF@&a float@0.399222                                                       #   255/431
+PUSHS LF@&a                                                                     #   256/431
+SUBS                                                                            #   257/431
+MOVE LF@&a float@0.921411                                                       #   258/431
+PUSHS LF@&a                                                                     #   259/431
+ADDS                                                                            #   260/431
+MOVE LF@&a float@0.194306                                                       #   261/431
+PUSHS LF@&a                                                                     #   262/431
+SUBS                                                                            #   263/431
+MOVE LF@&a float@0.644446                                                       #   264/431
+PUSHS LF@&a                                                                     #   265/431
+SUBS                                                                            #   266/431
+MOVE LF@&a float@0.32521                                                        #   267/431
+PUSHS LF@&a                                                                     #   268/431
+SUBS                                                                            #   269/431
+MOVE LF@&a float@0.570759                                                       #   270/431
+PUSHS LF@&a                                                                     #   271/431
+SUBS                                                                            #   272/431
+MOVE LF@&a float@0.779974                                                       #   273/431
+PUSHS LF@&a                                                                     #   274/431
+SUBS                                                                            #   275/431
+MOVE LF@&a float@0.958238                                                       #   276/431
+PUSHS LF@&a                                                                     #   277/431
+SUBS                                                                            #   278/431
+MOVE LF@&a float@0.116083                                                       #   279/431
+PUSHS LF@&a                                                                     #   280/431
+SUBS                                                                            #   281/431
+MOVE LF@&a float@0.75942                                                        #   282/431
+PUSHS LF@&a                                                                     #   283/431
+SUBS                                                                            #   284/431
+MOVE LF@&a float@0.82285                                                        #   285/431
+PUSHS LF@&a                                                                     #   286/431
+SUBS                                                                            #   287/431
+MOVE LF@&a float@0.912261                                                       #   288/431
+PUSHS LF@&a                                                                     #   289/431
+SUBS                                                                            #   290/431
+MOVE LF@&a float@0.933169                                                       #   291/431
+PUSHS LF@&a                                                                     #   292/431
+SUBS                                                                            #   293/431
+MOVE LF@&a float@0.894632                                                       #   294/431
+PUSHS LF@&a                                                                     #   295/431
+ADDS                                                                            #   296/431
+MOVE LF@&a float@0.343357                                                       #   297/431
+PUSHS LF@&a                                                                     #   298/431
+ADDS                                                                            #   299/431
+MOVE LF@&a float@0.389294                                                       #   300/431
+PUSHS LF@&a                                                                     #   301/431
+SUBS                                                                            #   302/431
+MOVE LF@&a float@0.829948                                                       #   303/431
+PUSHS LF@&a                                                                     #   304/431
+ADDS                                                                            #   305/431
+MOVE LF@&a float@0.878884                                                       #   306/431
+PUSHS LF@&a                                                                     #   307/431
+SUBS                                                                            #   308/431
+MOVE LF@&a float@0.356404                                                       #   309/431
+PUSHS LF@&a                                                                     #   310/431
+SUBS                                                                            #   311/431
+MOVE LF@&a float@0.213512                                                       #   312/431
+PUSHS LF@&a                                                                     #   313/431
+SUBS                                                                            #   314/431
+MOVE LF@&a float@0.237478                                                       #   315/431
+PUSHS LF@&a                                                                     #   316/431
+ADDS                                                                            #   317/431
+MOVE LF@&a float@0.414429                                                       #   318/431
+PUSHS LF@&a                                                                     #   319/431
+ADDS                                                                            #   320/431
+MOVE LF@&a float@0.651156                                                       #   321/431
+PUSHS LF@&a                                                                     #   322/431
+ADDS                                                                            #   323/431
+MOVE LF@&a float@0.435601                                                       #   324/431
+PUSHS LF@&a                                                                     #   325/431
+SUBS                                                                            #   326/431
+MOVE LF@&a float@0.169134                                                       #   327/431
+PUSHS LF@&a                                                                     #   328/431
+ADDS                                                                            #   329/431
+MOVE LF@&a float@0.399233                                                       #   330/431
+PUSHS LF@&a                                                                     #   331/431
+ADDS                                                                            #   332/431
+MOVE LF@&a float@0.739337                                                       #   333/431
+PUSHS LF@&a                                                                     #   334/431
+ADDS                                                                            #   335/431
+MOVE LF@&a float@0.888049                                                       #   336/431
+PUSHS LF@&a                                                                     #   337/431
+ADDS                                                                            #   338/431
+MOVE LF@&a float@0.977753                                                       #   339/431
+PUSHS LF@&a                                                                     #   340/431
+SUBS                                                                            #   341/431
+MOVE LF@&a float@0.932396                                                       #   342/431
+PUSHS LF@&a                                                                     #   343/431
+SUBS                                                                            #   344/431
+MOVE LF@&a float@0.861422                                                       #   345/431
+PUSHS LF@&a                                                                     #   346/431
+ADDS                                                                            #   347/431
+MOVE LF@&a float@0.245443                                                       #   348/431
+PUSHS LF@&a                                                                     #   349/431
+ADDS                                                                            #   350/431
+MOVE LF@&a float@0.722887                                                       #   351/431
+PUSHS LF@&a                                                                     #   352/431
+SUBS                                                                            #   353/431
+MOVE LF@&a float@0.503123                                                       #   354/431
+PUSHS LF@&a                                                                     #   355/431
+ADDS                                                                            #   356/431
+MOVE LF@&a float@0.37359                                                        #   357/431
+PUSHS LF@&a                                                                     #   358/431
+ADDS                                                                            #   359/431
+MOVE LF@&a float@0.345391                                                       #   360/431
+PUSHS LF@&a                                                                     #   361/431
+SUBS                                                                            #   362/431
+MOVE LF@&a float@0.244501                                                       #   363/431
+PUSHS LF@&a                                                                     #   364/431
+SUBS                                                                            #   365/431
+MOVE LF@&a float@0.224346                                                       #   366/431
+PUSHS LF@&a                                                                     #   367/431
+SUBS                                                                            #   368/431
+MOVE LF@&a float@0.40581                                                        #   369/431
+PUSHS LF@&a                                                                     #   370/431
+ADDS                                                                            #   371/431
+MOVE LF@&a float@0.541166                                                       #   372/431
+PUSHS LF@&a                                                                     #   373/431
+SUBS                                                                            #   374/431
+MOVE LF@&a float@0.717316                                                       #   375/431
+PUSHS LF@&a                                                                     #   376/431
+SUBS                                                                            #   377/431
+MOVE LF@&a float@0.908282                                                       #   378/431
+PUSHS LF@&a                                                                     #   379/431
+ADDS                                                                            #   380/431
+MOVE LF@&a float@0.485787                                                       #   381/431
+PUSHS LF@&a                                                                     #   382/431
+ADDS                                                                            #   383/431
+MOVE LF@&a float@0.890551                                                       #   384/431
+PUSHS LF@&a                                                                     #   385/431
+SUBS                                                                            #   386/431
+MOVE LF@&a float@0.701569                                                       #   387/431
+PUSHS LF@&a                                                                     #   388/431
+SUBS                                                                            #   389/431
+MOVE LF@&a float@0.0522724                                                      #   390/431
+PUSHS LF@&a                                                                     #   391/431
+SUBS                                                                            #   392/431
+MOVE LF@&a float@0.672145                                                       #   393/431
+PUSHS LF@&a                                                                     #   394/431
+SUBS                                                                            #   395/431
+MOVE LF@&a float@0.75836                                                        #   396/431
+PUSHS LF@&a                                                                     #   397/431
+SUBS                                                                            #   398/431
+MOVE LF@&a float@0.575973                                                       #   399/431
+PUSHS LF@&a                                                                     #   400/431
+SUBS                                                                            #   401/431
+MOVE LF@&a float@0.280938                                                       #   402/431
+PUSHS LF@&a                                                                     #   403/431
+ADDS                                                                            #   404/431
+MOVE LF@&a float@0.948901                                                       #   405/431
+PUSHS LF@&a                                                                     #   406/431
+SUBS                                                                            #   407/431
+MOVE LF@&a float@0.150017                                                       #   408/431
+PUSHS LF@&a                                                                     #   409/431
+SUBS                                                                            #   410/431
+MOVE LF@&a float@0.781783                                                       #   411/431
+PUSHS LF@&a                                                                     #   412/431
+ADDS                                                                            #   413/431
+MOVE LF@&a float@0.467345                                                       #   414/431
+PUSHS LF@&a                                                                     #   415/431
+SUBS                                                                            #   416/431
+MOVE LF@&a float@0.604492                                                       #   417/431
+PUSHS LF@&a                                                                     #   418/431
+SUBS                                                                            #   419/431
+MOVE LF@&a float@0.312415                                                       #   420/431
+PUSHS LF@&a                                                                     #   421/431
+SUBS                                                                            #   422/431
+MOVE LF@&a float@0.703921                                                       #   423/431
+PUSHS LF@&a                                                                     #   424/431
+SUBS                                                                            #   425/431
+POPS LF@&a                                                                      #   426/431
+MOVE LF@a LF@&a                                                                 #   427/431
+DEFVAR LF@&b                                                                    #   428/431
+MOVE LF@&b LF@a                                                                 #   429/431
+WRITE LF@&b                                                                     #   430/431
+POPFRAME                                                                        #   431/431
+

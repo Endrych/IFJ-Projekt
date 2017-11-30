@@ -1,0 +1,50 @@
+# 2017-11-30 22:37:13.374657
+# SECTION: 66_errors
+# TEST: 08
+# INFO: Assign string into integer
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Trying to assign incompatible types
+# Return type of function foo and type of identifier a differ
+# 
+# SEMANTIC_TYPE_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Assign string into integer
+#   2: 
+#   3: function foo() as string
+#   4: 
+#   5: end function
+#   6: 
+#   7: scope
+#   8: 	dim a as integer
+#   9: 	a = foo()
+#  10: 
+#  11: end scope
+
+########################################
+
+# ---
+

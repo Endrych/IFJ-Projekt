@@ -1,0 +1,886 @@
+# 2017-11-30 22:37:23.218130
+# SECTION: 99_benchmarks
+# TEST: 07
+# INFO: reference program working with strings and builtin functions
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@s1
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@s1()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@s2
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@s2()
+# Executing instruction: IDEFVAR at line: 125 with following arguments:
+# Dest: LF@s1len
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@s1len()
+# Executing instruction: IDEFVAR at line: 127 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 128 with following arguments:
+# Arg1: Const@=Toto je nejaky text(string)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 129 with following arguments:
+# Arg1: LF@&a=Toto je nejaky text(string)
+# Dest: LF@s1=(string)
+# Executing instruction: IDEFVAR at line: 130 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 131 with following arguments:
+# Arg1: LF@s1=Toto je nejaky text(string)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 132 with following arguments:
+# Arg1: LF@&b=Toto je nejaky text(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 133 with following arguments:
+# Arg1: Const@=, ktery jeste trochu obohatime(string)
+# Dest: LF@&b=Toto je nejaky text(string)
+# Executing instruction: IPUSHS at line: 134 with following arguments:
+# Arg1: LF@&b=, ktery jeste trochu obohatime(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 135 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IDEFVAR at line: 136 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IPOPS at line: 137 with following arguments:
+# Arg1: Stack@=, ktery jeste trochu obohatime(string)
+# Dest: LF@&c()
+# Executing instruction: IPOPS at line: 138 with following arguments:
+# Arg1: Stack@=Toto je nejaky text(string)
+# Dest: LF@&d()
+# Executing instruction: ICONCAT at line: 139 with following arguments:
+# Arg1: LF@&d=Toto je nejaky text(string)
+# Arg2: LF@&c=, ktery jeste trochu obohatime(string)
+# Dest: LF@&b=, ktery jeste trochu obohatime(string)
+# Executing instruction: IMOVE at line: 140 with following arguments:
+# Arg1: LF@&b=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@s2=(string)
+# Executing instruction: IDEFVAR at line: 141 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 142 with following arguments:
+# Arg1: LF@s1=Toto je nejaky text(string)
+# Dest: LF@&e()
+# Executing instruction: IWRITE at line: 143 with following arguments:
+# Arg1: LF@&e=Toto je nejaky text(string)
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: Const@=
+# (string)
+# Dest: LF@&f()
+# Executing instruction: IWRITE at line: 146 with following arguments:
+# Arg1: LF@&f=
+# (string)
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 148 with following arguments:
+# Arg1: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@&g()
+# Executing instruction: IWRITE at line: 149 with following arguments:
+# Arg1: LF@&g=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Executing instruction: IDEFVAR at line: 150 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 151 with following arguments:
+# Arg1: Const@=
+# (string)
+# Dest: LF@&h()
+# Executing instruction: IWRITE at line: 152 with following arguments:
+# Arg1: LF@&h=
+# (string)
+# Executing instruction: ICREATEFRAME at line: 153 with following arguments:
+# Executing instruction: IDEFVAR at line: 154 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 155 with following arguments:
+# Arg1: LF@s1=Toto je nejaky text(string)
+# Dest: TF@s()
+# Executing instruction: ICALL at line: 156 with following arguments:
+# Executing instruction: ILABEL at line: 3 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: ISTRLEN at line: 7 with following arguments:
+# Arg1: LF@s=Toto je nejaky text(string)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 8 with following arguments:
+# Executing instruction: IPOPFRAME at line: 9 with following arguments:
+# Executing instruction: IRETURN at line: 10 with following arguments:
+# Executing instruction: IMOVE at line: 157 with following arguments:
+# Arg1: TF@%retval=19(int)
+# Dest: LF@s1len=0(int)
+# Executing instruction: IDEFVAR at line: 158 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 159 with following arguments:
+# Arg1: LF@s1len=19(int)
+# Dest: LF@&i()
+# Executing instruction: IPUSHS at line: 160 with following arguments:
+# Arg1: LF@&i=19(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 161 with following arguments:
+# Arg1: Const@=4(int)
+# Dest: LF@&i=19(int)
+# Executing instruction: IPUSHS at line: 162 with following arguments:
+# Arg1: LF@&i=4(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 163 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 164 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&i=4(int)
+# Executing instruction: IPUSHS at line: 165 with following arguments:
+# Arg1: LF@&i=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 166 with following arguments:
+# Arg1: Stack@=15(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 167 with following arguments:
+# Arg1: Stack@=16(int)
+# Dest: LF@&i=1(int)
+# Executing instruction: IMOVE at line: 168 with following arguments:
+# Arg1: LF@&i=16(int)
+# Dest: LF@s1len=19(int)
+# Executing instruction: ICREATEFRAME at line: 169 with following arguments:
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 172 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: LF@s1len=16(int)
+# Dest: TF@i()
+# Executing instruction: IDEFVAR at line: 174 with following arguments:
+# Dest: TF@n
+# Executing instruction: IMOVE at line: 175 with following arguments:
+# Arg1: Const@=4(int)
+# Dest: TF@n()
+# Executing instruction: ICALL at line: 176 with following arguments:
+# Executing instruction: ILABEL at line: 11 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 12 with following arguments:
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 15 with following arguments:
+# Dest: LF@tmp1
+# Executing instruction: IDEFVAR at line: 16 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 17 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp1()
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp2()
+# Executing instruction: ISUB at line: 19 with following arguments:
+# Arg1: LF@i=16(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=0(int)
+# Executing instruction: IDEFVAR at line: 20 with following arguments:
+# Dest: LF@length
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@length()
+# Executing instruction: IDEFVAR at line: 22 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 24 with following arguments:
+# Dest: LF@tmplen
+# Executing instruction: IMOVE at line: 25 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmplen()
+# Executing instruction: ISTRLEN at line: 26 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: ISUB at line: 27 with following arguments:
+# Arg1: LF@tmplen=49(int)
+# Arg2: LF@i=16(int)
+# Dest: LF@tmplen=49(int)
+# Executing instruction: IADD at line: 28 with following arguments:
+# Arg1: LF@tmplen=33(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=33(int)
+# Executing instruction: IJUMPIFEQ at line: 29 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Arg2: LF@tmp2=(string)
+# Executing instruction: IPUSHS at line: 30 with following arguments:
+# Arg1: LF@i=16(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 31 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 32 with following arguments:
+# Arg1: LF@i=16(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 33 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 34 with following arguments:
+# Arg1: Stack@=16(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 35 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 36 with following arguments:
+# Arg1: Stack@=16(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 37 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 38 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 39 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 40 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 41 with following arguments:
+# Arg1: LF@n=4(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 42 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 43 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 44 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 45 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISTRLEN at line: 46 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@tmplen=34(int)
+# Executing instruction: ISUB at line: 47 with following arguments:
+# Arg1: LF@tmplen=49(int)
+# Arg2: LF@i=16(int)
+# Dest: LF@tmplen=49(int)
+# Executing instruction: IADD at line: 48 with following arguments:
+# Arg1: LF@tmplen=33(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=33(int)
+# Executing instruction: IPUSHS at line: 49 with following arguments:
+# Arg1: LF@tmplen=34(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 50 with following arguments:
+# Arg1: LF@n=4(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 51 with following arguments:
+# Arg1: Stack@=34(int)
+# Arg2: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 52 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 53 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IMOVE at line: 54 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmplen=34(int)
+# Executing instruction: ISTRLEN at line: 55 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: ISUB at line: 56 with following arguments:
+# Arg1: LF@tmplen=49(int)
+# Arg2: LF@i=16(int)
+# Dest: LF@tmplen=49(int)
+# Executing instruction: ILABEL at line: 57 with following arguments:
+# Executing instruction: IGETCHAR at line: 58 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Arg2: LF@tmp1=15(int)
+# Dest: LF@tmp2=(string)
+# Executing instruction: ICONCAT at line: 59 with following arguments:
+# Arg1: LF@%retval=(string)
+# Arg2: LF@tmp2=t(string)
+# Dest: LF@%retval=(string)
+# Executing instruction: IADD at line: 60 with following arguments:
+# Arg1: LF@tmp1=15(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=15(int)
+# Executing instruction: ISTRLEN at line: 61 with following arguments:
+# Arg1: LF@%retval=t(string)
+# Dest: LF@length=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 62 with following arguments:
+# Arg1: LF@length=1(int)
+# Arg2: LF@n=4(int)
+# Executing instruction: ILABEL at line: 57 with following arguments:
+# Executing instruction: IGETCHAR at line: 58 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Arg2: LF@tmp1=16(int)
+# Dest: LF@tmp2=t(string)
+# Executing instruction: ICONCAT at line: 59 with following arguments:
+# Arg1: LF@%retval=t(string)
+# Arg2: LF@tmp2=e(string)
+# Dest: LF@%retval=t(string)
+# Executing instruction: IADD at line: 60 with following arguments:
+# Arg1: LF@tmp1=16(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=16(int)
+# Executing instruction: ISTRLEN at line: 61 with following arguments:
+# Arg1: LF@%retval=te(string)
+# Dest: LF@length=1(int)
+# Executing instruction: IJUMPIFNEQ at line: 62 with following arguments:
+# Arg1: LF@length=2(int)
+# Arg2: LF@n=4(int)
+# Executing instruction: ILABEL at line: 57 with following arguments:
+# Executing instruction: IGETCHAR at line: 58 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Arg2: LF@tmp1=17(int)
+# Dest: LF@tmp2=e(string)
+# Executing instruction: ICONCAT at line: 59 with following arguments:
+# Arg1: LF@%retval=te(string)
+# Arg2: LF@tmp2=x(string)
+# Dest: LF@%retval=te(string)
+# Executing instruction: IADD at line: 60 with following arguments:
+# Arg1: LF@tmp1=17(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=17(int)
+# Executing instruction: ISTRLEN at line: 61 with following arguments:
+# Arg1: LF@%retval=tex(string)
+# Dest: LF@length=2(int)
+# Executing instruction: IJUMPIFNEQ at line: 62 with following arguments:
+# Arg1: LF@length=3(int)
+# Arg2: LF@n=4(int)
+# Executing instruction: ILABEL at line: 57 with following arguments:
+# Executing instruction: IGETCHAR at line: 58 with following arguments:
+# Arg1: LF@s=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Arg2: LF@tmp1=18(int)
+# Dest: LF@tmp2=x(string)
+# Executing instruction: ICONCAT at line: 59 with following arguments:
+# Arg1: LF@%retval=tex(string)
+# Arg2: LF@tmp2=t(string)
+# Dest: LF@%retval=tex(string)
+# Executing instruction: IADD at line: 60 with following arguments:
+# Arg1: LF@tmp1=18(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=18(int)
+# Executing instruction: ISTRLEN at line: 61 with following arguments:
+# Arg1: LF@%retval=text(string)
+# Dest: LF@length=3(int)
+# Executing instruction: IJUMPIFNEQ at line: 62 with following arguments:
+# Arg1: LF@length=4(int)
+# Arg2: LF@n=4(int)
+# Executing instruction: IJUMP at line: 63 with following arguments:
+# Executing instruction: ILABEL at line: 73 with following arguments:
+# Executing instruction: IPOPFRAME at line: 74 with following arguments:
+# Executing instruction: IRETURN at line: 75 with following arguments:
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: TF@%retval=text(string)
+# Dest: LF@s1=Toto je nejaky text(string)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&j
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: Const@=4 znaky od (string)
+# Dest: LF@&j()
+# Executing instruction: IWRITE at line: 180 with following arguments:
+# Arg1: LF@&j=4 znaky od (string)
+# Executing instruction: IDEFVAR at line: 181 with following arguments:
+# Dest: LF@&k
+# Executing instruction: IMOVE at line: 182 with following arguments:
+# Arg1: LF@s1len=16(int)
+# Dest: LF@&k()
+# Executing instruction: IWRITE at line: 183 with following arguments:
+# Arg1: LF@&k=16(int)
+# Executing instruction: IDEFVAR at line: 184 with following arguments:
+# Dest: LF@&l
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: Const@=. znaku v "(string)
+# Dest: LF@&l()
+# Executing instruction: IWRITE at line: 186 with following arguments:
+# Arg1: LF@&l=. znaku v "(string)
+# Executing instruction: IDEFVAR at line: 187 with following arguments:
+# Dest: LF@&m
+# Executing instruction: IMOVE at line: 188 with following arguments:
+# Arg1: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@&m()
+# Executing instruction: IWRITE at line: 189 with following arguments:
+# Arg1: LF@&m=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Executing instruction: IDEFVAR at line: 190 with following arguments:
+# Dest: LF@&n
+# Executing instruction: IMOVE at line: 191 with following arguments:
+# Arg1: Const@=":(string)
+# Dest: LF@&n()
+# Executing instruction: IWRITE at line: 192 with following arguments:
+# Arg1: LF@&n=":(string)
+# Executing instruction: IDEFVAR at line: 193 with following arguments:
+# Dest: LF@&o
+# Executing instruction: IMOVE at line: 194 with following arguments:
+# Arg1: LF@s1=text(string)
+# Dest: LF@&o()
+# Executing instruction: IWRITE at line: 195 with following arguments:
+# Arg1: LF@&o=text(string)
+# Executing instruction: IDEFVAR at line: 196 with following arguments:
+# Dest: LF@&p
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: Const@=
+# (string)
+# Dest: LF@&p()
+# Executing instruction: IWRITE at line: 198 with following arguments:
+# Arg1: LF@&p=
+# (string)
+# Executing instruction: IDEFVAR at line: 199 with following arguments:
+# Dest: LF@&q
+# Executing instruction: IMOVE at line: 200 with following arguments:
+# Arg1: Const@=Zadejte serazenou posloupnost vsech malych pismen a-h, (string)
+# Dest: LF@&q()
+# Executing instruction: IWRITE at line: 201 with following arguments:
+# Arg1: LF@&q=Zadejte serazenou posloupnost vsech malych pismen a-h, (string)
+# Executing instruction: IDEFVAR at line: 202 with following arguments:
+# Dest: LF@&r
+# Executing instruction: IMOVE at line: 203 with following arguments:
+# Arg1: Const@=pricemz se pismena nesmeji v posloupnosti opakovat(string)
+# Dest: LF@&r()
+# Executing instruction: IWRITE at line: 204 with following arguments:
+# Arg1: LF@&r=pricemz se pismena nesmeji v posloupnosti opakovat(string)
+# Executing instruction: IWRITE at line: 205 with following arguments:
+# Arg1: Const@=? (string)
+# Executing instruction: IREAD at line: 206 with following arguments:
+# Dest: LF@s1=text(string)
+# Executing instruction: IDEFVAR at line: 207 with following arguments:
+# Dest: LF@&s
+# Executing instruction: IMOVE at line: 208 with following arguments:
+# Arg1: Const@=?(string)
+# Dest: LF@&s()
+# Executing instruction: IWRITE at line: 209 with following arguments:
+# Arg1: LF@&s=?(string)
+# Executing instruction: ILABEL at line: 210 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 211 with following arguments:
+# Executing instruction: IDEFVAR at line: 212 with following arguments:
+# Dest: TF@s1
+# Executing instruction: IMOVE at line: 213 with following arguments:
+# Arg1: LF@s1=abcdefg(string)
+# Dest: TF@s1()
+# Executing instruction: IDEFVAR at line: 214 with following arguments:
+# Dest: TF@s2
+# Executing instruction: IMOVE at line: 215 with following arguments:
+# Arg1: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: TF@s2()
+# Executing instruction: IDEFVAR at line: 216 with following arguments:
+# Dest: TF@s1len
+# Executing instruction: IMOVE at line: 217 with following arguments:
+# Arg1: LF@s1len=16(int)
+# Dest: TF@s1len()
+# Executing instruction: IPUSHFRAME at line: 218 with following arguments:
+# Executing instruction: IDEFVAR at line: 219 with following arguments:
+# Dest: LF@&t
+# Executing instruction: IMOVE at line: 220 with following arguments:
+# Arg1: LF@s1=abcdefg(string)
+# Dest: LF@&t()
+# Executing instruction: IPUSHS at line: 221 with following arguments:
+# Arg1: LF@&t=abcdefg(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 222 with following arguments:
+# Arg1: Const@=abcdefgh(string)
+# Dest: LF@&t=abcdefg(string)
+# Executing instruction: IPUSHS at line: 223 with following arguments:
+# Arg1: LF@&t=abcdefgh(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 224 with following arguments:
+# Arg1: Stack@=abcdefg(string)
+# Arg2: Stack@=abcdefgh(string)
+# Dest: Stack@()
+# Executing instruction: INOTS at line: 225 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 226 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&t=abcdefgh(string)
+# Executing instruction: IJUMPIFNEQ at line: 227 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&t=true(bool)
+# Executing instruction: IDEFVAR at line: 228 with following arguments:
+# Dest: LF@&u
+# Executing instruction: IMOVE at line: 229 with following arguments:
+# Arg1: Const@=
+# Spatne zadana posloupnost, zkuste znovu(string)
+# Dest: LF@&u()
+# Executing instruction: IWRITE at line: 230 with following arguments:
+# Arg1: LF@&u=
+# Spatne zadana posloupnost, zkuste znovu(string)
+# Executing instruction: IWRITE at line: 231 with following arguments:
+# Arg1: Const@=? (string)
+# Executing instruction: IREAD at line: 232 with following arguments:
+# Dest: LF@s1=abcdefg(string)
+# Executing instruction: IDEFVAR at line: 233 with following arguments:
+# Dest: LF@&v
+# Executing instruction: IMOVE at line: 234 with following arguments:
+# Arg1: Const@=!(string)
+# Dest: LF@&v()
+# Executing instruction: IWRITE at line: 235 with following arguments:
+# Arg1: LF@&v=!(string)
+# Executing instruction: IPOPFRAME at line: 236 with following arguments:
+# Executing instruction: IMOVE at line: 237 with following arguments:
+# Arg1: TF@s1=abcdefgh(string)
+# Dest: LF@s1=abcdefg(string)
+# Executing instruction: IMOVE at line: 238 with following arguments:
+# Arg1: TF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Executing instruction: IMOVE at line: 239 with following arguments:
+# Arg1: TF@s1len=16(int)
+# Dest: LF@s1len=16(int)
+# Executing instruction: IJUMP at line: 240 with following arguments:
+# Executing instruction: ILABEL at line: 210 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 211 with following arguments:
+# Executing instruction: IDEFVAR at line: 212 with following arguments:
+# Dest: TF@s1
+# Executing instruction: IMOVE at line: 213 with following arguments:
+# Arg1: LF@s1=abcdefgh(string)
+# Dest: TF@s1()
+# Executing instruction: IDEFVAR at line: 214 with following arguments:
+# Dest: TF@s2
+# Executing instruction: IMOVE at line: 215 with following arguments:
+# Arg1: LF@s2=Toto je nejaky text, ktery jeste trochu obohatime(string)
+# Dest: TF@s2()
+# Executing instruction: IDEFVAR at line: 216 with following arguments:
+# Dest: TF@s1len
+# Executing instruction: IMOVE at line: 217 with following arguments:
+# Arg1: LF@s1len=16(int)
+# Dest: TF@s1len()
+# Executing instruction: IPUSHFRAME at line: 218 with following arguments:
+# Executing instruction: IDEFVAR at line: 219 with following arguments:
+# Dest: LF@&t
+# Executing instruction: IMOVE at line: 220 with following arguments:
+# Arg1: LF@s1=abcdefgh(string)
+# Dest: LF@&t()
+# Executing instruction: IPUSHS at line: 221 with following arguments:
+# Arg1: LF@&t=abcdefgh(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 222 with following arguments:
+# Arg1: Const@=abcdefgh(string)
+# Dest: LF@&t=abcdefgh(string)
+# Executing instruction: IPUSHS at line: 223 with following arguments:
+# Arg1: LF@&t=abcdefgh(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 224 with following arguments:
+# Arg1: Stack@=abcdefgh(string)
+# Arg2: Stack@=abcdefgh(string)
+# Dest: Stack@()
+# Executing instruction: INOTS at line: 225 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 226 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&t=abcdefgh(string)
+# Executing instruction: IJUMPIFNEQ at line: 227 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&t=false(bool)
+# Executing instruction: ILABEL at line: 241 with following arguments:
+# Executing instruction: IPOPFRAME at line: 242 with following arguments:
+# Executing instruction: IPOPFRAME at line: 243 with following arguments:
+# Executing instruction: IGROOT at line: 245 with following arguments:
+# I am Groot at 245 (1572).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# abcdefg
+# abcdefgh
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 1572 (422+1150)
+# GROOT: 1572
+# 
+#   1: ' reference program working with strings and builtin functions
+#   2: Scope
+#   3: 	'Hlavni telo programu
+#   4: 	dim s1 As String
+#   5: 	dim s2 As String
+#   6: 	dim s1len As Integer
+#   7: 	s1 = !"Toto je nejaky text"
+#   8: 	s2 = s1 + !", ktery jeste trochu obohatime"
+#   9: 	Print s1; !"\n"; s2; !"\n";
+#  10: 	s1len = Length(s1)
+#  11: 	s1len = s1len - 4 + 1
+#  12: 	s1 = SubStr(s2, s1len, 4)
+#  13: 	Print !"4 znaky od "; s1len; !". znaku v \""; s2; !"\":"; s1; !"\n";
+#  14: 	Print !"Zadejte serazenou posloupnost vsech malych pismen a-h, ";
+#  15: 	Print !"pricemz se pismena nesmeji v posloupnosti opakovat";
+#  16: 	Input s1
+#  17: 	print !"?";
+#  18: 	Do While (s1 <> !"abcdefgh")
+#  19: 		Print !"\nSpatne zadana posloupnost, zkuste znovu";
+#  20: 		Input s1
+#  21: 		print !"!";
+#  22: 	Loop
+#  23: End Scope
+
+########################################
+
+.IFJcode17                                                                      #     1/243
+JUMP $$main                                                                     #     2/243
+LABEL $length                                                                   #     3/243
+PUSHFRAME                                                                       #     4/243
+DEFVAR LF@%retval                                                               #     5/243
+MOVE LF@%retval int@0                                                           #     6/243
+STRLEN LF@%retval LF@s                                                          #     7/243
+LABEL $length$epilog                                                            #     8/243
+POPFRAME                                                                        #     9/243
+RETURN                                                                          #    10/243
+LABEL $substr                                                                   #    11/243
+PUSHFRAME                                                                       #    12/243
+DEFVAR LF@%retval                                                               #    13/243
+MOVE LF@%retval string@                                                         #    14/243
+DEFVAR LF@tmp1                                                                  #    15/243
+DEFVAR LF@tmp2                                                                  #    16/243
+MOVE LF@tmp1 int@0                                                              #    17/243
+MOVE LF@tmp2 string@                                                            #    18/243
+SUB LF@tmp1 LF@i int@1                                                          #    19/243
+DEFVAR LF@length                                                                #    20/243
+MOVE LF@length int@0                                                            #    21/243
+DEFVAR LF@result                                                                #    22/243
+MOVE LF@result bool@false                                                       #    23/243
+DEFVAR LF@tmplen                                                                #    24/243
+MOVE LF@tmplen int@0                                                            #    25/243
+STRLEN LF@tmplen LF@s                                                           #    26/243
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/243
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/243
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/243
+PUSHS LF@i                                                                      #    30/243
+PUSHS int@0                                                                     #    31/243
+PUSHS LF@i                                                                      #    32/243
+PUSHS int@0                                                                     #    33/243
+EQS                                                                             #    34/243
+POPS LF@result                                                                  #    35/243
+LTS                                                                             #    36/243
+PUSHS LF@result                                                                 #    37/243
+ORS                                                                             #    38/243
+POPS LF@result                                                                  #    39/243
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/243
+PUSHS LF@n                                                                      #    41/243
+PUSHS int@0                                                                     #    42/243
+LTS                                                                             #    43/243
+POPS LF@result                                                                  #    44/243
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/243
+STRLEN LF@tmplen LF@s                                                           #    46/243
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/243
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/243
+PUSHS LF@tmplen                                                                 #    49/243
+PUSHS LF@n                                                                      #    50/243
+LTS                                                                             #    51/243
+POPS LF@result                                                                  #    52/243
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/243
+MOVE LF@tmplen int@0                                                            #    54/243
+STRLEN LF@tmplen LF@s                                                           #    55/243
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/243
+LABEL $SubStrFor                                                                #    57/243
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/243
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/243
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/243
+STRLEN LF@length LF@%retval                                                     #    61/243
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/243
+JUMP $substr$epilog                                                             #    63/243
+LABEL $SubStrReturn0                                                            #    64/243
+MOVE LF@%retval string@                                                         #    65/243
+JUMP $substr$epilog                                                             #    66/243
+LABEL $SubStrReturnRest                                                         #    67/243
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/243
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/243
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/243
+STRLEN LF@length LF@%retval                                                     #    71/243
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/243
+LABEL $substr$epilog                                                            #    73/243
+POPFRAME                                                                        #    74/243
+RETURN                                                                          #    75/243
+LABEL $asc                                                                      #    76/243
+PUSHFRAME                                                                       #    77/243
+DEFVAR LF@%retval                                                               #    78/243
+MOVE LF@%retval int@0                                                           #    79/243
+DEFVAR LF@result                                                                #    80/243
+MOVE LF@result bool@false                                                       #    81/243
+DEFVAR LF@tmp                                                                   #    82/243
+DEFVAR LF@tmp2                                                                  #    83/243
+MOVE LF@tmp string@                                                             #    84/243
+MOVE LF@tmp2 int@0                                                              #    85/243
+PUSHS LF@i                                                                      #    86/243
+PUSHS int@0                                                                     #    87/243
+PUSHS LF@i                                                                      #    88/243
+PUSHS int@0                                                                     #    89/243
+EQS                                                                             #    90/243
+POPS LF@result                                                                  #    91/243
+LTS                                                                             #    92/243
+PUSHS LF@result                                                                 #    93/243
+ORS                                                                             #    94/243
+POPS LF@result                                                                  #    95/243
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/243
+PUSHS LF@i                                                                      #    97/243
+STRLEN LF@tmp2 LF@s                                                             #    98/243
+PUSHS LF@tmp2                                                                   #    99/243
+GTS                                                                             #   100/243
+POPS LF@result                                                                  #   101/243
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/243
+SUB LF@i LF@i int@1                                                             #   103/243
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/243
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/243
+LABEL $asc$epilog                                                               #   106/243
+POPFRAME                                                                        #   107/243
+RETURN                                                                          #   108/243
+LABEL $chr                                                                      #   109/243
+PUSHFRAME                                                                       #   110/243
+DEFVAR LF@%retval                                                               #   111/243
+MOVE LF@%retval string@                                                         #   112/243
+DEFVAR LF@tmp                                                                   #   113/243
+MOVE LF@tmp string@                                                             #   114/243
+INT2CHAR LF@%retval LF@i                                                        #   115/243
+POPFRAME                                                                        #   116/243
+RETURN                                                                          #   117/243
+LABEL $$main                                                                    #   118/243
+CREATEFRAME                                                                     #   119/243
+PUSHFRAME                                                                       #   120/243
+DEFVAR LF@s1                                                                    #   121/243
+MOVE LF@s1 string@                                                              #   122/243
+DEFVAR LF@s2                                                                    #   123/243
+MOVE LF@s2 string@                                                              #   124/243
+DEFVAR LF@s1len                                                                 #   125/243
+MOVE LF@s1len int@0                                                             #   126/243
+DEFVAR LF@&a                                                                    #   127/243
+MOVE LF@&a string@Toto\032je\032nejaky\032text                                  #   128/243
+MOVE LF@s1 LF@&a                                                                #   129/243
+DEFVAR LF@&b                                                                    #   130/243
+MOVE LF@&b LF@s1                                                                #   131/243
+PUSHS LF@&b                                                                     #   132/243
+MOVE LF@&b string@,\032ktery\032jeste\032trochu\032obohatime                    #   133/243
+PUSHS LF@&b                                                                     #   134/243
+DEFVAR LF@&c                                                                    #   135/243
+DEFVAR LF@&d                                                                    #   136/243
+POPS LF@&c                                                                      #   137/243
+POPS LF@&d                                                                      #   138/243
+CONCAT LF@&b LF@&d LF@&c                                                        #   139/243
+MOVE LF@s2 LF@&b                                                                #   140/243
+DEFVAR LF@&e                                                                    #   141/243
+MOVE LF@&e LF@s1                                                                #   142/243
+WRITE LF@&e                                                                     #   143/243
+DEFVAR LF@&f                                                                    #   144/243
+MOVE LF@&f string@\010                                                          #   145/243
+WRITE LF@&f                                                                     #   146/243
+DEFVAR LF@&g                                                                    #   147/243
+MOVE LF@&g LF@s2                                                                #   148/243
+WRITE LF@&g                                                                     #   149/243
+DEFVAR LF@&h                                                                    #   150/243
+MOVE LF@&h string@\010                                                          #   151/243
+WRITE LF@&h                                                                     #   152/243
+CREATEFRAME                                                                     #   153/243
+DEFVAR TF@s                                                                     #   154/243
+MOVE TF@s LF@s1                                                                 #   155/243
+CALL $length                                                                    #   156/243
+MOVE LF@s1len TF@%retval                                                        #   157/243
+DEFVAR LF@&i                                                                    #   158/243
+MOVE LF@&i LF@s1len                                                             #   159/243
+PUSHS LF@&i                                                                     #   160/243
+MOVE LF@&i int@4                                                                #   161/243
+PUSHS LF@&i                                                                     #   162/243
+SUBS                                                                            #   163/243
+MOVE LF@&i int@1                                                                #   164/243
+PUSHS LF@&i                                                                     #   165/243
+ADDS                                                                            #   166/243
+POPS LF@&i                                                                      #   167/243
+MOVE LF@s1len LF@&i                                                             #   168/243
+CREATEFRAME                                                                     #   169/243
+DEFVAR TF@s                                                                     #   170/243
+MOVE TF@s LF@s2                                                                 #   171/243
+DEFVAR TF@i                                                                     #   172/243
+MOVE TF@i LF@s1len                                                              #   173/243
+DEFVAR TF@n                                                                     #   174/243
+MOVE TF@n int@4                                                                 #   175/243
+CALL $substr                                                                    #   176/243
+MOVE LF@s1 TF@%retval                                                           #   177/243
+DEFVAR LF@&j                                                                    #   178/243
+MOVE LF@&j string@4\032znaky\032od\032                                          #   179/243
+WRITE LF@&j                                                                     #   180/243
+DEFVAR LF@&k                                                                    #   181/243
+MOVE LF@&k LF@s1len                                                             #   182/243
+WRITE LF@&k                                                                     #   183/243
+DEFVAR LF@&l                                                                    #   184/243
+MOVE LF@&l string@.\032znaku\032v\032\034                                       #   185/243
+WRITE LF@&l                                                                     #   186/243
+DEFVAR LF@&m                                                                    #   187/243
+MOVE LF@&m LF@s2                                                                #   188/243
+WRITE LF@&m                                                                     #   189/243
+DEFVAR LF@&n                                                                    #   190/243
+MOVE LF@&n string@\034:                                                         #   191/243
+WRITE LF@&n                                                                     #   192/243
+DEFVAR LF@&o                                                                    #   193/243
+MOVE LF@&o LF@s1                                                                #   194/243
+WRITE LF@&o                                                                     #   195/243
+DEFVAR LF@&p                                                                    #   196/243
+MOVE LF@&p string@\010                                                          #   197/243
+WRITE LF@&p                                                                     #   198/243
+DEFVAR LF@&q                                                                    #   199/243
+MOVE LF@&q string@Zadejte\032serazenou\032posloupnost\032vsech\032malych\032pismen\032a-h,\032#   200/243
+WRITE LF@&q                                                                     #   201/243
+DEFVAR LF@&r                                                                    #   202/243
+MOVE LF@&r string@pricemz\032se\032pismena\032nesmeji\032v\032posloupnosti\032opakovat#   203/243
+WRITE LF@&r                                                                     #   204/243
+WRITE string@?\032                                                              #   205/243
+READ LF@s1 string                                                               #   206/243
+DEFVAR LF@&s                                                                    #   207/243
+MOVE LF@&s string@?                                                             #   208/243
+WRITE LF@&s                                                                     #   209/243
+LABEL $a                                                                        #   210/243
+CREATEFRAME                                                                     #   211/243
+DEFVAR TF@s1                                                                    #   212/243
+MOVE TF@s1 LF@s1                                                                #   213/243
+DEFVAR TF@s2                                                                    #   214/243
+MOVE TF@s2 LF@s2                                                                #   215/243
+DEFVAR TF@s1len                                                                 #   216/243
+MOVE TF@s1len LF@s1len                                                          #   217/243
+PUSHFRAME                                                                       #   218/243
+DEFVAR LF@&t                                                                    #   219/243
+MOVE LF@&t LF@s1                                                                #   220/243
+PUSHS LF@&t                                                                     #   221/243
+MOVE LF@&t string@abcdefgh                                                      #   222/243
+PUSHS LF@&t                                                                     #   223/243
+EQS                                                                             #   224/243
+NOTS                                                                            #   225/243
+POPS LF@&t                                                                      #   226/243
+JUMPIFNEQ $b bool@true LF@&t                                                    #   227/243
+DEFVAR LF@&u                                                                    #   228/243
+MOVE LF@&u string@\010Spatne\032zadana\032posloupnost,\032zkuste\032znovu       #   229/243
+WRITE LF@&u                                                                     #   230/243
+WRITE string@?\032                                                              #   231/243
+READ LF@s1 string                                                               #   232/243
+DEFVAR LF@&v                                                                    #   233/243
+MOVE LF@&v string@!                                                             #   234/243
+WRITE LF@&v                                                                     #   235/243
+POPFRAME                                                                        #   236/243
+MOVE LF@s1 TF@s1                                                                #   237/243
+MOVE LF@s2 TF@s2                                                                #   238/243
+MOVE LF@s1len TF@s1len                                                          #   239/243
+JUMP $a                                                                         #   240/243
+LABEL $b                                                                        #   241/243
+POPFRAME                                                                        #   242/243
+POPFRAME                                                                        #   243/243
+

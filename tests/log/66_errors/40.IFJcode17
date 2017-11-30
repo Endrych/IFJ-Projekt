@@ -1,0 +1,44 @@
+# 2017-11-30 22:37:14.176247
+# SECTION: 66_errors
+# TEST: 40
+# INFO: Fail implicit conversion
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Trying to assign incompatible types
+# 
+# SEMANTIC_TYPE_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 4
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Fail implicit conversion
+#   2: 
+#   3: scope
+#   4: 	dim a as integer
+#   5: 	a = !""
+#   6: end scope
+
+########################################
+
+# ---
+

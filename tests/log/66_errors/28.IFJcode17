@@ -1,0 +1,53 @@
+# 2017-11-30 22:37:13.935091
+# SECTION: 66_errors
+# TEST: 28
+# INFO: redefined function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Redefinition of function foo
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' redefined function
+#   2: 
+#   3: declare function foo(a as integer, b as integer) as integer
+#   4: 
+#   5: function foo(a as integer, b as integer) as integer
+#   6: 
+#   7: end function
+#   8: 
+#   9: function foo(a as integer, b as integer) as integer
+#  10: 
+#  11: end function
+#  12: 
+#  13: scope
+#  14: 
+#  15: end scope 
+
+########################################
+
+# ---
+

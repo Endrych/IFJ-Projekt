@@ -1,0 +1,559 @@
+# 2017-11-30 22:37:01.590274
+# SECTION: 02_functions
+# TEST: 10
+# INFO: Call built-in features - combined
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@retezec
+# Executing instruction: IDEFVAR at line: 122 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 123 with following arguments:
+# Arg1: Const@=ahoj ahoj ahoj(string)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: LF@&a=ahoj ahoj ahoj(string)
+# Dest: LF@retezec()
+# Executing instruction: ICREATEFRAME at line: 125 with following arguments:
+# Executing instruction: IDEFVAR at line: 126 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 127 with following arguments:
+# Arg1: LF@retezec=ahoj ahoj ahoj(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 128 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 129 with following arguments:
+# Arg1: Const@=6(int)
+# Dest: TF@i()
+# Executing instruction: IDEFVAR at line: 130 with following arguments:
+# Dest: TF@n
+# Executing instruction: IMOVE at line: 131 with following arguments:
+# Arg1: Const@=10(int)
+# Dest: TF@n()
+# Executing instruction: ICALL at line: 132 with following arguments:
+# Executing instruction: ILABEL at line: 11 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 12 with following arguments:
+# Executing instruction: IDEFVAR at line: 13 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 14 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 15 with following arguments:
+# Dest: LF@tmp1
+# Executing instruction: IDEFVAR at line: 16 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 17 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp1()
+# Executing instruction: IMOVE at line: 18 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp2()
+# Executing instruction: ISUB at line: 19 with following arguments:
+# Arg1: LF@i=6(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=0(int)
+# Executing instruction: IDEFVAR at line: 20 with following arguments:
+# Dest: LF@length
+# Executing instruction: IMOVE at line: 21 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@length()
+# Executing instruction: IDEFVAR at line: 22 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 23 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 24 with following arguments:
+# Dest: LF@tmplen
+# Executing instruction: IMOVE at line: 25 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmplen()
+# Executing instruction: ISTRLEN at line: 26 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Dest: LF@tmplen=0(int)
+# Executing instruction: ISUB at line: 27 with following arguments:
+# Arg1: LF@tmplen=14(int)
+# Arg2: LF@i=6(int)
+# Dest: LF@tmplen=14(int)
+# Executing instruction: IADD at line: 28 with following arguments:
+# Arg1: LF@tmplen=8(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=8(int)
+# Executing instruction: IJUMPIFEQ at line: 29 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp2=(string)
+# Executing instruction: IPUSHS at line: 30 with following arguments:
+# Arg1: LF@i=6(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 31 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 32 with following arguments:
+# Arg1: LF@i=6(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 33 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 34 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 35 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 36 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 37 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 38 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 39 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 40 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 41 with following arguments:
+# Arg1: LF@n=10(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 42 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 43 with following arguments:
+# Arg1: Stack@=10(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 44 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 45 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISTRLEN at line: 46 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Dest: LF@tmplen=9(int)
+# Executing instruction: ISUB at line: 47 with following arguments:
+# Arg1: LF@tmplen=14(int)
+# Arg2: LF@i=6(int)
+# Dest: LF@tmplen=14(int)
+# Executing instruction: IADD at line: 48 with following arguments:
+# Arg1: LF@tmplen=8(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmplen=8(int)
+# Executing instruction: IPUSHS at line: 49 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 50 with following arguments:
+# Arg1: LF@n=10(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 51 with following arguments:
+# Arg1: Stack@=9(int)
+# Arg2: Stack@=10(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 52 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 53 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=true(bool)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=5(int)
+# Dest: LF@tmp2=(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=(string)
+# Arg2: LF@tmp2=a(string)
+# Dest: LF@%retval=(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=5(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=5(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=a(string)
+# Dest: LF@length=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=1(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=6(int)
+# Dest: LF@tmp2=a(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=a(string)
+# Arg2: LF@tmp2=h(string)
+# Dest: LF@%retval=a(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=6(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=6(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ah(string)
+# Dest: LF@length=1(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=2(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=7(int)
+# Dest: LF@tmp2=h(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ah(string)
+# Arg2: LF@tmp2=o(string)
+# Dest: LF@%retval=ah(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=7(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=7(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=aho(string)
+# Dest: LF@length=2(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=3(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=8(int)
+# Dest: LF@tmp2=o(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=aho(string)
+# Arg2: LF@tmp2=j(string)
+# Dest: LF@%retval=aho(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=8(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=8(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj(string)
+# Dest: LF@length=3(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=4(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=9(int)
+# Dest: LF@tmp2=j(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ahoj(string)
+# Arg2: LF@tmp2= (string)
+# Dest: LF@%retval=ahoj(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=9(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=9(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj (string)
+# Dest: LF@length=4(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=5(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=10(int)
+# Dest: LF@tmp2= (string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ahoj (string)
+# Arg2: LF@tmp2=a(string)
+# Dest: LF@%retval=ahoj (string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=10(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=10(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj a(string)
+# Dest: LF@length=5(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=6(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=11(int)
+# Dest: LF@tmp2=a(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ahoj a(string)
+# Arg2: LF@tmp2=h(string)
+# Dest: LF@%retval=ahoj a(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=11(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=11(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj ah(string)
+# Dest: LF@length=6(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=7(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=12(int)
+# Dest: LF@tmp2=h(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ahoj ah(string)
+# Arg2: LF@tmp2=o(string)
+# Dest: LF@%retval=ahoj ah(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=12(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=12(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj aho(string)
+# Dest: LF@length=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=8(int)
+# Executing instruction: ILABEL at line: 67 with following arguments:
+# Executing instruction: IGETCHAR at line: 68 with following arguments:
+# Arg1: LF@s=ahoj ahoj ahoj(string)
+# Arg2: LF@tmp1=13(int)
+# Dest: LF@tmp2=o(string)
+# Executing instruction: ICONCAT at line: 69 with following arguments:
+# Arg1: LF@%retval=ahoj aho(string)
+# Arg2: LF@tmp2=j(string)
+# Dest: LF@%retval=ahoj aho(string)
+# Executing instruction: IADD at line: 70 with following arguments:
+# Arg1: LF@tmp1=13(int)
+# Arg2: Const@=1(int)
+# Dest: LF@tmp1=13(int)
+# Executing instruction: ISTRLEN at line: 71 with following arguments:
+# Arg1: LF@%retval=ahoj ahoj(string)
+# Dest: LF@length=8(int)
+# Executing instruction: IJUMPIFNEQ at line: 72 with following arguments:
+# Arg1: LF@tmplen=9(int)
+# Arg2: LF@length=9(int)
+# Executing instruction: ILABEL at line: 73 with following arguments:
+# Executing instruction: IPOPFRAME at line: 74 with following arguments:
+# Executing instruction: IRETURN at line: 75 with following arguments:
+# Executing instruction: IMOVE at line: 133 with following arguments:
+# Arg1: TF@%retval=ahoj ahoj(string)
+# Dest: LF@retezec=ahoj ahoj ahoj(string)
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@a
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@a()
+# Executing instruction: ICREATEFRAME at line: 136 with following arguments:
+# Executing instruction: IDEFVAR at line: 137 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 138 with following arguments:
+# Arg1: LF@retezec=ahoj ahoj(string)
+# Dest: TF@s()
+# Executing instruction: ICALL at line: 139 with following arguments:
+# Executing instruction: ILABEL at line: 3 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 4 with following arguments:
+# Executing instruction: IDEFVAR at line: 5 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 6 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: ISTRLEN at line: 7 with following arguments:
+# Arg1: LF@s=ahoj ahoj(string)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 8 with following arguments:
+# Executing instruction: IPOPFRAME at line: 9 with following arguments:
+# Executing instruction: IRETURN at line: 10 with following arguments:
+# Executing instruction: IMOVE at line: 140 with following arguments:
+# Arg1: TF@%retval=9(int)
+# Dest: LF@a=0(int)
+# Executing instruction: IDEFVAR at line: 141 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 142 with following arguments:
+# Arg1: LF@a=9(int)
+# Dest: LF@&b()
+# Executing instruction: IWRITE at line: 143 with following arguments:
+# Arg1: LF@&b=9(int)
+# Executing instruction: IPOPFRAME at line: 144 with following arguments:
+# Executing instruction: IGROOT at line: 146 with following arguments:
+# I am Groot at 146 (1111).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 1111 (306+805)
+# GROOT: 1111
+# 
+#   1: ' Call built-in features - combined
+#   2: 
+#   3: scope 
+#   4: 	dim retezec as string = !"ahoj ahoj ahoj"
+#   5: 	retezec = substr(retezec, 6, 10)
+#   6: 	dim a as integer
+#   7: 	a = length(retezec)
+#   8: 	print a;
+#   9: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/144
+JUMP $$main                                                                     #     2/144
+LABEL $length                                                                   #     3/144
+PUSHFRAME                                                                       #     4/144
+DEFVAR LF@%retval                                                               #     5/144
+MOVE LF@%retval int@0                                                           #     6/144
+STRLEN LF@%retval LF@s                                                          #     7/144
+LABEL $length$epilog                                                            #     8/144
+POPFRAME                                                                        #     9/144
+RETURN                                                                          #    10/144
+LABEL $substr                                                                   #    11/144
+PUSHFRAME                                                                       #    12/144
+DEFVAR LF@%retval                                                               #    13/144
+MOVE LF@%retval string@                                                         #    14/144
+DEFVAR LF@tmp1                                                                  #    15/144
+DEFVAR LF@tmp2                                                                  #    16/144
+MOVE LF@tmp1 int@0                                                              #    17/144
+MOVE LF@tmp2 string@                                                            #    18/144
+SUB LF@tmp1 LF@i int@1                                                          #    19/144
+DEFVAR LF@length                                                                #    20/144
+MOVE LF@length int@0                                                            #    21/144
+DEFVAR LF@result                                                                #    22/144
+MOVE LF@result bool@false                                                       #    23/144
+DEFVAR LF@tmplen                                                                #    24/144
+MOVE LF@tmplen int@0                                                            #    25/144
+STRLEN LF@tmplen LF@s                                                           #    26/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/144
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/144
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/144
+PUSHS LF@i                                                                      #    30/144
+PUSHS int@0                                                                     #    31/144
+PUSHS LF@i                                                                      #    32/144
+PUSHS int@0                                                                     #    33/144
+EQS                                                                             #    34/144
+POPS LF@result                                                                  #    35/144
+LTS                                                                             #    36/144
+PUSHS LF@result                                                                 #    37/144
+ORS                                                                             #    38/144
+POPS LF@result                                                                  #    39/144
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/144
+PUSHS LF@n                                                                      #    41/144
+PUSHS int@0                                                                     #    42/144
+LTS                                                                             #    43/144
+POPS LF@result                                                                  #    44/144
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/144
+STRLEN LF@tmplen LF@s                                                           #    46/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/144
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/144
+PUSHS LF@tmplen                                                                 #    49/144
+PUSHS LF@n                                                                      #    50/144
+LTS                                                                             #    51/144
+POPS LF@result                                                                  #    52/144
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/144
+MOVE LF@tmplen int@0                                                            #    54/144
+STRLEN LF@tmplen LF@s                                                           #    55/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/144
+LABEL $SubStrFor                                                                #    57/144
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/144
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/144
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/144
+STRLEN LF@length LF@%retval                                                     #    61/144
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/144
+JUMP $substr$epilog                                                             #    63/144
+LABEL $SubStrReturn0                                                            #    64/144
+MOVE LF@%retval string@                                                         #    65/144
+JUMP $substr$epilog                                                             #    66/144
+LABEL $SubStrReturnRest                                                         #    67/144
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/144
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/144
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/144
+STRLEN LF@length LF@%retval                                                     #    71/144
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/144
+LABEL $substr$epilog                                                            #    73/144
+POPFRAME                                                                        #    74/144
+RETURN                                                                          #    75/144
+LABEL $asc                                                                      #    76/144
+PUSHFRAME                                                                       #    77/144
+DEFVAR LF@%retval                                                               #    78/144
+MOVE LF@%retval int@0                                                           #    79/144
+DEFVAR LF@result                                                                #    80/144
+MOVE LF@result bool@false                                                       #    81/144
+DEFVAR LF@tmp                                                                   #    82/144
+DEFVAR LF@tmp2                                                                  #    83/144
+MOVE LF@tmp string@                                                             #    84/144
+MOVE LF@tmp2 int@0                                                              #    85/144
+PUSHS LF@i                                                                      #    86/144
+PUSHS int@0                                                                     #    87/144
+PUSHS LF@i                                                                      #    88/144
+PUSHS int@0                                                                     #    89/144
+EQS                                                                             #    90/144
+POPS LF@result                                                                  #    91/144
+LTS                                                                             #    92/144
+PUSHS LF@result                                                                 #    93/144
+ORS                                                                             #    94/144
+POPS LF@result                                                                  #    95/144
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/144
+PUSHS LF@i                                                                      #    97/144
+STRLEN LF@tmp2 LF@s                                                             #    98/144
+PUSHS LF@tmp2                                                                   #    99/144
+GTS                                                                             #   100/144
+POPS LF@result                                                                  #   101/144
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/144
+SUB LF@i LF@i int@1                                                             #   103/144
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/144
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/144
+LABEL $asc$epilog                                                               #   106/144
+POPFRAME                                                                        #   107/144
+RETURN                                                                          #   108/144
+LABEL $chr                                                                      #   109/144
+PUSHFRAME                                                                       #   110/144
+DEFVAR LF@%retval                                                               #   111/144
+MOVE LF@%retval string@                                                         #   112/144
+DEFVAR LF@tmp                                                                   #   113/144
+MOVE LF@tmp string@                                                             #   114/144
+INT2CHAR LF@%retval LF@i                                                        #   115/144
+POPFRAME                                                                        #   116/144
+RETURN                                                                          #   117/144
+LABEL $$main                                                                    #   118/144
+CREATEFRAME                                                                     #   119/144
+PUSHFRAME                                                                       #   120/144
+DEFVAR LF@retezec                                                               #   121/144
+DEFVAR LF@&a                                                                    #   122/144
+MOVE LF@&a string@ahoj\032ahoj\032ahoj                                          #   123/144
+MOVE LF@retezec LF@&a                                                           #   124/144
+CREATEFRAME                                                                     #   125/144
+DEFVAR TF@s                                                                     #   126/144
+MOVE TF@s LF@retezec                                                            #   127/144
+DEFVAR TF@i                                                                     #   128/144
+MOVE TF@i int@6                                                                 #   129/144
+DEFVAR TF@n                                                                     #   130/144
+MOVE TF@n int@10                                                                #   131/144
+CALL $substr                                                                    #   132/144
+MOVE LF@retezec TF@%retval                                                      #   133/144
+DEFVAR LF@a                                                                     #   134/144
+MOVE LF@a int@0                                                                 #   135/144
+CREATEFRAME                                                                     #   136/144
+DEFVAR TF@s                                                                     #   137/144
+MOVE TF@s LF@retezec                                                            #   138/144
+CALL $length                                                                    #   139/144
+MOVE LF@a TF@%retval                                                            #   140/144
+DEFVAR LF@&b                                                                    #   141/144
+MOVE LF@&b LF@a                                                                 #   142/144
+WRITE LF@&b                                                                     #   143/144
+POPFRAME                                                                        #   144/144
+

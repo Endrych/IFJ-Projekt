@@ -1,0 +1,47 @@
+# 2017-11-30 22:37:13.718697
+# SECTION: 66_errors
+# TEST: 20
+# INFO: Colision of argument name and function name
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Redefinition of variable bar used as function identifier
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Colision of argument name and function name
+#   2: 
+#   3: declare function foo1() as integer
+#   4: function bar(foo1 as integer) as integer
+#   5: return foo1
+#   6: end function
+#   7: 
+#   8: scope
+#   9: end scope
+
+########################################
+
+# ---
+

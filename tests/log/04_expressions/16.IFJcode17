@@ -1,0 +1,1408 @@
+# 2017-11-30 22:37:05.264968
+# SECTION: 04_expressions
+# TEST: 16
+# INFO: exp(x) 6 iteration with loop
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@vysledek
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: LF@vysledek()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@citatel
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@citatel()
+# Executing instruction: IDEFVAR at line: 125 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 127 with following arguments:
+# Arg1: LF@&a=1(int)
+# Dest: LF@citatel=0(int)
+# Executing instruction: IDEFVAR at line: 128 with following arguments:
+# Dest: LF@jmenovatel
+# Executing instruction: IMOVE at line: 129 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 130 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 131 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&b()
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@&b=1(int)
+# Dest: LF@jmenovatel=0(int)
+# Executing instruction: IDEFVAR at line: 133 with following arguments:
+# Dest: LF@pocitadlo
+# Executing instruction: IMOVE at line: 134 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@pocitadlo()
+# Executing instruction: IDEFVAR at line: 135 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 136 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&c()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: LF@&c=1(int)
+# Dest: LF@pocitadlo=0(int)
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=0(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=1(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=1(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=1(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=1(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=0(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=0(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=1(int)
+# Dest: LF@&e=0(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=1(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: LF@&e=1(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=1(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=1(double)
+# Arg2: Stack@=1(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=0(double)
+# Arg2: Stack@=1(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=1(double)
+# Dest: LF@&e=1(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=1(double)
+# Dest: LF@vysledek=0(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=1(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: LF@citatel=1(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=1(int)
+# Dest: LF@&g=1(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=1(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: LF@&g=1(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=1(int)
+# Dest: LF@jmenovatel=1(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=1(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=2(int)
+# Dest: LF@pocitadlo=1(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=1(double)
+# Dest: LF@vysledek=0(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=2(int)
+# Dest: LF@citatel=1(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=1(int)
+# Dest: LF@jmenovatel=1(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=2(int)
+# Dest: LF@pocitadlo=1(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=1(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=2(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=2(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=2(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=2(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=1(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=1(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=2(int)
+# Dest: LF@&e=1(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=2(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: LF@&e=2(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=1(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=2(double)
+# Arg2: Stack@=1(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=1(double)
+# Arg2: Stack@=2(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=3(double)
+# Dest: LF@&e=1(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=3(double)
+# Dest: LF@vysledek=1(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=2(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=4(int)
+# Dest: LF@citatel=2(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=1(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=2(int)
+# Dest: LF@&g=1(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: LF@&g=2(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=2(int)
+# Dest: LF@jmenovatel=1(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=2(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=2(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=3(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=3(int)
+# Dest: LF@pocitadlo=2(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=3(double)
+# Dest: LF@vysledek=1(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=4(int)
+# Dest: LF@citatel=2(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=2(int)
+# Dest: LF@jmenovatel=1(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=3(int)
+# Dest: LF@pocitadlo=2(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=3(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=4(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=2(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=3(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=3(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=3(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=3(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=3(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=3(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=3(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=4(int)
+# Dest: LF@&e=3(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=4(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=2(int)
+# Dest: LF@&e=4(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=2(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=4(double)
+# Arg2: Stack@=2(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=3(double)
+# Arg2: Stack@=2(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=5(double)
+# Dest: LF@&e=2(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=5(double)
+# Dest: LF@vysledek=3(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=4(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=4(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=8(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=8(int)
+# Dest: LF@citatel=4(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=2(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=3(int)
+# Dest: LF@&g=2(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=3(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=3(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=6(int)
+# Dest: LF@&g=3(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=6(int)
+# Dest: LF@jmenovatel=2(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=3(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=3(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=3(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=3(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=4(int)
+# Dest: LF@pocitadlo=3(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=5(double)
+# Dest: LF@vysledek=3(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=8(int)
+# Dest: LF@citatel=4(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=6(int)
+# Dest: LF@jmenovatel=2(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=4(int)
+# Dest: LF@pocitadlo=3(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=5(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=8(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=6(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=4(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=4(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=4(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=5(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=5(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=8(int)
+# Dest: LF@&e=5(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=8(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=8(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=6(int)
+# Dest: LF@&e=8(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=6(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=6(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=8(double)
+# Arg2: Stack@=6(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=5(double)
+# Arg2: Stack@=1.333333333333333(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=6.333333333333333(double)
+# Dest: LF@&e=6(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=6.333333333333333(double)
+# Dest: LF@vysledek=5(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=8(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=8(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=8(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=8(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=16(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=16(int)
+# Dest: LF@citatel=8(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=6(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=6(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=4(int)
+# Dest: LF@&g=6(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=4(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=24(int)
+# Dest: LF@&g=4(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=24(int)
+# Dest: LF@jmenovatel=6(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=4(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=4(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=5(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=5(int)
+# Dest: LF@pocitadlo=4(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=6.333333333333333(double)
+# Dest: LF@vysledek=5(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=16(int)
+# Dest: LF@citatel=8(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=24(int)
+# Dest: LF@jmenovatel=6(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=5(int)
+# Dest: LF@pocitadlo=4(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=6.333333333333333(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=16(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=24(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=5(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=5(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=5(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=5(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=5(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=6.333333333333333(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=6.333333333333333(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=16(int)
+# Dest: LF@&e=6.333333333333333(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=16(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=16(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=24(int)
+# Dest: LF@&e=16(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=24(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=24(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=16(double)
+# Arg2: Stack@=24(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=6.333333333333333(double)
+# Arg2: Stack@=0.6666666666666666(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=7(double)
+# Dest: LF@&e=24(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=7(double)
+# Dest: LF@vysledek=6.333333333333333(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=16(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=16(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=16(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=16(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=32(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=32(int)
+# Dest: LF@citatel=16(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=24(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=24(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=5(int)
+# Dest: LF@&g=24(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=5(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=24(int)
+# Arg2: Stack@=5(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=120(int)
+# Dest: LF@&g=5(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=120(int)
+# Dest: LF@jmenovatel=24(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=5(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=5(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=5(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=5(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=6(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=6(int)
+# Dest: LF@pocitadlo=5(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=7(double)
+# Dest: LF@vysledek=6.333333333333333(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=32(int)
+# Dest: LF@citatel=16(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=120(int)
+# Dest: LF@jmenovatel=24(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=6(int)
+# Dest: LF@pocitadlo=5(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=7(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=32(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=120(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=6(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=6(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=6(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=6(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=true(bool)
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: LF@vysledek=7(double)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 159 with following arguments:
+# Arg1: LF@&e=7(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@citatel=32(int)
+# Dest: LF@&e=7(double)
+# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Arg1: LF@&e=32(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 162 with following arguments:
+# Arg1: Stack@=32(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: LF@jmenovatel=120(int)
+# Dest: LF@&e=32(int)
+# Executing instruction: IPUSHS at line: 164 with following arguments:
+# Arg1: LF@&e=120(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 165 with following arguments:
+# Arg1: Stack@=120(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 166 with following arguments:
+# Arg1: Stack@=32(double)
+# Arg2: Stack@=120(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 167 with following arguments:
+# Arg1: Stack@=7(double)
+# Arg2: Stack@=0.2666666666666667(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=7.266666666666667(double)
+# Dest: LF@&e=120(int)
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: LF@&e=7.266666666666667(double)
+# Dest: LF@vysledek=7(double)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@citatel=32(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 172 with following arguments:
+# Arg1: LF@&f=32(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 173 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&f=32(int)
+# Executing instruction: IPUSHS at line: 174 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 175 with following arguments:
+# Arg1: Stack@=32(int)
+# Arg2: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 176 with following arguments:
+# Arg1: Stack@=64(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: LF@&f=64(int)
+# Dest: LF@citatel=32(int)
+# Executing instruction: IDEFVAR at line: 178 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: LF@jmenovatel=120(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 180 with following arguments:
+# Arg1: LF@&g=120(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@pocitadlo=6(int)
+# Dest: LF@&g=120(int)
+# Executing instruction: IPUSHS at line: 182 with following arguments:
+# Arg1: LF@&g=6(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 183 with following arguments:
+# Arg1: Stack@=120(int)
+# Arg2: Stack@=6(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 184 with following arguments:
+# Arg1: Stack@=720(int)
+# Dest: LF@&g=6(int)
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: LF@&g=720(int)
+# Dest: LF@jmenovatel=120(int)
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: LF@pocitadlo=6(int)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&h=6(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&h=6(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&h=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 191 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 192 with following arguments:
+# Arg1: Stack@=7(int)
+# Dest: LF@&h=1(int)
+# Executing instruction: IMOVE at line: 193 with following arguments:
+# Arg1: LF@&h=7(int)
+# Dest: LF@pocitadlo=6(int)
+# Executing instruction: IPOPFRAME at line: 194 with following arguments:
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: TF@vysledek=7.266666666666667(double)
+# Dest: LF@vysledek=7(double)
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: TF@citatel=64(int)
+# Dest: LF@citatel=32(int)
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: TF@jmenovatel=720(int)
+# Dest: LF@jmenovatel=120(int)
+# Executing instruction: IMOVE at line: 198 with following arguments:
+# Arg1: TF@pocitadlo=7(int)
+# Dest: LF@pocitadlo=6(int)
+# Executing instruction: IJUMP at line: 199 with following arguments:
+# Executing instruction: ILABEL at line: 138 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 139 with following arguments:
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: TF@vysledek
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@vysledek=7.266666666666667(double)
+# Dest: TF@vysledek()
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: TF@citatel
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: LF@citatel=64(int)
+# Dest: TF@citatel()
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@jmenovatel
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@jmenovatel=720(int)
+# Dest: TF@jmenovatel()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@pocitadlo
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: LF@pocitadlo=7(int)
+# Dest: TF@pocitadlo()
+# Executing instruction: IPUSHFRAME at line: 148 with following arguments:
+# Executing instruction: IDEFVAR at line: 149 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 150 with following arguments:
+# Arg1: LF@pocitadlo=7(int)
+# Dest: LF@&d()
+# Executing instruction: IPUSHS at line: 151 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&d=7(int)
+# Executing instruction: IPUSHS at line: 153 with following arguments:
+# Arg1: LF@&d=7(int)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 154 with following arguments:
+# Arg1: Stack@=7(int)
+# Arg2: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 155 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&d=7(int)
+# Executing instruction: IJUMPIFNEQ at line: 156 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&d=false(bool)
+# Executing instruction: ILABEL at line: 200 with following arguments:
+# Executing instruction: IPOPFRAME at line: 201 with following arguments:
+# Executing instruction: IDEFVAR at line: 202 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 203 with following arguments:
+# Arg1: LF@vysledek=7.266666666666667(double)
+# Dest: LF@&i()
+# Executing instruction: IWRITE at line: 204 with following arguments:
+# Arg1: LF@&i=7.266666666666667(double)
+# Executing instruction: IPOPFRAME at line: 205 with following arguments:
+# Executing instruction: IGROOT at line: 207 with following arguments:
+# I am Groot at 207 (2857).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 2857 (524+2333)
+# GROOT: 2857
+# 
+#   1: ' exp(x) 6 iteration with loop
+#   2: 
+#   3: SCOPE
+#   4: 
+#   5: 	dim vysledek as double
+#   6: 	dim citatel as integer
+#   7: 	citatel = 1
+#   8: 	dim jmenovatel as integer
+#   9: 	jmenovatel = 1
+#  10: 
+#  11: 	dim pocitadlo as integer
+#  12: 	pocitadlo = 1
+#  13: 
+#  14: 	do while pocitadlo < 7
+#  15: 
+#  16: 		vysledek = vysledek + citatel / jmenovatel
+#  17: 
+#  18: 		citatel = citatel * 2
+#  19: 		jmenovatel = jmenovatel * pocitadlo
+#  20: 
+#  21: 		pocitadlo = pocitadlo + 1
+#  22: 
+#  23: 	loop
+#  24: 
+#  25: 	print vysledek;
+#  26: 
+#  27: END SCOPE
+
+########################################
+
+.IFJcode17                                                                      #     1/205
+JUMP $$main                                                                     #     2/205
+LABEL $length                                                                   #     3/205
+PUSHFRAME                                                                       #     4/205
+DEFVAR LF@%retval                                                               #     5/205
+MOVE LF@%retval int@0                                                           #     6/205
+STRLEN LF@%retval LF@s                                                          #     7/205
+LABEL $length$epilog                                                            #     8/205
+POPFRAME                                                                        #     9/205
+RETURN                                                                          #    10/205
+LABEL $substr                                                                   #    11/205
+PUSHFRAME                                                                       #    12/205
+DEFVAR LF@%retval                                                               #    13/205
+MOVE LF@%retval string@                                                         #    14/205
+DEFVAR LF@tmp1                                                                  #    15/205
+DEFVAR LF@tmp2                                                                  #    16/205
+MOVE LF@tmp1 int@0                                                              #    17/205
+MOVE LF@tmp2 string@                                                            #    18/205
+SUB LF@tmp1 LF@i int@1                                                          #    19/205
+DEFVAR LF@length                                                                #    20/205
+MOVE LF@length int@0                                                            #    21/205
+DEFVAR LF@result                                                                #    22/205
+MOVE LF@result bool@false                                                       #    23/205
+DEFVAR LF@tmplen                                                                #    24/205
+MOVE LF@tmplen int@0                                                            #    25/205
+STRLEN LF@tmplen LF@s                                                           #    26/205
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/205
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/205
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/205
+PUSHS LF@i                                                                      #    30/205
+PUSHS int@0                                                                     #    31/205
+PUSHS LF@i                                                                      #    32/205
+PUSHS int@0                                                                     #    33/205
+EQS                                                                             #    34/205
+POPS LF@result                                                                  #    35/205
+LTS                                                                             #    36/205
+PUSHS LF@result                                                                 #    37/205
+ORS                                                                             #    38/205
+POPS LF@result                                                                  #    39/205
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/205
+PUSHS LF@n                                                                      #    41/205
+PUSHS int@0                                                                     #    42/205
+LTS                                                                             #    43/205
+POPS LF@result                                                                  #    44/205
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/205
+STRLEN LF@tmplen LF@s                                                           #    46/205
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/205
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/205
+PUSHS LF@tmplen                                                                 #    49/205
+PUSHS LF@n                                                                      #    50/205
+LTS                                                                             #    51/205
+POPS LF@result                                                                  #    52/205
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/205
+MOVE LF@tmplen int@0                                                            #    54/205
+STRLEN LF@tmplen LF@s                                                           #    55/205
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/205
+LABEL $SubStrFor                                                                #    57/205
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/205
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/205
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/205
+STRLEN LF@length LF@%retval                                                     #    61/205
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/205
+JUMP $substr$epilog                                                             #    63/205
+LABEL $SubStrReturn0                                                            #    64/205
+MOVE LF@%retval string@                                                         #    65/205
+JUMP $substr$epilog                                                             #    66/205
+LABEL $SubStrReturnRest                                                         #    67/205
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/205
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/205
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/205
+STRLEN LF@length LF@%retval                                                     #    71/205
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/205
+LABEL $substr$epilog                                                            #    73/205
+POPFRAME                                                                        #    74/205
+RETURN                                                                          #    75/205
+LABEL $asc                                                                      #    76/205
+PUSHFRAME                                                                       #    77/205
+DEFVAR LF@%retval                                                               #    78/205
+MOVE LF@%retval int@0                                                           #    79/205
+DEFVAR LF@result                                                                #    80/205
+MOVE LF@result bool@false                                                       #    81/205
+DEFVAR LF@tmp                                                                   #    82/205
+DEFVAR LF@tmp2                                                                  #    83/205
+MOVE LF@tmp string@                                                             #    84/205
+MOVE LF@tmp2 int@0                                                              #    85/205
+PUSHS LF@i                                                                      #    86/205
+PUSHS int@0                                                                     #    87/205
+PUSHS LF@i                                                                      #    88/205
+PUSHS int@0                                                                     #    89/205
+EQS                                                                             #    90/205
+POPS LF@result                                                                  #    91/205
+LTS                                                                             #    92/205
+PUSHS LF@result                                                                 #    93/205
+ORS                                                                             #    94/205
+POPS LF@result                                                                  #    95/205
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/205
+PUSHS LF@i                                                                      #    97/205
+STRLEN LF@tmp2 LF@s                                                             #    98/205
+PUSHS LF@tmp2                                                                   #    99/205
+GTS                                                                             #   100/205
+POPS LF@result                                                                  #   101/205
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/205
+SUB LF@i LF@i int@1                                                             #   103/205
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/205
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/205
+LABEL $asc$epilog                                                               #   106/205
+POPFRAME                                                                        #   107/205
+RETURN                                                                          #   108/205
+LABEL $chr                                                                      #   109/205
+PUSHFRAME                                                                       #   110/205
+DEFVAR LF@%retval                                                               #   111/205
+MOVE LF@%retval string@                                                         #   112/205
+DEFVAR LF@tmp                                                                   #   113/205
+MOVE LF@tmp string@                                                             #   114/205
+INT2CHAR LF@%retval LF@i                                                        #   115/205
+POPFRAME                                                                        #   116/205
+RETURN                                                                          #   117/205
+LABEL $$main                                                                    #   118/205
+CREATEFRAME                                                                     #   119/205
+PUSHFRAME                                                                       #   120/205
+DEFVAR LF@vysledek                                                              #   121/205
+MOVE LF@vysledek float@0.0                                                      #   122/205
+DEFVAR LF@citatel                                                               #   123/205
+MOVE LF@citatel int@0                                                           #   124/205
+DEFVAR LF@&a                                                                    #   125/205
+MOVE LF@&a int@1                                                                #   126/205
+MOVE LF@citatel LF@&a                                                           #   127/205
+DEFVAR LF@jmenovatel                                                            #   128/205
+MOVE LF@jmenovatel int@0                                                        #   129/205
+DEFVAR LF@&b                                                                    #   130/205
+MOVE LF@&b int@1                                                                #   131/205
+MOVE LF@jmenovatel LF@&b                                                        #   132/205
+DEFVAR LF@pocitadlo                                                             #   133/205
+MOVE LF@pocitadlo int@0                                                         #   134/205
+DEFVAR LF@&c                                                                    #   135/205
+MOVE LF@&c int@1                                                                #   136/205
+MOVE LF@pocitadlo LF@&c                                                         #   137/205
+LABEL $a                                                                        #   138/205
+CREATEFRAME                                                                     #   139/205
+DEFVAR TF@vysledek                                                              #   140/205
+MOVE TF@vysledek LF@vysledek                                                    #   141/205
+DEFVAR TF@citatel                                                               #   142/205
+MOVE TF@citatel LF@citatel                                                      #   143/205
+DEFVAR TF@jmenovatel                                                            #   144/205
+MOVE TF@jmenovatel LF@jmenovatel                                                #   145/205
+DEFVAR TF@pocitadlo                                                             #   146/205
+MOVE TF@pocitadlo LF@pocitadlo                                                  #   147/205
+PUSHFRAME                                                                       #   148/205
+DEFVAR LF@&d                                                                    #   149/205
+MOVE LF@&d LF@pocitadlo                                                         #   150/205
+PUSHS LF@&d                                                                     #   151/205
+MOVE LF@&d int@7                                                                #   152/205
+PUSHS LF@&d                                                                     #   153/205
+LTS                                                                             #   154/205
+POPS LF@&d                                                                      #   155/205
+JUMPIFNEQ $b bool@true LF@&d                                                    #   156/205
+DEFVAR LF@&e                                                                    #   157/205
+MOVE LF@&e LF@vysledek                                                          #   158/205
+PUSHS LF@&e                                                                     #   159/205
+MOVE LF@&e LF@citatel                                                           #   160/205
+PUSHS LF@&e                                                                     #   161/205
+INT2FLOATS                                                                      #   162/205
+MOVE LF@&e LF@jmenovatel                                                        #   163/205
+PUSHS LF@&e                                                                     #   164/205
+INT2FLOATS                                                                      #   165/205
+DIVS                                                                            #   166/205
+ADDS                                                                            #   167/205
+POPS LF@&e                                                                      #   168/205
+MOVE LF@vysledek LF@&e                                                          #   169/205
+DEFVAR LF@&f                                                                    #   170/205
+MOVE LF@&f LF@citatel                                                           #   171/205
+PUSHS LF@&f                                                                     #   172/205
+MOVE LF@&f int@2                                                                #   173/205
+PUSHS LF@&f                                                                     #   174/205
+MULS                                                                            #   175/205
+POPS LF@&f                                                                      #   176/205
+MOVE LF@citatel LF@&f                                                           #   177/205
+DEFVAR LF@&g                                                                    #   178/205
+MOVE LF@&g LF@jmenovatel                                                        #   179/205
+PUSHS LF@&g                                                                     #   180/205
+MOVE LF@&g LF@pocitadlo                                                         #   181/205
+PUSHS LF@&g                                                                     #   182/205
+MULS                                                                            #   183/205
+POPS LF@&g                                                                      #   184/205
+MOVE LF@jmenovatel LF@&g                                                        #   185/205
+DEFVAR LF@&h                                                                    #   186/205
+MOVE LF@&h LF@pocitadlo                                                         #   187/205
+PUSHS LF@&h                                                                     #   188/205
+MOVE LF@&h int@1                                                                #   189/205
+PUSHS LF@&h                                                                     #   190/205
+ADDS                                                                            #   191/205
+POPS LF@&h                                                                      #   192/205
+MOVE LF@pocitadlo LF@&h                                                         #   193/205
+POPFRAME                                                                        #   194/205
+MOVE LF@vysledek TF@vysledek                                                    #   195/205
+MOVE LF@citatel TF@citatel                                                      #   196/205
+MOVE LF@jmenovatel TF@jmenovatel                                                #   197/205
+MOVE LF@pocitadlo TF@pocitadlo                                                  #   198/205
+JUMP $a                                                                         #   199/205
+LABEL $b                                                                        #   200/205
+POPFRAME                                                                        #   201/205
+DEFVAR LF@&i                                                                    #   202/205
+MOVE LF@&i LF@vysledek                                                          #   203/205
+WRITE LF@&i                                                                     #   204/205
+POPFRAME                                                                        #   205/205
+

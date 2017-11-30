@@ -1,0 +1,47 @@
+# 2017-11-30 22:37:01.375023
+# SECTION: 02_functions
+# TEST: 06
+# INFO: function params with declaration but invalid types
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Parameter types in function definition and declaration differ
+# ERROR: Parameter in function 'bar' definition differs from its declaration
+# 
+# SEMANTIC_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' function params with declaration but invalid types
+#   2: declare function bar(h as string, t as string) as string
+#   3: 
+#   4: function bar(b as string, c as integer) as string
+#   5: end function 
+#   6: 
+#   7: scope
+#   8: end scope
+
+########################################
+
+# ---
+

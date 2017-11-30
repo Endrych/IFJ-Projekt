@@ -1,0 +1,786 @@
+# 2017-11-30 22:37:08.661174
+# SECTION: 05_conditions
+# TEST: 17
+# INFO: String relations
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@a
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@a()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 125 with following arguments:
+# Arg1: LF@&a=ahoj(string)
+# Dest: LF@a=(string)
+# Executing instruction: IDEFVAR at line: 126 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 127 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 128 with following arguments:
+# Arg1: LF@&b=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 129 with following arguments:
+# Arg1: Const@=bhoj(string)
+# Dest: LF@&b=ahoj(string)
+# Executing instruction: IPUSHS at line: 130 with following arguments:
+# Arg1: LF@&b=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 131 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 132 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=bhoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 133 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: Const@=OK(string)
+# Dest: LF@&c()
+# Executing instruction: IWRITE at line: 136 with following arguments:
+# Arg1: LF@&c=OK(string)
+# Executing instruction: IJUMP at line: 137 with following arguments:
+# Executing instruction: ILABEL at line: 142 with following arguments:
+# Executing instruction: IDEFVAR at line: 143 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 144 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&e()
+# Executing instruction: IPUSHS at line: 145 with following arguments:
+# Arg1: LF@&e=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 146 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: LF@&e=ahoj(string)
+# Executing instruction: IPUSHS at line: 147 with following arguments:
+# Arg1: LF@&e=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 148 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: INOTS at line: 149 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&e=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 151 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&e=false(bool)
+# Executing instruction: ILABEL at line: 156 with following arguments:
+# Executing instruction: IDEFVAR at line: 157 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 158 with following arguments:
+# Arg1: Const@=NOTOK(string)
+# Dest: LF@&g()
+# Executing instruction: IWRITE at line: 159 with following arguments:
+# Arg1: LF@&g=NOTOK(string)
+# Executing instruction: ILABEL at line: 160 with following arguments:
+# Executing instruction: IDEFVAR at line: 161 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 163 with following arguments:
+# Arg1: LF@&h=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 164 with following arguments:
+# Arg1: Const@=bhoj(string)
+# Dest: LF@&h=ahoj(string)
+# Executing instruction: IPUSHS at line: 165 with following arguments:
+# Arg1: LF@&h=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 166 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: INOTS at line: 167 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 168 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&h=bhoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 169 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&h=true(bool)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: Const@=OK(string)
+# Dest: LF@&i()
+# Executing instruction: IWRITE at line: 172 with following arguments:
+# Arg1: LF@&i=OK(string)
+# Executing instruction: IJUMP at line: 173 with following arguments:
+# Executing instruction: ILABEL at line: 178 with following arguments:
+# Executing instruction: IDEFVAR at line: 179 with following arguments:
+# Dest: LF@&k
+# Executing instruction: IMOVE at line: 180 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&k()
+# Executing instruction: IPUSHS at line: 181 with following arguments:
+# Arg1: LF@&k=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 182 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: LF@&k=ahoj(string)
+# Executing instruction: IPUSHS at line: 183 with following arguments:
+# Arg1: LF@&k=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 184 with following arguments:
+# Dest: LF@&l
+# Executing instruction: IDEFVAR at line: 185 with following arguments:
+# Dest: LF@&m
+# Executing instruction: IPOPS at line: 186 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Dest: LF@&l()
+# Executing instruction: IPOPS at line: 187 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Dest: LF@&m()
+# Executing instruction: IPUSHS at line: 188 with following arguments:
+# Arg1: LF@&m=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 189 with following arguments:
+# Arg1: LF@&l=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&m=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 191 with following arguments:
+# Arg1: LF@&l=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 192 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 193 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&l=ahoj(string)
+# Executing instruction: IEQS at line: 194 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 195 with following arguments:
+# Arg1: LF@&l=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 196 with following arguments:
+# Arg1: Stack@=true(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 197 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&k=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 198 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&k=true(bool)
+# Executing instruction: IDEFVAR at line: 199 with following arguments:
+# Dest: LF@&n
+# Executing instruction: IMOVE at line: 200 with following arguments:
+# Arg1: Const@=OK(string)
+# Dest: LF@&n()
+# Executing instruction: IWRITE at line: 201 with following arguments:
+# Arg1: LF@&n=OK(string)
+# Executing instruction: IJUMP at line: 202 with following arguments:
+# Executing instruction: ILABEL at line: 207 with following arguments:
+# Executing instruction: IDEFVAR at line: 208 with following arguments:
+# Dest: LF@&p
+# Executing instruction: IMOVE at line: 209 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&p()
+# Executing instruction: IPUSHS at line: 210 with following arguments:
+# Arg1: LF@&p=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 211 with following arguments:
+# Arg1: Const@=hoj(string)
+# Dest: LF@&p=ahoj(string)
+# Executing instruction: IPUSHS at line: 212 with following arguments:
+# Arg1: LF@&p=hoj(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 213 with following arguments:
+# Dest: LF@&q
+# Executing instruction: IDEFVAR at line: 214 with following arguments:
+# Dest: LF@&r
+# Executing instruction: IPOPS at line: 215 with following arguments:
+# Arg1: Stack@=hoj(string)
+# Dest: LF@&q()
+# Executing instruction: IPOPS at line: 216 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Dest: LF@&r()
+# Executing instruction: IPUSHS at line: 217 with following arguments:
+# Arg1: LF@&r=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 218 with following arguments:
+# Arg1: LF@&q=hoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 219 with following arguments:
+# Arg1: LF@&r=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 220 with following arguments:
+# Arg1: LF@&q=hoj(string)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 221 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=hoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 222 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&q=hoj(string)
+# Executing instruction: IEQS at line: 223 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=hoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 224 with following arguments:
+# Arg1: LF@&q=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 225 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 226 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&p=hoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 227 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&p=false(bool)
+# Executing instruction: ILABEL at line: 232 with following arguments:
+# Executing instruction: IDEFVAR at line: 233 with following arguments:
+# Dest: LF@&t
+# Executing instruction: IMOVE at line: 234 with following arguments:
+# Arg1: Const@=NOTOK(string)
+# Dest: LF@&t()
+# Executing instruction: IWRITE at line: 235 with following arguments:
+# Arg1: LF@&t=NOTOK(string)
+# Executing instruction: ILABEL at line: 236 with following arguments:
+# Executing instruction: IDEFVAR at line: 237 with following arguments:
+# Dest: LF@&u
+# Executing instruction: IMOVE at line: 238 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&u()
+# Executing instruction: IPUSHS at line: 239 with following arguments:
+# Arg1: LF@&u=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 240 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: LF@&u=ahoj(string)
+# Executing instruction: IPUSHS at line: 241 with following arguments:
+# Arg1: LF@&u=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 242 with following arguments:
+# Dest: LF@&v
+# Executing instruction: IDEFVAR at line: 243 with following arguments:
+# Dest: LF@&w
+# Executing instruction: IPOPS at line: 244 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Dest: LF@&v()
+# Executing instruction: IPOPS at line: 245 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Dest: LF@&w()
+# Executing instruction: IPUSHS at line: 246 with following arguments:
+# Arg1: LF@&w=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 247 with following arguments:
+# Arg1: LF@&v=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 248 with following arguments:
+# Arg1: LF@&w=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 249 with following arguments:
+# Arg1: LF@&v=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: ILSS at line: 250 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 251 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&v=ahoj(string)
+# Executing instruction: IEQS at line: 252 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 253 with following arguments:
+# Arg1: LF@&v=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 254 with following arguments:
+# Arg1: Stack@=true(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 255 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&u=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 256 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&u=true(bool)
+# Executing instruction: IDEFVAR at line: 257 with following arguments:
+# Dest: LF@&x
+# Executing instruction: IMOVE at line: 258 with following arguments:
+# Arg1: Const@=OK(string)
+# Dest: LF@&x()
+# Executing instruction: IWRITE at line: 259 with following arguments:
+# Arg1: LF@&x=OK(string)
+# Executing instruction: IJUMP at line: 260 with following arguments:
+# Executing instruction: ILABEL at line: 265 with following arguments:
+# Executing instruction: IDEFVAR at line: 266 with following arguments:
+# Dest: LF@&z
+# Executing instruction: IMOVE at line: 267 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&z()
+# Executing instruction: IPUSHS at line: 268 with following arguments:
+# Arg1: LF@&z=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 269 with following arguments:
+# Arg1: Const@=ahoj(string)
+# Dest: LF@&z=ahoj(string)
+# Executing instruction: IPUSHS at line: 270 with following arguments:
+# Arg1: LF@&z=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 271 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 272 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&z=ahoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 273 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&z=true(bool)
+# Executing instruction: IDEFVAR at line: 274 with following arguments:
+# Dest: LF@&A
+# Executing instruction: IMOVE at line: 275 with following arguments:
+# Arg1: Const@=OK(string)
+# Dest: LF@&A()
+# Executing instruction: IWRITE at line: 276 with following arguments:
+# Arg1: LF@&A=OK(string)
+# Executing instruction: IJUMP at line: 277 with following arguments:
+# Executing instruction: ILABEL at line: 282 with following arguments:
+# Executing instruction: IDEFVAR at line: 283 with following arguments:
+# Dest: LF@&C
+# Executing instruction: IMOVE at line: 284 with following arguments:
+# Arg1: LF@a=ahoj(string)
+# Dest: LF@&C()
+# Executing instruction: IPUSHS at line: 285 with following arguments:
+# Arg1: LF@&C=ahoj(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 286 with following arguments:
+# Arg1: Const@=bhoj(string)
+# Dest: LF@&C=ahoj(string)
+# Executing instruction: IPUSHS at line: 287 with following arguments:
+# Arg1: LF@&C=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 288 with following arguments:
+# Arg1: Stack@=ahoj(string)
+# Arg2: Stack@=bhoj(string)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 289 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&C=bhoj(string)
+# Executing instruction: IJUMPIFNEQ at line: 290 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&C=false(bool)
+# Executing instruction: ILABEL at line: 295 with following arguments:
+# Executing instruction: IDEFVAR at line: 296 with following arguments:
+# Dest: LF@&E
+# Executing instruction: IMOVE at line: 297 with following arguments:
+# Arg1: Const@=NOTOK(string)
+# Dest: LF@&E()
+# Executing instruction: IWRITE at line: 298 with following arguments:
+# Arg1: LF@&E=NOTOK(string)
+# Executing instruction: ILABEL at line: 299 with following arguments:
+# Executing instruction: IPOPFRAME at line: 300 with following arguments:
+# Executing instruction: IGROOT at line: 302 with following arguments:
+# I am Groot at 302 (923).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 923 (213+710)
+# GROOT: 923
+# 
+#   1: ' String relations
+#   2: 
+#   3: scope
+#   4: 
+#   5: dim a as string
+#   6: a = !"ahoj"
+#   7: 
+#   8: if a < !"bhoj" then
+#   9:     print !"OK";
+#  10: else
+#  11:     print !"NOTOK";
+#  12: end if
+#  13: 
+#  14: if a <> !"ahoj" then
+#  15:     print !"OK";
+#  16: else
+#  17:     print !"NOTOK";
+#  18: end if
+#  19: 
+#  20: if a <> !"bhoj" then
+#  21:     print !"OK";
+#  22: else
+#  23:     print !"NOTOK";
+#  24: end if
+#  25: 
+#  26: if a >= !"ahoj" then
+#  27:     print !"OK";
+#  28: else
+#  29:     print !"NOTOK";
+#  30: end if
+#  31: 
+#  32: if a >= !"hoj" then
+#  33:     print !"OK";
+#  34: else
+#  35:     print !"NOTOK";
+#  36: end if
+#  37: 
+#  38: if a <= !"ahoj" then
+#  39:     print !"OK";
+#  40: else
+#  41:     print !"NOTOK";
+#  42: end if
+#  43: 
+#  44: if a = !"ahoj" then
+#  45:     print !"OK";
+#  46: else
+#  47:     print !"NOTOK";
+#  48: end if
+#  49: 
+#  50: if a = !"bhoj" then
+#  51:     print !"OK";
+#  52: else
+#  53:     print !"NOTOK";
+#  54: end if
+#  55: 
+#  56: 
+#  57: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/300
+JUMP $$main                                                                     #     2/300
+LABEL $length                                                                   #     3/300
+PUSHFRAME                                                                       #     4/300
+DEFVAR LF@%retval                                                               #     5/300
+MOVE LF@%retval int@0                                                           #     6/300
+STRLEN LF@%retval LF@s                                                          #     7/300
+LABEL $length$epilog                                                            #     8/300
+POPFRAME                                                                        #     9/300
+RETURN                                                                          #    10/300
+LABEL $substr                                                                   #    11/300
+PUSHFRAME                                                                       #    12/300
+DEFVAR LF@%retval                                                               #    13/300
+MOVE LF@%retval string@                                                         #    14/300
+DEFVAR LF@tmp1                                                                  #    15/300
+DEFVAR LF@tmp2                                                                  #    16/300
+MOVE LF@tmp1 int@0                                                              #    17/300
+MOVE LF@tmp2 string@                                                            #    18/300
+SUB LF@tmp1 LF@i int@1                                                          #    19/300
+DEFVAR LF@length                                                                #    20/300
+MOVE LF@length int@0                                                            #    21/300
+DEFVAR LF@result                                                                #    22/300
+MOVE LF@result bool@false                                                       #    23/300
+DEFVAR LF@tmplen                                                                #    24/300
+MOVE LF@tmplen int@0                                                            #    25/300
+STRLEN LF@tmplen LF@s                                                           #    26/300
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/300
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/300
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/300
+PUSHS LF@i                                                                      #    30/300
+PUSHS int@0                                                                     #    31/300
+PUSHS LF@i                                                                      #    32/300
+PUSHS int@0                                                                     #    33/300
+EQS                                                                             #    34/300
+POPS LF@result                                                                  #    35/300
+LTS                                                                             #    36/300
+PUSHS LF@result                                                                 #    37/300
+ORS                                                                             #    38/300
+POPS LF@result                                                                  #    39/300
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/300
+PUSHS LF@n                                                                      #    41/300
+PUSHS int@0                                                                     #    42/300
+LTS                                                                             #    43/300
+POPS LF@result                                                                  #    44/300
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/300
+STRLEN LF@tmplen LF@s                                                           #    46/300
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/300
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/300
+PUSHS LF@tmplen                                                                 #    49/300
+PUSHS LF@n                                                                      #    50/300
+LTS                                                                             #    51/300
+POPS LF@result                                                                  #    52/300
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/300
+MOVE LF@tmplen int@0                                                            #    54/300
+STRLEN LF@tmplen LF@s                                                           #    55/300
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/300
+LABEL $SubStrFor                                                                #    57/300
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/300
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/300
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/300
+STRLEN LF@length LF@%retval                                                     #    61/300
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/300
+JUMP $substr$epilog                                                             #    63/300
+LABEL $SubStrReturn0                                                            #    64/300
+MOVE LF@%retval string@                                                         #    65/300
+JUMP $substr$epilog                                                             #    66/300
+LABEL $SubStrReturnRest                                                         #    67/300
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/300
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/300
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/300
+STRLEN LF@length LF@%retval                                                     #    71/300
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/300
+LABEL $substr$epilog                                                            #    73/300
+POPFRAME                                                                        #    74/300
+RETURN                                                                          #    75/300
+LABEL $asc                                                                      #    76/300
+PUSHFRAME                                                                       #    77/300
+DEFVAR LF@%retval                                                               #    78/300
+MOVE LF@%retval int@0                                                           #    79/300
+DEFVAR LF@result                                                                #    80/300
+MOVE LF@result bool@false                                                       #    81/300
+DEFVAR LF@tmp                                                                   #    82/300
+DEFVAR LF@tmp2                                                                  #    83/300
+MOVE LF@tmp string@                                                             #    84/300
+MOVE LF@tmp2 int@0                                                              #    85/300
+PUSHS LF@i                                                                      #    86/300
+PUSHS int@0                                                                     #    87/300
+PUSHS LF@i                                                                      #    88/300
+PUSHS int@0                                                                     #    89/300
+EQS                                                                             #    90/300
+POPS LF@result                                                                  #    91/300
+LTS                                                                             #    92/300
+PUSHS LF@result                                                                 #    93/300
+ORS                                                                             #    94/300
+POPS LF@result                                                                  #    95/300
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/300
+PUSHS LF@i                                                                      #    97/300
+STRLEN LF@tmp2 LF@s                                                             #    98/300
+PUSHS LF@tmp2                                                                   #    99/300
+GTS                                                                             #   100/300
+POPS LF@result                                                                  #   101/300
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/300
+SUB LF@i LF@i int@1                                                             #   103/300
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/300
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/300
+LABEL $asc$epilog                                                               #   106/300
+POPFRAME                                                                        #   107/300
+RETURN                                                                          #   108/300
+LABEL $chr                                                                      #   109/300
+PUSHFRAME                                                                       #   110/300
+DEFVAR LF@%retval                                                               #   111/300
+MOVE LF@%retval string@                                                         #   112/300
+DEFVAR LF@tmp                                                                   #   113/300
+MOVE LF@tmp string@                                                             #   114/300
+INT2CHAR LF@%retval LF@i                                                        #   115/300
+POPFRAME                                                                        #   116/300
+RETURN                                                                          #   117/300
+LABEL $$main                                                                    #   118/300
+CREATEFRAME                                                                     #   119/300
+PUSHFRAME                                                                       #   120/300
+DEFVAR LF@a                                                                     #   121/300
+MOVE LF@a string@                                                               #   122/300
+DEFVAR LF@&a                                                                    #   123/300
+MOVE LF@&a string@ahoj                                                          #   124/300
+MOVE LF@a LF@&a                                                                 #   125/300
+DEFVAR LF@&b                                                                    #   126/300
+MOVE LF@&b LF@a                                                                 #   127/300
+PUSHS LF@&b                                                                     #   128/300
+MOVE LF@&b string@bhoj                                                          #   129/300
+PUSHS LF@&b                                                                     #   130/300
+LTS                                                                             #   131/300
+POPS LF@&b                                                                      #   132/300
+JUMPIFNEQ $a bool@true LF@&b                                                    #   133/300
+DEFVAR LF@&c                                                                    #   134/300
+MOVE LF@&c string@OK                                                            #   135/300
+WRITE LF@&c                                                                     #   136/300
+JUMP $b                                                                         #   137/300
+LABEL $a                                                                        #   138/300
+DEFVAR LF@&d                                                                    #   139/300
+MOVE LF@&d string@NOTOK                                                         #   140/300
+WRITE LF@&d                                                                     #   141/300
+LABEL $b                                                                        #   142/300
+DEFVAR LF@&e                                                                    #   143/300
+MOVE LF@&e LF@a                                                                 #   144/300
+PUSHS LF@&e                                                                     #   145/300
+MOVE LF@&e string@ahoj                                                          #   146/300
+PUSHS LF@&e                                                                     #   147/300
+EQS                                                                             #   148/300
+NOTS                                                                            #   149/300
+POPS LF@&e                                                                      #   150/300
+JUMPIFNEQ $c bool@true LF@&e                                                    #   151/300
+DEFVAR LF@&f                                                                    #   152/300
+MOVE LF@&f string@OK                                                            #   153/300
+WRITE LF@&f                                                                     #   154/300
+JUMP $d                                                                         #   155/300
+LABEL $c                                                                        #   156/300
+DEFVAR LF@&g                                                                    #   157/300
+MOVE LF@&g string@NOTOK                                                         #   158/300
+WRITE LF@&g                                                                     #   159/300
+LABEL $d                                                                        #   160/300
+DEFVAR LF@&h                                                                    #   161/300
+MOVE LF@&h LF@a                                                                 #   162/300
+PUSHS LF@&h                                                                     #   163/300
+MOVE LF@&h string@bhoj                                                          #   164/300
+PUSHS LF@&h                                                                     #   165/300
+EQS                                                                             #   166/300
+NOTS                                                                            #   167/300
+POPS LF@&h                                                                      #   168/300
+JUMPIFNEQ $e bool@true LF@&h                                                    #   169/300
+DEFVAR LF@&i                                                                    #   170/300
+MOVE LF@&i string@OK                                                            #   171/300
+WRITE LF@&i                                                                     #   172/300
+JUMP $f                                                                         #   173/300
+LABEL $e                                                                        #   174/300
+DEFVAR LF@&j                                                                    #   175/300
+MOVE LF@&j string@NOTOK                                                         #   176/300
+WRITE LF@&j                                                                     #   177/300
+LABEL $f                                                                        #   178/300
+DEFVAR LF@&k                                                                    #   179/300
+MOVE LF@&k LF@a                                                                 #   180/300
+PUSHS LF@&k                                                                     #   181/300
+MOVE LF@&k string@ahoj                                                          #   182/300
+PUSHS LF@&k                                                                     #   183/300
+DEFVAR LF@&l                                                                    #   184/300
+DEFVAR LF@&m                                                                    #   185/300
+POPS LF@&l                                                                      #   186/300
+POPS LF@&m                                                                      #   187/300
+PUSHS LF@&m                                                                     #   188/300
+PUSHS LF@&l                                                                     #   189/300
+PUSHS LF@&m                                                                     #   190/300
+PUSHS LF@&l                                                                     #   191/300
+GTS                                                                             #   192/300
+POPS LF@&l                                                                      #   193/300
+EQS                                                                             #   194/300
+PUSHS LF@&l                                                                     #   195/300
+ORS                                                                             #   196/300
+POPS LF@&k                                                                      #   197/300
+JUMPIFNEQ $g bool@true LF@&k                                                    #   198/300
+DEFVAR LF@&n                                                                    #   199/300
+MOVE LF@&n string@OK                                                            #   200/300
+WRITE LF@&n                                                                     #   201/300
+JUMP $h                                                                         #   202/300
+LABEL $g                                                                        #   203/300
+DEFVAR LF@&o                                                                    #   204/300
+MOVE LF@&o string@NOTOK                                                         #   205/300
+WRITE LF@&o                                                                     #   206/300
+LABEL $h                                                                        #   207/300
+DEFVAR LF@&p                                                                    #   208/300
+MOVE LF@&p LF@a                                                                 #   209/300
+PUSHS LF@&p                                                                     #   210/300
+MOVE LF@&p string@hoj                                                           #   211/300
+PUSHS LF@&p                                                                     #   212/300
+DEFVAR LF@&q                                                                    #   213/300
+DEFVAR LF@&r                                                                    #   214/300
+POPS LF@&q                                                                      #   215/300
+POPS LF@&r                                                                      #   216/300
+PUSHS LF@&r                                                                     #   217/300
+PUSHS LF@&q                                                                     #   218/300
+PUSHS LF@&r                                                                     #   219/300
+PUSHS LF@&q                                                                     #   220/300
+GTS                                                                             #   221/300
+POPS LF@&q                                                                      #   222/300
+EQS                                                                             #   223/300
+PUSHS LF@&q                                                                     #   224/300
+ORS                                                                             #   225/300
+POPS LF@&p                                                                      #   226/300
+JUMPIFNEQ $i bool@true LF@&p                                                    #   227/300
+DEFVAR LF@&s                                                                    #   228/300
+MOVE LF@&s string@OK                                                            #   229/300
+WRITE LF@&s                                                                     #   230/300
+JUMP $j                                                                         #   231/300
+LABEL $i                                                                        #   232/300
+DEFVAR LF@&t                                                                    #   233/300
+MOVE LF@&t string@NOTOK                                                         #   234/300
+WRITE LF@&t                                                                     #   235/300
+LABEL $j                                                                        #   236/300
+DEFVAR LF@&u                                                                    #   237/300
+MOVE LF@&u LF@a                                                                 #   238/300
+PUSHS LF@&u                                                                     #   239/300
+MOVE LF@&u string@ahoj                                                          #   240/300
+PUSHS LF@&u                                                                     #   241/300
+DEFVAR LF@&v                                                                    #   242/300
+DEFVAR LF@&w                                                                    #   243/300
+POPS LF@&v                                                                      #   244/300
+POPS LF@&w                                                                      #   245/300
+PUSHS LF@&w                                                                     #   246/300
+PUSHS LF@&v                                                                     #   247/300
+PUSHS LF@&w                                                                     #   248/300
+PUSHS LF@&v                                                                     #   249/300
+LTS                                                                             #   250/300
+POPS LF@&v                                                                      #   251/300
+EQS                                                                             #   252/300
+PUSHS LF@&v                                                                     #   253/300
+ORS                                                                             #   254/300
+POPS LF@&u                                                                      #   255/300
+JUMPIFNEQ $k bool@true LF@&u                                                    #   256/300
+DEFVAR LF@&x                                                                    #   257/300
+MOVE LF@&x string@OK                                                            #   258/300
+WRITE LF@&x                                                                     #   259/300
+JUMP $l                                                                         #   260/300
+LABEL $k                                                                        #   261/300
+DEFVAR LF@&y                                                                    #   262/300
+MOVE LF@&y string@NOTOK                                                         #   263/300
+WRITE LF@&y                                                                     #   264/300
+LABEL $l                                                                        #   265/300
+DEFVAR LF@&z                                                                    #   266/300
+MOVE LF@&z LF@a                                                                 #   267/300
+PUSHS LF@&z                                                                     #   268/300
+MOVE LF@&z string@ahoj                                                          #   269/300
+PUSHS LF@&z                                                                     #   270/300
+EQS                                                                             #   271/300
+POPS LF@&z                                                                      #   272/300
+JUMPIFNEQ $m bool@true LF@&z                                                    #   273/300
+DEFVAR LF@&A                                                                    #   274/300
+MOVE LF@&A string@OK                                                            #   275/300
+WRITE LF@&A                                                                     #   276/300
+JUMP $n                                                                         #   277/300
+LABEL $m                                                                        #   278/300
+DEFVAR LF@&B                                                                    #   279/300
+MOVE LF@&B string@NOTOK                                                         #   280/300
+WRITE LF@&B                                                                     #   281/300
+LABEL $n                                                                        #   282/300
+DEFVAR LF@&C                                                                    #   283/300
+MOVE LF@&C LF@a                                                                 #   284/300
+PUSHS LF@&C                                                                     #   285/300
+MOVE LF@&C string@bhoj                                                          #   286/300
+PUSHS LF@&C                                                                     #   287/300
+EQS                                                                             #   288/300
+POPS LF@&C                                                                      #   289/300
+JUMPIFNEQ $o bool@true LF@&C                                                    #   290/300
+DEFVAR LF@&D                                                                    #   291/300
+MOVE LF@&D string@OK                                                            #   292/300
+WRITE LF@&D                                                                     #   293/300
+JUMP $p                                                                         #   294/300
+LABEL $o                                                                        #   295/300
+DEFVAR LF@&E                                                                    #   296/300
+MOVE LF@&E string@NOTOK                                                         #   297/300
+WRITE LF@&E                                                                     #   298/300
+LABEL $p                                                                        #   299/300
+POPFRAME                                                                        #   300/300
+
