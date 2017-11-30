@@ -1,7 +1,6 @@
 Scope
 
-Dim x as integer
-x = 4
+Dim x as double = 10e+2
 print x;
 
 End Scope
