@@ -1182,7 +1182,7 @@ int Func()
 						// zkontrolujeme navratovou hodnotu
 						if ((return_value = check_param_type(symtab_item->type_strct.function->return_type)) != OK) {
 							fprintf(stderr, "ERROR: Different return types in '%s' function definition and declaration\n", symtab_item->key);
-							return SEMANTIC_TYPE_ERROR;
+							return SEMANTIC_ERROR;
 						}
 					}
 
@@ -1458,7 +1458,7 @@ int Param(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 	if (!declaration){
 		if ((symtab_param = symtab_search(global_symtab, param_token)) != NULL) {
 			if (symtab_param->type == type_function) {
-				fprintf(stderr,"ERROR: Redefinition of variable %s used as function identifier\n", symtab_item->key);
+				fprintf(stderr,"ERROR: Redefinition of variable used as function identifier\n");
 				return SEMANTIC_ERROR;
 			}
 		}
