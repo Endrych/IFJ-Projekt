@@ -1,2 +1,9 @@
 Scope
+
+if (4 + 5) >= 9 then
+    print !"Ano";
+else
+    Print !"NE";
+end if
+
 End Scope

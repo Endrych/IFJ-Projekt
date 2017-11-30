@@ -1,6 +1,6 @@
 Scope
 
-dim a as double = 200.02e2
+dim a as double = 200.02e+2
 print a;
 
 End Scope
