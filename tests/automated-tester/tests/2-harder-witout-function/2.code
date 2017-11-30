@@ -1,25 +1,7 @@
-' vypise vsechna suda cisla od 0 do 100
+ScOPE
 
-function print_even_to(count as integer) as integer
-    if count >= 0 then
-    
-    else 
-        return 1
-    end if
-    
-    dim num as integer = 0
-    do while num <= count
-        print num;
-        num = num + 2
-    loop
-end function
+dim int as integer = 420
+int = int + 20 +int\420
+print int;
 
-scope 
-    dim return_value as integer
-    return_value = print_even_to(100)
-    if return_value <> 0 then
-        print !"Nastala chyba\n";
-    else 
-        print !"\n";
-    end if
-end scope
+End Scope

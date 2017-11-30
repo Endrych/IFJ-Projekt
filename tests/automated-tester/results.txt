@@ -1,19 +1,1 @@
 Results of automated-tester
-____________
-1-basic-without-functions:
-¯¯¯¯¯¯¯¯¯¯¯¯
-1✔ - Return codes- C: 0 I: 0
-2✔ - Return codes- C: 0 I: 0
-3✔ - Return codes- C: 0 I: 0
-4✔ - Return codes- C: 0 I: 0
-5✔ - Return codes- C: 0 I: 0
-6✔ - Return codes- C: 0 I: 0
-7✔ - Return codes- C: 0 I: 0
-8✔ - Return codes- C: 0 I: 0
-9✔ - Return codes- C: 0 I: 0
-10✔ - Return codes- C: 0 I: 0
-11✔ - Return codes- C: 0 I: 0
-12✔ - Return codes- C: 0 I: 0
-13✔ - Return codes- C: 0 I: 0
-14✔ - Return codes- C: 0 I: 0
-15✔ - Return codes- C: 0 I: 0
