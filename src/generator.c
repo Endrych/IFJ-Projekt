@@ -500,8 +500,8 @@ char * generate_expression(ATLeaf *tree){
                     }else if(current->data.Atr.type_cast == 1){
                         fprintf(stdout, "FLOAT2R2EINTS\n");
                     }
-                    else if(current->data.Atr.type_cast == 2){
-                        fprintf(stdout, "FLOAT2INT\n");
+                    else if(current->data.Atr.type_cast == Double2Integer1){
+                        fprintf(stdout, "FLOAT2INTS\n");
                     }
                 }
                 else if(current->right->data.type == at_token && current->right->processed == false){
@@ -527,6 +527,9 @@ char * generate_expression(ATLeaf *tree){
                         fprintf(stdout, "INT2FLOATS\n");
                     }else if(current->data.Atr.type_cast == 1){
                         fprintf(stdout, "FLOAT2R2EINTS\n");
+                    }
+                    else if(current->data.Atr.type_cast == Double2Integer1){
+                        fprintf(stdout, "FLOAT2INTS\n");
                     }
                     current->processed = true;
                     if(!(gsptr_stackEmpty(gp_stack))){

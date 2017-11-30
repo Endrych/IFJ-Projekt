@@ -418,7 +418,6 @@ int findRule(tStack * s){
                             }
                         }
                         else if(oper == op_division_int){
-                            printf("%d %d", dataType,dataType1);
                             if(dataType == type_int && dataType1 == type_int){
                                     ATData cData;
                                     cData.type = at_type_cast;
