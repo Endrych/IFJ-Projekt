@@ -385,9 +385,7 @@ Token* get_token(){
 				else{
 					fprintf(stderr, "Problem with string inicialization\n");
 					free(token);
-					free(str);
 					print_error(LEXICAL_ERROR);
-					// free(str);
 				}	
 			case _START_STRING:
 				if((current_char != '\"' && current_char != '\n' && current_char != EOF) || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
