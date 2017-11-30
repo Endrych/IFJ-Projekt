@@ -1,7 +1,7 @@
 Scope
 
 Dim x as integer
-x = 4 / 0
+x = 4
 print x;
 
 End Scope

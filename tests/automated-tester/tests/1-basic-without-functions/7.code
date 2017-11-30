@@ -1,0 +1,6 @@
+Scope
+
+Dim pop as double = 1000e-3
+print pop;
+
+End Scope
