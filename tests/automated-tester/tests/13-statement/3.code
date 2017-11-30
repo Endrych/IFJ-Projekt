@@ -1,0 +1,6 @@
+Scope 
+	Dim d As Double = 1456780.097e3
+	Dim x As Double = 1456780.097
+
+	print d; !"\n"; x; 
+End Scope
