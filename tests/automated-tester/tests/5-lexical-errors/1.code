@@ -1,3 +1,8 @@
+'Tento test ma projit, test jestli je vse dobre nastaveno
+
 Scope
+
+dim x as double = 1456780.097e-3
+print x;
 
 End Scope
