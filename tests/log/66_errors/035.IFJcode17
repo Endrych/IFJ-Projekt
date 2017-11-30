@@ -1,0 +1,40 @@
+# 2017-11-30 22:56:52.243676
+# SECTION: 66_errors
+# TEST: 035
+# INFO: assignment or undefined variable in variable declaration
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# SEMANTIC ERROR: Variable b is not declared
+# Semantic error: undefined function or variable / trying to redefined function or variable.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  dim a as integer = b + 1 
+#   3:  end scope
+
+########################################
+
+# ---
+

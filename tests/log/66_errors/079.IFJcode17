@@ -1,0 +1,44 @@
+# 2017-11-30 22:56:53.292016
+# SECTION: 66_errors
+# TEST: 079
+# INFO: function in function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Missing 'End Function' at the end of function definition
+# 
+# SYNTAX_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: function foo() as integer 
+#   2:  function bar() as integer 
+#   3:  end function 
+#   4:  end function 
+#   5:  scope 
+#   6:  end scope 
+
+########################################
+
+# ---
+

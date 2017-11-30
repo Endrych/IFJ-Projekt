@@ -1,0 +1,41 @@
+# 2017-11-30 22:56:51.190391
+# SECTION: 66_errors
+# TEST: 34
+# INFO: Undefined variable
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# SEMANTIC ERROR: Variable b is not declared
+# Semantic error: undefined function or variable / trying to redefined function or variable.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 3
+# CURRENT COMPILER EXIT CODE: 3
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: ' Undefined variable
+#   2: scope
+#   3:     print 31 + b;
+#   4: end scope
+
+########################################
+
+# ---
+

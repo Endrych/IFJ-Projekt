@@ -1,0 +1,1151 @@
+# 2017-11-30 22:56:48.747167
+# SECTION: 07_strings
+# TEST: 04
+# INFO: asc builtin function
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# 
+# Everything is OK
+# 
+# INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@res
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@res()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp()
+# Executing instruction: IDEFVAR at line: 125 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&a()
+# Executing instruction: IPUSHS at line: 127 with following arguments:
+# Arg1: LF@&a=0(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 128 with following arguments:
+# Arg1: Const@=10(int)
+# Dest: LF@&a=0(int)
+# Executing instruction: IPUSHS at line: 129 with following arguments:
+# Arg1: LF@&a=10(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 130 with following arguments:
+# Arg1: Stack@=0(int)
+# Arg2: Stack@=10(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 131 with following arguments:
+# Arg1: Stack@=-10(int)
+# Dest: LF@&a=10(int)
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@&a=-10(int)
+# Dest: LF@tmp=0(int)
+# Executing instruction: ICREATEFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: Const@=test(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 136 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 138 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=0(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=0(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=true(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=true(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@result=true(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=true(bool)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 139 with following arguments:
+# Arg1: TF@%retval=0(int)
+# Dest: LF@res=0(int)
+# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 141 with following arguments:
+# Arg1: LF@res=0(int)
+# Dest: LF@&b()
+# Executing instruction: IWRITE at line: 142 with following arguments:
+# Arg1: LF@&b=0(int)
+# Executing instruction: ICREATEFRAME at line: 143 with following arguments:
+# Executing instruction: IDEFVAR at line: 144 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: Const@=test(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 146 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 147 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 148 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=test(string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=4(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISUB at line: 103 with following arguments:
+# Arg1: LF@i=1(int)
+# Arg2: Const@=1(int)
+# Dest: LF@i=1(int)
+# Executing instruction: IGETCHAR at line: 104 with following arguments:
+# Arg1: LF@s=test(string)
+# Arg2: LF@i=0(int)
+# Dest: LF@tmp=(string)
+# Executing instruction: ISTRI2INT at line: 105 with following arguments:
+# Arg1: LF@tmp=t(string)
+# Arg2: Const@=0(int)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 149 with following arguments:
+# Arg1: TF@%retval=116(int)
+# Dest: LF@res=0(int)
+# Executing instruction: IDEFVAR at line: 150 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 151 with following arguments:
+# Arg1: LF@res=116(int)
+# Dest: LF@&c()
+# Executing instruction: IWRITE at line: 152 with following arguments:
+# Arg1: LF@&c=116(int)
+# Executing instruction: ICREATEFRAME at line: 153 with following arguments:
+# Executing instruction: IDEFVAR at line: 154 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 155 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 156 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 157 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 158 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=(string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=1(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISUB at line: 103 with following arguments:
+# Arg1: LF@i=1(int)
+# Arg2: Const@=1(int)
+# Dest: LF@i=1(int)
+# Executing instruction: IGETCHAR at line: 104 with following arguments:
+# Arg1: LF@s=(string)
+# Arg2: LF@i=0(int)
+# Dest: LF@tmp=(string)
+# Executing instruction: ISTRI2INT at line: 105 with following arguments:
+# Arg1: LF@tmp=(string)
+# Arg2: Const@=0(int)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 159 with following arguments:
+# Arg1: TF@%retval=1(int)
+# Dest: LF@res=116(int)
+# Executing instruction: IDEFVAR at line: 160 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 161 with following arguments:
+# Arg1: LF@res=1(int)
+# Dest: LF@&d()
+# Executing instruction: IWRITE at line: 162 with following arguments:
+# Arg1: LF@&d=1(int)
+# Executing instruction: ICREATEFRAME at line: 163 with following arguments:
+# Executing instruction: IDEFVAR at line: 164 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 165 with following arguments:
+# Arg1: Const@=ÿ(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 166 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 167 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 168 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=ÿ(string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=1(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISUB at line: 103 with following arguments:
+# Arg1: LF@i=1(int)
+# Arg2: Const@=1(int)
+# Dest: LF@i=1(int)
+# Executing instruction: IGETCHAR at line: 104 with following arguments:
+# Arg1: LF@s=ÿ(string)
+# Arg2: LF@i=0(int)
+# Dest: LF@tmp=(string)
+# Executing instruction: ISTRI2INT at line: 105 with following arguments:
+# Arg1: LF@tmp=ÿ(string)
+# Arg2: Const@=0(int)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 169 with following arguments:
+# Arg1: TF@%retval=255(int)
+# Dest: LF@res=1(int)
+# Executing instruction: IDEFVAR at line: 170 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 171 with following arguments:
+# Arg1: LF@res=255(int)
+# Dest: LF@&e()
+# Executing instruction: IWRITE at line: 172 with following arguments:
+# Arg1: LF@&e=255(int)
+# Executing instruction: ICREATEFRAME at line: 173 with following arguments:
+# Executing instruction: IDEFVAR at line: 174 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 175 with following arguments:
+# Arg1: Const@=(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 176 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 177 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 178 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=(string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=1(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISUB at line: 103 with following arguments:
+# Arg1: LF@i=1(int)
+# Arg2: Const@=1(int)
+# Dest: LF@i=1(int)
+# Executing instruction: IGETCHAR at line: 104 with following arguments:
+# Arg1: LF@s=(string)
+# Arg2: LF@i=0(int)
+# Dest: LF@tmp=(string)
+# Executing instruction: ISTRI2INT at line: 105 with following arguments:
+# Arg1: LF@tmp=(string)
+# Arg2: Const@=0(int)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 179 with following arguments:
+# Arg1: TF@%retval=127(int)
+# Dest: LF@res=255(int)
+# Executing instruction: IDEFVAR at line: 180 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 181 with following arguments:
+# Arg1: LF@res=127(int)
+# Dest: LF@&f()
+# Executing instruction: IWRITE at line: 182 with following arguments:
+# Arg1: LF@&f=127(int)
+# Executing instruction: ICREATEFRAME at line: 183 with following arguments:
+# Executing instruction: IDEFVAR at line: 184 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: Const@=
+# (string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 186 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 187 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 188 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=1(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=
+# (string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=1(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: ISUB at line: 103 with following arguments:
+# Arg1: LF@i=1(int)
+# Arg2: Const@=1(int)
+# Dest: LF@i=1(int)
+# Executing instruction: IGETCHAR at line: 104 with following arguments:
+# Arg1: LF@s=
+# (string)
+# Arg2: LF@i=0(int)
+# Dest: LF@tmp=(string)
+# Executing instruction: ISTRI2INT at line: 105 with following arguments:
+# Arg1: LF@tmp=
+# (string)
+# Arg2: Const@=0(int)
+# Dest: LF@%retval=0(int)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: TF@%retval=10(int)
+# Dest: LF@res=127(int)
+# Executing instruction: IDEFVAR at line: 190 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 191 with following arguments:
+# Arg1: LF@res=10(int)
+# Dest: LF@&g()
+# Executing instruction: IWRITE at line: 192 with following arguments:
+# Arg1: LF@&g=10(int)
+# Executing instruction: ICREATEFRAME at line: 193 with following arguments:
+# Executing instruction: IDEFVAR at line: 194 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 195 with following arguments:
+# Arg1: Const@=asdasd(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 196 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 197 with following arguments:
+# Arg1: LF@tmp=-10(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 198 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=-10(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=-10(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=-10(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=-10(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=true(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=true(bool)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 199 with following arguments:
+# Arg1: TF@%retval=0(int)
+# Dest: LF@res=10(int)
+# Executing instruction: IDEFVAR at line: 200 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 201 with following arguments:
+# Arg1: LF@res=0(int)
+# Dest: LF@&h()
+# Executing instruction: IWRITE at line: 202 with following arguments:
+# Arg1: LF@&h=0(int)
+# Executing instruction: ICREATEFRAME at line: 203 with following arguments:
+# Executing instruction: IDEFVAR at line: 204 with following arguments:
+# Dest: TF@s
+# Executing instruction: IMOVE at line: 205 with following arguments:
+# Arg1: Const@=asdasd(string)
+# Dest: TF@s()
+# Executing instruction: IDEFVAR at line: 206 with following arguments:
+# Dest: TF@i
+# Executing instruction: IMOVE at line: 207 with following arguments:
+# Arg1: Const@=42(int)
+# Dest: TF@i()
+# Executing instruction: ICALL at line: 208 with following arguments:
+# Executing instruction: ILABEL at line: 76 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 77 with following arguments:
+# Executing instruction: IDEFVAR at line: 78 with following arguments:
+# Dest: LF@%retval
+# Executing instruction: IMOVE at line: 79 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@%retval()
+# Executing instruction: IDEFVAR at line: 80 with following arguments:
+# Dest: LF@result
+# Executing instruction: IMOVE at line: 81 with following arguments:
+# Arg1: Const@=false(bool)
+# Dest: LF@result()
+# Executing instruction: IDEFVAR at line: 82 with following arguments:
+# Dest: LF@tmp
+# Executing instruction: IDEFVAR at line: 83 with following arguments:
+# Dest: LF@tmp2
+# Executing instruction: IMOVE at line: 84 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@tmp()
+# Executing instruction: IMOVE at line: 85 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@tmp2()
+# Executing instruction: IPUSHS at line: 86 with following arguments:
+# Arg1: LF@i=42(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 87 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 88 with following arguments:
+# Arg1: LF@i=42(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 89 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: Stack@()
+# Executing instruction: IEQS at line: 90 with following arguments:
+# Arg1: Stack@=42(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 91 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: ILSS at line: 92 with following arguments:
+# Arg1: Stack@=42(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPUSHS at line: 93 with following arguments:
+# Arg1: LF@result=false(bool)
+# Dest: Stack@()
+# Executing instruction: IORS at line: 94 with following arguments:
+# Arg1: Stack@=false(bool)
+# Arg2: Stack@=false(bool)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 95 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 96 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=false(bool)
+# Executing instruction: IPUSHS at line: 97 with following arguments:
+# Arg1: LF@i=42(int)
+# Dest: Stack@()
+# Executing instruction: ISTRLEN at line: 98 with following arguments:
+# Arg1: LF@s=asdasd(string)
+# Dest: LF@tmp2=0(int)
+# Executing instruction: IPUSHS at line: 99 with following arguments:
+# Arg1: LF@tmp2=6(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 100 with following arguments:
+# Arg1: Stack@=42(int)
+# Arg2: Stack@=6(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 101 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@result=false(bool)
+# Executing instruction: IJUMPIFEQ at line: 102 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@result=true(bool)
+# Executing instruction: ILABEL at line: 106 with following arguments:
+# Executing instruction: IPOPFRAME at line: 107 with following arguments:
+# Executing instruction: IRETURN at line: 108 with following arguments:
+# Executing instruction: IMOVE at line: 209 with following arguments:
+# Arg1: TF@%retval=0(int)
+# Dest: LF@res=0(int)
+# Executing instruction: IDEFVAR at line: 210 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 211 with following arguments:
+# Arg1: LF@res=0(int)
+# Dest: LF@&i()
+# Executing instruction: IWRITE at line: 212 with following arguments:
+# Arg1: LF@&i=0(int)
+# Executing instruction: IPOPFRAME at line: 213 with following arguments:
+# Executing instruction: IGROOT at line: 215 with following arguments:
+# I am Groot at 215 (2103).
+# 
+# STDOUT DIFF:
+# 
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 0
+# CURRENT COMPILER EXIT CODE: 0
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 2103 (568+1535)
+# GROOT: 2103
+# 
+#   1: ' asc builtin function
+#   2: scope
+#   3: 	dim res as integer
+#   4: 	dim tmp as integer
+#   5: 	tmp = 0 - 10
+#   6: 
+#   7: 	res = asc(!"test", 0)
+#   8: 	print res;
+#   9: 	res = asc(!"test", 1)
+#  10: 	print res;
+#  11: 	res = asc(!"\001", 1)
+#  12: 	print res;
+#  13: 	res = asc(!"\255", 1)
+#  14: 	print res;
+#  15: 	res = asc(!"\127", 1)
+#  16: 	print res;
+#  17: 	res = asc(!"\n", 1)
+#  18: 	print res;
+#  19: 	res = asc(!"asdasd", tmp)
+#  20: 	print res;
+#  21: 	res = asc(!"asdasd", 42)
+#  22: 	print res;
+#  23: 	
+#  24: end scope
+
+########################################
+
+.IFJcode17                                                                      #     1/213
+JUMP $$main                                                                     #     2/213
+LABEL $length                                                                   #     3/213
+PUSHFRAME                                                                       #     4/213
+DEFVAR LF@%retval                                                               #     5/213
+MOVE LF@%retval int@0                                                           #     6/213
+STRLEN LF@%retval LF@s                                                          #     7/213
+LABEL $length$epilog                                                            #     8/213
+POPFRAME                                                                        #     9/213
+RETURN                                                                          #    10/213
+LABEL $substr                                                                   #    11/213
+PUSHFRAME                                                                       #    12/213
+DEFVAR LF@%retval                                                               #    13/213
+MOVE LF@%retval string@                                                         #    14/213
+DEFVAR LF@tmp1                                                                  #    15/213
+DEFVAR LF@tmp2                                                                  #    16/213
+MOVE LF@tmp1 int@0                                                              #    17/213
+MOVE LF@tmp2 string@                                                            #    18/213
+SUB LF@tmp1 LF@i int@1                                                          #    19/213
+DEFVAR LF@length                                                                #    20/213
+MOVE LF@length int@0                                                            #    21/213
+DEFVAR LF@result                                                                #    22/213
+MOVE LF@result bool@false                                                       #    23/213
+DEFVAR LF@tmplen                                                                #    24/213
+MOVE LF@tmplen int@0                                                            #    25/213
+STRLEN LF@tmplen LF@s                                                           #    26/213
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/213
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/213
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/213
+PUSHS LF@i                                                                      #    30/213
+PUSHS int@0                                                                     #    31/213
+PUSHS LF@i                                                                      #    32/213
+PUSHS int@0                                                                     #    33/213
+EQS                                                                             #    34/213
+POPS LF@result                                                                  #    35/213
+LTS                                                                             #    36/213
+PUSHS LF@result                                                                 #    37/213
+ORS                                                                             #    38/213
+POPS LF@result                                                                  #    39/213
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/213
+PUSHS LF@n                                                                      #    41/213
+PUSHS int@0                                                                     #    42/213
+LTS                                                                             #    43/213
+POPS LF@result                                                                  #    44/213
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/213
+STRLEN LF@tmplen LF@s                                                           #    46/213
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/213
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/213
+PUSHS LF@tmplen                                                                 #    49/213
+PUSHS LF@n                                                                      #    50/213
+LTS                                                                             #    51/213
+POPS LF@result                                                                  #    52/213
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/213
+MOVE LF@tmplen int@0                                                            #    54/213
+STRLEN LF@tmplen LF@s                                                           #    55/213
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/213
+LABEL $SubStrFor                                                                #    57/213
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/213
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/213
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/213
+STRLEN LF@length LF@%retval                                                     #    61/213
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/213
+JUMP $substr$epilog                                                             #    63/213
+LABEL $SubStrReturn0                                                            #    64/213
+MOVE LF@%retval string@                                                         #    65/213
+JUMP $substr$epilog                                                             #    66/213
+LABEL $SubStrReturnRest                                                         #    67/213
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/213
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/213
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/213
+STRLEN LF@length LF@%retval                                                     #    71/213
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/213
+LABEL $substr$epilog                                                            #    73/213
+POPFRAME                                                                        #    74/213
+RETURN                                                                          #    75/213
+LABEL $asc                                                                      #    76/213
+PUSHFRAME                                                                       #    77/213
+DEFVAR LF@%retval                                                               #    78/213
+MOVE LF@%retval int@0                                                           #    79/213
+DEFVAR LF@result                                                                #    80/213
+MOVE LF@result bool@false                                                       #    81/213
+DEFVAR LF@tmp                                                                   #    82/213
+DEFVAR LF@tmp2                                                                  #    83/213
+MOVE LF@tmp string@                                                             #    84/213
+MOVE LF@tmp2 int@0                                                              #    85/213
+PUSHS LF@i                                                                      #    86/213
+PUSHS int@0                                                                     #    87/213
+PUSHS LF@i                                                                      #    88/213
+PUSHS int@0                                                                     #    89/213
+EQS                                                                             #    90/213
+POPS LF@result                                                                  #    91/213
+LTS                                                                             #    92/213
+PUSHS LF@result                                                                 #    93/213
+ORS                                                                             #    94/213
+POPS LF@result                                                                  #    95/213
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/213
+PUSHS LF@i                                                                      #    97/213
+STRLEN LF@tmp2 LF@s                                                             #    98/213
+PUSHS LF@tmp2                                                                   #    99/213
+GTS                                                                             #   100/213
+POPS LF@result                                                                  #   101/213
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/213
+SUB LF@i LF@i int@1                                                             #   103/213
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/213
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/213
+LABEL $asc$epilog                                                               #   106/213
+POPFRAME                                                                        #   107/213
+RETURN                                                                          #   108/213
+LABEL $chr                                                                      #   109/213
+PUSHFRAME                                                                       #   110/213
+DEFVAR LF@%retval                                                               #   111/213
+MOVE LF@%retval string@                                                         #   112/213
+DEFVAR LF@tmp                                                                   #   113/213
+MOVE LF@tmp string@                                                             #   114/213
+INT2CHAR LF@%retval LF@i                                                        #   115/213
+POPFRAME                                                                        #   116/213
+RETURN                                                                          #   117/213
+LABEL $$main                                                                    #   118/213
+CREATEFRAME                                                                     #   119/213
+PUSHFRAME                                                                       #   120/213
+DEFVAR LF@res                                                                   #   121/213
+MOVE LF@res int@0                                                               #   122/213
+DEFVAR LF@tmp                                                                   #   123/213
+MOVE LF@tmp int@0                                                               #   124/213
+DEFVAR LF@&a                                                                    #   125/213
+MOVE LF@&a int@0                                                                #   126/213
+PUSHS LF@&a                                                                     #   127/213
+MOVE LF@&a int@10                                                               #   128/213
+PUSHS LF@&a                                                                     #   129/213
+SUBS                                                                            #   130/213
+POPS LF@&a                                                                      #   131/213
+MOVE LF@tmp LF@&a                                                               #   132/213
+CREATEFRAME                                                                     #   133/213
+DEFVAR TF@s                                                                     #   134/213
+MOVE TF@s string@test                                                           #   135/213
+DEFVAR TF@i                                                                     #   136/213
+MOVE TF@i int@0                                                                 #   137/213
+CALL $asc                                                                       #   138/213
+MOVE LF@res TF@%retval                                                          #   139/213
+DEFVAR LF@&b                                                                    #   140/213
+MOVE LF@&b LF@res                                                               #   141/213
+WRITE LF@&b                                                                     #   142/213
+CREATEFRAME                                                                     #   143/213
+DEFVAR TF@s                                                                     #   144/213
+MOVE TF@s string@test                                                           #   145/213
+DEFVAR TF@i                                                                     #   146/213
+MOVE TF@i int@1                                                                 #   147/213
+CALL $asc                                                                       #   148/213
+MOVE LF@res TF@%retval                                                          #   149/213
+DEFVAR LF@&c                                                                    #   150/213
+MOVE LF@&c LF@res                                                               #   151/213
+WRITE LF@&c                                                                     #   152/213
+CREATEFRAME                                                                     #   153/213
+DEFVAR TF@s                                                                     #   154/213
+MOVE TF@s string@\001                                                           #   155/213
+DEFVAR TF@i                                                                     #   156/213
+MOVE TF@i int@1                                                                 #   157/213
+CALL $asc                                                                       #   158/213
+MOVE LF@res TF@%retval                                                          #   159/213
+DEFVAR LF@&d                                                                    #   160/213
+MOVE LF@&d LF@res                                                               #   161/213
+WRITE LF@&d                                                                     #   162/213
+CREATEFRAME                                                                     #   163/213
+DEFVAR TF@s                                                                     #   164/213
+MOVE TF@s string@\255                                                           #   165/213
+DEFVAR TF@i                                                                     #   166/213
+MOVE TF@i int@1                                                                 #   167/213
+CALL $asc                                                                       #   168/213
+MOVE LF@res TF@%retval                                                          #   169/213
+DEFVAR LF@&e                                                                    #   170/213
+MOVE LF@&e LF@res                                                               #   171/213
+WRITE LF@&e                                                                     #   172/213
+CREATEFRAME                                                                     #   173/213
+DEFVAR TF@s                                                                     #   174/213
+MOVE TF@s string@\127                                                           #   175/213
+DEFVAR TF@i                                                                     #   176/213
+MOVE TF@i int@1                                                                 #   177/213
+CALL $asc                                                                       #   178/213
+MOVE LF@res TF@%retval                                                          #   179/213
+DEFVAR LF@&f                                                                    #   180/213
+MOVE LF@&f LF@res                                                               #   181/213
+WRITE LF@&f                                                                     #   182/213
+CREATEFRAME                                                                     #   183/213
+DEFVAR TF@s                                                                     #   184/213
+MOVE TF@s string@\010                                                           #   185/213
+DEFVAR TF@i                                                                     #   186/213
+MOVE TF@i int@1                                                                 #   187/213
+CALL $asc                                                                       #   188/213
+MOVE LF@res TF@%retval                                                          #   189/213
+DEFVAR LF@&g                                                                    #   190/213
+MOVE LF@&g LF@res                                                               #   191/213
+WRITE LF@&g                                                                     #   192/213
+CREATEFRAME                                                                     #   193/213
+DEFVAR TF@s                                                                     #   194/213
+MOVE TF@s string@asdasd                                                         #   195/213
+DEFVAR TF@i                                                                     #   196/213
+MOVE TF@i LF@tmp                                                                #   197/213
+CALL $asc                                                                       #   198/213
+MOVE LF@res TF@%retval                                                          #   199/213
+DEFVAR LF@&h                                                                    #   200/213
+MOVE LF@&h LF@res                                                               #   201/213
+WRITE LF@&h                                                                     #   202/213
+CREATEFRAME                                                                     #   203/213
+DEFVAR TF@s                                                                     #   204/213
+MOVE TF@s string@asdasd                                                         #   205/213
+DEFVAR TF@i                                                                     #   206/213
+MOVE TF@i int@42                                                                #   207/213
+CALL $asc                                                                       #   208/213
+MOVE LF@res TF@%retval                                                          #   209/213
+DEFVAR LF@&i                                                                    #   210/213
+MOVE LF@&i LF@res                                                               #   211/213
+WRITE LF@&i                                                                     #   212/213
+POPFRAME                                                                        #   213/213
+

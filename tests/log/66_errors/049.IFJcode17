@@ -1,0 +1,39 @@
+# 2017-11-30 22:56:52.538252
+# SECTION: 66_errors
+# TEST: 049
+# INFO: missing content of braces group
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# Syntax analysis error: wrong syntax of the source program.
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: scope 
+#   2:  print () + (5 + 9);
+#   3:  end scope
+
+########################################
+
+# ---
+

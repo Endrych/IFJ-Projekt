@@ -1,0 +1,43 @@
+# 2017-11-30 22:56:52.948312
+# SECTION: 66_errors
+# TEST: 065
+# INFO: function arguments without comma
+# REQUIRED EXTENSIONS: 
+# ACTIVATED EXTENSIONS: 
+# STATE: SUCCESS
+# 
+# COMPILER STDERR:
+# ERROR: Unexpected token in function 'foo' definition/declaration
+# 
+# SYNTAX_ERROR
+# 
+# INTERPRETER STDERR:
+# 
+# EXPECTED INTERPRETER STDOUT:
+
+
+
+# CURRENT INTERPRETER STDOUT:
+
+
+
+# INTERPRETER STDIN: 
+# 
+#
+# EXPECTED COMPILER EXIT CODE: 2
+# CURRENT COMPILER EXIT CODE: 2
+# EXPECTED INTERPRETER EXIT CODE: 0
+# CURRENT INTERPRETER EXIT CODE: None
+# PRICE: ---
+# GROOT: ---
+# 
+#   1: function foo(a as integer b as integer) as integer 
+#   2:  end function 
+#   3:  scope  
+#   4:  loop 
+#   5:  end scope
+
+########################################
+
+# ---
+

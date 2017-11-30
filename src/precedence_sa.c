@@ -256,7 +256,7 @@ int findRule(tStack * s){
                         Tsymtab_item * item = symtab_search(symtab,data->Atr.Token);
                         if(item != NULL){
                             if(item->type == type_function){
-                                print_error(SYNTAX_ERROR);
+                                print_error(SEMANTIC_ERROR);
                             }
                             dataType = item->type_strct.variable->type;
                         }
@@ -418,6 +418,7 @@ int findRule(tStack * s){
                             }
                         }
                         else if(oper == op_division_int){
+                            printf("%d %d", dataType,dataType1);
                             if(dataType == type_int && dataType1 == type_int){
                                     ATData cData;
                                     cData.type = at_type_cast;
@@ -452,7 +453,17 @@ int findRule(tStack * s){
                                 aData = cData;
                                 newData->DataType = type_int;
                             }
+                            else if(dataType == type_doub && dataType1 == type_doub){
+                                ATData cData;
+                                cData.type = at_type_cast;
+                                cData.Atr.type_cast = Double2Integer1;
+                                leaf2 = make_tree(leaf2,leaf1,aData);
+                                leaf1 = NULL;
+                                aData = cData;
+                                newData->DataType = type_int;
+                            }
                             else{
+                                 fprintf(stderr,"PROBLEM");
                                  print_error(SEMANTIC_TYPE_ERROR);
                             }
                         }
