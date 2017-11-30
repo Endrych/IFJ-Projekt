@@ -425,7 +425,7 @@ int findRule(tStack * s){
                                     leaf2 = make_tree(leaf2,NULL,cData);
                                     leaf1 = make_tree(leaf1,NULL,cData);
                                     leaf2 = make_tree(leaf2,leaf1,aData);
-                                    cData.Atr.type_cast = Double2Integer;
+                                    cData.Atr.type_cast = Double2Integer1;
                                     leaf1 = NULL;
                                     aData = cData;
                                     newData->DataType = type_int;
@@ -436,7 +436,7 @@ int findRule(tStack * s){
                                 cData.Atr.type_cast = Integer2Double;
                                 leaf2 = make_tree(leaf2,NULL,cData);
                                 leaf2 = make_tree(leaf2,leaf1,aData);
-                                cData.Atr.type_cast = Double2Integer;
+                                cData.Atr.type_cast = Double2Integer1;
                                 leaf1 = NULL;
                                 aData = cData;
                                 newData->DataType = type_int;
@@ -447,7 +447,7 @@ int findRule(tStack * s){
                                 cData.Atr.type_cast = Integer2Double;
                                 leaf1 = make_tree(leaf1,NULL,cData);
                                 leaf2 = make_tree(leaf2,leaf1,aData);
-                                cData.Atr.type_cast = Double2Integer;
+                                cData.Atr.type_cast = Double2Integer1;
                                 leaf1 = NULL;
                                 aData = cData;
                                 newData->DataType = type_int;

@@ -14,7 +14,8 @@
 
 typedef enum{
     Integer2Double,
-    Double2Integer
+    Double2Integer,
+    Double2Integer1
 }TCast;
 
 
