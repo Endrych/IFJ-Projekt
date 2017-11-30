@@ -118,38 +118,11 @@ RETURN
 LABEL $$main
 CREATEFRAME
 PUSHFRAME
-DEFVAR LF@s
-MOVE LF@s string@
-DEFVAR LF@i
-MOVE LF@i int@0
-DEFVAR LF@n
-MOVE LF@n int@0
-DEFVAR LF@result
-MOVE LF@result string@
+DEFVAR LF@x
 DEFVAR LF@&a
-MOVE LF@&a string@Ahoj\032kamo\010Jak\032to\032jde?\010
-MOVE LF@s LF@&a
+MOVE LF@&a float@1456.78
+MOVE LF@x LF@&a
 DEFVAR LF@&b
-MOVE LF@&b int@6
-MOVE LF@i LF@&b
-DEFVAR LF@&c
-MOVE LF@&c LF@i
-PUSHS LF@&c
-MOVE LF@&c int@10
-PUSHS LF@&c
-SUBS
-POPS LF@&c
-MOVE LF@n LF@&c
-CREATEFRAME
-DEFVAR TF@s
-MOVE TF@s LF@s
-DEFVAR TF@i
-MOVE TF@i LF@i
-DEFVAR TF@n
-MOVE TF@n LF@n
-CALL $substr
-MOVE LF@result TF@%retval
-DEFVAR LF@&d
-MOVE LF@&d LF@result
-WRITE LF@&d
+MOVE LF@&b LF@x
+WRITE LF@&b
 POPFRAME
