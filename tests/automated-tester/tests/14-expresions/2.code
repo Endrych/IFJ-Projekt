@@ -1,0 +1,6 @@
+Scope 
+	Dim x as integer
+	x = (1 /2) + (3/6) + (4/8) + (5/10)
+
+	print x;
+End Scope
