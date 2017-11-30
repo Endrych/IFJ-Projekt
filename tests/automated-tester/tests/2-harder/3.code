@@ -1,0 +1,21 @@
+' test zanorenych cyklu
+
+scope 
+dim num1 as integer
+dim num2 as integer
+dim num3 as integer
+
+do while num1 < 10
+    do while num2 < 10
+        do while num3 < 10
+            print !"num3 = "; num3; !"\n";
+            num3 = num3 + 1
+        loop
+        print !"num2 = "; num2; !"\n";
+        num2 = num2 + 1
+    loop
+    print !"num1 = "; num1; !"\n";
+    num1 = num1 + 1
+loop
+
+end scope 

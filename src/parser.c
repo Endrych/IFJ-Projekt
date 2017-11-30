@@ -29,7 +29,7 @@ Token* token;
 extern Tsymtab * symtab;
 Tsymtab_item* func_symtab_item = NULL;
 QStack* qstack;
-Tsymtab * global_symtab = NULL;
+Tsymtab * global_symtab;
 unsigned functions_inserted = 0;
 unsigned functions_defined = 0;
 
@@ -689,17 +689,9 @@ int Stat()
 		break;
 
 		case type_id:
-			// id musi byt deklarovan
 			
 			symtab_item = symtab_search(symtab, token);
-			if (symtab_item == NULL) {
-				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
-				return SEMANTIC_ERROR;
-			}
-			if (symtab_item->type == type_function) {
-				fprintf(stderr, "ERROR: Use of function identifier where variable was expected\n");
-				return SEMANTIC_ERROR;
-			}
+			
 			symtab_item_left = symtab_item;
 			// __ = __
 			token = get_token();
@@ -710,6 +702,15 @@ int Stat()
 			if (token->atribute.int_value != op_assign) {
 				fprintf(stderr, "ERROR: Undefined symbol after identifier\n");
 				return SYNTAX_ERROR;
+			}
+			// id musi byt deklarovan
+			if (symtab_item == NULL) {
+				fprintf(stderr, "ERROR: Identifier was not declared before assining to it\n");
+				return SEMANTIC_ERROR;
+			}
+			if (symtab_item->type == type_function) {
+				fprintf(stderr, "ERROR: Use of function identifier where variable was expected\n");
+				return SEMANTIC_ERROR;
 			}
 
 			ATQItem* qitem;
@@ -935,7 +936,7 @@ int Arg(Tfunction_item* function, int* args_iter, eQueue* eque)
 		case type_id:
 			if ((symtab_item = symtab_search(symtab, token)) == NULL) {
 				fprintf(stderr, "ERROR: Undeclared variable as function argument\n");
-				return SEMANTIC_TYPE_ERROR;
+				return SEMANTIC_ERROR;
 			}
 			if ((return_value = check_type(function->arguments[*args_iter].type_strct.variable->type, 
 											symtab_item->type_strct.variable->type)) != OK)
@@ -1401,7 +1402,7 @@ int Param_list(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 	if (declared) {
 		if (symtab_item->type_strct.function->arg_count != *params_iter) {
 			fprintf(stderr, "ERROR: Wrong number of parameters in function %s\n", symtab_item->key);
-			return SEMANTIC_TYPE_ERROR;
+			return SEMANTIC_ERROR;
 		}
 	}
 	return OK;
@@ -1419,7 +1420,7 @@ int Param(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 	if (declared) {
 		if (*params_iter >= symtab_item->type_strct.function->arg_count) {
 			fprintf(stderr, "ERROR: Number of parameters in definition of function '%s' is bigger than in its declaration\n", symtab_item->key);
-			return SEMANTIC_TYPE_ERROR;
+			return SEMANTIC_ERROR;
 		}
 	}
 
@@ -1455,6 +1456,12 @@ int Param(Tsymtab_item *symtab_item, int* params_iter, bool declaration)
 	}
 	// pokud se jedna o definici
 	if (!declaration){
+		if ((symtab_param = symtab_search(global_symtab, param_token)) != NULL) {
+			if (symtab_param->type == type_function) {
+				fprintf(stderr,"ERROR: Redefinition of variable %s used as function identifier\n", symtab_item->key);
+				return SEMANTIC_ERROR;
+			}
+		}
 		// pokud jiz id je v tabulce symbolu pak dva parametry maji stejne jmeno
 		if ((symtab_param = symtab_search(symtab, param_token)) != NULL) {
 			fprintf(stderr, "ERROR: Function parameters cannot have same names, in function '%s' \n", symtab_item->key);
@@ -1686,21 +1693,21 @@ int check_param_type(Tvariable_type type)
 		case kw_integer:
 			if (type != type_int) {
 				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
-				return SEMANTIC_TYPE_ERROR;
+				return SEMANTIC_ERROR;
 			}
 		break;
 
 		case kw_double:
 			if (type != type_doub) {
 				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
-				return SEMANTIC_TYPE_ERROR;
+				return SEMANTIC_ERROR;
 			}
 		break;
 
 		case kw_string:
 			if (type != type_str) {
 				fprintf(stderr, "ERROR: Parameter types in function definition and declaration differ\n");
-				return SEMANTIC_TYPE_ERROR;
+				return SEMANTIC_ERROR;
 			}
 		break;
 
