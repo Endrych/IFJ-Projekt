@@ -9,7 +9,7 @@ TOITERATE=1
 FOLDER_TOITERATE=1
 TODELETE=1
 restoreBack () {
-    printf "Results of automated-tester\n" > results.txt
+    printf "Results of automated-tester\n Znak X znaci ze porovnani nesouhlasi a znak A ze souhlasi\n" > results.txt
     OUT_NUM=$(find ./testy/tests -name '*.out' | wc -l)
     IFJ_NUM=$(find ./testy/tests -name '*.ifj' | wc -l)
     DIF_NUM=$(find ./testy/tests -name '*.dif' | wc -l)
@@ -44,12 +44,12 @@ elif [ $# -eq 2 ];then
             ./ic17int ./testy/tests/$FOLDER_NAME/$TOITERATE.ifj  > ./testy/tests/$FOLDER_NAME/$TOITERATE.out
             INTERPRET_RETURN_CODE=$?
             if diff ./testy/tests/$FOLDER_NAME/$TOITERATE.out ./testy/tests/$FOLDER_NAME/$TOITERATE.correct;  then
-                printf "$TOITERATE\342\234\224 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
+                printf "$TOITERATE. A - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
 
                 rm ./testy/tests/$FOLDER_NAME/$TOITERATE.ifj
                 rm ./testy/tests/$FOLDER_NAME/$TOITERATE.out
             else
-                printf "$TOITERATE\342\234\227 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
+                printf "$TOITERATE. X - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
                 diff ./testy/tests/$FOLDER_NAME/$TOITERATE.out ./testy/tests/$FOLDER_NAME/$TOITERATE.correct  > ./testy/tests/$FOLDER_NAME/$TOITERATE.dif 
             fi
             TOITERATE=$(($TOITERATE + 1))
@@ -77,12 +77,12 @@ elif [ "$#" -eq 1 ]; then
                 ./ic17int ./testy/tests/$FOLDER_NAME/$TOITERATE.ifj  > ./testy/tests/$FOLDER_NAME/$TOITERATE.out
                 INTERPRET_RETURN_CODE=$?
                 if diff ./testy/tests/$FOLDER_NAME/$TOITERATE.out ./testy/tests/$FOLDER_NAME/$TOITERATE.correct;  then
-                    printf "$TOITERATE\342\234\224 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
+                    printf "$TOITERATE- A - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
 
                     rm ./testy/tests/$FOLDER_NAME/$TOITERATE.ifj
                     rm ./testy/tests/$FOLDER_NAME/$TOITERATE.out
                 else
-                    printf "$TOITERATE\342\234\227 - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
+                    printf "$TOITERATE. X - Return codes- C: $COMPILER_RETURN_CODE I: $INTERPRET_RETURN_CODE\n" >> results.txt
                     diff ./testy/tests/$FOLDER_NAME/$TOITERATE.out ./testy/tests/$FOLDER_NAME/$TOITERATE.correct  > ./testy/tests/$FOLDER_NAME/$TOITERATE.dif 
                 fi
                 TOITERATE=$(($TOITERATE + 1))
@@ -104,3 +104,4 @@ fi
 clear
 printf "TEST COMPLETED\n"
 printf "Vysledky byli ulozeny do souboru results.txt\n"
+cat results.txt
