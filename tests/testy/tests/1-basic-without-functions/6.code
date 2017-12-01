@@ -1,0 +1,6 @@
+Scope
+
+Dim x as double = 10e+2
+print x;
+
+End Scope

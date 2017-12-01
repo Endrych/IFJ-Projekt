@@ -1,0 +1,6 @@
+Scope
+
+Dim x    As  STrIng
+x = !"\000";
+
+End Scope

@@ -1,0 +1,19 @@
+Scope
+	Dim i As Integer
+	Dim s As String
+	Dim sub As String
+	Dim len As Integer
+
+	i = 0
+	s = !"Hello World"
+	sub = !""
+	len = 0
+	Do While (i < 11)
+		sub = SubStr(s, i, 100)
+		print sub;!" ";
+		len = length(sub)
+		print len; !"\n";
+		i = i + 1
+	Loop
+
+End Scope

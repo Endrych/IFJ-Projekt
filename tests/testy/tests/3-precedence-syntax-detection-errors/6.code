@@ -1,0 +1,7 @@
+scope
+if  (5+4)) then
+    print !"Interesting";
+else
+    print !"WROOOOOOONG";
+End if
+end scope

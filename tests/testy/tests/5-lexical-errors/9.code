@@ -1,0 +1,10 @@
+Scope
+Dim x as integer
+
+If x < ] Then
+ print !"BLACK PINK RULES";
+Else
+    print !"BOOOHOOOO";
+End if
+
+End Scope

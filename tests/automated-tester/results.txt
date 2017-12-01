@@ -1,6 +1,6 @@
 Results of automated-tester
 ____________
-2-harder-witout-function:
+2-harder-witout-functions:
 ¯¯¯¯¯¯¯¯¯¯¯¯
 1✔ - Return codes- C: 0 I: 0
 2✔ - Return codes- C: 0 I: 0
