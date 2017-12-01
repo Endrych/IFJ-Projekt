@@ -1,0 +1,14 @@
+Scope
+
+
+Dim x as integer = 123
+dim y as integer = 124
+
+if x < y then
+    print !"Tohle je vetsi"; y;
+else
+    print !"Tohle je vetsi"; x;
+end if    
+
+
+End Scope

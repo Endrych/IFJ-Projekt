@@ -1,0 +1,9 @@
+Scope
+
+If (4/2/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1/1) > 0 then
+    print !"Proslo";
+else 
+    print !"neproslo";
+end if
+
+End Scope

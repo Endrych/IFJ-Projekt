@@ -1,7 +1,0 @@
-ScOPE
-
-dim int as integer = 420
-int = int + 20 +int\420
-print int;
-
-End Scope

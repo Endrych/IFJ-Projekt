@@ -1,0 +1,6 @@
+' Use all data types
+scope
+	
+	dim x as integer = 10e
+
+end scope

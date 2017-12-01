@@ -102,3 +102,5 @@ else
 fi
 
 clear
+printf "TEST COMPLETED\n"
+printf "Vysledky byli ulozeny do souboru results.txt\n"

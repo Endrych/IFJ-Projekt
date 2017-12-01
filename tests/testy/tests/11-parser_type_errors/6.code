@@ -1,0 +1,13 @@
+' Funkce je volana s mene argumenty nez ma -> SEMANTIC_TYPE_ERROR (4) 
+
+
+function foo (id as string) as integer
+end function
+
+
+scope
+dim scope_var as integer
+scope_var = foo()
+end scope
+
+

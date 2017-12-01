@@ -1,0 +1,9 @@
+Scope
+
+if(1+2+3+8+7+9+6+3)*78<=788*788 then
+    print !"Mensi";
+else
+    print !"Vetsi";
+end if
+
+End Scope

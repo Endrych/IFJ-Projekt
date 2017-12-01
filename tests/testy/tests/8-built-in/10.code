@@ -1,0 +1,10 @@
+'Chr 
+
+Scope
+	Dim i As Integer
+	Dim result As String
+
+	i = 111
+	result = Chr(i)
+	print result;
+End Scope

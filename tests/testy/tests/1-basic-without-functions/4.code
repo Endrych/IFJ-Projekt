@@ -1,0 +1,16 @@
+Scope
+
+Dim x as integer = 5
+Dim y AS INTeger = 11
+
+DIM z as INTEGER
+
+
+
+
+
+z = x + y
+
+print z;
+
+End Scope

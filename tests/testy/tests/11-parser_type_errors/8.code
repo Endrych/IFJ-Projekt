@@ -1,0 +1,8 @@
+'Prirazeni nekompatibilniho typu do promenne -> SEMANTIC_TYPE_ERROR (4) 
+
+scope
+dim scope_var as double
+scope_var = !"ahoj"
+end scope
+
+
