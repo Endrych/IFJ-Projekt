@@ -1,0 +1,12 @@
+'Asc, i mimo meze stringu 
+
+Scope
+	Dim s As String
+	Dim i As Integer
+	Dim ascii As Integer
+	
+	s = !"Hello World!"
+	i = 15
+	ascii = Asc(s, i)
+	print ascii;
+End Scope

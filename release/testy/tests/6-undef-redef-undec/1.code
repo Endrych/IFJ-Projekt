@@ -1,0 +1,9 @@
+Scope 
+
+Dim x as integer
+
+print x; !"\n";
+x = 10
+print x;
+
+End Scope

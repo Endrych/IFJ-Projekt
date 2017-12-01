@@ -1,0 +1,7 @@
+scope
+if  4 + 5 > 4 < 4 then
+    print !"Interesting";
+else
+    print !"WROOOOOOONG";
+End if
+end scope

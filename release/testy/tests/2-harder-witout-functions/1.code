@@ -1,0 +1,6 @@
+Scope
+Dim x as integer
+x = 15
+x = x + 2
+print !"Vysledek je";x;
+End Scope

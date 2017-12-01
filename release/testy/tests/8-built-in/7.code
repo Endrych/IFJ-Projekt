@@ -1,0 +1,14 @@
+'SubStr, s prazdny retezec
+
+Scope
+	Dim s As String
+	Dim i As Integer
+	Dim n As Integer
+	Dim result As String
+	
+	s = !""
+	i = 6
+	n = i - 10
+	result = SubStr(s, i, n)
+	print result;
+End Scope

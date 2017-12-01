@@ -1,0 +1,7 @@
+scope
+if  () then
+    print !"Interesting";
+else
+    print !"WROOOOOOONG";
+End if
+end scope

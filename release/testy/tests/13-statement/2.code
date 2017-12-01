@@ -1,0 +1,4 @@
+Scope
+	Dim s As String = !"Ah\toj\nKar\108\101\n\074ak\t\116o\nsl\097p\101\nO\075?"
+	print s;
+End Scope
