@@ -1,0 +1,5 @@
+Scope
+	 Dim /' '/ x As /' '/ Integer = 10
+
+	print /'       '/ x;
+End Scope

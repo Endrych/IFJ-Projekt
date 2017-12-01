@@ -1,0 +1,11 @@
+Function foo () As Integer
+	Return 55
+End Function
+
+
+Scope 
+	Dim x as Integer
+	x = foo()
+	print x;
+	
+End Scope

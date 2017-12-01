@@ -1,0 +1,12 @@
+Scope 
+
+	Dim i As Integer
+
+	i = 15.15
+
+	print i; !"\n";
+
+	i = 15.15e3
+	print i;
+
+End Scope
