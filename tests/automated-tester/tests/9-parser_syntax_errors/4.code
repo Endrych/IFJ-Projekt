@@ -1,7 +1,3 @@
-' smeti -> SYNTAX_ERROR (2)
+' parametry funkce nejsou oddeleny carkou -> SYNTAX_ERROR (2)
 
-scope
-
-dia hsdoi asodi oah
-
-end scope 
+function foo (id as integer; num as string)

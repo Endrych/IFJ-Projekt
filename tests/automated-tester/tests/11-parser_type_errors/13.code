@@ -1,0 +1,11 @@
+' Odlisne typy promenne a navratove hodnoty funkce -> (4)
+
+function foo() as string
+
+end function
+
+scope 
+    dim i as double
+    i = foo()
+end scope
+

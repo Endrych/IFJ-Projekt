@@ -1,0 +1,11 @@
+' Volani nedefinovane funkce -> (3)
+
+function foo() as integer
+    dim var as integer
+    var = bar()
+end function
+
+scope 
+end scope
+
+

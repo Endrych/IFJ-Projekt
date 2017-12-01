@@ -1,0 +1,6 @@
+' Odlisna navratova hodnota v deklaraci a definici funkce
+
+declare function foo (id as string, boo as integer, gar as double) as integer
+
+function foo (idd as string, bo as integer, gr as double) as double
+
