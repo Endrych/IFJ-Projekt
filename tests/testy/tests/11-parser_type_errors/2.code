@@ -1,0 +1,20 @@
+' Odlisny pocet parametru funkce -> SEMANTIC_TYPE_ERROR (4)
+
+declare function foo (a as integer) as integer
+
+function bar (message as string) as integer
+    dim scope_var as string
+    dim num1 as integer = 2
+    dim num2 as double = 1.0
+    dim bar_var as integer
+    print message;
+    return num1 - num2
+end function
+
+scope
+dim scope_var as integer
+scope_var = foo(2e2, 4)
+print scope_var; !"\n";
+end scope
+
+

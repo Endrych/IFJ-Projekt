@@ -1,0 +1,13 @@
+Scope
+
+Dif x as integer 
+x = 10
+print x; !"\n";
+
+Dif x as string 
+
+x = !"ahoj"
+
+print x;
+
+End Scope

@@ -1,0 +1,11 @@
+' Stejne nazvy parametru funkce v definici -> SEMANTIC_ERROR (3) 
+
+'declare function foo (a as double, b as double) as integer
+
+function foo (num1 as double, num1 as double) as integer
+    end function
+
+scope
+end scope
+
+

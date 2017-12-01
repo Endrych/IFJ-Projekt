@@ -1,0 +1,3 @@
+' parametry funkce nejsou oddeleny carkou -> SYNTAX_ERROR (2)
+
+function foo (id as integer; num as string)

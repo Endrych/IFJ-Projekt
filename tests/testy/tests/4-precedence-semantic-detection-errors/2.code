@@ -1,0 +1,4 @@
+scope
+dim x as string
+x = !"ahoj" * 5
+end scope
