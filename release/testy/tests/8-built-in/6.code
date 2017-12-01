@@ -1,0 +1,14 @@
+'SubStr, i < 0
+
+Scope
+	Dim s As String
+	Dim i As Integer
+	Dim n As Integer
+	Dim result As String
+	
+	s = !"Ahoj kamo\nJak to jde?\n"
+	i = 5 - 10
+	n = 10
+	result = SubStr(s, i, n)
+	print result;
+End Scope

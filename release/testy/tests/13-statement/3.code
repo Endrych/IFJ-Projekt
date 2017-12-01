@@ -1,0 +1,11 @@
+Scope 
+	Dim s As String = !"Nazdaaar\n"
+	Dim x As Double = 1111.11
+
+	If (x > 1) Then
+	Else
+	End If
+
+	print s; x;
+
+End Scope

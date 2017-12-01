@@ -1,0 +1,10 @@
+' Pouziti nedefinovane promenne pri volani funkce -> SEMANTIC_ERROR (3)
+
+function foo (a as integer) as integer
+end function
+
+scope 
+    dim a as integer
+
+    a = foo(b)
+end scope

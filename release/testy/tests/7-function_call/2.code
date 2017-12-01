@@ -1,0 +1,16 @@
+'deklarace a definice s return value
+
+Declare Function hello () As String
+
+Function hello () As String 
+	Dim hello_world As String
+	hello_world = !"Hello World!"
+	Return hello_world
+End Function
+
+Scope 
+	Dim s As String
+	s = hello()
+	print s;
+End Scope
+
