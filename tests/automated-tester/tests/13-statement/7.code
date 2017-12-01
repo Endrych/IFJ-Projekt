@@ -1,0 +1,13 @@
+Scope
+	Dim x As Double = 1
+	Dim y As Double = 2.0
+	Dim z As Double = 3.0
+
+	x = y * z
+	x = x + y + z
+	x = x / y
+	x = x * y * z + y
+	x = x / z
+
+	print x;
+End Scope

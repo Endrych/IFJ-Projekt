@@ -1,0 +1,11 @@
+'prirazeni primo k deklaraci 
+Function foo () As Integer
+	Return 55
+End Function
+
+
+Scope 
+	Dim x as Integer = foo()
+	print x;
+	
+End Scope

@@ -1,0 +1,25 @@
+Scope
+
+	Dim i As Integer = 2
+	Dim x As Integer = 5
+
+	Dim d As Double = 5.5
+	Dim e As Double = 5.6
+
+	If (i < x) Then
+		i = i + x
+		print i;
+	Else
+		x = x * i
+		print x;
+	End If
+
+	If (e > d) Then
+		e = e + d
+		print e;
+	Else
+		d = d * e
+		print d;
+	End If
+
+End Scope
