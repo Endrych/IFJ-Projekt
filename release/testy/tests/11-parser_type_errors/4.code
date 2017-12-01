@@ -1,0 +1,20 @@
+' Odlisne navratove hodnoty funkce v deklaraci a definici -> SEMANTIC_TYPE_ERROR (4)
+
+declare function foo (a as integer, b as double) as double
+
+function foo (num1 as integer, num2 as double) as integer
+    dim scope_var as double
+    dim bar_var as double
+    scope_var = num1 + num2
+    bar_var = bar(!"Vysledek je")
+    return scope_var
+end function
+
+
+scope
+dim scope_var as integer
+scope_var = foo(2e2, 4)
+print scope_var; !"\n";
+end scope
+
+

@@ -1,0 +1,14 @@
+'Nepravdivostni hodnota ve vyrazu if -> SEMANTIC_TYPE_ERROR (4) 
+
+scope
+dim var as integer
+
+if !"ahoj" then
+    var = 5
+else 
+    var = -5
+end if
+
+end scope
+
+

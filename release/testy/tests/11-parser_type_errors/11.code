@@ -1,0 +1,10 @@
+' Return nekompatibilniho typu -> SEMANTIC_TYPE_ERROR (4)
+
+function foo() as string
+    return 2.3
+end function
+
+scope 
+    dim var as string
+    var = foo()
+end scope

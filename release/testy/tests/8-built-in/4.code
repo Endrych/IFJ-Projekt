@@ -1,0 +1,14 @@
+'substr, n mimo meze stringu
+
+Scope
+	Dim s As String
+	Dim i As Integer
+	Dim n As Integer
+	Dim result As String
+	
+	s = !"Ahoj kamo\nJak to jde?\n"
+	i = 6
+	n = 100
+	result = SubStr(s, i, n)
+	print result;
+End Scope
