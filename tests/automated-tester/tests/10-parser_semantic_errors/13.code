@@ -1,0 +1,7 @@
+' Definice funkce pred jeji deklaraci
+
+function foo () as integer
+    dim bar as integer
+end function
+
+declare function foo() as integer

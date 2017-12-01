@@ -1,0 +1,12 @@
+' Volani funkce drive nez byla definovana -> SEMANTIC_ERROR (3)
+
+function foo () as integer
+    dim var as string 
+    var = bar(42)
+end function
+
+function bar () as string
+end function
+
+scope
+end scope
