@@ -390,6 +390,7 @@ int Stat()
 						}
 
 						declar_input->expr = out->Tree;
+						declar_input->expr_type = out->Type;
 						
 					}
 					top_queue = qstackTop(qstack);
@@ -828,6 +829,7 @@ int Stat()
 				fprintf(stderr, "ERROR: Unexpected token at the end of assignment\n");
 				return SYNTAX_ERROR;
 			}
+			qitem->GenValue.assign_input->expr_type = out->Type;
 			qitem->GenValue.assign_input->expr = out->Tree;
 			top_queue = qstackTop(qstack);
 			queUp(top_queue, qitem);
