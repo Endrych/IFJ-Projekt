@@ -1,9 +1,0 @@
-Scope
-	Dim x As Integer = 1
-
-	Do While (x = 0)
-		x = x + 1
-		print x;
-	Loop
-
-End Scope

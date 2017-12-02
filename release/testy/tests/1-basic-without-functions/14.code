@@ -1,6 +1,0 @@
-Scope
-
-Dim str as string = !"Ma prezdivka je \"Mara\""
-print str;
-
-End Scope

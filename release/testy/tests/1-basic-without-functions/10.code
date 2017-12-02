@@ -1,6 +1,0 @@
-Scope
-
-dim lol as double = 100.1e-2
-print lol;
-
-End Scope

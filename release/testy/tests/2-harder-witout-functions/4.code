@@ -1,7 +1,0 @@
-Scope
-
-Dim askljdalksjdkdslaj as string = !"\"Wo\\bada\\\\badu\032uuu\""
-
-print askljdalksjdkdslaj;
-
-End Scope

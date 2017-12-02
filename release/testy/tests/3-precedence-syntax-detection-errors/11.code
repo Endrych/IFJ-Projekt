@@ -1,6 +1,0 @@
-Declare function b() as string
-
-scope
-dim x as string
-x = !"ahoj" + b
-end scope

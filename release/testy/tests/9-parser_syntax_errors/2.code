@@ -1,7 +1,0 @@
-' Chybejici '=' v prirazeni -> SYNTAX_ERROR (2)
-
-scope
-    dim var as double
-    var 3
-
-end scope

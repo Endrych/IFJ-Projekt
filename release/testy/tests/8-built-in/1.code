@@ -1,8 +1,0 @@
-'delka retezce
-Scope 
-	Dim s As String
-	Dim i as Integer
-	s = !"Ahoj\n Jak se mas?\n"
-	i = Length(s)
-	print i;
-End Scope

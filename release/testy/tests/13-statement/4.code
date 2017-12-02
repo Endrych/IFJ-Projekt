@@ -1,8 +1,0 @@
-'vynechano =
-Scope 
-	Dim x As Integer 10
-	Dim s As String = !"Ahoj"
-	Dim d As Double 10.1010
-
-	print x; s; d;
-End Scope

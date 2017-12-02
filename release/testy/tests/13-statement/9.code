@@ -1,9 +1,0 @@
-Scope 
-	Dim x As String = !"Ahoj"
-
-	If (x = !"Aho") Then
-		print !"Neeee";
-	Else
-		print !"Joooo";
-	End If
-End Scope

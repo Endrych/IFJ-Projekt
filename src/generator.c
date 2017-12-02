@@ -413,7 +413,15 @@ char * generate_expression(ATLeaf *tree){
             else if(current->right->processed == true && current->right->processed == true){
                 if(current->data.type == at_operators){
                     if(current->data.Atr.op_value == op_assign){
-                        fprintf(stdout, "EQS\n");
+                        if(current->left->data.type == at_tsitem && current->right->data.type == at_tsitem){
+                            if(current->left->data.Atr.tsItem->type == type_variable &&
+                            current->right->data.Atr.tsItem->type == type_variable){
+                                if(current->left->data.Atr.tsItem->type_strct.variable->type == type_str &&
+                                current->right->data.Atr.tsItem->type_strct.variable->type == type_str){
+                                    isString = true;
+                                }
+                            }
+                        }
                     }
                     else if(current->data.Atr.op_value == op_add){
                         if(isString){

@@ -1,4 +1,0 @@
-scope
- dim x as integer = -5
- print x;
-end scope
