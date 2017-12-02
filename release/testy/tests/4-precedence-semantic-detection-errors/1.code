@@ -1,4 +1,0 @@
-scope
-dim x as string
-x = !"ahoj" - !"cau"
-end scope

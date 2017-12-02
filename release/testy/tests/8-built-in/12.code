@@ -1,7 +1,0 @@
-Scope 
-	Dim retezec As String = !"ahoj ahoj ahoj"
-	retezec = SubStr(retezec, 6, 10)
-	Dim a As Integer
-	a = length(retezec)
-	print retezec;
-End Scope

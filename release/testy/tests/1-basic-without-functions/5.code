@@ -1,7 +1,0 @@
-Scope
-
-Dim doublee as double = 10e2
-print doublee;
-
-
-End Scope

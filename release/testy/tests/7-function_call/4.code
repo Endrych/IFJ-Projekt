@@ -1,9 +1,0 @@
-'deklarace bez definice
-
-Declare Function hello () As String
-
-Scope
-	Dim s As String
-	s = hello()
-	print s;
-End Scope 

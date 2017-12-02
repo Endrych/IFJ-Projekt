@@ -1,4 +1,0 @@
-scope
- dim x as integer = 5**6
- print x;
-end scope

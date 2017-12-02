@@ -1,7 +1,0 @@
-' Return ve Scopu -> SYNTAX_ERROR (2)
-
-scope
-    dim var as string
-    return 0
-
-end scope

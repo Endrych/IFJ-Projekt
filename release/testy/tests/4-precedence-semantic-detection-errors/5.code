@@ -1,5 +1,0 @@
-scope
-dim x as string
-dim y as integer
-print x * y;
-end scope

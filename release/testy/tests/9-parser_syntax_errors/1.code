@@ -1,6 +1,0 @@
-' Chybejici strednik v print -> SYNTAX_ERROR (2)
-
-scope
-    print 1;2
-
-end scope

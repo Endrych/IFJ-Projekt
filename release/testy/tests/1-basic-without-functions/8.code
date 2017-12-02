@@ -1,6 +1,0 @@
-Scope
-
-dim asd as double = 10.10e2
-print asd;
-
-End Scope

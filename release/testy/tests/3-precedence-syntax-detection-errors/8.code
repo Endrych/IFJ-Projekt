@@ -1,3 +1,0 @@
-scope
-print 5+4*();
-end scope
