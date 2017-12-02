@@ -422,6 +422,7 @@ char * generate_expression(ATLeaf *tree){
                                 }
                             }
                         }
+                        fprintf(stdout, "EQS\n");
                     }
                     else if(current->data.Atr.op_value == op_add){
                         if(isString){
