@@ -1,16 +1,16 @@
-# 2017-11-30 22:56:50.091376
+# 2017-12-02 16:01:38.869749
 # SECTION: 66_errors
 # TEST: 02
 # INFO: Declaration and definition of function aren't the same
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # ERROR: Parameter types in function definition and declaration differ
 # ERROR: Different return types in 'fooqwead' function definition and declaration
 # 
-# SEMANTIC_TYPE_ERROR
+# SEMANTIC_ERROR
 # 
 # INTERPRETER STDERR:
 # 
@@ -26,7 +26,7 @@
 # 
 #
 # EXPECTED COMPILER EXIT CODE: 3
-# CURRENT COMPILER EXIT CODE: 4
+# CURRENT COMPILER EXIT CODE: 3
 # EXPECTED INTERPRETER EXIT CODE: 0
 # CURRENT INTERPRETER EXIT CODE: None
 # PRICE: ---

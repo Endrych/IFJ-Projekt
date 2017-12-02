@@ -1,4 +1,4 @@
-# 2017-11-30 22:57:03.046128
+# 2017-12-02 16:01:47.763191
 # SECTION: 99_benchmarks
 # TEST: 09
 # INFO: multiple string concatenations
@@ -11,6 +11,4274 @@
 # Everything is OK
 # 
 # INTERPRETER STDERR:
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@buffer
+# Executing instruction: IMOVE at line: 122 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@buffer()
+# Executing instruction: IDEFVAR at line: 123 with following arguments:
+# Dest: LF@count
+# Executing instruction: IDEFVAR at line: 124 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 125 with following arguments:
+# Arg1: Const@=42(int)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 126 with following arguments:
+# Arg1: LF@&a=42(int)
+# Dest: LF@count()
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=42(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=42(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=42(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=42(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=42(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=42(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=42(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=42(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=42(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=41(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=41(int)
+# Dest: LF@count=42(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=41(int)
+# Dest: LF@count=42(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=41(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=41(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=41(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=41(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=41(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=41(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=41(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=41(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=41(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=40(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=40(int)
+# Dest: LF@count=41(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=40(int)
+# Dest: LF@count=41(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=40(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=40(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=40(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=40(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=40(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=40(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=40(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=40(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=40(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=39(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=39(int)
+# Dest: LF@count=40(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=39(int)
+# Dest: LF@count=40(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=39(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=39(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=39(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=39(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=39(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=39(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=39(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=39(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=39(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=38(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=38(int)
+# Dest: LF@count=39(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=38(int)
+# Dest: LF@count=39(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=38(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=38(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=38(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=38(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=38(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=38(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=38(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=38(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=38(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=37(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=37(int)
+# Dest: LF@count=38(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=37(int)
+# Dest: LF@count=38(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=37(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=37(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=37(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=37(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=37(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=37(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=37(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=37(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=37(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=36(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=36(int)
+# Dest: LF@count=37(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=36(int)
+# Dest: LF@count=37(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=36(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=36(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=36(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=36(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=36(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=36(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=36(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=36(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=36(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=35(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=35(int)
+# Dest: LF@count=36(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=35(int)
+# Dest: LF@count=36(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=35(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=35(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=35(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=35(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=35(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=35(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=35(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=35(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=35(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=34(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=34(int)
+# Dest: LF@count=35(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=34(int)
+# Dest: LF@count=35(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=34(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=34(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=34(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=34(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=34(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=34(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=34(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=34(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=34(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=33(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=33(int)
+# Dest: LF@count=34(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=33(int)
+# Dest: LF@count=34(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=33(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=33(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=33(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=33(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=33(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=33(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=33(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=33(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=33(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=32(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=32(int)
+# Dest: LF@count=33(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=32(int)
+# Dest: LF@count=33(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=32(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=32(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=32(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=32(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=32(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=32(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=32(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=32(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=32(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=31(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=31(int)
+# Dest: LF@count=32(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=31(int)
+# Dest: LF@count=32(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=31(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=31(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=31(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=31(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=31(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=31(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=31(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=31(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=31(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=30(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=30(int)
+# Dest: LF@count=31(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=30(int)
+# Dest: LF@count=31(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=30(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=30(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=30(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=30(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=30(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=30(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=30(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=30(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=30(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=29(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=29(int)
+# Dest: LF@count=30(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=29(int)
+# Dest: LF@count=30(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=29(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=29(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=29(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=29(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=29(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=29(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=29(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=29(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=29(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=28(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=28(int)
+# Dest: LF@count=29(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=28(int)
+# Dest: LF@count=29(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=28(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=28(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=28(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=28(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=28(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=28(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=28(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=28(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=28(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=27(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=27(int)
+# Dest: LF@count=28(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=27(int)
+# Dest: LF@count=28(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=27(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=27(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=27(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=27(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=27(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=27(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=27(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=27(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=27(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=26(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=26(int)
+# Dest: LF@count=27(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=26(int)
+# Dest: LF@count=27(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=26(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=26(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=26(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=26(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=26(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=26(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=26(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=26(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=26(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=25(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=25(int)
+# Dest: LF@count=26(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=25(int)
+# Dest: LF@count=26(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=25(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=25(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=25(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=25(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=25(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=25(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=25(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=25(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=25(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=24(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=24(int)
+# Dest: LF@count=25(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=24(int)
+# Dest: LF@count=25(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=24(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=24(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=24(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=24(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=24(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=24(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=24(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=24(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=24(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=23(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=23(int)
+# Dest: LF@count=24(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=23(int)
+# Dest: LF@count=24(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=23(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=23(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=23(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=23(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=23(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=23(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=23(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=23(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=23(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=22(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=22(int)
+# Dest: LF@count=23(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=22(int)
+# Dest: LF@count=23(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=22(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=22(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=22(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=22(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=22(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=22(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=22(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=22(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=22(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=21(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=21(int)
+# Dest: LF@count=22(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=21(int)
+# Dest: LF@count=22(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=21(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=21(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=21(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=21(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=21(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=21(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=21(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=21(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=21(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=20(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=20(int)
+# Dest: LF@count=21(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=20(int)
+# Dest: LF@count=21(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=20(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=20(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=20(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=20(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=20(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=20(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=20(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=20(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=20(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=19(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=19(int)
+# Dest: LF@count=20(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=19(int)
+# Dest: LF@count=20(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=19(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=19(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=19(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=19(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=19(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=19(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=19(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=19(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=18(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=18(int)
+# Dest: LF@count=19(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=18(int)
+# Dest: LF@count=19(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=18(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=18(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=18(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=18(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=18(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=18(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=18(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=18(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=18(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=17(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=17(int)
+# Dest: LF@count=18(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=17(int)
+# Dest: LF@count=18(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=17(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=17(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=17(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=17(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=17(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=17(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=17(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=17(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=17(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=16(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=16(int)
+# Dest: LF@count=17(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=16(int)
+# Dest: LF@count=17(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=16(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=16(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=16(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=16(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=16(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=16(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=16(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=16(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=16(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=15(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=15(int)
+# Dest: LF@count=16(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=15(int)
+# Dest: LF@count=16(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=15(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=15(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=15(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=15(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=15(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=15(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=15(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=15(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=15(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=14(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=14(int)
+# Dest: LF@count=15(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=14(int)
+# Dest: LF@count=15(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=14(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=14(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=14(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=14(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=14(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=14(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=14(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=14(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=14(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=13(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=13(int)
+# Dest: LF@count=14(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=13(int)
+# Dest: LF@count=14(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=13(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=13(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=13(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=13(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=13(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=13(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=13(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=13(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=13(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=12(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=12(int)
+# Dest: LF@count=13(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=12(int)
+# Dest: LF@count=13(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=12(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=12(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=12(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=12(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=12(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=12(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=12(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=12(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=12(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=11(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=11(int)
+# Dest: LF@count=12(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=11(int)
+# Dest: LF@count=12(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=11(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=11(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=11(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=11(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=11(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=11(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=11(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=11(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=11(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=10(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=10(int)
+# Dest: LF@count=11(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=10(int)
+# Dest: LF@count=11(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=10(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=10(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=10(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=10(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=10(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=10(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=10(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=10(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=10(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=9(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=9(int)
+# Dest: LF@count=10(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=9(int)
+# Dest: LF@count=10(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=9(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=9(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=9(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=9(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=9(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=9(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=9(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=9(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=9(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=8(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=8(int)
+# Dest: LF@count=9(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=8(int)
+# Dest: LF@count=9(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=8(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=8(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=8(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=8(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=8(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=8(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=8(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=8(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=8(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=7(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=7(int)
+# Dest: LF@count=8(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=7(int)
+# Dest: LF@count=8(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=7(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=7(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=7(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=7(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=7(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=7(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=7(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=7(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=7(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=6(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=6(int)
+# Dest: LF@count=7(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=6(int)
+# Dest: LF@count=7(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=6(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=6(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=6(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=6(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=6(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=6(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=6(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=6(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=5(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=5(int)
+# Dest: LF@count=6(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=5(int)
+# Dest: LF@count=6(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=5(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=5(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=5(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=5(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=5(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=5(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=5(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=5(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=5(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=4(int)
+# Dest: LF@count=5(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=4(int)
+# Dest: LF@count=5(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=4(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=4(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=4(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=4(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=4(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=3(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=3(int)
+# Dest: LF@count=4(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=3(int)
+# Dest: LF@count=4(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=3(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=3(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=3(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=3(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=3(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=3(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=3(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=3(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=3(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: LF@count=3(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=2(int)
+# Dest: LF@count=3(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=2(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=2(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=2(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=2(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=2(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: LF@count=2(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=1(int)
+# Dest: LF@count=2(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=1(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=1(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=1(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=true(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=true(bool)
+# Executing instruction: IDEFVAR at line: 142 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 143 with following arguments:
+# Arg1: Const@=(string)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 145 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IPUSHS at line: 146 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: Stack@()
+# Executing instruction: IDEFVAR at line: 147 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IDEFVAR at line: 148 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IPOPS at line: 149 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&d()
+# Executing instruction: IPOPS at line: 150 with following arguments:
+# Arg1: Stack@=(string)
+# Dest: LF@&e()
+# Executing instruction: ICONCAT at line: 151 with following arguments:
+# Arg1: LF@&e=(string)
+# Arg2: LF@&d=(string)
+# Dest: LF@&c=(string)
+# Executing instruction: IMOVE at line: 152 with following arguments:
+# Arg1: LF@&c=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IDEFVAR at line: 153 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 154 with following arguments:
+# Arg1: LF@count=1(int)
+# Dest: LF@&f()
+# Executing instruction: IPUSHS at line: 155 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 156 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IPUSHS at line: 157 with following arguments:
+# Arg1: LF@&f=1(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 158 with following arguments:
+# Arg1: Stack@=1(int)
+# Arg2: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 159 with following arguments:
+# Arg1: Stack@=0(int)
+# Dest: LF@&f=1(int)
+# Executing instruction: IMOVE at line: 160 with following arguments:
+# Arg1: LF@&f=0(int)
+# Dest: LF@count=1(int)
+# Executing instruction: IPOPFRAME at line: 161 with following arguments:
+# Executing instruction: IMOVE at line: 162 with following arguments:
+# Arg1: TF@buffer=(string)
+# Dest: LF@buffer=(string)
+# Executing instruction: IMOVE at line: 163 with following arguments:
+# Arg1: TF@count=0(int)
+# Dest: LF@count=1(int)
+# Executing instruction: IJUMP at line: 164 with following arguments:
+# Executing instruction: ILABEL at line: 127 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 128 with following arguments:
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: TF@buffer
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: TF@buffer()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: TF@count
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@count=0(int)
+# Dest: TF@count()
+# Executing instruction: IPUSHFRAME at line: 133 with following arguments:
+# Executing instruction: IDEFVAR at line: 134 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 135 with following arguments:
+# Arg1: LF@count=0(int)
+# Dest: LF@&b()
+# Executing instruction: IPUSHS at line: 136 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 137 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&b=0(int)
+# Executing instruction: IPUSHS at line: 138 with following arguments:
+# Arg1: LF@&b=0(int)
+# Dest: Stack@()
+# Executing instruction: IGTS at line: 139 with following arguments:
+# Arg1: Stack@=0(int)
+# Arg2: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 140 with following arguments:
+# Arg1: Stack@=false(bool)
+# Dest: LF@&b=0(int)
+# Executing instruction: IJUMPIFNEQ at line: 141 with following arguments:
+# Arg1: Const@=true(bool)
+# Arg2: LF@&b=false(bool)
+# Executing instruction: ILABEL at line: 165 with following arguments:
+# Executing instruction: IPOPFRAME at line: 166 with following arguments:
+# Executing instruction: IDEFVAR at line: 167 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 168 with following arguments:
+# Arg1: LF@buffer=(string)
+# Dest: LF@&g()
+# Executing instruction: IWRITE at line: 169 with following arguments:
+# Arg1: LF@&g=(string)
+# Executing instruction: IPOPFRAME at line: 170 with following arguments:
+# Executing instruction: IGROOT at line: 172 with following arguments:
+# I am Groot at 172 (10783).
 # 
 # EXPECTED INTERPRETER STDOUT:
 
@@ -27,9 +4295,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: None
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 10783
 # 
 #   1: ' multiple string concatenations
 #   2: scope

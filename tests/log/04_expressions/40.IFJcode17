@@ -1,4 +1,4 @@
-# 2017-11-30 22:56:44.017517
+# 2017-12-02 16:01:33.780067
 # SECTION: 04_expressions
 # TEST: 40
 # INFO: Double implicit conversion
@@ -11,17 +11,83 @@
 # Everything is OK
 # 
 # INTERPRETER STDERR:
-# 1.1: invalid character
-# 1.3: invalid character
+# Executing instruction: IJUMP at line: 2 with following arguments:
+# Executing instruction: ILABEL at line: 118 with following arguments:
+# Executing instruction: ICREATEFRAME at line: 119 with following arguments:
+# Executing instruction: IPUSHFRAME at line: 120 with following arguments:
+# Executing instruction: IDEFVAR at line: 121 with following arguments:
+# Dest: LF@x
+# Executing instruction: IDEFVAR at line: 122 with following arguments:
+# Dest: LF@&a
+# Executing instruction: IMOVE at line: 123 with following arguments:
+# Arg1: Const@=15.3(double)
+# Dest: LF@&a()
+# Executing instruction: IMOVE at line: 124 with following arguments:
+# Arg1: LF@&a=15.3(double)
+# Dest: LF@x()
+# Executing instruction: IDEFVAR at line: 125 with following arguments:
+# Dest: LF@y
+# Executing instruction: IDEFVAR at line: 126 with following arguments:
+# Dest: LF@&b
+# Executing instruction: IMOVE at line: 127 with following arguments:
+# Arg1: Const@=3.6(double)
+# Dest: LF@&b()
+# Executing instruction: IMOVE at line: 128 with following arguments:
+# Arg1: LF@&b=3.6(double)
+# Dest: LF@y()
+# Executing instruction: IDEFVAR at line: 129 with following arguments:
+# Dest: LF@z
+# Executing instruction: IMOVE at line: 130 with following arguments:
+# Arg1: Const@=0(double)
+# Dest: LF@z()
+# Executing instruction: IDEFVAR at line: 131 with following arguments:
+# Dest: LF@&c
+# Executing instruction: IMOVE at line: 132 with following arguments:
+# Arg1: LF@x=15.3(double)
+# Dest: LF@&c()
+# Executing instruction: IPUSHS at line: 133 with following arguments:
+# Arg1: LF@&c=15.3(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 134 with following arguments:
+# Arg1: LF@y=3.6(double)
+# Dest: LF@&c=15.3(double)
+# Executing instruction: IPUSHS at line: 135 with following arguments:
+# Arg1: LF@&c=3.6(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 136 with following arguments:
+# Arg1: Stack@=15.3(double)
+# Arg2: Stack@=3.6(double)
+# Dest: Stack@()
+# Executing instruction: IFLOAT2INTS at line: 137 with following arguments:
+# Arg1: Stack@=4.25(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 138 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: LF@&c=3.6(double)
+# Executing instruction: IINT2FLOAT at line: 139 with following arguments:
+# Arg1: LF@&c=4(int)
+# Dest: LF@&c=4(int)
+# Executing instruction: IMOVE at line: 140 with following arguments:
+# Arg1: LF@&c=4(double)
+# Dest: LF@z=0(double)
+# Executing instruction: IDEFVAR at line: 141 with following arguments:
+# Dest: LF@&d
+# Executing instruction: IMOVE at line: 142 with following arguments:
+# Arg1: LF@z=4(double)
+# Dest: LF@&d()
+# Executing instruction: IWRITE at line: 143 with following arguments:
+# Arg1: LF@&d=4(double)
+# Executing instruction: IPOPFRAME at line: 144 with following arguments:
+# Executing instruction: IGROOT at line: 146 with following arguments:
+# I am Groot at 146 (168).
 # 
-# EXPECTED INTERPRETER STDOUT:
+# STDOUT DIFF:
+# --- expected
+# +++ actual
+# @@ -1 +1 @@
 
-#  3
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# - 3
+# + 4
 
 # INTERPRETER STDIN: 
 # 
@@ -29,9 +95,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 51
+# CURRENT INTERPRETER EXIT CODE: 0
 # PRICE: ---
-# GROOT: ---
+# GROOT: 168
 # 
 #   1: ' Double implicit conversion
 #   2: scope
@@ -45,141 +111,148 @@
 
 ########################################
 
-2 2.IFJcode17                                                                   #     1/137
-JUMP $$main                                                                     #     2/137
-LABEL $length                                                                   #     3/137
-PUSHFRAME                                                                       #     4/137
-DEFVAR LF@%retval                                                               #     5/137
-MOVE LF@%retval int@0                                                           #     6/137
-STRLEN LF@%retval LF@s                                                          #     7/137
-LABEL $length$epilog                                                            #     8/137
-POPFRAME                                                                        #     9/137
-RETURN                                                                          #    10/137
-LABEL $substr                                                                   #    11/137
-PUSHFRAME                                                                       #    12/137
-DEFVAR LF@%retval                                                               #    13/137
-MOVE LF@%retval string@                                                         #    14/137
-DEFVAR LF@tmp1                                                                  #    15/137
-DEFVAR LF@tmp2                                                                  #    16/137
-MOVE LF@tmp1 int@0                                                              #    17/137
-MOVE LF@tmp2 string@                                                            #    18/137
-SUB LF@tmp1 LF@i int@1                                                          #    19/137
-DEFVAR LF@length                                                                #    20/137
-MOVE LF@length int@0                                                            #    21/137
-DEFVAR LF@result                                                                #    22/137
-MOVE LF@result bool@false                                                       #    23/137
-DEFVAR LF@tmplen                                                                #    24/137
-MOVE LF@tmplen int@0                                                            #    25/137
-STRLEN LF@tmplen LF@s                                                           #    26/137
-SUB LF@tmplen LF@tmplen LF@i                                                    #    27/137
-ADD LF@tmplen LF@tmplen int@1                                                   #    28/137
-JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/137
-PUSHS LF@i                                                                      #    30/137
-PUSHS int@0                                                                     #    31/137
-PUSHS LF@i                                                                      #    32/137
-PUSHS int@0                                                                     #    33/137
-EQS                                                                             #    34/137
-POPS LF@result                                                                  #    35/137
-LTS                                                                             #    36/137
-PUSHS LF@result                                                                 #    37/137
-ORS                                                                             #    38/137
-POPS LF@result                                                                  #    39/137
-JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/137
-PUSHS LF@n                                                                      #    41/137
-PUSHS int@0                                                                     #    42/137
-LTS                                                                             #    43/137
-POPS LF@result                                                                  #    44/137
-JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/137
-STRLEN LF@tmplen LF@s                                                           #    46/137
-SUB LF@tmplen LF@tmplen LF@i                                                    #    47/137
-ADD LF@tmplen LF@tmplen int@1                                                   #    48/137
-PUSHS LF@tmplen                                                                 #    49/137
-PUSHS LF@n                                                                      #    50/137
-LTS                                                                             #    51/137
-POPS LF@result                                                                  #    52/137
-JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/137
-MOVE LF@tmplen int@0                                                            #    54/137
-STRLEN LF@tmplen LF@s                                                           #    55/137
-SUB LF@tmplen LF@tmplen LF@i                                                    #    56/137
-LABEL $SubStrFor                                                                #    57/137
-GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/137
-CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/137
-ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/137
-STRLEN LF@length LF@%retval                                                     #    61/137
-JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/137
-JUMP $substr$epilog                                                             #    63/137
-LABEL $SubStrReturn0                                                            #    64/137
-MOVE LF@%retval string@                                                         #    65/137
-JUMP $substr$epilog                                                             #    66/137
-LABEL $SubStrReturnRest                                                         #    67/137
-GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/137
-CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/137
-ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/137
-STRLEN LF@length LF@%retval                                                     #    71/137
-JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/137
-LABEL $substr$epilog                                                            #    73/137
-POPFRAME                                                                        #    74/137
-RETURN                                                                          #    75/137
-LABEL $asc                                                                      #    76/137
-PUSHFRAME                                                                       #    77/137
-DEFVAR LF@%retval                                                               #    78/137
-MOVE LF@%retval int@0                                                           #    79/137
-DEFVAR LF@result                                                                #    80/137
-MOVE LF@result bool@false                                                       #    81/137
-DEFVAR LF@tmp                                                                   #    82/137
-DEFVAR LF@tmp2                                                                  #    83/137
-MOVE LF@tmp string@                                                             #    84/137
-MOVE LF@tmp2 int@0                                                              #    85/137
-PUSHS LF@i                                                                      #    86/137
-PUSHS int@0                                                                     #    87/137
-PUSHS LF@i                                                                      #    88/137
-PUSHS int@0                                                                     #    89/137
-EQS                                                                             #    90/137
-POPS LF@result                                                                  #    91/137
-LTS                                                                             #    92/137
-PUSHS LF@result                                                                 #    93/137
-ORS                                                                             #    94/137
-POPS LF@result                                                                  #    95/137
-JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/137
-PUSHS LF@i                                                                      #    97/137
-STRLEN LF@tmp2 LF@s                                                             #    98/137
-PUSHS LF@tmp2                                                                   #    99/137
-GTS                                                                             #   100/137
-POPS LF@result                                                                  #   101/137
-JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/137
-SUB LF@i LF@i int@1                                                             #   103/137
-GETCHAR LF@tmp LF@s LF@i                                                        #   104/137
-STRI2INT LF@%retval LF@tmp int@0                                                #   105/137
-LABEL $asc$epilog                                                               #   106/137
-POPFRAME                                                                        #   107/137
-RETURN                                                                          #   108/137
-LABEL $chr                                                                      #   109/137
-PUSHFRAME                                                                       #   110/137
-DEFVAR LF@%retval                                                               #   111/137
-MOVE LF@%retval string@                                                         #   112/137
-DEFVAR LF@tmp                                                                   #   113/137
-MOVE LF@tmp string@                                                             #   114/137
-INT2CHAR LF@%retval LF@i                                                        #   115/137
-POPFRAME                                                                        #   116/137
-RETURN                                                                          #   117/137
-LABEL $$main                                                                    #   118/137
-CREATEFRAME                                                                     #   119/137
-PUSHFRAME                                                                       #   120/137
-DEFVAR LF@x                                                                     #   121/137
-DEFVAR LF@&a                                                                    #   122/137
-MOVE LF@&a float@15.3                                                           #   123/137
-MOVE LF@x LF@&a                                                                 #   124/137
-DEFVAR LF@y                                                                     #   125/137
-DEFVAR LF@&b                                                                    #   126/137
-MOVE LF@&b float@3.6                                                            #   127/137
-MOVE LF@y LF@&b                                                                 #   128/137
-DEFVAR LF@z                                                                     #   129/137
-MOVE LF@z float@0.0                                                             #   130/137
-DEFVAR LF@&c                                                                    #   131/137
-POPS LF@&c                                                                      #   132/137
-MOVE LF@z LF@&c                                                                 #   133/137
-DEFVAR LF@&d                                                                    #   134/137
-MOVE LF@&d LF@z                                                                 #   135/137
-WRITE LF@&d                                                                     #   136/137
-POPFRAME                                                                        #   137/137
+.IFJcode17                                                                      #     1/144
+JUMP $$main                                                                     #     2/144
+LABEL $length                                                                   #     3/144
+PUSHFRAME                                                                       #     4/144
+DEFVAR LF@%retval                                                               #     5/144
+MOVE LF@%retval int@0                                                           #     6/144
+STRLEN LF@%retval LF@s                                                          #     7/144
+LABEL $length$epilog                                                            #     8/144
+POPFRAME                                                                        #     9/144
+RETURN                                                                          #    10/144
+LABEL $substr                                                                   #    11/144
+PUSHFRAME                                                                       #    12/144
+DEFVAR LF@%retval                                                               #    13/144
+MOVE LF@%retval string@                                                         #    14/144
+DEFVAR LF@tmp1                                                                  #    15/144
+DEFVAR LF@tmp2                                                                  #    16/144
+MOVE LF@tmp1 int@0                                                              #    17/144
+MOVE LF@tmp2 string@                                                            #    18/144
+SUB LF@tmp1 LF@i int@1                                                          #    19/144
+DEFVAR LF@length                                                                #    20/144
+MOVE LF@length int@0                                                            #    21/144
+DEFVAR LF@result                                                                #    22/144
+MOVE LF@result bool@false                                                       #    23/144
+DEFVAR LF@tmplen                                                                #    24/144
+MOVE LF@tmplen int@0                                                            #    25/144
+STRLEN LF@tmplen LF@s                                                           #    26/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/144
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/144
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/144
+PUSHS LF@i                                                                      #    30/144
+PUSHS int@0                                                                     #    31/144
+PUSHS LF@i                                                                      #    32/144
+PUSHS int@0                                                                     #    33/144
+EQS                                                                             #    34/144
+POPS LF@result                                                                  #    35/144
+LTS                                                                             #    36/144
+PUSHS LF@result                                                                 #    37/144
+ORS                                                                             #    38/144
+POPS LF@result                                                                  #    39/144
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/144
+PUSHS LF@n                                                                      #    41/144
+PUSHS int@0                                                                     #    42/144
+LTS                                                                             #    43/144
+POPS LF@result                                                                  #    44/144
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/144
+STRLEN LF@tmplen LF@s                                                           #    46/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/144
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/144
+PUSHS LF@tmplen                                                                 #    49/144
+PUSHS LF@n                                                                      #    50/144
+LTS                                                                             #    51/144
+POPS LF@result                                                                  #    52/144
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/144
+MOVE LF@tmplen int@0                                                            #    54/144
+STRLEN LF@tmplen LF@s                                                           #    55/144
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/144
+LABEL $SubStrFor                                                                #    57/144
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/144
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/144
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/144
+STRLEN LF@length LF@%retval                                                     #    61/144
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/144
+JUMP $substr$epilog                                                             #    63/144
+LABEL $SubStrReturn0                                                            #    64/144
+MOVE LF@%retval string@                                                         #    65/144
+JUMP $substr$epilog                                                             #    66/144
+LABEL $SubStrReturnRest                                                         #    67/144
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/144
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/144
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/144
+STRLEN LF@length LF@%retval                                                     #    71/144
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/144
+LABEL $substr$epilog                                                            #    73/144
+POPFRAME                                                                        #    74/144
+RETURN                                                                          #    75/144
+LABEL $asc                                                                      #    76/144
+PUSHFRAME                                                                       #    77/144
+DEFVAR LF@%retval                                                               #    78/144
+MOVE LF@%retval int@0                                                           #    79/144
+DEFVAR LF@result                                                                #    80/144
+MOVE LF@result bool@false                                                       #    81/144
+DEFVAR LF@tmp                                                                   #    82/144
+DEFVAR LF@tmp2                                                                  #    83/144
+MOVE LF@tmp string@                                                             #    84/144
+MOVE LF@tmp2 int@0                                                              #    85/144
+PUSHS LF@i                                                                      #    86/144
+PUSHS int@0                                                                     #    87/144
+PUSHS LF@i                                                                      #    88/144
+PUSHS int@0                                                                     #    89/144
+EQS                                                                             #    90/144
+POPS LF@result                                                                  #    91/144
+LTS                                                                             #    92/144
+PUSHS LF@result                                                                 #    93/144
+ORS                                                                             #    94/144
+POPS LF@result                                                                  #    95/144
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/144
+PUSHS LF@i                                                                      #    97/144
+STRLEN LF@tmp2 LF@s                                                             #    98/144
+PUSHS LF@tmp2                                                                   #    99/144
+GTS                                                                             #   100/144
+POPS LF@result                                                                  #   101/144
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/144
+SUB LF@i LF@i int@1                                                             #   103/144
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/144
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/144
+LABEL $asc$epilog                                                               #   106/144
+POPFRAME                                                                        #   107/144
+RETURN                                                                          #   108/144
+LABEL $chr                                                                      #   109/144
+PUSHFRAME                                                                       #   110/144
+DEFVAR LF@%retval                                                               #   111/144
+MOVE LF@%retval string@                                                         #   112/144
+DEFVAR LF@tmp                                                                   #   113/144
+MOVE LF@tmp string@                                                             #   114/144
+INT2CHAR LF@%retval LF@i                                                        #   115/144
+POPFRAME                                                                        #   116/144
+RETURN                                                                          #   117/144
+LABEL $$main                                                                    #   118/144
+CREATEFRAME                                                                     #   119/144
+PUSHFRAME                                                                       #   120/144
+DEFVAR LF@x                                                                     #   121/144
+DEFVAR LF@&a                                                                    #   122/144
+MOVE LF@&a float@15.3                                                           #   123/144
+MOVE LF@x LF@&a                                                                 #   124/144
+DEFVAR LF@y                                                                     #   125/144
+DEFVAR LF@&b                                                                    #   126/144
+MOVE LF@&b float@3.6                                                            #   127/144
+MOVE LF@y LF@&b                                                                 #   128/144
+DEFVAR LF@z                                                                     #   129/144
+MOVE LF@z float@0.0                                                             #   130/144
+DEFVAR LF@&c                                                                    #   131/144
+MOVE LF@&c LF@x                                                                 #   132/144
+PUSHS LF@&c                                                                     #   133/144
+MOVE LF@&c LF@y                                                                 #   134/144
+PUSHS LF@&c                                                                     #   135/144
+DIVS                                                                            #   136/144
+FLOAT2INTS                                                                      #   137/144
+POPS LF@&c                                                                      #   138/144
+INT2FLOAT LF@&c LF@&c                                                           #   139/144
+MOVE LF@z LF@&c                                                                 #   140/144
+DEFVAR LF@&d                                                                    #   141/144
+MOVE LF@&d LF@z                                                                 #   142/144
+WRITE LF@&d                                                                     #   143/144
+POPFRAME                                                                        #   144/144
 

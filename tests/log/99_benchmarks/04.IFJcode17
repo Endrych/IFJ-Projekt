@@ -1,10 +1,10 @@
-# 2017-11-30 22:57:02.399925
+# 2017-12-02 16:01:47.406432
 # SECTION: 99_benchmarks
 # TEST: 04
 # INFO: complex expression
 # REQUIRED EXTENSIONS: 
 # ACTIVATED EXTENSIONS: 
-# STATE: FAIL
+# STATE: SUCCESS
 # 
 # COMPILER STDERR:
 # 
@@ -58,157 +58,736 @@
 # Executing instruction: IPOPS at line: 136 with following arguments:
 # Arg1: Stack@=-123456789(int)
 # Dest: LF@&c=123456789(int)
-# Executing instruction: IMOVE at line: 137 with following arguments:
+# Executing instruction: IINT2FLOAT at line: 137 with following arguments:
 # Arg1: LF@&c=-123456789(int)
+# Dest: LF@&c=-123456789(int)
+# Executing instruction: IMOVE at line: 138 with following arguments:
+# Arg1: LF@&c=-123456789(double)
 # Dest: LF@c()
-# Executing instruction: IDEFVAR at line: 138 with following arguments:
+# Executing instruction: IDEFVAR at line: 139 with following arguments:
 # Dest: LF@d
-# Executing instruction: IMOVE at line: 139 with following arguments:
+# Executing instruction: IMOVE at line: 140 with following arguments:
 # Arg1: Const@=0(double)
 # Dest: LF@d()
-# Executing instruction: IDEFVAR at line: 140 with following arguments:
+# Executing instruction: IDEFVAR at line: 141 with following arguments:
 # Dest: LF@&d
-# Executing instruction: IMOVE at line: 141 with following arguments:
+# Executing instruction: IMOVE at line: 142 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d()
-# Executing instruction: IPUSHS at line: 142 with following arguments:
+# Executing instruction: IPUSHS at line: 143 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 143 with following arguments:
+# Executing instruction: IMOVE at line: 144 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 144 with following arguments:
+# Executing instruction: IPUSHS at line: 145 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IMULTS at line: 145 with following arguments:
+# Executing instruction: IMULTS at line: 146 with following arguments:
 # Arg1: Stack@=74(int)
 # Arg2: Stack@=74(int)
 # Dest: Stack@()
-# Executing instruction: IINT2FLOATS at line: 146 with following arguments:
+# Executing instruction: IINT2FLOATS at line: 147 with following arguments:
 # Arg1: Stack@=5476(int)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 147 with following arguments:
+# Executing instruction: IMOVE at line: 148 with following arguments:
 # Arg1: LF@b=745.745(double)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 148 with following arguments:
+# Executing instruction: IPUSHS at line: 149 with following arguments:
 # Arg1: LF@&d=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 149 with following arguments:
+# Executing instruction: IMOVE at line: 150 with following arguments:
 # Arg1: LF@b=745.745(double)
 # Dest: LF@&d=745.745(double)
-# Executing instruction: IPUSHS at line: 150 with following arguments:
+# Executing instruction: IPUSHS at line: 151 with following arguments:
 # Arg1: LF@&d=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IDIVS at line: 151 with following arguments:
+# Executing instruction: IDIVS at line: 152 with following arguments:
 # Arg1: Stack@=745.745(double)
 # Arg2: Stack@=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IADDS at line: 152 with following arguments:
+# Executing instruction: IADDS at line: 153 with following arguments:
 # Arg1: Stack@=5476(double)
 # Arg2: Stack@=1(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 153 with following arguments:
+# Executing instruction: IMOVE at line: 154 with following arguments:
 # Arg1: LF@b=745.745(double)
 # Dest: LF@&d=745.745(double)
-# Executing instruction: IPUSHS at line: 154 with following arguments:
+# Executing instruction: IPUSHS at line: 155 with following arguments:
 # Arg1: LF@&d=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 155 with following arguments:
+# Executing instruction: IMOVE at line: 156 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d=745.745(double)
-# Executing instruction: IPUSHS at line: 156 with following arguments:
+# Executing instruction: IPUSHS at line: 157 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IINT2FLOATS at line: 157 with following arguments:
+# Executing instruction: IINT2FLOATS at line: 158 with following arguments:
 # Arg1: Stack@=74(int)
 # Dest: Stack@()
-# Executing instruction: IMULTS at line: 158 with following arguments:
+# Executing instruction: IMULTS at line: 159 with following arguments:
 # Arg1: Stack@=745.745(double)
 # Arg2: Stack@=74(double)
 # Dest: Stack@()
-# Executing instruction: ISUBS at line: 159 with following arguments:
+# Executing instruction: ISUBS at line: 160 with following arguments:
 # Arg1: Stack@=5477(double)
 # Arg2: Stack@=55185.13(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 160 with following arguments:
+# Executing instruction: IMOVE at line: 161 with following arguments:
 # Arg1: LF@b=745.745(double)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 161 with following arguments:
+# Executing instruction: IPUSHS at line: 162 with following arguments:
 # Arg1: LF@&d=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 162 with following arguments:
+# Executing instruction: IMOVE at line: 163 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d=745.745(double)
-# Executing instruction: IPUSHS at line: 163 with following arguments:
+# Executing instruction: IPUSHS at line: 164 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 164 with following arguments:
+# Executing instruction: IMOVE at line: 165 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 165 with following arguments:
+# Executing instruction: IPUSHS at line: 166 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IMULTS at line: 166 with following arguments:
+# Executing instruction: IMULTS at line: 167 with following arguments:
 # Arg1: Stack@=74(int)
 # Arg2: Stack@=74(int)
 # Dest: Stack@()
-# Executing instruction: IINT2FLOATS at line: 167 with following arguments:
+# Executing instruction: IINT2FLOATS at line: 168 with following arguments:
 # Arg1: Stack@=5476(int)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 168 with following arguments:
+# Executing instruction: IMOVE at line: 169 with following arguments:
 # Arg1: LF@b=745.745(double)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 169 with following arguments:
+# Executing instruction: IPUSHS at line: 170 with following arguments:
 # Arg1: LF@&d=745.745(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 170 with following arguments:
+# Executing instruction: IMOVE at line: 171 with following arguments:
 # Arg1: LF@a=74(int)
 # Dest: LF@&d=745.745(double)
-# Executing instruction: IPUSHS at line: 171 with following arguments:
+# Executing instruction: IPUSHS at line: 172 with following arguments:
 # Arg1: LF@&d=74(int)
 # Dest: Stack@()
-# Executing instruction: IINT2FLOATS at line: 172 with following arguments:
+# Executing instruction: IINT2FLOATS at line: 173 with following arguments:
 # Arg1: Stack@=74(int)
 # Dest: Stack@()
-# Executing instruction: IMULTS at line: 173 with following arguments:
+# Executing instruction: IMULTS at line: 174 with following arguments:
 # Arg1: Stack@=745.745(double)
 # Arg2: Stack@=74(double)
 # Dest: Stack@()
-# Executing instruction: IADDS at line: 174 with following arguments:
+# Executing instruction: IADDS at line: 175 with following arguments:
 # Arg1: Stack@=5476(double)
 # Arg2: Stack@=55185.13(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 175 with following arguments:
-# Arg1: LF@c=-123456789(int)
+# Executing instruction: IMOVE at line: 176 with following arguments:
+# Arg1: LF@c=-123456789(double)
 # Dest: LF@&d=74(int)
-# Executing instruction: IPUSHS at line: 176 with following arguments:
-# Arg1: LF@&d=-123456789(int)
+# Executing instruction: IPUSHS at line: 177 with following arguments:
+# Arg1: LF@&d=-123456789(double)
 # Dest: Stack@()
-# Executing instruction: IMOVE at line: 177 with following arguments:
+# Executing instruction: IMOVE at line: 178 with following arguments:
 # Arg1: Const@=7(int)
-# Dest: LF@&d=-123456789(int)
-# Executing instruction: IPUSHS at line: 178 with following arguments:
+# Dest: LF@&d=-123456789(double)
+# Executing instruction: IPUSHS at line: 179 with following arguments:
 # Arg1: LF@&d=7(int)
 # Dest: Stack@()
-# Executing instruction: IINT2FLOATS at line: 179 with following arguments:
+# Executing instruction: IINT2FLOATS at line: 180 with following arguments:
 # Arg1: Stack@=7(int)
 # Dest: Stack@()
-# Executing instruction: IMULTS at line: 180 with following arguments:
-# Arg1: Stack@=-123456789(int)
+# Executing instruction: IMULTS at line: 181 with following arguments:
+# Arg1: Stack@=-123456789(double)
 # Arg2: Stack@=7(double)
 # Dest: Stack@()
-# Error at line: 180
-# Wrong operand type!
+# Executing instruction: IADDS at line: 182 with following arguments:
+# Arg1: Stack@=60661.13(double)
+# Arg2: Stack@=-864197523(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 183 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&d=7(int)
+# Executing instruction: IPUSHS at line: 184 with following arguments:
+# Arg1: LF@&d=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 185 with following arguments:
+# Arg1: Const@=5(int)
+# Dest: LF@&d=2(int)
+# Executing instruction: IPUSHS at line: 186 with following arguments:
+# Arg1: LF@&d=5(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 187 with following arguments:
+# Arg1: Stack@=2(int)
+# Arg2: Stack@=5(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 188 with following arguments:
+# Arg1: Stack@=10(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 189 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=5(int)
+# Executing instruction: IPUSHS at line: 190 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 191 with following arguments:
+# Arg1: Stack@=10(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 192 with following arguments:
+# Arg1: Stack@=-864136861.87(double)
+# Arg2: Stack@=7457.45(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 193 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=-864129404.42(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 194 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 195 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 196 with following arguments:
+# Arg1: Const@=78(int)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 197 with following arguments:
+# Arg1: LF@&d=78(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 198 with following arguments:
+# Arg1: Stack@=78(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 199 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=78(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 200 with following arguments:
+# Arg1: Const@=96(int)
+# Dest: LF@&d=78(int)
+# Executing instruction: IPUSHS at line: 201 with following arguments:
+# Arg1: LF@&d=96(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 202 with following arguments:
+# Arg1: Stack@=96(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 203 with following arguments:
+# Arg1: Stack@=58168.11(double)
+# Arg2: Stack@=96(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 204 with following arguments:
+# Arg1: Stack@=-644420182699.1929(double)
+# Arg2: Stack@=5584138.560000001(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 205 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=96(int)
+# Executing instruction: IPUSHS at line: 206 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 207 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 208 with following arguments:
+# Arg1: LF@&d=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 209 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 210 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=74(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 211 with following arguments:
+# Arg1: Stack@=-644425766837.7529(double)
+# Arg2: Stack@=55185.13(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 212 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=74(int)
+# Executing instruction: IPUSHS at line: 213 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 214 with following arguments:
+# Arg1: LF@c=-123456789(double)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 215 with following arguments:
+# Arg1: LF@&d=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 216 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 217 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=-123456789(double)
+# Executing instruction: IPUSHS at line: 218 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 219 with following arguments:
+# Arg1: Stack@=-123456043.255(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 220 with following arguments:
+# Arg1: LF@c=-123456789(double)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 221 with following arguments:
+# Arg1: LF@&d=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 222 with following arguments:
+# Arg1: Stack@=-123455297.51(double)
+# Arg2: Stack@=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 223 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&d=-123456789(double)
+# Executing instruction: IPUSHS at line: 224 with following arguments:
+# Arg1: LF@&d=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 225 with following arguments:
+# Arg1: Stack@=-246912086.51(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 226 with following arguments:
+# Arg1: LF@c=-123456789(double)
+# Dest: LF@&d=745.745(double)
+# Executing instruction: IPUSHS at line: 227 with following arguments:
+# Arg1: LF@&d=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 228 with following arguments:
+# Arg1: Stack@=-246911340.765(double)
+# Arg2: Stack@=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 229 with following arguments:
+# Arg1: Stack@=-644425822022.8829(double)
+# Arg2: Stack@=-370368129.765(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 230 with following arguments:
+# Arg1: LF@c=-123456789(double)
+# Dest: LF@&d=-123456789(double)
+# Executing instruction: IPUSHS at line: 231 with following arguments:
+# Arg1: LF@&d=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 232 with following arguments:
+# Arg1: Stack@=-644796190152.6479(double)
+# Arg2: Stack@=-123456789(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 233 with following arguments:
+# Arg1: Stack@=-49708.13(double)
+# Arg2: Stack@=5222.849187764376(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 234 with following arguments:
+# Arg1: Stack@=-44485.28081223562(double)
+# Dest: LF@&d=-123456789(double)
+# Executing instruction: IMOVE at line: 235 with following arguments:
+# Arg1: LF@&d=-44485.28081223562(double)
+# Dest: LF@c=-123456789(double)
+# Executing instruction: IDEFVAR at line: 236 with following arguments:
+# Dest: LF@&e
+# Executing instruction: IMOVE at line: 237 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&e()
+# Executing instruction: IWRITE at line: 238 with following arguments:
+# Arg1: LF@&e=-44485.28081223562(double)
+# Executing instruction: IDEFVAR at line: 239 with following arguments:
+# Dest: LF@&f
+# Executing instruction: IMOVE at line: 240 with following arguments:
+# Arg1: Const@=
+# (string)
+# Dest: LF@&f()
+# Executing instruction: IWRITE at line: 241 with following arguments:
+# Arg1: LF@&f=
+# (string)
+# Executing instruction: IDEFVAR at line: 242 with following arguments:
+# Dest: LF@&g
+# Executing instruction: IMOVE at line: 243 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&g()
+# Executing instruction: IPUSHS at line: 244 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 245 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 246 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 247 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 248 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 249 with following arguments:
+# Arg1: LF@&g=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 250 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 251 with following arguments:
+# Arg1: Stack@=74(double)
+# Arg2: Stack@=-0.01676385955947217(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 252 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&g=-44485.28081223562(double)
+# Executing instruction: IPUSHS at line: 253 with following arguments:
+# Arg1: LF@&g=7(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 254 with following arguments:
+# Arg1: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 255 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=7(int)
+# Executing instruction: IPUSHS at line: 256 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 257 with following arguments:
+# Arg1: Stack@=7(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 258 with following arguments:
+# Arg1: Const@=0(int)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 259 with following arguments:
+# Arg1: LF@&g=0(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 260 with following arguments:
+# Arg1: Stack@=0(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 261 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&g=0(int)
+# Executing instruction: IPUSHS at line: 262 with following arguments:
+# Arg1: LF@&g=2(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 263 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 264 with following arguments:
+# Arg1: Const@=4(int)
+# Dest: LF@&g=2(int)
+# Executing instruction: IPUSHS at line: 265 with following arguments:
+# Arg1: LF@&g=4(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 266 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&g=4(int)
+# Executing instruction: IPUSHS at line: 267 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 268 with following arguments:
+# Arg1: Stack@=4(int)
+# Arg2: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 269 with following arguments:
+# Arg1: Stack@=-70(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 270 with following arguments:
+# Arg1: Const@=8(int)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 271 with following arguments:
+# Arg1: LF@&g=8(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 272 with following arguments:
+# Arg1: Const@=9(int)
+# Dest: LF@&g=8(int)
+# Executing instruction: IPUSHS at line: 273 with following arguments:
+# Arg1: LF@&g=9(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 274 with following arguments:
+# Arg1: Stack@=8(int)
+# Arg2: Stack@=9(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 275 with following arguments:
+# Arg1: Stack@=72(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 276 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&g=9(int)
+# Executing instruction: IPUSHS at line: 277 with following arguments:
+# Arg1: LF@&g=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 278 with following arguments:
+# Arg1: Const@=74(int)
+# Dest: LF@&g=-44485.28081223562(double)
+# Executing instruction: IPUSHS at line: 279 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 280 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 281 with following arguments:
+# Arg1: Stack@=-44485.28081223562(double)
+# Arg2: Stack@=74(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 282 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 283 with following arguments:
+# Arg1: LF@&g=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 284 with following arguments:
+# Arg1: Stack@=-3291910.780105436(double)
+# Arg2: Stack@=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 285 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&g=-44485.28081223562(double)
+# Executing instruction: IPUSHS at line: 286 with following arguments:
+# Arg1: LF@&g=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 287 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=-44485.28081223562(double)
+# Executing instruction: IPUSHS at line: 288 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 289 with following arguments:
+# Arg1: Const@=8(int)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 290 with following arguments:
+# Arg1: LF@&g=8(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 291 with following arguments:
+# Arg1: Stack@=8(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 292 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=8(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 293 with following arguments:
+# Arg1: Const@=4(int)
+# Dest: LF@&g=8(int)
+# Executing instruction: IPUSHS at line: 294 with following arguments:
+# Arg1: LF@&g=4(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 295 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 296 with following arguments:
+# Arg1: Stack@=5965.96(double)
+# Arg2: Stack@=4(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 297 with following arguments:
+# Arg1: Stack@=-44485.28081223562(double)
+# Arg2: Stack@=5969.96(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 298 with following arguments:
+# Arg1: Stack@=-3247425.499293201(double)
+# Arg2: Stack@=-265575347.0378142(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 299 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=4(int)
+# Executing instruction: IPUSHS at line: 300 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 301 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 302 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 303 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 304 with following arguments:
+# Arg1: Stack@=745.745(double)
+# Arg2: Stack@=74(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 305 with following arguments:
+# Arg1: LF@c=-44485.28081223562(double)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 306 with following arguments:
+# Arg1: LF@&g=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 307 with following arguments:
+# Arg1: Stack@=55185.13(double)
+# Arg2: Stack@=-44485.28081223562(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 308 with following arguments:
+# Arg1: Stack@=-268822772.5371073(double)
+# Arg2: Stack@=-1.240525607400941(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 309 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&g=-44485.28081223562(double)
+# Executing instruction: IPUSHS at line: 310 with following arguments:
+# Arg1: LF@&g=7(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 311 with following arguments:
+# Arg1: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 312 with following arguments:
+# Arg1: Stack@=-268822773.777633(double)
+# Arg2: Stack@=7(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 313 with following arguments:
+# Arg1: Stack@=72(double)
+# Arg2: Stack@=-268822766.777633(double)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 314 with following arguments:
+# Arg1: Stack@=-70(double)
+# Arg2: Stack@=-2.678344578588374e-07(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 315 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&g=7(int)
+# Executing instruction: IPUSHS at line: 316 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 317 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 318 with following arguments:
+# Arg1: Stack@=-70.00000026783445(double)
+# Arg2: Stack@=74(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 319 with following arguments:
+# Arg1: Const@=7(int)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 320 with following arguments:
+# Arg1: LF@&g=7(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 321 with following arguments:
+# Arg1: Stack@=7(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 322 with following arguments:
+# Arg1: Stack@=-144.0000002678345(double)
+# Arg2: Stack@=7(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 323 with following arguments:
+# Arg1: Stack@=2(double)
+# Arg2: Stack@=-137.0000002678345(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 324 with following arguments:
+# Arg1: LF@a=74(int)
+# Dest: LF@&g=7(int)
+# Executing instruction: IPUSHS at line: 325 with following arguments:
+# Arg1: LF@&g=74(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 326 with following arguments:
+# Arg1: Stack@=74(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 327 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=74(int)
+# Executing instruction: IPUSHS at line: 328 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 329 with following arguments:
+# Arg1: Stack@=74(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 330 with following arguments:
+# Arg1: LF@b=745.745(double)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 331 with following arguments:
+# Arg1: LF@&g=745.745(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 332 with following arguments:
+# Arg1: Stack@=55185.13(double)
+# Arg2: Stack@=745.745(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 333 with following arguments:
+# Arg1: Stack@=-274.0000005356689(double)
+# Arg2: Stack@=74(double)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 334 with following arguments:
+# Arg1: Stack@=0(double)
+# Arg2: Stack@=-348.0000005356689(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 335 with following arguments:
+# Arg1: Stack@=752.745(double)
+# Arg2: Stack@=-0(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 336 with following arguments:
+# Arg1: Const@=1(int)
+# Dest: LF@&g=745.745(double)
+# Executing instruction: IPUSHS at line: 337 with following arguments:
+# Arg1: LF@&g=1(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 338 with following arguments:
+# Arg1: Stack@=1(int)
+# Dest: Stack@()
+# Executing instruction: IADDS at line: 339 with following arguments:
+# Arg1: Stack@=752.745(double)
+# Arg2: Stack@=1(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 340 with following arguments:
+# Arg1: Const@=4(int)
+# Dest: LF@&g=1(int)
+# Executing instruction: IPUSHS at line: 341 with following arguments:
+# Arg1: LF@&g=4(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 342 with following arguments:
+# Arg1: Stack@=4(int)
+# Dest: Stack@()
+# Executing instruction: IDIVS at line: 343 with following arguments:
+# Arg1: Stack@=753.745(double)
+# Arg2: Stack@=4(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 344 with following arguments:
+# Arg1: Stack@=73.98323614044052(double)
+# Arg2: Stack@=188.43625(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 345 with following arguments:
+# Arg1: Stack@=-114.4530138595595(double)
+# Dest: LF@&g=4(int)
+# Executing instruction: IMOVE at line: 346 with following arguments:
+# Arg1: LF@&g=-114.4530138595595(double)
+# Dest: LF@d=0(double)
+# Executing instruction: IDEFVAR at line: 347 with following arguments:
+# Dest: LF@&h
+# Executing instruction: IMOVE at line: 348 with following arguments:
+# Arg1: LF@d=-114.4530138595595(double)
+# Dest: LF@&h()
+# Executing instruction: IPUSHS at line: 349 with following arguments:
+# Arg1: LF@&h=-114.4530138595595(double)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 350 with following arguments:
+# Arg1: Const@=2(int)
+# Dest: LF@&h=-114.4530138595595(double)
+# Executing instruction: IPUSHS at line: 351 with following arguments:
+# Arg1: LF@&h=2(int)
+# Dest: Stack@()
+# Executing instruction: IINT2FLOATS at line: 352 with following arguments:
+# Arg1: Stack@=2(int)
+# Dest: Stack@()
+# Executing instruction: IMOVE at line: 353 with following arguments:
+# Arg1: LF@d=-114.4530138595595(double)
+# Dest: LF@&h=2(int)
+# Executing instruction: IPUSHS at line: 354 with following arguments:
+# Arg1: LF@&h=-114.4530138595595(double)
+# Dest: Stack@()
+# Executing instruction: IMULTS at line: 355 with following arguments:
+# Arg1: Stack@=2(double)
+# Arg2: Stack@=-114.4530138595595(double)
+# Dest: Stack@()
+# Executing instruction: ISUBS at line: 356 with following arguments:
+# Arg1: Stack@=-114.4530138595595(double)
+# Arg2: Stack@=-228.906027719119(double)
+# Dest: Stack@()
+# Executing instruction: IPOPS at line: 357 with following arguments:
+# Arg1: Stack@=114.4530138595595(double)
+# Dest: LF@&h=-114.4530138595595(double)
+# Executing instruction: IMOVE at line: 358 with following arguments:
+# Arg1: LF@&h=114.4530138595595(double)
+# Dest: LF@d=-114.4530138595595(double)
+# Executing instruction: IDEFVAR at line: 359 with following arguments:
+# Dest: LF@&i
+# Executing instruction: IMOVE at line: 360 with following arguments:
+# Arg1: LF@d=114.4530138595595(double)
+# Dest: LF@&i()
+# Executing instruction: IWRITE at line: 361 with following arguments:
+# Arg1: LF@&i=114.4530138595595(double)
+# Executing instruction: IPOPFRAME at line: 362 with following arguments:
+# Executing instruction: IGROOT at line: 364 with following arguments:
+# I am Groot at 364 (1812).
 # 
-# EXPECTED INTERPRETER STDOUT:
-
-# -44485.3
-#  114.453
-
-
-# CURRENT INTERPRETER STDOUT:
-
-
+# STDOUT DIFF:
+# 
 
 # INTERPRETER STDIN: 
 # 
@@ -216,9 +795,9 @@
 # EXPECTED COMPILER EXIT CODE: 0
 # CURRENT COMPILER EXIT CODE: 0
 # EXPECTED INTERPRETER EXIT CODE: 0
-# CURRENT INTERPRETER EXIT CODE: 53
-# PRICE: ---
-# GROOT: ---
+# CURRENT INTERPRETER EXIT CODE: 0
+# PRICE: 1812 (375+1437)
+# GROOT: 1812
 # 
 #   1: ' complex expression
 #   2: 
@@ -239,365 +818,366 @@
 
 ########################################
 
-.IFJcode17                                                                      #     1/361
-JUMP $$main                                                                     #     2/361
-LABEL $length                                                                   #     3/361
-PUSHFRAME                                                                       #     4/361
-DEFVAR LF@%retval                                                               #     5/361
-MOVE LF@%retval int@0                                                           #     6/361
-STRLEN LF@%retval LF@s                                                          #     7/361
-LABEL $length$epilog                                                            #     8/361
-POPFRAME                                                                        #     9/361
-RETURN                                                                          #    10/361
-LABEL $substr                                                                   #    11/361
-PUSHFRAME                                                                       #    12/361
-DEFVAR LF@%retval                                                               #    13/361
-MOVE LF@%retval string@                                                         #    14/361
-DEFVAR LF@tmp1                                                                  #    15/361
-DEFVAR LF@tmp2                                                                  #    16/361
-MOVE LF@tmp1 int@0                                                              #    17/361
-MOVE LF@tmp2 string@                                                            #    18/361
-SUB LF@tmp1 LF@i int@1                                                          #    19/361
-DEFVAR LF@length                                                                #    20/361
-MOVE LF@length int@0                                                            #    21/361
-DEFVAR LF@result                                                                #    22/361
-MOVE LF@result bool@false                                                       #    23/361
-DEFVAR LF@tmplen                                                                #    24/361
-MOVE LF@tmplen int@0                                                            #    25/361
-STRLEN LF@tmplen LF@s                                                           #    26/361
-SUB LF@tmplen LF@tmplen LF@i                                                    #    27/361
-ADD LF@tmplen LF@tmplen int@1                                                   #    28/361
-JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/361
-PUSHS LF@i                                                                      #    30/361
-PUSHS int@0                                                                     #    31/361
-PUSHS LF@i                                                                      #    32/361
-PUSHS int@0                                                                     #    33/361
-EQS                                                                             #    34/361
-POPS LF@result                                                                  #    35/361
-LTS                                                                             #    36/361
-PUSHS LF@result                                                                 #    37/361
-ORS                                                                             #    38/361
-POPS LF@result                                                                  #    39/361
-JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/361
-PUSHS LF@n                                                                      #    41/361
-PUSHS int@0                                                                     #    42/361
-LTS                                                                             #    43/361
-POPS LF@result                                                                  #    44/361
-JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/361
-STRLEN LF@tmplen LF@s                                                           #    46/361
-SUB LF@tmplen LF@tmplen LF@i                                                    #    47/361
-ADD LF@tmplen LF@tmplen int@1                                                   #    48/361
-PUSHS LF@tmplen                                                                 #    49/361
-PUSHS LF@n                                                                      #    50/361
-LTS                                                                             #    51/361
-POPS LF@result                                                                  #    52/361
-JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/361
-MOVE LF@tmplen int@0                                                            #    54/361
-STRLEN LF@tmplen LF@s                                                           #    55/361
-SUB LF@tmplen LF@tmplen LF@i                                                    #    56/361
-LABEL $SubStrFor                                                                #    57/361
-GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/361
-CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/361
-ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/361
-STRLEN LF@length LF@%retval                                                     #    61/361
-JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/361
-JUMP $substr$epilog                                                             #    63/361
-LABEL $SubStrReturn0                                                            #    64/361
-MOVE LF@%retval string@                                                         #    65/361
-JUMP $substr$epilog                                                             #    66/361
-LABEL $SubStrReturnRest                                                         #    67/361
-GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/361
-CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/361
-ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/361
-STRLEN LF@length LF@%retval                                                     #    71/361
-JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/361
-LABEL $substr$epilog                                                            #    73/361
-POPFRAME                                                                        #    74/361
-RETURN                                                                          #    75/361
-LABEL $asc                                                                      #    76/361
-PUSHFRAME                                                                       #    77/361
-DEFVAR LF@%retval                                                               #    78/361
-MOVE LF@%retval int@0                                                           #    79/361
-DEFVAR LF@result                                                                #    80/361
-MOVE LF@result bool@false                                                       #    81/361
-DEFVAR LF@tmp                                                                   #    82/361
-DEFVAR LF@tmp2                                                                  #    83/361
-MOVE LF@tmp string@                                                             #    84/361
-MOVE LF@tmp2 int@0                                                              #    85/361
-PUSHS LF@i                                                                      #    86/361
-PUSHS int@0                                                                     #    87/361
-PUSHS LF@i                                                                      #    88/361
-PUSHS int@0                                                                     #    89/361
-EQS                                                                             #    90/361
-POPS LF@result                                                                  #    91/361
-LTS                                                                             #    92/361
-PUSHS LF@result                                                                 #    93/361
-ORS                                                                             #    94/361
-POPS LF@result                                                                  #    95/361
-JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/361
-PUSHS LF@i                                                                      #    97/361
-STRLEN LF@tmp2 LF@s                                                             #    98/361
-PUSHS LF@tmp2                                                                   #    99/361
-GTS                                                                             #   100/361
-POPS LF@result                                                                  #   101/361
-JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/361
-SUB LF@i LF@i int@1                                                             #   103/361
-GETCHAR LF@tmp LF@s LF@i                                                        #   104/361
-STRI2INT LF@%retval LF@tmp int@0                                                #   105/361
-LABEL $asc$epilog                                                               #   106/361
-POPFRAME                                                                        #   107/361
-RETURN                                                                          #   108/361
-LABEL $chr                                                                      #   109/361
-PUSHFRAME                                                                       #   110/361
-DEFVAR LF@%retval                                                               #   111/361
-MOVE LF@%retval string@                                                         #   112/361
-DEFVAR LF@tmp                                                                   #   113/361
-MOVE LF@tmp string@                                                             #   114/361
-INT2CHAR LF@%retval LF@i                                                        #   115/361
-POPFRAME                                                                        #   116/361
-RETURN                                                                          #   117/361
-LABEL $$main                                                                    #   118/361
-CREATEFRAME                                                                     #   119/361
-PUSHFRAME                                                                       #   120/361
-DEFVAR LF@a                                                                     #   121/361
-DEFVAR LF@&a                                                                    #   122/361
-MOVE LF@&a int@74                                                               #   123/361
-MOVE LF@a LF@&a                                                                 #   124/361
-DEFVAR LF@b                                                                     #   125/361
-DEFVAR LF@&b                                                                    #   126/361
-MOVE LF@&b float@745.745                                                        #   127/361
-MOVE LF@b LF@&b                                                                 #   128/361
-DEFVAR LF@c                                                                     #   129/361
-DEFVAR LF@&c                                                                    #   130/361
-MOVE LF@&c int@0                                                                #   131/361
-PUSHS LF@&c                                                                     #   132/361
-MOVE LF@&c int@123456789                                                        #   133/361
-PUSHS LF@&c                                                                     #   134/361
-SUBS                                                                            #   135/361
-POPS LF@&c                                                                      #   136/361
-MOVE LF@c LF@&c                                                                 #   137/361
-DEFVAR LF@d                                                                     #   138/361
-MOVE LF@d float@0.0                                                             #   139/361
-DEFVAR LF@&d                                                                    #   140/361
-MOVE LF@&d LF@a                                                                 #   141/361
-PUSHS LF@&d                                                                     #   142/361
-MOVE LF@&d LF@a                                                                 #   143/361
-PUSHS LF@&d                                                                     #   144/361
-MULS                                                                            #   145/361
-INT2FLOATS                                                                      #   146/361
-MOVE LF@&d LF@b                                                                 #   147/361
-PUSHS LF@&d                                                                     #   148/361
-MOVE LF@&d LF@b                                                                 #   149/361
-PUSHS LF@&d                                                                     #   150/361
-DIVS                                                                            #   151/361
-ADDS                                                                            #   152/361
-MOVE LF@&d LF@b                                                                 #   153/361
-PUSHS LF@&d                                                                     #   154/361
-MOVE LF@&d LF@a                                                                 #   155/361
-PUSHS LF@&d                                                                     #   156/361
-INT2FLOATS                                                                      #   157/361
-MULS                                                                            #   158/361
-SUBS                                                                            #   159/361
-MOVE LF@&d LF@b                                                                 #   160/361
-PUSHS LF@&d                                                                     #   161/361
-MOVE LF@&d LF@a                                                                 #   162/361
-PUSHS LF@&d                                                                     #   163/361
-MOVE LF@&d LF@a                                                                 #   164/361
-PUSHS LF@&d                                                                     #   165/361
-MULS                                                                            #   166/361
-INT2FLOATS                                                                      #   167/361
-MOVE LF@&d LF@b                                                                 #   168/361
-PUSHS LF@&d                                                                     #   169/361
-MOVE LF@&d LF@a                                                                 #   170/361
-PUSHS LF@&d                                                                     #   171/361
-INT2FLOATS                                                                      #   172/361
-MULS                                                                            #   173/361
-ADDS                                                                            #   174/361
-MOVE LF@&d LF@c                                                                 #   175/361
-PUSHS LF@&d                                                                     #   176/361
-MOVE LF@&d int@7                                                                #   177/361
-PUSHS LF@&d                                                                     #   178/361
-INT2FLOATS                                                                      #   179/361
-MULS                                                                            #   180/361
-ADDS                                                                            #   181/361
-MOVE LF@&d int@2                                                                #   182/361
-PUSHS LF@&d                                                                     #   183/361
-MOVE LF@&d int@5                                                                #   184/361
-PUSHS LF@&d                                                                     #   185/361
-MULS                                                                            #   186/361
-INT2FLOATS                                                                      #   187/361
-MOVE LF@&d LF@b                                                                 #   188/361
-PUSHS LF@&d                                                                     #   189/361
-MULS                                                                            #   190/361
-ADDS                                                                            #   191/361
-MULS                                                                            #   192/361
-MOVE LF@&d LF@b                                                                 #   193/361
-PUSHS LF@&d                                                                     #   194/361
-MOVE LF@&d int@78                                                               #   195/361
-PUSHS LF@&d                                                                     #   196/361
-INT2FLOATS                                                                      #   197/361
-MULS                                                                            #   198/361
-MOVE LF@&d int@96                                                               #   199/361
-PUSHS LF@&d                                                                     #   200/361
-INT2FLOATS                                                                      #   201/361
-MULS                                                                            #   202/361
-SUBS                                                                            #   203/361
-MOVE LF@&d LF@b                                                                 #   204/361
-PUSHS LF@&d                                                                     #   205/361
-MOVE LF@&d LF@a                                                                 #   206/361
-PUSHS LF@&d                                                                     #   207/361
-INT2FLOATS                                                                      #   208/361
-MULS                                                                            #   209/361
-SUBS                                                                            #   210/361
-MOVE LF@&d LF@b                                                                 #   211/361
-PUSHS LF@&d                                                                     #   212/361
-MOVE LF@&d LF@c                                                                 #   213/361
-PUSHS LF@&d                                                                     #   214/361
-ADDS                                                                            #   215/361
-MOVE LF@&d LF@b                                                                 #   216/361
-PUSHS LF@&d                                                                     #   217/361
-ADDS                                                                            #   218/361
-MOVE LF@&d LF@c                                                                 #   219/361
-PUSHS LF@&d                                                                     #   220/361
-ADDS                                                                            #   221/361
-MOVE LF@&d LF@b                                                                 #   222/361
-PUSHS LF@&d                                                                     #   223/361
-ADDS                                                                            #   224/361
-MOVE LF@&d LF@c                                                                 #   225/361
-PUSHS LF@&d                                                                     #   226/361
-ADDS                                                                            #   227/361
-ADDS                                                                            #   228/361
-MOVE LF@&d LF@c                                                                 #   229/361
-PUSHS LF@&d                                                                     #   230/361
-DIVS                                                                            #   231/361
-ADDS                                                                            #   232/361
-POPS LF@&d                                                                      #   233/361
-MOVE LF@c LF@&d                                                                 #   234/361
-DEFVAR LF@&e                                                                    #   235/361
-MOVE LF@&e LF@c                                                                 #   236/361
-WRITE LF@&e                                                                     #   237/361
-DEFVAR LF@&f                                                                    #   238/361
-MOVE LF@&f string@\010                                                          #   239/361
-WRITE LF@&f                                                                     #   240/361
-DEFVAR LF@&g                                                                    #   241/361
-MOVE LF@&g LF@a                                                                 #   242/361
-PUSHS LF@&g                                                                     #   243/361
-INT2FLOATS                                                                      #   244/361
-MOVE LF@&g LF@b                                                                 #   245/361
-PUSHS LF@&g                                                                     #   246/361
-MOVE LF@&g LF@c                                                                 #   247/361
-PUSHS LF@&g                                                                     #   248/361
-DIVS                                                                            #   249/361
-ADDS                                                                            #   250/361
-MOVE LF@&g int@7                                                                #   251/361
-PUSHS LF@&g                                                                     #   252/361
-INT2FLOATS                                                                      #   253/361
-MOVE LF@&g LF@b                                                                 #   254/361
-PUSHS LF@&g                                                                     #   255/361
-ADDS                                                                            #   256/361
-MOVE LF@&g int@0                                                                #   257/361
-PUSHS LF@&g                                                                     #   258/361
-INT2FLOATS                                                                      #   259/361
-MOVE LF@&g int@2                                                                #   260/361
-PUSHS LF@&g                                                                     #   261/361
-INT2FLOATS                                                                      #   262/361
-MOVE LF@&g int@4                                                                #   263/361
-PUSHS LF@&g                                                                     #   264/361
-MOVE LF@&g LF@a                                                                 #   265/361
-PUSHS LF@&g                                                                     #   266/361
-SUBS                                                                            #   267/361
-INT2FLOATS                                                                      #   268/361
-MOVE LF@&g int@8                                                                #   269/361
-PUSHS LF@&g                                                                     #   270/361
-MOVE LF@&g int@9                                                                #   271/361
-PUSHS LF@&g                                                                     #   272/361
-MULS                                                                            #   273/361
-INT2FLOATS                                                                      #   274/361
-MOVE LF@&g LF@c                                                                 #   275/361
-PUSHS LF@&g                                                                     #   276/361
-MOVE LF@&g int@74                                                               #   277/361
-PUSHS LF@&g                                                                     #   278/361
-INT2FLOATS                                                                      #   279/361
-MULS                                                                            #   280/361
-MOVE LF@&g LF@c                                                                 #   281/361
-PUSHS LF@&g                                                                     #   282/361
-SUBS                                                                            #   283/361
-MOVE LF@&g LF@c                                                                 #   284/361
-PUSHS LF@&g                                                                     #   285/361
-MOVE LF@&g LF@b                                                                 #   286/361
-PUSHS LF@&g                                                                     #   287/361
-MOVE LF@&g int@8                                                                #   288/361
-PUSHS LF@&g                                                                     #   289/361
-INT2FLOATS                                                                      #   290/361
-MULS                                                                            #   291/361
-MOVE LF@&g int@4                                                                #   292/361
-PUSHS LF@&g                                                                     #   293/361
-INT2FLOATS                                                                      #   294/361
-ADDS                                                                            #   295/361
-MULS                                                                            #   296/361
-ADDS                                                                            #   297/361
-MOVE LF@&g LF@b                                                                 #   298/361
-PUSHS LF@&g                                                                     #   299/361
-MOVE LF@&g LF@a                                                                 #   300/361
-PUSHS LF@&g                                                                     #   301/361
-INT2FLOATS                                                                      #   302/361
-MULS                                                                            #   303/361
-MOVE LF@&g LF@c                                                                 #   304/361
-PUSHS LF@&g                                                                     #   305/361
-DIVS                                                                            #   306/361
-ADDS                                                                            #   307/361
-MOVE LF@&g int@7                                                                #   308/361
-PUSHS LF@&g                                                                     #   309/361
-INT2FLOATS                                                                      #   310/361
-ADDS                                                                            #   311/361
-DIVS                                                                            #   312/361
-ADDS                                                                            #   313/361
-MOVE LF@&g LF@a                                                                 #   314/361
-PUSHS LF@&g                                                                     #   315/361
-INT2FLOATS                                                                      #   316/361
-SUBS                                                                            #   317/361
-MOVE LF@&g int@7                                                                #   318/361
-PUSHS LF@&g                                                                     #   319/361
-INT2FLOATS                                                                      #   320/361
-ADDS                                                                            #   321/361
-MULS                                                                            #   322/361
-MOVE LF@&g LF@a                                                                 #   323/361
-PUSHS LF@&g                                                                     #   324/361
-INT2FLOATS                                                                      #   325/361
-MOVE LF@&g LF@b                                                                 #   326/361
-PUSHS LF@&g                                                                     #   327/361
-MULS                                                                            #   328/361
-MOVE LF@&g LF@b                                                                 #   329/361
-PUSHS LF@&g                                                                     #   330/361
-DIVS                                                                            #   331/361
-SUBS                                                                            #   332/361
-DIVS                                                                            #   333/361
-SUBS                                                                            #   334/361
-MOVE LF@&g int@1                                                                #   335/361
-PUSHS LF@&g                                                                     #   336/361
-INT2FLOATS                                                                      #   337/361
-ADDS                                                                            #   338/361
-MOVE LF@&g int@4                                                                #   339/361
-PUSHS LF@&g                                                                     #   340/361
-INT2FLOATS                                                                      #   341/361
-DIVS                                                                            #   342/361
-SUBS                                                                            #   343/361
-POPS LF@&g                                                                      #   344/361
-MOVE LF@d LF@&g                                                                 #   345/361
-DEFVAR LF@&h                                                                    #   346/361
-MOVE LF@&h LF@d                                                                 #   347/361
-PUSHS LF@&h                                                                     #   348/361
-MOVE LF@&h int@2                                                                #   349/361
-PUSHS LF@&h                                                                     #   350/361
-INT2FLOATS                                                                      #   351/361
-MOVE LF@&h LF@d                                                                 #   352/361
-PUSHS LF@&h                                                                     #   353/361
-MULS                                                                            #   354/361
-SUBS                                                                            #   355/361
-POPS LF@&h                                                                      #   356/361
-MOVE LF@d LF@&h                                                                 #   357/361
-DEFVAR LF@&i                                                                    #   358/361
-MOVE LF@&i LF@d                                                                 #   359/361
-WRITE LF@&i                                                                     #   360/361
-POPFRAME                                                                        #   361/361
+.IFJcode17                                                                      #     1/362
+JUMP $$main                                                                     #     2/362
+LABEL $length                                                                   #     3/362
+PUSHFRAME                                                                       #     4/362
+DEFVAR LF@%retval                                                               #     5/362
+MOVE LF@%retval int@0                                                           #     6/362
+STRLEN LF@%retval LF@s                                                          #     7/362
+LABEL $length$epilog                                                            #     8/362
+POPFRAME                                                                        #     9/362
+RETURN                                                                          #    10/362
+LABEL $substr                                                                   #    11/362
+PUSHFRAME                                                                       #    12/362
+DEFVAR LF@%retval                                                               #    13/362
+MOVE LF@%retval string@                                                         #    14/362
+DEFVAR LF@tmp1                                                                  #    15/362
+DEFVAR LF@tmp2                                                                  #    16/362
+MOVE LF@tmp1 int@0                                                              #    17/362
+MOVE LF@tmp2 string@                                                            #    18/362
+SUB LF@tmp1 LF@i int@1                                                          #    19/362
+DEFVAR LF@length                                                                #    20/362
+MOVE LF@length int@0                                                            #    21/362
+DEFVAR LF@result                                                                #    22/362
+MOVE LF@result bool@false                                                       #    23/362
+DEFVAR LF@tmplen                                                                #    24/362
+MOVE LF@tmplen int@0                                                            #    25/362
+STRLEN LF@tmplen LF@s                                                           #    26/362
+SUB LF@tmplen LF@tmplen LF@i                                                    #    27/362
+ADD LF@tmplen LF@tmplen int@1                                                   #    28/362
+JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2                                            #    29/362
+PUSHS LF@i                                                                      #    30/362
+PUSHS int@0                                                                     #    31/362
+PUSHS LF@i                                                                      #    32/362
+PUSHS int@0                                                                     #    33/362
+EQS                                                                             #    34/362
+POPS LF@result                                                                  #    35/362
+LTS                                                                             #    36/362
+PUSHS LF@result                                                                 #    37/362
+ORS                                                                             #    38/362
+POPS LF@result                                                                  #    39/362
+JUMPIFEQ $SubStrReturn0 bool@true LF@result                                     #    40/362
+PUSHS LF@n                                                                      #    41/362
+PUSHS int@0                                                                     #    42/362
+LTS                                                                             #    43/362
+POPS LF@result                                                                  #    44/362
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    45/362
+STRLEN LF@tmplen LF@s                                                           #    46/362
+SUB LF@tmplen LF@tmplen LF@i                                                    #    47/362
+ADD LF@tmplen LF@tmplen int@1                                                   #    48/362
+PUSHS LF@tmplen                                                                 #    49/362
+PUSHS LF@n                                                                      #    50/362
+LTS                                                                             #    51/362
+POPS LF@result                                                                  #    52/362
+JUMPIFEQ $SubStrReturnRest bool@true LF@result                                  #    53/362
+MOVE LF@tmplen int@0                                                            #    54/362
+STRLEN LF@tmplen LF@s                                                           #    55/362
+SUB LF@tmplen LF@tmplen LF@i                                                    #    56/362
+LABEL $SubStrFor                                                                #    57/362
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    58/362
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    59/362
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    60/362
+STRLEN LF@length LF@%retval                                                     #    61/362
+JUMPIFNEQ $SubStrFor LF@length LF@n                                             #    62/362
+JUMP $substr$epilog                                                             #    63/362
+LABEL $SubStrReturn0                                                            #    64/362
+MOVE LF@%retval string@                                                         #    65/362
+JUMP $substr$epilog                                                             #    66/362
+LABEL $SubStrReturnRest                                                         #    67/362
+GETCHAR LF@tmp2 LF@s LF@tmp1                                                    #    68/362
+CONCAT LF@%retval LF@%retval LF@tmp2                                            #    69/362
+ADD LF@tmp1 LF@tmp1 int@1                                                       #    70/362
+STRLEN LF@length LF@%retval                                                     #    71/362
+JUMPIFNEQ $SubStrReturnRest LF@tmplen LF@length                                 #    72/362
+LABEL $substr$epilog                                                            #    73/362
+POPFRAME                                                                        #    74/362
+RETURN                                                                          #    75/362
+LABEL $asc                                                                      #    76/362
+PUSHFRAME                                                                       #    77/362
+DEFVAR LF@%retval                                                               #    78/362
+MOVE LF@%retval int@0                                                           #    79/362
+DEFVAR LF@result                                                                #    80/362
+MOVE LF@result bool@false                                                       #    81/362
+DEFVAR LF@tmp                                                                   #    82/362
+DEFVAR LF@tmp2                                                                  #    83/362
+MOVE LF@tmp string@                                                             #    84/362
+MOVE LF@tmp2 int@0                                                              #    85/362
+PUSHS LF@i                                                                      #    86/362
+PUSHS int@0                                                                     #    87/362
+PUSHS LF@i                                                                      #    88/362
+PUSHS int@0                                                                     #    89/362
+EQS                                                                             #    90/362
+POPS LF@result                                                                  #    91/362
+LTS                                                                             #    92/362
+PUSHS LF@result                                                                 #    93/362
+ORS                                                                             #    94/362
+POPS LF@result                                                                  #    95/362
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #    96/362
+PUSHS LF@i                                                                      #    97/362
+STRLEN LF@tmp2 LF@s                                                             #    98/362
+PUSHS LF@tmp2                                                                   #    99/362
+GTS                                                                             #   100/362
+POPS LF@result                                                                  #   101/362
+JUMPIFEQ $asc$epilog bool@true LF@result                                        #   102/362
+SUB LF@i LF@i int@1                                                             #   103/362
+GETCHAR LF@tmp LF@s LF@i                                                        #   104/362
+STRI2INT LF@%retval LF@tmp int@0                                                #   105/362
+LABEL $asc$epilog                                                               #   106/362
+POPFRAME                                                                        #   107/362
+RETURN                                                                          #   108/362
+LABEL $chr                                                                      #   109/362
+PUSHFRAME                                                                       #   110/362
+DEFVAR LF@%retval                                                               #   111/362
+MOVE LF@%retval string@                                                         #   112/362
+DEFVAR LF@tmp                                                                   #   113/362
+MOVE LF@tmp string@                                                             #   114/362
+INT2CHAR LF@%retval LF@i                                                        #   115/362
+POPFRAME                                                                        #   116/362
+RETURN                                                                          #   117/362
+LABEL $$main                                                                    #   118/362
+CREATEFRAME                                                                     #   119/362
+PUSHFRAME                                                                       #   120/362
+DEFVAR LF@a                                                                     #   121/362
+DEFVAR LF@&a                                                                    #   122/362
+MOVE LF@&a int@74                                                               #   123/362
+MOVE LF@a LF@&a                                                                 #   124/362
+DEFVAR LF@b                                                                     #   125/362
+DEFVAR LF@&b                                                                    #   126/362
+MOVE LF@&b float@745.745                                                        #   127/362
+MOVE LF@b LF@&b                                                                 #   128/362
+DEFVAR LF@c                                                                     #   129/362
+DEFVAR LF@&c                                                                    #   130/362
+MOVE LF@&c int@0                                                                #   131/362
+PUSHS LF@&c                                                                     #   132/362
+MOVE LF@&c int@123456789                                                        #   133/362
+PUSHS LF@&c                                                                     #   134/362
+SUBS                                                                            #   135/362
+POPS LF@&c                                                                      #   136/362
+INT2FLOAT LF@&c LF@&c                                                           #   137/362
+MOVE LF@c LF@&c                                                                 #   138/362
+DEFVAR LF@d                                                                     #   139/362
+MOVE LF@d float@0.0                                                             #   140/362
+DEFVAR LF@&d                                                                    #   141/362
+MOVE LF@&d LF@a                                                                 #   142/362
+PUSHS LF@&d                                                                     #   143/362
+MOVE LF@&d LF@a                                                                 #   144/362
+PUSHS LF@&d                                                                     #   145/362
+MULS                                                                            #   146/362
+INT2FLOATS                                                                      #   147/362
+MOVE LF@&d LF@b                                                                 #   148/362
+PUSHS LF@&d                                                                     #   149/362
+MOVE LF@&d LF@b                                                                 #   150/362
+PUSHS LF@&d                                                                     #   151/362
+DIVS                                                                            #   152/362
+ADDS                                                                            #   153/362
+MOVE LF@&d LF@b                                                                 #   154/362
+PUSHS LF@&d                                                                     #   155/362
+MOVE LF@&d LF@a                                                                 #   156/362
+PUSHS LF@&d                                                                     #   157/362
+INT2FLOATS                                                                      #   158/362
+MULS                                                                            #   159/362
+SUBS                                                                            #   160/362
+MOVE LF@&d LF@b                                                                 #   161/362
+PUSHS LF@&d                                                                     #   162/362
+MOVE LF@&d LF@a                                                                 #   163/362
+PUSHS LF@&d                                                                     #   164/362
+MOVE LF@&d LF@a                                                                 #   165/362
+PUSHS LF@&d                                                                     #   166/362
+MULS                                                                            #   167/362
+INT2FLOATS                                                                      #   168/362
+MOVE LF@&d LF@b                                                                 #   169/362
+PUSHS LF@&d                                                                     #   170/362
+MOVE LF@&d LF@a                                                                 #   171/362
+PUSHS LF@&d                                                                     #   172/362
+INT2FLOATS                                                                      #   173/362
+MULS                                                                            #   174/362
+ADDS                                                                            #   175/362
+MOVE LF@&d LF@c                                                                 #   176/362
+PUSHS LF@&d                                                                     #   177/362
+MOVE LF@&d int@7                                                                #   178/362
+PUSHS LF@&d                                                                     #   179/362
+INT2FLOATS                                                                      #   180/362
+MULS                                                                            #   181/362
+ADDS                                                                            #   182/362
+MOVE LF@&d int@2                                                                #   183/362
+PUSHS LF@&d                                                                     #   184/362
+MOVE LF@&d int@5                                                                #   185/362
+PUSHS LF@&d                                                                     #   186/362
+MULS                                                                            #   187/362
+INT2FLOATS                                                                      #   188/362
+MOVE LF@&d LF@b                                                                 #   189/362
+PUSHS LF@&d                                                                     #   190/362
+MULS                                                                            #   191/362
+ADDS                                                                            #   192/362
+MULS                                                                            #   193/362
+MOVE LF@&d LF@b                                                                 #   194/362
+PUSHS LF@&d                                                                     #   195/362
+MOVE LF@&d int@78                                                               #   196/362
+PUSHS LF@&d                                                                     #   197/362
+INT2FLOATS                                                                      #   198/362
+MULS                                                                            #   199/362
+MOVE LF@&d int@96                                                               #   200/362
+PUSHS LF@&d                                                                     #   201/362
+INT2FLOATS                                                                      #   202/362
+MULS                                                                            #   203/362
+SUBS                                                                            #   204/362
+MOVE LF@&d LF@b                                                                 #   205/362
+PUSHS LF@&d                                                                     #   206/362
+MOVE LF@&d LF@a                                                                 #   207/362
+PUSHS LF@&d                                                                     #   208/362
+INT2FLOATS                                                                      #   209/362
+MULS                                                                            #   210/362
+SUBS                                                                            #   211/362
+MOVE LF@&d LF@b                                                                 #   212/362
+PUSHS LF@&d                                                                     #   213/362
+MOVE LF@&d LF@c                                                                 #   214/362
+PUSHS LF@&d                                                                     #   215/362
+ADDS                                                                            #   216/362
+MOVE LF@&d LF@b                                                                 #   217/362
+PUSHS LF@&d                                                                     #   218/362
+ADDS                                                                            #   219/362
+MOVE LF@&d LF@c                                                                 #   220/362
+PUSHS LF@&d                                                                     #   221/362
+ADDS                                                                            #   222/362
+MOVE LF@&d LF@b                                                                 #   223/362
+PUSHS LF@&d                                                                     #   224/362
+ADDS                                                                            #   225/362
+MOVE LF@&d LF@c                                                                 #   226/362
+PUSHS LF@&d                                                                     #   227/362
+ADDS                                                                            #   228/362
+ADDS                                                                            #   229/362
+MOVE LF@&d LF@c                                                                 #   230/362
+PUSHS LF@&d                                                                     #   231/362
+DIVS                                                                            #   232/362
+ADDS                                                                            #   233/362
+POPS LF@&d                                                                      #   234/362
+MOVE LF@c LF@&d                                                                 #   235/362
+DEFVAR LF@&e                                                                    #   236/362
+MOVE LF@&e LF@c                                                                 #   237/362
+WRITE LF@&e                                                                     #   238/362
+DEFVAR LF@&f                                                                    #   239/362
+MOVE LF@&f string@\010                                                          #   240/362
+WRITE LF@&f                                                                     #   241/362
+DEFVAR LF@&g                                                                    #   242/362
+MOVE LF@&g LF@a                                                                 #   243/362
+PUSHS LF@&g                                                                     #   244/362
+INT2FLOATS                                                                      #   245/362
+MOVE LF@&g LF@b                                                                 #   246/362
+PUSHS LF@&g                                                                     #   247/362
+MOVE LF@&g LF@c                                                                 #   248/362
+PUSHS LF@&g                                                                     #   249/362
+DIVS                                                                            #   250/362
+ADDS                                                                            #   251/362
+MOVE LF@&g int@7                                                                #   252/362
+PUSHS LF@&g                                                                     #   253/362
+INT2FLOATS                                                                      #   254/362
+MOVE LF@&g LF@b                                                                 #   255/362
+PUSHS LF@&g                                                                     #   256/362
+ADDS                                                                            #   257/362
+MOVE LF@&g int@0                                                                #   258/362
+PUSHS LF@&g                                                                     #   259/362
+INT2FLOATS                                                                      #   260/362
+MOVE LF@&g int@2                                                                #   261/362
+PUSHS LF@&g                                                                     #   262/362
+INT2FLOATS                                                                      #   263/362
+MOVE LF@&g int@4                                                                #   264/362
+PUSHS LF@&g                                                                     #   265/362
+MOVE LF@&g LF@a                                                                 #   266/362
+PUSHS LF@&g                                                                     #   267/362
+SUBS                                                                            #   268/362
+INT2FLOATS                                                                      #   269/362
+MOVE LF@&g int@8                                                                #   270/362
+PUSHS LF@&g                                                                     #   271/362
+MOVE LF@&g int@9                                                                #   272/362
+PUSHS LF@&g                                                                     #   273/362
+MULS                                                                            #   274/362
+INT2FLOATS                                                                      #   275/362
+MOVE LF@&g LF@c                                                                 #   276/362
+PUSHS LF@&g                                                                     #   277/362
+MOVE LF@&g int@74                                                               #   278/362
+PUSHS LF@&g                                                                     #   279/362
+INT2FLOATS                                                                      #   280/362
+MULS                                                                            #   281/362
+MOVE LF@&g LF@c                                                                 #   282/362
+PUSHS LF@&g                                                                     #   283/362
+SUBS                                                                            #   284/362
+MOVE LF@&g LF@c                                                                 #   285/362
+PUSHS LF@&g                                                                     #   286/362
+MOVE LF@&g LF@b                                                                 #   287/362
+PUSHS LF@&g                                                                     #   288/362
+MOVE LF@&g int@8                                                                #   289/362
+PUSHS LF@&g                                                                     #   290/362
+INT2FLOATS                                                                      #   291/362
+MULS                                                                            #   292/362
+MOVE LF@&g int@4                                                                #   293/362
+PUSHS LF@&g                                                                     #   294/362
+INT2FLOATS                                                                      #   295/362
+ADDS                                                                            #   296/362
+MULS                                                                            #   297/362
+ADDS                                                                            #   298/362
+MOVE LF@&g LF@b                                                                 #   299/362
+PUSHS LF@&g                                                                     #   300/362
+MOVE LF@&g LF@a                                                                 #   301/362
+PUSHS LF@&g                                                                     #   302/362
+INT2FLOATS                                                                      #   303/362
+MULS                                                                            #   304/362
+MOVE LF@&g LF@c                                                                 #   305/362
+PUSHS LF@&g                                                                     #   306/362
+DIVS                                                                            #   307/362
+ADDS                                                                            #   308/362
+MOVE LF@&g int@7                                                                #   309/362
+PUSHS LF@&g                                                                     #   310/362
+INT2FLOATS                                                                      #   311/362
+ADDS                                                                            #   312/362
+DIVS                                                                            #   313/362
+ADDS                                                                            #   314/362
+MOVE LF@&g LF@a                                                                 #   315/362
+PUSHS LF@&g                                                                     #   316/362
+INT2FLOATS                                                                      #   317/362
+SUBS                                                                            #   318/362
+MOVE LF@&g int@7                                                                #   319/362
+PUSHS LF@&g                                                                     #   320/362
+INT2FLOATS                                                                      #   321/362
+ADDS                                                                            #   322/362
+MULS                                                                            #   323/362
+MOVE LF@&g LF@a                                                                 #   324/362
+PUSHS LF@&g                                                                     #   325/362
+INT2FLOATS                                                                      #   326/362
+MOVE LF@&g LF@b                                                                 #   327/362
+PUSHS LF@&g                                                                     #   328/362
+MULS                                                                            #   329/362
+MOVE LF@&g LF@b                                                                 #   330/362
+PUSHS LF@&g                                                                     #   331/362
+DIVS                                                                            #   332/362
+SUBS                                                                            #   333/362
+DIVS                                                                            #   334/362
+SUBS                                                                            #   335/362
+MOVE LF@&g int@1                                                                #   336/362
+PUSHS LF@&g                                                                     #   337/362
+INT2FLOATS                                                                      #   338/362
+ADDS                                                                            #   339/362
+MOVE LF@&g int@4                                                                #   340/362
+PUSHS LF@&g                                                                     #   341/362
+INT2FLOATS                                                                      #   342/362
+DIVS                                                                            #   343/362
+SUBS                                                                            #   344/362
+POPS LF@&g                                                                      #   345/362
+MOVE LF@d LF@&g                                                                 #   346/362
+DEFVAR LF@&h                                                                    #   347/362
+MOVE LF@&h LF@d                                                                 #   348/362
+PUSHS LF@&h                                                                     #   349/362
+MOVE LF@&h int@2                                                                #   350/362
+PUSHS LF@&h                                                                     #   351/362
+INT2FLOATS                                                                      #   352/362
+MOVE LF@&h LF@d                                                                 #   353/362
+PUSHS LF@&h                                                                     #   354/362
+MULS                                                                            #   355/362
+SUBS                                                                            #   356/362
+POPS LF@&h                                                                      #   357/362
+MOVE LF@d LF@&h                                                                 #   358/362
+DEFVAR LF@&i                                                                    #   359/362
+MOVE LF@&i LF@d                                                                 #   360/362
+WRITE LF@&i                                                                     #   361/362
+POPFRAME                                                                        #   362/362
 

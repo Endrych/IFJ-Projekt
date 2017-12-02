@@ -5,6 +5,7 @@
  * David Endrych - xendry02
  */
 
+ // ASSIGN DECLERATION RETURN
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,11 +49,11 @@ void generate_program(ATQueue *queue){
         GenValue value = item->GenValue;
         GenType type = item->GenType;
         if(type == gt_var_declar)
-            generate_variable_declaration(value.var_declar_input->id,value.var_declar_input->expr);
+            generate_variable_declaration(value.var_declar_input->id,value.var_declar_input->expr, value.var_declar_input->expr_type);
         else if(type == gt_func_declar)
             generate_function(value.func_declar_input->sym_item,(ATQueue*)value.func_declar_input->queue);
         else if(type == gt_assign)
-            generate_assign(value.assign_input->id,value.assign_input->expr);
+            generate_assign(value.assign_input->id,value.assign_input->expr, value.assign_input->expr_type);
         else if(type == gt_input)
             generate_input(value.id);
         else if(type == gt_print)
@@ -84,10 +85,20 @@ void generate_main(ATQueue * queue){
     pop_frame(frame_stack);
 }
 
-void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
+void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr, Tvariable_type expr_type){
     fprintf(stdout, "DEFVAR LF@%s\n", id->key);
     if(expr != NULL){
         char *e = generate_expression(expr);
+        if(id->type_strct.variable->type == type_int){
+            if(expr_type == type_doub){
+                fprintf(stdout,"FLOAT2R2EINT LF@%s LF@%s\n",e,e);
+            }
+        }
+        else if(id->type_strct.variable->type == type_doub){
+            if(expr_type == type_int){
+                fprintf(stdout,"INT2FLOAT LF@%s LF@%s\n",e,e);
+            }
+        }
         fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
     }
     else{
@@ -113,8 +124,18 @@ void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr){
     add_var_to_frame(tmp,item);
 }
 
-void generate_assign(Tsymtab_item* id, ATLeaf * expr){
+void generate_assign(Tsymtab_item* id, ATLeaf * expr, Tvariable_type expr_type){
     char *e = generate_expression(expr);
+    if(id->type_strct.variable->type == type_int){
+        if(expr_type == type_doub){
+            fprintf(stdout,"FLOAT2R2EINT LF@%s LF@%s\n",e,e);
+        }
+    }
+    else if(id->type_strct.variable->type == type_doub){
+        if(expr_type == type_int){
+            fprintf(stdout,"INT2FLOAT LF@%s LF@%s\n",e,e);
+        }
+    }
     fprintf(stdout, "MOVE LF@%s LF@%s\n", id->key, e);
 }
 

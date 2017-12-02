@@ -52,6 +52,7 @@ typedef enum{
 typedef struct{
     Tsymtab_item * id;
     ATLeaf * expr;
+    Tvariable_type expr_type;
 }VarDeclarInput;
 
 typedef struct{
@@ -62,6 +63,7 @@ typedef struct{
 typedef struct{
     ATLeaf * expr;
     Tsymtab_item * id;
+    Tvariable_type expr_type;
 }AssignInput;
 
 typedef struct{
