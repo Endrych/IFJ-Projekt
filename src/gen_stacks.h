@@ -25,41 +25,41 @@ typedef struct GPStack{
 } GPStack;
 
 /**
- * [gsptr_stackInit description]
- * @param s [description]
+ * Nastavi vrchol zasobniku na NULL
+ *  @param s ukazatel na zasobnik
  */
 void gsptr_stackInit(GPStack *s);
 
 /**
- * [gsptr_stackPush description]
- * @param s    [description]
- * @param leaf [description]
+ * Vlozi na vrchol zasobnik ukazatel na uzel abstraktniho stromu
+ * @param s    ukazatel na zasobnik
+ * @param leaf ukazatel na uzel abstraktniho stromu
  */
 void gsptr_stackPush(GPStack* s, ATLeaf* leaf);
 
 /**
- * [gsptr_stackEmpty description]
- * @param  s [description]
- * @return   [description]
+ * Provede kontrolu zda je zasobnik prazdny
+ * @param  s ukazatel na zasobnik
+ * @return vrati true pokud je zasobnik prazdny jinak vrati false
  */
 int gsptr_stackEmpty(const GPStack *s);
 
 /**
- * [gsptr_stackTop description]
- * @param  s [description]
- * @return   [description]
+ * Vraci ukazatel uzel abstraktniho stromu na vrcholu zasobniku
+ * @param  s ukazatel na zasobnik
+ * @return   ukazatel na uzel abstraktniho stromu
  */
 ATLeaf* gsptr_stackTop(const GPStack *s);
 
 /**
- * [gsptr_stackPop description]
- * @param s [description]
+ * Odstrani hodnotu z vrcholu zasobniku a provede jeji uvolneni
+ * @param s ukazatel na zasobnik
  */
 void gsptr_stackPop(GPStack *s);
 
 /**
- * [gsptr_stackDestruct description]
- * @param s [description]
+ * Uvolni vsechny hodnoty ze zasobniku
+ * @param s ukazatel na zasobnik
  */
 void gsptr_stackDestruct(GPStack *s);
 

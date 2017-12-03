@@ -48,10 +48,10 @@ typedef struct{
 }ATData;
 
 // Struktura ASS
-// processed
-// data
-// left
-// right
+// processed znaci zda byl uzel jiz zpracovan
+// data hodnota, kterou obsahuje uzel ASS
+// left ukazatel na levou vetev ASS
+// right ukazatel na pravou vetev ASS
 typedef struct atleaf{
     bool processed;
     ATData data;
@@ -60,24 +60,24 @@ typedef struct atleaf{
 }ATLeaf;
 
 /**
- * [make_leaf description]
- * @param  data [description]
- * @return      [description]
+ * Vytvori novy uzel ASS
+ * @param  data hodnota, ktera je prirazena novemu uzlu ASS
+ * @return      ukazatel na novy uzel ASS
  */
 ATLeaf *make_leaf(ATData data);
 
 /**
- * [make_tree description]
- * @param  leaf_1 [description]
- * @param  leaf_2 [description]
- * @param  data   [description]
- * @return        [description]
+ * Navaze na sebe jednotlive uzly ASS 
+ * @param  leaf_1 navaze uzel jako levou vetev
+ * @param  leaf_2 navaze uzel jako pravou vetev
+ * @param  data   hodnota, ktera je prirazena korenovemu uzlu
+ * @return        vrati ukazatel na nove vytvoreny korenovy uzel
  */
 ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data);
 
 /**
- * [dispose_at description]
- * @param leaf [description]
+ * Postupne uvolni cely ASS
+ * @param leaf ukazatale na ASS
  */
 void dispose_at(ATLeaf *leaf);
 #endif
