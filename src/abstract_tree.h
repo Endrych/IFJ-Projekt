@@ -19,7 +19,7 @@ typedef enum{
     Double2Integer1
 }TCast;
 
-// Typ 
+// Typ polozky ASS
 typedef enum{
     at_operators,
     at_token,
@@ -27,7 +27,11 @@ typedef enum{
     at_type_cast
 }ATType;
 
-//
+// Hodnota polozky ASS
+// op_value Ulozeni hodnoty operatoru
+// token Ulozeni tokenu
+// tsItem Ulozeni ukazatele do TS
+// type_cast Ulozeni hodnoty pretypovani
 typedef union{
     Operators op_value;
     Token * token;
@@ -35,13 +39,19 @@ typedef union{
     TCast type_cast;
 }ATAtribute;
 
-//
+// Struktura polozky ASS
+// type Typ polozky
+// Atr Hodnota polozky
 typedef struct{
     ATType type;
     ATAtribute Atr;
 }ATData;
 
-//
+// Struktura ASS
+// processed
+// data
+// left
+// right
 typedef struct atleaf{
     bool processed;
     ATData data;
