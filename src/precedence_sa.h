@@ -14,7 +14,7 @@
 #define PRECEDENCE_H
 
 // Struktura pro vystup precedencni analyzy
-// StatusCode
+// StatusCode Informace o uspechu analyzy
 // Type Typ vysledku vyrazu
 // ReturnToken Zbyvajici nezpracovany Token
 // Tree Ukazatel na strom vyrazu
