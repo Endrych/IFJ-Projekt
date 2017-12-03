@@ -11,8 +11,9 @@
 #define LEXICAL_H
 
 /**
- * [get_token description]
- * @return [description]
+ * Slouzi ke zpracovani jednotlivych lexemu ze vstupu programu. 
+ * Funkce rozpozna o jaky typ lexemu se jedna a vrati token s danou informaci.
+ * @return funkce vraci token s informacemi o zpracovanem lexemu
  */
 Token* get_token();
 
