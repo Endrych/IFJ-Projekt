@@ -12,14 +12,14 @@
 #ifndef ATREE_H
 #define ATREE_H
 
-//
+// Hodnota pretypovani
 typedef enum{
     Integer2Double,
     Double2Integer,
     Double2Integer1
 }TCast;
 
-//
+// Typ 
 typedef enum{
     at_operators,
     at_token,
