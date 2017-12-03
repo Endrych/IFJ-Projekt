@@ -10,6 +10,10 @@
 #ifndef LEXICAL_H
 #define LEXICAL_H
 
+/**
+ * [get_token description]
+ * @return [description]
+ */
 Token* get_token();
 
 #endif

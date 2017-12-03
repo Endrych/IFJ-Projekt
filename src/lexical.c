@@ -14,8 +14,6 @@
 #include "destructor.h"
 #include "error.h"
 
-//TODO: TESTS
-
 typedef enum{
 	_START,
 	_LINE_COMMENT,
@@ -23,11 +21,11 @@ typedef enum{
 	_BLOCK_COMMENT_FINISHED, //mozna neni treba
 	_SLASH,
 	_NUMBER,
-	_NUM_DOUBLE,  // 
+	_NUM_DOUBLE,  //
 	_EXCLAMATION,
 	_START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
 	_END_STRING, //
-	_IDENTIFIER, 
+	_IDENTIFIER,
 	_ASSIGN,
 	_ADD,
 	_SUB,
@@ -61,10 +59,10 @@ Token* get_token(){
 	int size = 10;  //udelat konstantu
 	char *str;
 	char current_char = '\0';
-	char lowering;			
+	char lowering;
 	bool is_last_minus = false;
 	bool is_last_plus = false;
-	bool is_dot_last = false;		
+	bool is_dot_last = false;
 	bool e_present = false;
 	bool dot_present = false;
 	bool e_last_char = false;
@@ -94,23 +92,23 @@ Token* get_token(){
 				state = _LINE_COMMENT;
 				}
 				else if(current_char == '/'){
-				state = _SLASH;                    
+				state = _SLASH;
 				}
 				else if(current_char >= '0' && current_char <= '9'){
-					last_char = current_char;		
+					last_char = current_char;
 					str=(char*)calloc(size,sizeof(char));
 					if (str == NULL)
 					{
 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
        					dispose_global();
-					}		
+					}
 					state = _NUMBER;
 				}
 				else if(current_char == '!'){
 					state = _EXCLAMATION;
 				}
 				else if((current_char >= 'a' && current_char <= 'z') ||
-				(current_char >= 'A' && current_char <= 'Z') || 
+				(current_char >= 'A' && current_char <= 'Z') ||
 				current_char == '_'){
 					state = _IDENTIFIER;
 					str=(char*)calloc(size,sizeof(char));
@@ -118,7 +116,7 @@ Token* get_token(){
 					{
 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         				dispose_global();
-					}					
+					}
 					last_char = current_char;
 				}
 				else if(current_char == '='){
@@ -155,18 +153,18 @@ Token* get_token(){
 				else if (current_char == '('){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket;
-					return token; 
+					return token;
 				}
 				else if (current_char == ')'){
 					token->type = type_operator;
 					token->atribute.operator_value = op_bracket_end;
-					return token;	
+					return token;
 				}
 				else if (current_char == EOF){
 					state = _EOF;
-					last_char = current_char;                    
+					last_char = current_char;
 				}
-				else if(current_char == ' ' || 
+				else if(current_char == ' ' ||
 					current_char == '\t'){
 					state = _START;
 				}
@@ -216,7 +214,7 @@ Token* get_token(){
 					free(token);
 					print_error(LEXICAL_ERROR);
 				}
-				prev_char = current_char;				
+				prev_char = current_char;
 				break;
 			case _NUMBER:
 				if(current_char == '\n' || current_char == ' ' ||
@@ -226,7 +224,7 @@ Token* get_token(){
 				current_char == '-' || current_char == '/' ||
 				current_char == '\\' || current_char == '*' ||
 				current_char == ';' || current_char == ','||
-				current_char == ')' || current_char == '(' || 
+				current_char == ')' || current_char == '(' ||
 				current_char == '\''){
 					int convert;
 					convert = atoi(str);
@@ -237,14 +235,14 @@ Token* get_token(){
 					free(str);
 					return token;
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
-				(current_char != '.' && current_char != 'e' && 
+				(current_char != '.' && current_char != 'e' &&
 				current_char != 'E')){
 					fprintf(stderr, "Error1: not a number\n");
  					free(token);
 					free(str);
 					print_error(LEXICAL_ERROR);
 				}
-				else if(current_char == '.' || 
+				else if(current_char == '.' ||
 				current_char == 'e' ||
 				current_char == 'E'){
 					if(current_char == '.'){
@@ -261,8 +259,8 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         					dispose_global();
-						}		
-				  	}		
+						}
+				  	}
 					str[length] = current_char;
 					length++;
 					state = _NUM_DOUBLE;
@@ -276,7 +274,7 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         					dispose_global();
-						}		
+						}
 					}
 					str[length] = current_char;
 					length++;
@@ -287,9 +285,9 @@ Token* get_token(){
 				if(current_char == '\n' || current_char == ' ' ||
 				current_char == EOF || current_char == '\t' ||
 				((current_char == '+' || current_char == '-') &&
-				!e_last_char) || current_char == '<' || 
-				current_char == '>' || current_char == '=' || 
-				current_char == '/' || current_char == '\\' 
+				!e_last_char) || current_char == '<' ||
+				current_char == '>' || current_char == '=' ||
+				current_char == '/' || current_char == '\\'
 				|| current_char == '*' || current_char == ';' ||
 				current_char == ','|| current_char == ')' ||
 				current_char == '(' || current_char == '\''){
@@ -307,7 +305,7 @@ Token* get_token(){
 					free(str);
 					return token;
 				}else if((!(current_char >= '0' && current_char <= '9'))&&
-				(current_char != '.' && current_char != 'e' && 
+				(current_char != '.' && current_char != 'e' &&
 				current_char != 'E') && current_char != '+' &&
 				current_char != '-'){
 					fprintf(stderr, "Error1: not a number\n");
@@ -338,7 +336,7 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         					dispose_global();
-						}		
+						}
 					}
 					str[length] = current_char;
 					length++;
@@ -373,20 +371,20 @@ Token* get_token(){
 				}
 			case _EXCLAMATION:
 				if(current_char == '\"'){
-					str=(char*)calloc(size,sizeof(char));	
+					str=(char*)calloc(size,sizeof(char));
 					if (str == NULL)
 					{
 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
        					dispose_global();
-					}						
+					}
 					state = _START_STRING;
 					break;
-				}			
+				}
 				else{
 					fprintf(stderr, "Problem with string inicialization\n");
 					free(token);
 					print_error(LEXICAL_ERROR);
-				}	
+				}
 			case _START_STRING:
 				if((current_char != '\"' && current_char != '\n' && current_char != EOF) || (current_char == '\"' && string_end == false && (esc_seq_iter > 0))){
 					// add to array
@@ -408,12 +406,12 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
        						dispose_global();
-						}		
+						}
 					}
 					str_to_int = (int)current_char;
 					if(str_to_int == 92 || esc_active){
 						esc_active = true;
-						if((str_to_int >= 0 && str_to_int <= 32) || 
+						if((str_to_int >= 0 && str_to_int <= 32) ||
 						str_to_int == 35){
 							esc_active = false;
 							last_char = current_char;
@@ -455,7 +453,7 @@ Token* get_token(){
 								if(str_to_int < 48 || str_to_int > 53){
 									esc_active = false;
 								}
-								
+
 							}
 							else if(str_to_int < 48 || str_to_int > 57){
 								esc_active = false;
@@ -491,16 +489,16 @@ Token* get_token(){
 									{
 										fprintf(stderr, "%s\n", COMPILER_MESSAGE);
        									dispose_global();
-									}		
+									}
 								}
 								str[length] = escape_seq[i];
 								length++;
 								i++;
 							}
 							esc_seq_iter = 0;
-							esc_active = false;		
+							esc_active = false;
 							first_is_2 = false;
-							second_is_5 = false;					
+							second_is_5 = false;
 						}
 						else if(_new_line == true || _tab == true || _quotation_mark == true || _backslash == true){
 							if(_new_line == true){
@@ -545,9 +543,9 @@ Token* get_token(){
 							_tab = false;
 							_backslash = false;
 							esc_seq_iter = 0;
-							esc_active = false;		
+							esc_active = false;
 							first_is_2 = false;
-							second_is_5 = false;	
+							second_is_5 = false;
 						}
 						else if(esc_active == false){
 							fprintf(stderr,"Error: Unrecognized escape sequence\n");
@@ -581,7 +579,7 @@ Token* get_token(){
 						length++;
 						break;
 					}
-					
+
 				}else if(current_char == '\n' || current_char == EOF){
 					fprintf(stderr,"Error: String wasnt ended properly\n");
 					free(token);
@@ -600,7 +598,7 @@ Token* get_token(){
 					{
 						fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         				dispose_global();
-					}		
+					}
 				}
 				str[length] = '\0';
 				length++;
@@ -612,7 +610,7 @@ Token* get_token(){
 			case _IDENTIFIER:
 				if((current_char >= 'a' && current_char <= 'z') ||
 				(current_char >= 'A' && current_char <= 'Z') ||
-				(current_char >= '0' && current_char <= '9') || 
+				(current_char >= '0' && current_char <= '9') ||
 				current_char == '_'){
 					if(length == size){
 						size += 10;
@@ -621,14 +619,14 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         					dispose_global();
-						}		
+						}
 					}
 					lowering = tolower(current_char);
 					str[length] = lowering;
 					length++;
 					break;
 				}else if(current_char == '\n' || current_char == ' ' ||
-				current_char == EOF || current_char == '\t' || 
+				current_char == EOF || current_char == '\t' ||
 				current_char == '<' || current_char == '>' ||
 				current_char == '=' || current_char == '/' ||
 				current_char == '\\' || current_char == '*' ||
@@ -648,7 +646,7 @@ Token* get_token(){
 						{
 							fprintf(stderr, "%s\n", COMPILER_MESSAGE);
         					dispose_global();
-						}		
+						}
 					}
 					str[length] = '\0';
 					length++;
@@ -713,7 +711,7 @@ Token* get_token(){
 				last_char = current_char;
 				return token;
 			case _EOF:
-				token->type = type_eof;				
+				token->type = type_eof;
 				return token;
 		}
 	}
