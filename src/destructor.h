@@ -15,15 +15,27 @@
 #ifndef DESTRUCTOR_H
 #define DESTRUCTOR_H
 
+/**
+ * [dispose_all description]
+ * @param stack       [description]
+ * @param leaf        [description]
+ * @param s           [description]
+ * @param s2          [description]
+ * @param frame_stack [description]
+ * @param s3          [description]
+ */
 void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *frame_stack, GPStack *s3);
 
-/* 
+/**
  * Pouziti pri chybe prekladace
  * napr. pri spatne alokaci pameti
  * uvolni pamet globalnich promennych a da exit(99)
  */
 void dispose();
-void dispose_global();
 
+/**
+ * [dispose_global description]
+ */
+void dispose_global();
 
 #endif /* DESTRUCTOR_H */

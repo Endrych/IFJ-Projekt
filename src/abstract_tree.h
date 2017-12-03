@@ -12,13 +12,14 @@
 #ifndef ATREE_H
 #define ATREE_H
 
+//
 typedef enum{
     Integer2Double,
     Double2Integer,
     Double2Integer1
 }TCast;
 
-
+//
 typedef enum{
     at_operators,
     at_token,
@@ -26,6 +27,7 @@ typedef enum{
     at_type_cast
 }ATType;
 
+//
 typedef union{
     Operators op_value;
     Token * token;
@@ -33,11 +35,13 @@ typedef union{
     TCast type_cast;
 }ATAtribute;
 
+//
 typedef struct{
     ATType type;
     ATAtribute Atr;
 }ATData;
 
+//
 typedef struct atleaf{
     bool processed;
     ATData data;
@@ -45,7 +49,25 @@ typedef struct atleaf{
     struct atleaf *right;
 }ATLeaf;
 
+/**
+ * [make_leaf description]
+ * @param  data [description]
+ * @return      [description]
+ */
 ATLeaf *make_leaf(ATData data);
+
+/**
+ * [make_tree description]
+ * @param  leaf_1 [description]
+ * @param  leaf_2 [description]
+ * @param  data   [description]
+ * @return        [description]
+ */
 ATLeaf *make_tree(ATLeaf *leaf_1, ATLeaf *leaf_2, ATData data);
-void dispose_at(ATLeaf *leaf);    
+
+/**
+ * [dispose_at description]
+ * @param leaf [description]
+ */
+void dispose_at(ATLeaf *leaf);
 #endif

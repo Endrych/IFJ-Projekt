@@ -8,6 +8,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+// Typ tokenu
 typedef enum{
     type_id,
     type_keyword,
@@ -22,6 +23,7 @@ typedef enum{
     type_comma,
 }Type;
 
+// Pro ulozeni hodnoty klicovych slov
 typedef enum{
     kw_and,
     kw_as,
@@ -60,6 +62,7 @@ typedef enum{
     kw_while
 }Keywords;
 
+// Pro ulozeni hodnoty operatoru
 typedef enum{
     op_assign,
     op_add,
@@ -76,6 +79,11 @@ typedef enum{
     op_greater_equal
 }Operators;
 
+// Ukladaji se hodnoty tokenu
+// Keywords Ulozena hodnota tokenu, ktery reprezentuje klicove slovo
+// int_value Ulozena hodnota tokenu, ktery reprezentuje integer, string nebo identifikator
+// double_value Ulozena hodnota tokenu, ktery reprezentuje double
+// Operators Ulozena hodnota tokenu, ktery reprezentuje nejaky operator
 typedef union{
     Keywords keyword_value;
     int int_value;
@@ -83,15 +91,36 @@ typedef union{
     Operators operator_value;
 }Atribute;
 
+// Struktura tokenu
+// type Typ tokenu
+// Atribute Hodnota tokenu
 typedef struct{
     Type type;
     Atribute atribute;
 }Token;
 
-
+/**
+ * Funkce vytvori token
+ * @return Vraci ukazatel na vytvoreny token
+ */
 Token* create_token();
+
+/**
+ * Funkce urcuje jestli se jedna o klicove slove nebo identifikator
+ * @param  text Ukazatel na retezec, ktery se ma vyhodnotit
+ * @return  Vrati -1 pokud se jedna o klicove slovo, jinak
+ *          vrati hodnotu z enumu Keywords
+ */
 int is_keyword(char* text);
+
+/**
+ * Funkce zrusi token
+ * @param token Ukazatel na token, ktery chceme zrusit
+ */
 void destruct_token(Token* token);
+
+/**
+ * Funkce znici vsechny tokeny
+ */
 void destruct_token_storage();
 #endif // TOKEN_H
-

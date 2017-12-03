@@ -29,6 +29,10 @@
 #define COMPILER_ERROR 99
 #define COMPILER_MESSAGE "Compiler error: inner error of the compiler (probably fail of memory allocation)."
 
+/**
+ * [print_error description]
+ * @param error_code [description]
+ */
 void print_error(int error_code);
 
 #endif // ERROR_H
