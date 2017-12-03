@@ -11,7 +11,7 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
-//
+// Typ pro generovani nazvu
 typedef enum{
     gt_variable,
     gt_label
@@ -26,25 +26,21 @@ char * generate_name(GType type);
 
 /**
  * Funkce generuje vestavenou funkci Asc
- *
  */
 void generate_Asc();
 
 /**
  * Funkce generuje vestavenou funkci Length
- *
  */
 void generate_Length();
 
 /**
  * Funkce generuje vestavenou funkci SubStr
- *
  */
 void generate_SubStr();
 
 /**
  * Funkce generuje vestavenou funkci Chr
- *
  */
 void generate_Chr();
 
@@ -54,104 +50,92 @@ void generate_Chr();
 void generate_built_in();
 
 /**
- * [generate_main description]
- * @param queue [description]
+ * Funkce vygeneruje main funkci
+ * @param queue Fronta obsahujici blok scopu
  */
 void generate_main(ATQueue * queue);
 
 /**
- * [generate_start description]
- * @param queue [description]
+ * Vstupni funkce pro generovani
+ * @param queue Hlavni fronta
  */
 void generate_start(ATQueue *queue);
 
 /**
- * [generate_program description]
- * @param queue [description]
+ * Funkce generuje blok kodu
+ * @param queue Front obsahujici blok kodu
  */
 void generate_program(ATQueue *queue);
 
 /**
- * [generate_variable_declaration description]
- * @param id        [description]
- * @param expr      [description]
- * @param expr_type [description]
+ * Funkce generuje deklaraci promenne a muze i vygenerovat prirazeni hodnoty promenne
+ * @param id  Ukazatel do TS na promennou
+ * @param expr Ukazatel na ASS vyrazu
+ * @param expr_type Datovy typ vyrazu
  */
 void generate_variable_declaration(Tsymtab_item * id, ATLeaf * expr, Tvariable_type expr_type);
 
 /**
- * [generate_assign description]
- * @param id        [description]
- * @param expr      [description]
- * @param expr_type [description]
+ * Funkce generuje prirazeni vyrazu do promenne
+ * @param id Ukazatel do TS na promennou
+ * @param expr Ukazatel na ASS vyrazu
+ * @param expr_type Datovy typ vyrazu
  */
 void generate_assign(Tsymtab_item* id, ATLeaf * expr, Tvariable_type expr_type);
 
 /**
- * [generate_input description]
- * @param id [description]
+ * Funkce generuje nacteni hodnoty do promenne
+ * @param id Ukazatel do TS na promennou
  */
 void generate_input(Tsymtab_item * id);
 
 /**
- * [generate_print description]
- * @param exprs [description]
+ * Funkce generuje vypis vyrazu
+ * @param exprs Fronta vyrazu
  */
 void generate_print(eQueue * exprs);
 
 /**
- * [generate_call_function description]
- * @param id       [description]
- * @param sym_item [description]
- * @param param    [description]
+ * Funkce generuje volani funkce
+ * @param id Ukazatel do TS na promennou do ktere se uklada vysledek volani funkce
+ * @param sym_item Ukazatel do TS na funkci
+ * @param param Fronta parametru
  */
 void generate_call_function(Tsymtab_item * id, Tsymtab_item * sym_item, eQueue * param);
 
 /**
- * [generate_return description]
- * @param sym_item [description]
- * @param expr     [description]
+ * Funkce generuje prikaz navratu z funkce
+ * @param sym_item Ukazatel do TS na funkci
+ * @param expr Ukazatel na vystup precedencni analyzy
  */
 void generate_return(Tsymtab_item * sym_item, PrecendentOutput * expr);
 
 /**
- * [open_output description]
- */
-void open_output();
-
-/**
- * [generate_expression description]
- * @param  leaf [description]
- * @return      [description]
+ * Funkce generuje vyrazy
+ * @param  leaf Ukazatel na ASS vyrazu
+ * @return  Vraci Ukazatel na nazev promenne ve ktere je ulozen vysledek vyrazu
  */
 char * generate_expression(ATLeaf *leaf);
 
 /**
- * [generate_if description]
- * @param condition   [description]
- * @param state_true  [description]
- * @param state_false [description]
+ * Funkce generuje podminku
+ * @param condition Ukazatel na ASS podminky
+ * @param state_true  Fronta bloku pokud je podminka pravdiva
+ * @param state_false Fronta bloku pokud neni podminka pravdiva
  */
 void generate_if(ATLeaf * condition, ATQueue * state_true, ATQueue * state_false);
 
 /**
- * [generate_condition description]
- * @param leaf  [description]
- * @param label [description]
- */
-void generate_condition(ATLeaf *leaf, char* label);
-
-/**
- * [generate_while description]
- * @param condition [description]
- * @param state     [description]
+ * Funkce generuje cyklus
+ * @param condition Ukazatel na ASS podminky
+ * @param state Fronta bloku cyklu
  */
 void generate_while(ATLeaf * condition, ATQueue * state);
 
 /**
- * [generate_function description]
- * @param item  [description]
- * @param state [description]
+ * Funkce generuje funkci
+ * @param item Ukazatel do TS na funkci
+ * @param state Fronta bloku funkce
  */
 void generate_function(Tsymtab_item * item, ATQueue * state);
 #endif

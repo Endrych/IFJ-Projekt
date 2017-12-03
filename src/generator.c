@@ -36,7 +36,6 @@
         create_frame();
         push_frame(frame_stack,NULL,0);
         fprintf(stdout,".IFJcode17\nJUMP $$main\n");
-        open_output();
         generate_built_in();
         generate_program(queue);
         create_frame();
@@ -103,13 +102,13 @@
         }
         else{
             if(id->type_strct.variable->type == type_int){
-                fprintf(stdout, "MOVE LF@%s int@0\n",id->key);  
+                fprintf(stdout, "MOVE LF@%s int@0\n",id->key);
             }
             else if(id->type_strct.variable->type == type_doub){
-                fprintf(stdout, "MOVE LF@%s float@0.0\n",id->key);  
+                fprintf(stdout, "MOVE LF@%s float@0.0\n",id->key);
             }
             else if(id->type_strct.variable->type == type_str){
-                fprintf(stdout, "MOVE LF@%s string@\n",id->key);  
+                fprintf(stdout, "MOVE LF@%s string@\n",id->key);
             }
         }
         Tvariable * item = malloc(sizeof(Tvariable));
@@ -142,13 +141,13 @@
     void generate_input(Tsymtab_item * id){
         fprintf(stdout,"WRITE string@?\\032\n");
         if(id->type_strct.variable->type == type_int){
-            fprintf(stdout, "READ LF@%s int\n",id->key);  
+            fprintf(stdout, "READ LF@%s int\n",id->key);
         }
         else if(id->type_strct.variable->type == type_doub){
-            fprintf(stdout, "READ LF@%s float\n",id->key);  
+            fprintf(stdout, "READ LF@%s float\n",id->key);
         }
         else if(id->type_strct.variable->type == type_str){
-            fprintf(stdout, "READ LF@%s string\n",id->key);  
+            fprintf(stdout, "READ LF@%s string\n",id->key);
         }
     }
 
@@ -202,7 +201,7 @@
                 }
                 else if(par->etype == eq_token){
                     fprintf(stdout,"MOVE TF@%s string@%s\n",sym_item->type_strct.function->arguments[i].key,get_string(par->eValue.token_value->atribute.int_value));
-                }  
+                }
             }
             //fprintf(stdout,"MOVE TF@%s LF@%s\n",sym_item->type_strct.function->arguments[i].key,prom);
             equeRemove(param);
@@ -242,10 +241,6 @@
             }
         }
         fprintf(stdout, "JUMP $%s$epilog\n",sym_item->key);
-    }
-
-    void open_output(){
-        
     }
 
     void generate_function(Tsymtab_item * item, ATQueue * state){
@@ -306,7 +301,7 @@
         char * cond = generate_expression(condition);
         fprintf(stdout, "JUMPIFNEQ %s bool@true LF@%s\n",end_label,cond);
         generate_program(state);
-        fprintf(stdout,"POPFRAME\n");   
+        fprintf(stdout,"POPFRAME\n");
         for(int i= 0;i<top_frame->var_count;i++){
             fprintf(stdout,"MOVE LF@%s TF@%s\n",top_frame->vars[i].id,top_frame->vars[i].id);
         }
@@ -330,7 +325,7 @@
         fprintf(stdout, "DEFVAR LF@%s\n", id);
 
         while(tree->processed != true){
-            if((current->data.type == at_token) || (current->data.type == at_operators) || 
+            if((current->data.type == at_token) || (current->data.type == at_operators) ||
             (current->data.type == at_tsitem)){
                 if(current->left == NULL && current->right == NULL){
                     if(current->data.type == at_token){
@@ -342,7 +337,7 @@
                         else if(current->data.Atr.token->type == type_double){//double
                             current->processed = true;
                             fprintf(stdout, "MOVE LF@%s float@%g\n", id, current->data.Atr.token->atribute.double_value);
-                            return id;                
+                            return id;
                         }
                         else if(current->data.Atr.token->type == type_string){
                             current->processed = true;
@@ -355,10 +350,10 @@
                     else if(current->data.type == at_tsitem){
                         current->processed = true;
                         item_ts = current->data.Atr.tsItem->key;
-                    
+
                         fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                         return id;
-                    }             
+                    }
                 }
                 else if(current->left != NULL && current->left->processed == false){//mozna se bude dat zbavit NULL
                     if(current->left->data.type == at_token){
@@ -412,7 +407,7 @@
                             for_string = get_string(current->right->data.Atr.token->atribute.int_value);
                             fprintf(stdout, "MOVE LF@%s string@%s\n", id, for_string);
                             fprintf(stdout, "PUSHS LF@%s\n", id);
-                            isString = true;                        
+                            isString = true;
                         }
                     }
                     else if(current->right->data.type == at_tsitem){
@@ -421,7 +416,7 @@
                         fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
-                    else if(current->right->data.type == at_operators){ 
+                    else if(current->right->data.type == at_operators){
                         gsptr_stackPush(gp_stack, current);
                         current = current->right;
                     }
@@ -452,14 +447,14 @@
                                 fprintf(stdout, "DEFVAR LF@%s\n", help1);
                                 fprintf(stdout, "DEFVAR LF@%s\n", help2);
                                 fprintf(stdout,"POPS LF@%s\n",help1);
-                                fprintf(stdout,"POPS LF@%s\n",help2); 
+                                fprintf(stdout,"POPS LF@%s\n",help2);
                                 fprintf(stdout,"CONCAT LF@%s LF@%s LF@%s\n",id, help2, help1);
                                 free(help1);
                                 free(help2);
                                 return id;
                                 //pak se sem da dat return zatim to pushnu at se to popne
                                 // fprintf(stdout,"PUSHS LF@%s\n", id);
-                            }else{ 
+                            }else{
                                 fprintf(stdout, "ADDS\n");
                             }
                         }
@@ -545,7 +540,7 @@
                         fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
-                    else if((current->right->data.type == at_operators || current->right->data.type == at_type_cast) 
+                    else if((current->right->data.type == at_operators || current->right->data.type == at_type_cast)
                     && (current->right->processed == false)){
                         gsptr_stackPush(gp_stack, current);
                         current = current->right;
@@ -578,13 +573,13 @@
                         fprintf(stdout, "MOVE LF@%s LF@%s\n",id, item_ts);
                         fprintf(stdout, "PUSHS LF@%s\n", id);
                     }
-                    else if((current->left->data.type == at_operators || current->left->data.type == at_type_cast) 
+                    else if((current->left->data.type == at_operators || current->left->data.type == at_type_cast)
                     && (current->left->processed == false)){
                         gsptr_stackPush(gp_stack, current);
                         current = current->left;
                     }
                 }
-            }       
+            }
         }
         fprintf(stdout, "POPS LF@%s\n",id);
         gsptr_stackDestruct(gp_stack);;
@@ -623,13 +618,13 @@
             int curr = index % 62;
             if(curr >= 0 && curr <= 25){
                 name[i] = 'a' + curr;
-            }   
+            }
             else if(curr >= 26 && curr <= 51){
                 name[i] = 'A' + (curr - 26);
-            }   
+            }
             else{
                 name[i] = '0' + (curr - 52);
-            }  
+            }
             index = (int) index / 62;
             i++;
         }while(index > 0);
@@ -661,10 +656,10 @@
         fprintf(stdout, "MOVE LF@tmp1 int@0\nMOVE LF@tmp2 string@\n");
 
         fprintf(stdout, "SUB LF@tmp1 LF@i int@1\n");
-        
+
         fprintf(stdout, "DEFVAR LF@length\n");
         fprintf(stdout, "MOVE LF@length int@0\n");
-        
+
         fprintf(stdout, "DEFVAR LF@result\n");
         fprintf(stdout, "MOVE LF@result bool@false\n");
 
@@ -679,9 +674,9 @@
         fprintf(stdout, "EQS\n");
         fprintf(stdout, "POPS LF@result\n");
         fprintf(stdout, "JUMPIFEQ $SubStrReturn0 bool@true LF@result\n");*/
-        
+
         fprintf(stdout, "JUMPIFEQ $SubStrReturn0 LF@s LF@tmp2\n");
-        
+
         fprintf(stdout, "PUSHS LF@i\n");
         fprintf(stdout, "PUSHS int@0\n");
         fprintf(stdout, "PUSHS LF@i\n");
@@ -721,7 +716,7 @@
         fprintf(stdout, "STRLEN LF@length LF@%%retval\n");
         fprintf(stdout, "JUMPIFNEQ $SubStrFor LF@length LF@n\n");
         fprintf(stdout, "JUMP $substr$epilog\n");
-        
+
         fprintf(stdout, "LABEL $SubStrReturn0\n");
         fprintf(stdout, "MOVE LF@%%retval string@\n");
         fprintf(stdout, "JUMP $substr$epilog\n");
@@ -762,7 +757,7 @@
         fprintf(stdout, "ORS\n");
         fprintf(stdout, "POPS LF@result\n");
         fprintf(stdout, "JUMPIFEQ $asc$epilog bool@true LF@result\n");
-        
+
         fprintf(stdout, "PUSHS LF@i\n");
         fprintf(stdout, "STRLEN LF@tmp2 LF@s\n");
         fprintf(stdout, "PUSHS LF@tmp2\n");
@@ -773,7 +768,7 @@
         fprintf(stdout, "SUB LF@i LF@i int@1\n");
         fprintf(stdout, "GETCHAR LF@tmp LF@s LF@i\n");
         fprintf(stdout, "STRI2INT LF@%%retval LF@tmp int@0\n");
-    
+
         fprintf(stdout, "LABEL $asc$epilog\n");
         fprintf(stdout, "POPFRAME\n");
         fprintf(stdout, "RETURN\n");

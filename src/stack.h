@@ -63,7 +63,7 @@ void stackDestruct ( tStack* s );
 /**
  * Funkce pro zjisteni jesli je zasobnik prazdny
  * @param s Ukazatel na zasobnik
- * @return Vraci 1 pokud je prazdny jinak vraci 0
+ * @return Vraci 1 pokud je zasobnik prazdny jinak vraci 0
  */
 int stackEmpty ( const tStack* s );
 
@@ -75,13 +75,13 @@ int stackEmpty ( const tStack* s );
 SData* stackTop ( const tStack* s);
 
 /**
- * Funkce odebere data z vrcholu zasobniku
+ * Funkce odebere polozku z vrcholu zasobniku
  * @param s Ukazatel na zasobnik
  */
 void stackPop ( tStack* s );
 
 /**
- * Funkce vlozi data do zasobniku
+ * Funkce vlozi polozku do zasobniku
  * @param s Ukazatel na zasobnik
  * @param data Data, ktera se maji v zasobniku ulozit
  */
