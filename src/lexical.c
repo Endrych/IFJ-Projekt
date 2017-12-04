@@ -25,18 +25,12 @@ typedef enum{
 	_START_STRING, //USED IN EXCLAMATION RENAME IN PICTURE
 	_END_STRING, //
 	_IDENTIFIER,
-	_ASSIGN,
-	_ADD,
-	_SUB,
-	_MULTIPLY,
-	_DIVISION_INT, // {\}
+	_OPERATOR,
 	_LESSER,
 	_LESSER_EQUAL, //USED IN LESSER
 	_NOT_EQUAL, //
 	_GREATER,
 	_GREATER_EQUAL, //USED IN GREATER
-	_BRACKET,
-	_BRACKET_END,
 	_EOF,
 	_EOL,
 	_COMMA,
@@ -121,38 +115,10 @@ Token* get_token(){
 					}
 					last_char = current_char;
 				}
-				else if(current_char == '='){
-					state = _ASSIGN,
-					last_char = current_char;
-				}
-				else if(current_char == '+'){
-					state = _ADD;
-					last_char = current_char;					
-				}
-				else if(current_char == '-'){
-					state = _SUB;
-					last_char = current_char;
-				}
-				else if(current_char == '*'){
-					state = _MULTIPLY;
-					last_char = current_char;
-				}
-				else if(current_char == '\\'){
-					state = _DIVISION_INT;
-					last_char = current_char;
-				}
-				else if(current_char == '<'){
-					state = _LESSER;
-				}
-				else if(current_char == '>'){
-					state = _GREATER;
-				}
-				else if (current_char == '('){
-					state = _BRACKET;
-					last_char = current_char;					
-				}
-				else if (current_char == ')'){
-					state = _BRACKET_END;
+				else if(current_char == '=' || current_char == '+' || current_char == '-' ||
+				current_char == '*' || current_char == '\\' || current_char == '<' || 
+				current_char == '>'|| current_char == '(' || current_char == ')'){
+					state = _OPERATOR,
 					last_char = current_char;
 				}
 				else if (current_char == EOF){
@@ -180,34 +146,50 @@ Token* get_token(){
 					print_error(LEXICAL_ERROR);
 				}
 				break;
-			case _ASSIGN:
-				token->type = type_operator;
-				token->atribute.operator_value = op_assign;
-				return token;
-			case _ADD:
-				token->type = type_operator;
-				token->atribute.operator_value = op_add;
-				return token;
-			case _SUB:
-				token->type = type_operator;
-				token->atribute.operator_value = op_sub;
-				return token;
-			case _MULTIPLY:
-				token->type = type_operator;
-				token->atribute.operator_value = op_mul;
-				return token;
-			case _DIVISION_INT:
-				token->type = type_operator;
-				token->atribute.operator_value = op_division_int;
-				return token;
-			case _BRACKET:
-				token->type = type_operator;
-				token->atribute.operator_value = op_bracket;
-				return token;
-			case _BRACKET_END:
-				token->type = type_operator;
-				token->atribute.operator_value = op_bracket_end;
-				return token;
+			case _OPERATOR:
+				if(current_char == '='){
+					token->type = type_operator;
+					token->atribute.operator_value = op_assign;
+					return token;
+				}
+				else if (current_char == '+'){
+					token->type = type_operator;
+					token->atribute.operator_value = op_add;
+					return token;
+				}
+				else if (current_char == '-'){
+					token->type = type_operator;
+					token->atribute.operator_value = op_sub;
+					return token;
+				}
+				else if(current_char == '*'){
+					token->type = type_operator;
+					token->atribute.operator_value = op_mul;
+					return token;
+				}
+				else if(current_char == '\\'){
+					token->type = type_operator;
+					token->atribute.operator_value = op_division_int;
+					return token;
+				}
+				else if(current_char == '<'){
+					state = _LESSER;
+					break;
+				}
+				else if(current_char == '>'){
+					state = _GREATER;
+					break;
+				}
+				else if(current_char == '('){
+					token->type = type_operator;
+					token->atribute.operator_value = op_bracket;
+					return token;					
+				}
+				else if(current_char == ')'){
+					token->type = type_operator;
+					token->atribute.operator_value = op_bracket_end;
+					return token;
+				}
 			case _EOL:
 				token->type=type_eol;
 				return token;
