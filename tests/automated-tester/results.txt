@@ -1,1 +1,205 @@
 Results of automated-tester
+____________
+1-basic-without-functions:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 0 I: 0
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 0 I: 0
+8✔ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 0 I: 0
+10✔ - Return codes- C: 0 I: 0
+11✔ - Return codes- C: 0 I: 0
+12✔ - Return codes- C: 0 I: 0
+13✔ - Return codes- C: 0 I: 0
+14✔ - Return codes- C: 0 I: 0
+15✔ - Return codes- C: 0 I: 0
+____________
+2-harder-witout-functions:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 0 I: 0
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 0 I: 0
+8✔ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 0 I: 0
+10✔ - Return codes- C: 0 I: 0
+11✔ - Return codes- C: 0 I: 0
+12✔ - Return codes- C: 0 I: 0
+13✔ - Return codes- C: 0 I: 0
+14✔ - Return codes- C: 0 I: 0
+15✔ - Return codes- C: 0 I: 0
+____________
+3-precedence-syntax-detection-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 2 I: 51
+2✔ - Return codes- C: 2 I: 51
+3✔ - Return codes- C: 2 I: 51
+4✔ - Return codes- C: 2 I: 51
+5✔ - Return codes- C: 2 I: 51
+6✔ - Return codes- C: 2 I: 51
+7✔ - Return codes- C: 2 I: 51
+8✔ - Return codes- C: 2 I: 51
+9✔ - Return codes- C: 2 I: 51
+10✔ - Return codes- C: 2 I: 51
+11✔ - Return codes- C: 3 I: 51
+____________
+4-precedence-semantic-detection-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 4 I: 51
+2✔ - Return codes- C: 4 I: 51
+3✔ - Return codes- C: 3 I: 51
+4✔ - Return codes- C: 3 I: 51
+5✔ - Return codes- C: 4 I: 51
+____________
+5-lexical-errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 1 I: 51
+3✔ - Return codes- C: 1 I: 51
+4✔ - Return codes- C: 1 I: 51
+5✔ - Return codes- C: 1 I: 51
+6✔ - Return codes- C: 1 I: 51
+7✔ - Return codes- C: 1 I: 51
+8✔ - Return codes- C: 1 I: 51
+9✔ - Return codes- C: 1 I: 51
+10✔ - Return codes- C: 1 I: 51
+11✔ - Return codes- C: 1 I: 51
+12✔ - Return codes- C: 1 I: 51
+13✔ - Return codes- C: 1 I: 51
+14✔ - Return codes- C: 1 I: 51
+15✔ - Return codes- C: 1 I: 51
+16✔ - Return codes- C: 1 I: 51
+17✔ - Return codes- C: 1 I: 51
+18✔ - Return codes- C: 1 I: 51
+19✔ - Return codes- C: 1 I: 51
+20✔ - Return codes- C: 1 I: 51
+21✔ - Return codes- C: 1 I: 51
+22✔ - Return codes- C: 1 I: 51
+23✔ - Return codes- C: 1 I: 51
+24✔ - Return codes- C: 1 I: 51
+25✔ - Return codes- C: 1 I: 51
+26✔ - Return codes- C: 1 I: 51
+27✔ - Return codes- C: 1 I: 51
+28✔ - Return codes- C: 1 I: 51
+____________
+6-undef-redef-undec:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 3 I: 51
+3✔ - Return codes- C: 3 I: 51
+____________
+7-function_call:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 2 I: 51
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 3 I: 51
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 0 I: 0
+8✔ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 3 I: 51
+10✔ - Return codes- C: 0 I: 0
+____________
+8-built-in:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 0 I: 0
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 0 I: 0
+8✔ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 0 I: 0
+10✔ - Return codes- C: 0 I: 0
+11✔ - Return codes- C: 0 I: 58
+12✔ - Return codes- C: 0 I: 0
+13✔ - Return codes- C: 0 I: 0
+14✔ - Return codes- C: 0 I: 0
+____________
+9-parser_syntax_errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 2 I: 51
+2✔ - Return codes- C: 2 I: 51
+3✔ - Return codes- C: 2 I: 51
+4✔ - Return codes- C: 2 I: 51
+____________
+10-parser_semantic_errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 3 I: 51
+2✔ - Return codes- C: 3 I: 51
+3✔ - Return codes- C: 3 I: 51
+4✔ - Return codes- C: 3 I: 51
+5✔ - Return codes- C: 3 I: 51
+6✔ - Return codes- C: 3 I: 51
+7✔ - Return codes- C: 3 I: 51
+8✔ - Return codes- C: 3 I: 51
+9✔ - Return codes- C: 3 I: 51
+10✔ - Return codes- C: 3 I: 51
+11✔ - Return codes- C: 3 I: 51
+12✔ - Return codes- C: 3 I: 51
+13✔ - Return codes- C: 3 I: 51
+14✔ - Return codes- C: 3 I: 51
+15✔ - Return codes- C: 3 I: 51
+16✔ - Return codes- C: 3 I: 51
+17✔ - Return codes- C: 3 I: 51
+18✔ - Return codes- C: 3 I: 51
+19✔ - Return codes- C: 3 I: 51
+20✔ - Return codes- C: 3 I: 51
+21✔ - Return codes- C: 3 I: 51
+22✔ - Return codes- C: 3 I: 51
+____________
+11-parser_type_errors:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 4 I: 51
+2✔ - Return codes- C: 4 I: 51
+3✔ - Return codes- C: 4 I: 51
+4✔ - Return codes- C: 4 I: 51
+5✔ - Return codes- C: 4 I: 51
+6✔ - Return codes- C: 4 I: 51
+7✔ - Return codes- C: 4 I: 51
+8✔ - Return codes- C: 4 I: 51
+9✔ - Return codes- C: 4 I: 51
+10✔ - Return codes- C: 4 I: 51
+11✔ - Return codes- C: 4 I: 51
+12✔ - Return codes- C: 4 I: 51
+13✔ - Return codes- C: 4 I: 51
+____________
+12-loop:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 2 I: 51
+5✔ - Return codes- C: 0 I: 0
+____________
+13-statement:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✔ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 2 I: 51
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 2 I: 51
+7✔ - Return codes- C: 0 I: 0
+8✗ - Return codes- C: 0 I: 0
+9✔ - Return codes- C: 0 I: 0
+____________
+14-expresions:
+¯¯¯¯¯¯¯¯¯¯¯¯
+1✗ - Return codes- C: 0 I: 0
+2✔ - Return codes- C: 0 I: 0
+3✔ - Return codes- C: 0 I: 0
+4✔ - Return codes- C: 0 I: 0
+5✔ - Return codes- C: 0 I: 0
+6✔ - Return codes- C: 0 I: 0
+7✔ - Return codes- C: 2 I: 51
+8✗ - Return codes- C: 0 I: 0
