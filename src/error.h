@@ -30,8 +30,8 @@
 #define COMPILER_MESSAGE "Compiler error: inner error of the compiler (probably fail of memory allocation)."
 
 /**
- * [print_error description]
- * @param error_code [description]
+ * Funkce vytiskne na obrazovku chybovou hlasku a prekladac ukonci s odpovidajicim navratovym kodem
+ * @param error_code Navratovy kod prekladace
  */
 void print_error(int error_code);
 
