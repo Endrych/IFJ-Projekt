@@ -18,7 +18,6 @@ typedef enum{
 	_START,
 	_LINE_COMMENT,
 	_BLOCK_COMMENT,//USED IN SLASH
-	_BLOCK_COMMENT_FINISHED, //mozna neni treba
 	_SLASH,
 	_NUMBER,
 	_NUM_DOUBLE,  //
@@ -38,7 +37,10 @@ typedef enum{
 	_GREATER_EQUAL, //USED IN GREATER
 	_BRACKET,
 	_BRACKET_END,
-	_EOF
+	_EOF,
+	_EOL,
+	_COMMA,
+	_SEMICOLON
 }_State;
 
 Token* get_token(){
@@ -120,29 +122,24 @@ Token* get_token(){
 					last_char = current_char;
 				}
 				else if(current_char == '='){
-					token->type = type_operator;
-					token->atribute.operator_value = op_assign;
-					return token;
+					state = _ASSIGN,
+					last_char = current_char;
 				}
 				else if(current_char == '+'){
-					token->type = type_operator;
-					token->atribute.operator_value = op_add;
-					return token;
+					state = _ADD;
+					last_char = current_char;					
 				}
 				else if(current_char == '-'){
-					token->type = type_operator;
-					token->atribute.operator_value = op_sub;
-					return token;
+					state = _SUB;
+					last_char = current_char;
 				}
 				else if(current_char == '*'){
-					token->type = type_operator;
-					token->atribute.operator_value = op_mul;
-					return token;
+					state = _MULTIPLY;
+					last_char = current_char;
 				}
 				else if(current_char == '\\'){
-					token->type = type_operator;
-					token->atribute.operator_value = op_division_int;
-					return token;
+					state = _DIVISION_INT;
+					last_char = current_char;
 				}
 				else if(current_char == '<'){
 					state = _LESSER;
@@ -151,14 +148,12 @@ Token* get_token(){
 					state = _GREATER;
 				}
 				else if (current_char == '('){
-					token->type = type_operator;
-					token->atribute.operator_value = op_bracket;
-					return token;
+					state = _BRACKET;
+					last_char = current_char;					
 				}
 				else if (current_char == ')'){
-					token->type = type_operator;
-					token->atribute.operator_value = op_bracket_end;
-					return token;
+					state = _BRACKET_END;
+					last_char = current_char;
 				}
 				else if (current_char == EOF){
 					state = _EOF;
@@ -169,15 +164,15 @@ Token* get_token(){
 					state = _START;
 				}
 				else if(current_char == '\n'){
-					token->type=type_eol;
-					return token;
+					state = _EOL;
+					last_char = current_char;
 				}
 				else if(current_char == ';'){
-					token->type=type_semicolon;
-					return token;
+					state = _SEMICOLON;
+					last_char = current_char;
 				}else if(current_char == ','){
-					token->type=type_comma;
-					return token;
+					state = _COMMA;
+					last_char = current_char;
 				}
 				else{
 					fprintf(stderr,"Character | %c | is not allowed\n", current_char);
@@ -185,6 +180,43 @@ Token* get_token(){
 					print_error(LEXICAL_ERROR);
 				}
 				break;
+			case _ASSIGN:
+				token->type = type_operator;
+				token->atribute.operator_value = op_assign;
+				return token;
+			case _ADD:
+				token->type = type_operator;
+				token->atribute.operator_value = op_add;
+				return token;
+			case _SUB:
+				token->type = type_operator;
+				token->atribute.operator_value = op_sub;
+				return token;
+			case _MULTIPLY:
+				token->type = type_operator;
+				token->atribute.operator_value = op_mul;
+				return token;
+			case _DIVISION_INT:
+				token->type = type_operator;
+				token->atribute.operator_value = op_division_int;
+				return token;
+			case _BRACKET:
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket;
+				return token;
+			case _BRACKET_END:
+				token->type = type_operator;
+				token->atribute.operator_value = op_bracket_end;
+				return token;
+			case _EOL:
+				token->type=type_eol;
+				return token;
+			case _SEMICOLON:
+				token->type=type_semicolon;
+				return token;
+			case _COMMA:
+				token->type=type_comma;
+				return token;
 			case _LINE_COMMENT:
 				if(current_char == '\n'){
 					state = _START;
