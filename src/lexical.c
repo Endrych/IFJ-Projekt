@@ -34,7 +34,8 @@ typedef enum{
 	_EOF,
 	_EOL,
 	_COMMA,
-	_SEMICOLON
+	_SEMICOLON,
+	_END_BLOCK_COMMENT
 }_State;
 
 Token* get_token(){
@@ -46,7 +47,6 @@ Token* get_token(){
 	}
 	static char last_char;
 	static char last_string_char;
-	char prev_char;
 	char escape_seq[4];
 	int esc_seq_iter = 0;
 	int str_to_int;
@@ -218,15 +218,23 @@ Token* get_token(){
 					return token;
 				}
 			case _BLOCK_COMMENT:
-				if(current_char == '/' && prev_char == '\''){
-					state = _START;
-					prev_char = '\0';
-					break;
+				if(current_char == '\''){
+					state = _END_BLOCK_COMMENT;
 				}else if(current_char == EOF){
 					free(token);
 					print_error(LEXICAL_ERROR);
 				}
-				prev_char = current_char;
+				break;
+			case _END_BLOCK_COMMENT:
+				if(current_char == '/'){
+					state = _START;
+				}else if(current_char == EOF){
+					free(token);
+					print_error(LEXICAL_ERROR);
+				}
+				else{
+					state = _BLOCK_COMMENT;
+				}
 				break;
 			case _NUMBER:
 				if(current_char == '\n' || current_char == ' ' ||
