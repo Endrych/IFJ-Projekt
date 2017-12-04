@@ -143,7 +143,7 @@ Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type
 				fprintf(stderr, "%s\n", COMPILER_MESSAGE);
        			dispose_global();
 			}
-			new_item->type_strct.function->sym_table = symtab_init(42); // ?? size
+			new_item->type_strct.function->sym_table = symtab_init(30); 
 		}
 
 

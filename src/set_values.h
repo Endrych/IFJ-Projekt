@@ -11,45 +11,45 @@
 #define SET_VALUES_H
 
 /**
- * [set_item_variable description]
- * @param item  [description]
- * @param value [description]
- * @param type  [description]
+ * nastavi hodnoty promenne ulozene v tabulce symbolu 
+ * @param item  ukazatel na dany item v tabulce symbolu
+ * @param value hodnota ukladana do daneho symbolu
+ * @param type  typ symbolu
  */
 void set_item_variable(Tvariable_item *item, Tvalue value, Tvariable_type type);
 
 /**
- * [set_item_function description]
- * @param item        [description]
- * @param return_type [description]
- * @param sym_table   [description]
+ * nastavi hodnoty symbolu funkce v tabulce symbolu
+ * @param item        ukazatel na dany item v tabulce symbolu
+ * @param return_type typ navratove hodnoty
+ * @param sym_table   ukazatel na tabulku symbolu
  */
 void set_item_function(Tfunction_item *item, Tvariable_type return_type, Tsymtab *sym_table);
 
 /**
- * [set_args_function description]
- * @param item  [description]
- * @param key   [description]
- * @param type  [description]
- * @param value [description]
+ * nastavi hodnoty argumentu dane funkce a priradi je k funkci v tabulce symbolu
+ * @param item  ukazatel na dany item v tabulce symbolu
+ * @param key   identifikator parametru
+ * @param type  typ parametru
+ * @param value hodnota parametru
  */
 void set_args_function(Tfunction_item *item, char *key, Tvariable_type type, Tvalue value);
 
 /**
- * [free_args_function description]
- * @param item [description]
+ * [uvolni pamet argumentu dane funkce
+ * @param item ukazatel na item v tabulce symbolu
  */
 void free_args_function(Tfunction_item *item);
 
 /**
- * [init_item_variable description]
- * @param item [description]
+ * inicializuje hodnoty symbolu promenne v tabulce
+ * @param item ukazatel na item v tabulce symbolu
  */
 void init_item_variable(Tvariable_item *item);
 
 /**
- * [init_item_function description]
- * @param item [description]
+ * inicializuje hodnoty symbolu funkce v tabulce
+ * @param item ukazatel na item v tabulce symbolu
  */
 void init_item_function(Tfunction_item *item);
 

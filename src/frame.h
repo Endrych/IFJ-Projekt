@@ -22,7 +22,8 @@ typedef struct variable {
 	Tvariable_type type;
 } Tvariable;
 
-//
+
+// struktura pro ramec
 typedef struct frame {
 	unsigned next_instr;
 	Tvariable *return_value;
@@ -37,43 +38,52 @@ typedef struct frame_stack {
 } TFstack;		// frame stack
 
 /**
- * [FS_init description]
- * @param stack [description]
+ *  Funkce inicializuje zasobnik
+ *
+ * @param stack ukazatel na zasobnik, ktery ma byt inicializovan
  */
-void FS_init(TFstack *stack);					// inicializuje zasobnik
+void FS_init(TFstack *stack);					
 
 /**
- * [FS_destruct description]
- * @param stack [description]
+ * Funkce uvolni pamet zasobniku 
+ *
+ * @param stack ukazatel na uvolnovany zasobnik
  */
-void FS_destruct(TFstack *stack);				// uvolni pamet zasobniku
+void FS_destruct(TFstack *stack);
 
 /**
- * [FS_empty description]
- * @param  stack [description]
- * @return       [description]
+ *	Funkce zjisti, zda je zasobnik prazny 
+ *
+ * @param  stack ukazatel na zasobnik
+ * @return 	vraci hodnotu true, pokud je prazdny
+ *			pokud neni, tak false
  */
-bool FS_empty(TFstack *stack);					// je zasobnik volny?
+bool FS_empty(TFstack *stack);	
 
 /**
- * [FS_push description]
- * @param stack [description]
- * @param frame [description]
+ * Funkce vlozi ramec na vrchol zasobniku
+ *
+ * @param stack ukazatel na zasobnik ramcu
+ * @param frame ukazatel na vkladany ramec
  */
-void FS_push(TFstack *stack, Tframe *frame);	// pushne frame na vrchol
+void FS_push(TFstack *stack, Tframe *frame);
 
 /**
- * [FS_pop description]
- * @param stack [description]
+ * Funkce uvolni ramec na vrcholu
+ * na vrchol ulozi nasledujici ramec
+ *
+ * @param stack ukazatel na zasobnik ramcu 
  */
-void FS_pop(TFstack *stack);					// popne frame z vrcholu
+void FS_pop(TFstack *stack);	
 
 /**
- * [FS_top description]
- * @param  stack [description]
- * @return       [description]
+ * Funkce vraci ukazatel na ramec, 
+ * ktery je na vrcholu zasobniku ramcu
+ *
+ * @param  stack ukazatel na zasobnik ramcu
+ * @return       ukazatel na ramec na vrcholu
  */
-Tframe *FS_top(TFstack *stack);					// vrati frame z vrcholu
+Tframe *FS_top(TFstack *stack);	
 
 
 /**
@@ -82,78 +92,52 @@ Tframe *FS_top(TFstack *stack);					// vrati frame z vrcholu
  */
 void create_frame();
 
+
 /**
  * prida promennou nebo parametr funkce do zadaneho ramce
  * alokuje pro tuto promennou pamet
- */
-/**
- * [add_var_to_frame description]
- * @param frame [description]
- * @param var   [description]
+ * @param frame ukazatel na ramec
+ * @param var   ukazatel na promennou, ktera bude ulozena
  */
 void add_var_to_frame( Tframe *frame, Tvariable *var);
 
-/*
- * definuje promennou pro navratovou hodnotu z funkce
- * definuje ji podle promenne zadane jako parametr var
- */
 /**
- * [def_return_value description]
- * @param frame [description]
- * @param var   [description]
+ * definuje promennou pro navratovou hodnotu z funkce
+ *
+ * @param frame ukazatel na ramec
+ * @param var   ukazatel na promennou,
+ *				podle ktere se definuje navratova hodnota funkce
  */
 void def_return_value(Tframe *frame, Tvariable *var);
 
-/*
- *  zatim neimplementovano, mozna nebude potreba
- *
- */
 /**
- * [destruct_frame description]
- * @param stack [description]
- * @param frame [description]
- */
-void destruct_frame(TFstack *stack, Tframe *frame);
-
-/*
  * presune temp_frame na vrchol zasobniku skrz promennou local_frame
  * pro local_frame alokuje pamet, vola def_return_value(),
  * po ukonceni funkce je temp_frame nedefinovan a je potreba jej znovu
  * vytvorit pomoci create_frame
  * pokud temp_frame == NULL nastava chyba 55
- */
 
-/**
- * [push_frame description]
- * @param stack      [description]
- * @param var        [description]
- * @param next_instr [description]
+ * @param stack      ukazatel na zasobnik ramcu
+ * @param var        ukazatel na promennou, je predan funkci def_return_value
+ * @param next_instr ukazatel na nasledujici radek --> nakonec nepouzit 
  */
 void push_frame(TFstack *stack, Tvariable *var, unsigned next_instr);
 
-/*
+/**
  * presune vrchol zasobniku do temp_frame
  * pokud FS_empty() == true, nastava chyba 55
- */
 
-/**
- * [pop_frame description]
- * @param stack [description]
+ * @param stack ukazatel na zasobnik ramcu
  */
 void pop_frame(TFstack *stack);
 
-/*
+/**
  * vraci hodnotu z temp_frame, ktery byl popnut ze zasobniku
  * do ramce, ktery je aktualne na vrcholu zasobniku
- * vola funkci add_var_to_frame(), nevim jestli je to dobre
- * mozna bude potreba predelat
- * je volana funkci pop_frame()
- */
+ * vola funkci add_var_to_frame()
 
-/**
- * [get_return_value description]
- * @param end_frame [description]
- * @param frame     [description]
+ * @param end_frame ukazatel na uonceny ramec
+ * @param frame     ukazatel na lokalni ramec
  */
 void get_return_value(Tframe *end_frame, Tframe *frame);
 
