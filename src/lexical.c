@@ -217,6 +217,7 @@ Token* get_token(){
 					last_char = current_char;
 					return token;
 				}
+				break;
 			case _BLOCK_COMMENT:
 				if(current_char == '\''){
 					state = _END_BLOCK_COMMENT;
