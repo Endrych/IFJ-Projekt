@@ -16,13 +16,13 @@
 #define DESTRUCTOR_H
 
 /**
- * [dispose_all description]
- * @param stack       [description]
- * @param leaf        [description]
- * @param s           [description]
- * @param s2          [description]
- * @param frame_stack [description]
- * @param s3          [description]
+ * uvolni veskerou pouzitou pamet
+ * @param stack       ukazatel na zasobnik 
+ * @param leaf        ukazatel na uzel stromu
+ * @param s           ukazatel na frontu
+ * @param s2          ukazatel na frontu
+ * @param frame_stack ukazatel na zasobnik ramcu
+ * @param s3          ukazatel na zasobnik
  */
 void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *frame_stack, GPStack *s3);
 
@@ -34,7 +34,7 @@ void dispose_all(tStack *stack, ATLeaf *leaf, ATQueue* s, eQueue* s2, TFstack *f
 void dispose();
 
 /**
- * [dispose_global description]
+ * uvolni pouzite globalni promenne, napriklad symtable
  */
 void dispose_global();
 

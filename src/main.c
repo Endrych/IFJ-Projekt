@@ -18,7 +18,7 @@ extern Tsymtab * symtab;
 
 int main(){
     int return_value;
-	symtab = symtab_init(42);
+	symtab = symtab_init(143);
     insert_built_in();
 	return_value = parse();
 	fprintf(stderr,"\n");

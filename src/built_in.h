@@ -10,27 +10,27 @@
 #define BUILT_IN_H
 
 /**
- * [insert_length description]
+ * Vlozi built-in funkci Length() do globalni tabulky symbolu
  */
 void insert_length();
 
 /**
- * [insert_substr description]
+ * Vlozi built-in funkci SubStr() do globalni tabulky symbolu
  */
 void insert_substr();
 
 /**
- * [insert_asc description]
+ * Vlozi built-in funkci Asc() do globalni tabulky symbolu
  */
 void insert_asc();
 
 /**
- * [insert_chr description]
+ * Vlozi built-in funkci Chr() do globalni tabulky symbolu
  */
 void insert_chr();
 
 /**
- * [insert_built_in description]
+ * Vola funkce pro vkladani built-in funkci do globalni tabulky symbolu
  */
 void insert_built_in();
 #endif /* BUILT_IN_H */

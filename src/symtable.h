@@ -81,55 +81,52 @@ typedef struct symtable {
 	Tsymtab_item *symtab_list[];
 } Tsymtab;
 
-// hashovaci funkce pro zjisteni indexu v tabulce
 /**
- * [hash_func description]
- * @param  [name] [description]
- * @return        [description]
+ * hashovaci funkce pro zjisteni indexu v tabulce
+ * @param  key klic pro hashovaci funkci
+ * @return        finalni hash pro vypocet indexu
  */
-unsigned int hash_func( char *);
+unsigned int hash_func( char *key);
 
-// inicializacni funkce
 /**
- * [symtab_init description]
- * @param  int [description]
- * @return     [description]
+ * inicializacni funkce
+ * @param  int velikost tabulky
+ * @return     ukazatel na tabulku symbolu
  */
-Tsymtab *symtab_init(unsigned int);
+Tsymtab *symtab_init(unsigned int size);
 
-// funkce vlozi prvek na zacatek seznamu na danem indexu
-// pokud je uz prvek v tabulce, vrati ukazatel
 /**
- * [symtab_insert description]
- * @param  sym_table [description]
- * @param  token     [description]
- * @param  type      [description]
+ * funkce vlozi prvek na zacatek seznamu na danem indexu
+ * pokud je uz prvek v tabulce, vrati ukazatel na dany prvek
+ * @param  sym_table ukazatel na tabulku symbolu
+ * @param  token     ukazatel na prislusny token
+ * @param  type      typ prvku
  * @return           [description]
  */
 Tsymtab_item *symtab_insert(Tsymtab *sym_table, Token *token, Telement_type type);
 
-// funkce pro vyhledavani v tabulce
+
 /**
- * [symtab_search description]
- * @param  sym_table [description]
- * @param  token     [description]
- * @return           [description]
+ * funkce pro vyhledavani v tabulce
+ * @param  sym_table ukazatel na tabulku symbolu
+ * @param  token     ukazatel na prislusny token
+ * @return           ukazatel na prvek z tabulky symbolu,
+ *					 pokud nenalezen, tak NULL
  */
 Tsymtab_item *symtab_search(Tsymtab *sym_table, Token *token);
 
-// vymaze tabulku a dealokuje pamet tabulky
 /**
- * [symtab_free description]
- * @param sym_table [description]
+ * vymaze tabulku a dealokuje pamet tabulky
+ * @param sym_table ukazatel na tabulku symbolu
  */
 void symtab_free(Tsymtab *sym_table);
 
-// vymaze a dealokuje pamet jednoho prvku
 /**
- * [symtab_delete description]
- * @param  sym_table [description]
- * @param  token     [description]
- * @return           [description]
+ * vymaze a dealokuje pamet jednoho prvku
+ * @param  sym_table ukazatel na tabulku symbolu
+ * @param  token     ukazatel na prislusny token
+ * @return           true, jestli nalezl a smazal
+ *					 false, jestli nenalezl
  */
 bool symtab_delete(Tsymtab *sym_table,  Token *token);
 
