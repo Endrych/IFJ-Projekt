@@ -116,10 +116,16 @@ Token* get_token(){
 					last_char = current_char;
 				}
 				else if(current_char == '=' || current_char == '+' || current_char == '-' ||
-				current_char == '*' || current_char == '\\' || current_char == '<' || 
-				current_char == '>'|| current_char == '(' || current_char == ')'){
+				current_char == '*' || current_char == '\\' || current_char == '(' || 
+				current_char == ')'){
 					state = _OPERATOR,
 					last_char = current_char;
+				}
+				else if(current_char == '<'){
+					state = _LESSER;
+				}
+				else if(current_char == '>'){
+					state = _GREATER;
 				}
 				else if (current_char == EOF){
 					state = _EOF;
@@ -171,14 +177,6 @@ Token* get_token(){
 					token->type = type_operator;
 					token->atribute.operator_value = op_division_int;
 					return token;
-				}
-				else if(current_char == '<'){
-					state = _LESSER;
-					break;
-				}
-				else if(current_char == '>'){
-					state = _GREATER;
-					break;
 				}
 				else if(current_char == '('){
 					token->type = type_operator;
